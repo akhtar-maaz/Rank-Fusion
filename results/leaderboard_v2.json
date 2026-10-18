@@ -1,0 +1,18 @@
+{
+  "source": "User-reported submission website results, 2026-10-18",
+  "commit": "13755e2b9197f87b3563e35b4c4197055c37f387",
+  "conformance_passed": 7,
+  "conformance_total": 7,
+  "correctness_passed": 10,
+  "correctness_total": 10,
+  "fusion_ndcg@10": 0.3078,
+  "fusion_map@10": 0.1289,
+  "ltr_ndcg@10": 0.4912,
+  "pairwise_heldout_ndcg@10": 0.4333,
+  "pairwise_dev_ndcg@10": 0.4449,
+  "c2_mean_ndcg@10": 0.3495,
+  "live_score": 0.3317,
+  "live_score_maximum": 0.65,
+  "position": 6,
+  "note": "Aggregate feedback supplied by the user. No held-out labels or examples accessed. C1 remains unevaluated. Further selection uses TRAIN folds only."
+}

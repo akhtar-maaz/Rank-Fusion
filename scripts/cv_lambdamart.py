@@ -35,7 +35,7 @@ def main():
     ap.add_argument("--lambda-l2", type=float, nargs="+", default=[1.0, 10.0])
     ap.add_argument("--feature-fraction", type=float, default=0.8)
     ap.add_argument("--threads", type=int, default=4)
-    ap.add_argument("--feature-mode", choices=["raw", "query_rank"], default="raw")
+    ap.add_argument("--feature-mode", choices=["raw", "query_rank", "query_normalized"], default="raw")
     ap.add_argument("--max-depth", type=int, default=None)
     ap.add_argument("--truncation", type=int, default=None, help="LambdaRank truncation level")
     ap.add_argument("--out", default="runs/lambdamart_cv.json")

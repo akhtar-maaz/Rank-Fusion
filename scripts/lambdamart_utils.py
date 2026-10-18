@@ -26,7 +26,7 @@ def fit(X, y, qids, params, num_trees, feature_mode="raw", prepared=False):
     import lightgbm as lgb
     if not prepared:
         X = tree_features(X, qids, feature_mode)
-    width = X.shape[1] // 2 if feature_mode == "query_rank" else X.shape[1]
+    width = X.shape[1] if feature_mode == "raw" else X.shape[1] // 2
     names = tree_feature_names(width, feature_mode)
     return lgb.train(params, lgb.Dataset(X, label=y, group=group_sizes(qids), feature_name=names),
                      num_boost_round=num_trees)

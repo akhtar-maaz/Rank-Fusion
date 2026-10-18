@@ -4,6 +4,24 @@ import numpy as np
 from submission.data import group_sizes
 
 PREFIX = "rankfusion_qrank_v1_"
+NORMALIZED_PREFIX = "rankfusion_qnorm_v1_"
+
+
+def query_minmax(X):
+    """Query-local [0, 1] values; constants are 0.5 and NaNs stay missing."""
+    X = np.asarray(X, dtype=np.float32)
+    finite = np.isfinite(X)
+    low = np.min(np.where(finite, X, np.inf), axis=0, initial=np.inf)
+    high = np.max(np.where(finite, X, -np.inf), axis=0, initial=-np.inf)
+    # Float64 subtraction also handles opposite, very large finite float32s.
+    low = np.where(np.isfinite(low), low, 0).astype(np.float64)
+    span = high.astype(np.float64) - low
+    variable = np.isfinite(span) & (span > 0)
+    result = np.full(X.shape, 0.5, dtype=np.float32)
+    np.divide(X.astype(np.float64) - low, np.where(variable, span, 1),
+              out=result, where=finite & variable)
+    result[~finite] = np.nan
+    return result
 
 
 def query_percentiles(X):
@@ -40,23 +58,32 @@ def tree_features(X, qids=None, mode="raw"):
     X = np.asarray(X, dtype=np.float32)
     if mode == "raw":
         return X
-    if mode != "query_rank":
+    if mode not in ("query_rank", "query_normalized"):
         raise ValueError(f"unknown tree feature mode: {mode}")
     ranks = np.empty_like(X)
+    values = X if mode == "query_rank" else np.empty_like(X)
     start = 0
     for size in (group_sizes(qids) if qids is not None else [len(X)]):
         ranks[start:start + size] = query_percentiles(X[start:start + size])
+        if mode == "query_normalized":
+            values[start:start + size] = query_minmax(X[start:start + size])
         start += size
-    return np.concatenate([X, ranks], axis=1)
+    return np.concatenate([values, ranks], axis=1)
 
 
 def tree_feature_names(width, mode):
     if mode == "raw":
         return "auto"
-    return ([f"{PREFIX}raw_{i}" for i in range(width)] +
-            [f"{PREFIX}rank_{i}" for i in range(width)])
+    if mode not in ("query_rank", "query_normalized"):
+        raise ValueError(f"unknown tree feature mode: {mode}")
+    prefix = PREFIX if mode == "query_rank" else NORMALIZED_PREFIX
+    values = "raw" if mode == "query_rank" else "minmax"
+    return ([f"{prefix}{values}_{i}" for i in range(width)] +
+            [f"{prefix}rank_{i}" for i in range(width)])
 
 
 def features_for_model(model, X, qids=None):
-    mode = "query_rank" if model.feature_name()[0].startswith(PREFIX) else "raw"
+    name = model.feature_name()[0]
+    mode = ("query_rank" if name.startswith(PREFIX) else
+            "query_normalized" if name.startswith(NORMALIZED_PREFIX) else "raw")
     return tree_features(X, qids, mode)

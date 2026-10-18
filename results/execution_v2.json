@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-18",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "cpus_per_job": 4,
+    "memory_limit_gb": 8
+  },
+  "full_train_prefit": {
+    "job_id": "1103380.pbshpc",
+    "exit_status": 0,
+    "wall_seconds": 276,
+    "pbs_peak_mem_kb": 2178688
+  },
+  "training_and_reproduction_pipeline": {
+    "job_id": "1103388.pbshpc",
+    "exit_status": 1,
+    "wall_seconds": 355,
+    "pbs_peak_mem_kb": 2179544,
+    "model_evaluation_passed": true,
+    "independent_reproduction_passed": true,
+    "initial_smoke_failure": "Weighted fusion assumed four channel names in a generic-channel contract fixture.",
+    "resolution": "Fixed supplied-channel handling; normal four-channel scores remain bit-identical. Final verification below passes."
+  },
+  "final_verification": {
+    "job_id": "1103397.pbshpc",
+    "exit_status": 0,
+    "wall_seconds": 64,
+    "pbs_peak_mem_kb": 348212,
+    "tests_passed": 64,
+    "frozen_models_evaluated": true,
+    "independent_reproduction_proof_verified": true
+  },
+  "synthetic_transfer": {
+    "note": "Printed precision from successful final verification; synthetic checks do not estimate hidden benchmark scores.",
+    "results": [
+      {
+        "set": "a_40_features_labels0-4",
+        "train_seconds": 0.5,
+        "validation_ndcg@10": 0.9402
+      },
+      {
+        "set": "b_90_features_labels0-4",
+        "train_seconds": 0.5,
+        "validation_ndcg@10": 0.9456
+      },
+      {
+        "set": "c_250_features_labels0-2",
+        "train_seconds": 1.3,
+        "validation_ndcg@10": 0.9502
+      }
+    ]
+  }
+}

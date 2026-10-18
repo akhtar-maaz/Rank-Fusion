@@ -1,0 +1,23 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:20:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/final_verify_v2.log) 2>&1
+.venv/bin/python - <<'PY'
+import hashlib,json
+from pathlib import Path
+record=json.loads(Path("results/lambdamart_reproducibility.json").read_text())
+assert record["byte_identical"]
+assert hashlib.sha256(Path("submission/model.txt").read_bytes()).hexdigest() == record["original_sha256"]
+print("Independent reproduction proof matches the submitted model",flush=True)
+PY
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json
+.venv/bin/python scripts/run_recipe.py
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

@@ -1,0 +1,83 @@
+{
+  "arguments": {
+    "kind": "pairwise",
+    "train": "data/train",
+    "dev": null,
+    "folds": 5,
+    "threads": 4,
+    "history_out": "runs/neural_v2/candidate_2/history.json",
+    "out_dir": "runs/neural_v2/candidate_2",
+    "seed": 0,
+    "epochs": 20,
+    "batch_size": 1024,
+    "lr": 0.001,
+    "pairs_per_query": 300,
+    "pair_weighting": "ndcg",
+    "patience": 5,
+    "hidden": [
+      128,
+      64
+    ]
+  },
+  "seed": 0,
+  "trained_on": "TRAIN",
+  "selected_on": "TRAIN internal fold 0",
+  "hidden": [
+    128,
+    64
+  ],
+  "models": {
+    "pairwise": {
+      "selection_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5515378443907228,
+          "dev_ndcg@10": 0.4200735275402253
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.4035323159153034,
+          "dev_ndcg@10": 0.4347232967130599
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.3740312585909782,
+          "dev_ndcg@10": 0.4297673233567114
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.35489448632632037,
+          "dev_ndcg@10": 0.4242989611786306
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.34098530658389925,
+          "dev_ndcg@10": 0.42713345599178143
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.3185113917801605,
+          "dev_ndcg@10": 0.4148952336117015
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.30356557700213593,
+          "dev_ndcg@10": 0.41385422192882987
+        }
+      ],
+      "best_epoch": 2,
+      "full_train_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5489619773025519,
+          "train_ndcg@10": 0.4118719398094169
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.403741212748068,
+          "train_ndcg@10": 0.4326478111492429
+        }
+      ]
+    }
+  }
+}

@@ -38,6 +38,11 @@ def test_weighted_fusion_is_separate_from_textbook_combsum():
     assert combsum_scores(base) == {"a": 0.0, "b": 1.5, "c": 1.5}
 
 
+def test_weighted_fusion_accepts_other_supplied_channel_names():
+    base = {"a": {"x": 1}, "b": {"x": 3}}
+    assert weighted_combsum_scores(base, {"absent": 0.5}) == {"a": 0.0, "b": 1.0}
+
+
 def test_engineered_artifact_roundtrip_through_ranking(tmp_path):
     rng = np.random.RandomState(0)
     X = rng.normal(size=(120, 3)).astype(np.float32)

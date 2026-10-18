@@ -1,0 +1,191 @@
+{
+  "selected_on": "TRAIN internal fold 0 only",
+  "candidates": [
+    {
+      "history": "results/neural_history_v1.json",
+      "model": "runs/baseline_v1/pairwise_model.pt",
+      "arguments": {
+        "kind": "both",
+        "train": "data/train",
+        "dev": null,
+        "folds": 5,
+        "threads": 4,
+        "history_out": "results/neural_history.json",
+        "out_dir": "submission",
+        "seed": 0,
+        "epochs": 30,
+        "batch_size": 1024,
+        "lr": 0.001,
+        "pairs_per_query": 300,
+        "patience": 5,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "best_epoch": 1,
+      "TRAIN_selection_ndcg@10": 0.42631962016190267
+    },
+    {
+      "history": "runs/neural_v2/candidate_0/history.json",
+      "model": "runs/neural_v2/candidate_0/pairwise_model.pt",
+      "arguments": {
+        "kind": "pairwise",
+        "train": "data/train",
+        "dev": null,
+        "folds": 5,
+        "threads": 4,
+        "history_out": "runs/neural_v2/candidate_0/history.json",
+        "out_dir": "runs/neural_v2/candidate_0",
+        "seed": 0,
+        "epochs": 20,
+        "batch_size": 1024,
+        "lr": 0.0003,
+        "pairs_per_query": 300,
+        "pair_weighting": "uniform",
+        "patience": 5,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "best_epoch": 4,
+      "TRAIN_selection_ndcg@10": 0.43051405950540583
+    },
+    {
+      "history": "runs/neural_v2/candidate_1/history.json",
+      "model": "runs/neural_v2/candidate_1/pairwise_model.pt",
+      "arguments": {
+        "kind": "pairwise",
+        "train": "data/train",
+        "dev": null,
+        "folds": 5,
+        "threads": 4,
+        "history_out": "runs/neural_v2/candidate_1/history.json",
+        "out_dir": "runs/neural_v2/candidate_1",
+        "seed": 0,
+        "epochs": 20,
+        "batch_size": 1024,
+        "lr": 0.0003,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "patience": 5,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "best_epoch": 5,
+      "TRAIN_selection_ndcg@10": 0.43350218854973016
+    },
+    {
+      "history": "runs/neural_v2/candidate_2/history.json",
+      "model": "runs/neural_v2/candidate_2/pairwise_model.pt",
+      "arguments": {
+        "kind": "pairwise",
+        "train": "data/train",
+        "dev": null,
+        "folds": 5,
+        "threads": 4,
+        "history_out": "runs/neural_v2/candidate_2/history.json",
+        "out_dir": "runs/neural_v2/candidate_2",
+        "seed": 0,
+        "epochs": 20,
+        "batch_size": 1024,
+        "lr": 0.001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "patience": 5,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "best_epoch": 2,
+      "TRAIN_selection_ndcg@10": 0.4347232967130599
+    },
+    {
+      "history": "runs/neural_v2/candidate_3/history.json",
+      "model": "runs/neural_v2/candidate_3/pairwise_model.pt",
+      "arguments": {
+        "kind": "pairwise",
+        "train": "data/train",
+        "dev": null,
+        "folds": 5,
+        "threads": 4,
+        "history_out": "runs/neural_v2/candidate_3/history.json",
+        "out_dir": "runs/neural_v2/candidate_3",
+        "seed": 0,
+        "epochs": 15,
+        "batch_size": 1024,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "warmup_epochs": 6,
+        "patience": 4,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "best_epoch": 2,
+      "TRAIN_selection_ndcg@10": 0.44476016845475064
+    },
+    {
+      "history": "runs/neural_v2/candidate_4/history.json",
+      "model": "runs/neural_v2/candidate_4/pairwise_model.pt",
+      "arguments": {
+        "kind": "pairwise",
+        "train": "data/train",
+        "dev": null,
+        "folds": 5,
+        "threads": 4,
+        "history_out": "runs/neural_v2/candidate_4/history.json",
+        "out_dir": "runs/neural_v2/candidate_4",
+        "seed": 0,
+        "epochs": 15,
+        "batch_size": 1024,
+        "lr": 0.0003,
+        "pairs_per_query": 300,
+        "pair_weighting": "uniform",
+        "warmup_epochs": 6,
+        "patience": 4,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "best_epoch": 3,
+      "TRAIN_selection_ndcg@10": 0.43488315967151747
+    }
+  ],
+  "selected_index": 4,
+  "selected": {
+    "history": "runs/neural_v2/candidate_3/history.json",
+    "model": "runs/neural_v2/candidate_3/pairwise_model.pt",
+    "arguments": {
+      "kind": "pairwise",
+      "train": "data/train",
+      "dev": null,
+      "folds": 5,
+      "threads": 4,
+      "history_out": "runs/neural_v2/candidate_3/history.json",
+      "out_dir": "runs/neural_v2/candidate_3",
+      "seed": 0,
+      "epochs": 15,
+      "batch_size": 1024,
+      "lr": 0.0001,
+      "pairs_per_query": 300,
+      "pair_weighting": "ndcg",
+      "warmup_epochs": 6,
+      "patience": 4,
+      "hidden": [
+        128,
+        64
+      ]
+    },
+    "best_epoch": 2,
+    "TRAIN_selection_ndcg@10": 0.44476016845475064
+  },
+  "artifact_sha256": "bc7d580632a4f6909edcecf696f51983369f6fbf3df5f80323180d83f85c5202"
+}

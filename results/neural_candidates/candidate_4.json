@@ -1,0 +1,89 @@
+{
+  "arguments": {
+    "kind": "pairwise",
+    "train": "data/train",
+    "dev": null,
+    "folds": 5,
+    "threads": 4,
+    "history_out": "runs/neural_v2/candidate_4/history.json",
+    "out_dir": "runs/neural_v2/candidate_4",
+    "seed": 0,
+    "epochs": 15,
+    "batch_size": 1024,
+    "lr": 0.0003,
+    "pairs_per_query": 300,
+    "pair_weighting": "uniform",
+    "warmup_epochs": 6,
+    "patience": 4,
+    "hidden": [
+      128,
+      64
+    ]
+  },
+  "seed": 0,
+  "trained_on": "TRAIN",
+  "selected_on": "TRAIN internal fold 0",
+  "hidden": [
+    128,
+    64
+  ],
+  "models": {
+    "pairwise": {
+      "selection_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5954974747425577,
+          "dev_ndcg@10": 0.43332996238794297
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5900532610748184,
+          "dev_ndcg@10": 0.43266415925356616
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.586723545828586,
+          "dev_ndcg@10": 0.43488315967151747
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5833595211959959,
+          "dev_ndcg@10": 0.4339107352512777
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5806708927451161,
+          "dev_ndcg@10": 0.4288957821220339
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5786860539910533,
+          "dev_ndcg@10": 0.4321449530351268
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.5767061674208988,
+          "dev_ndcg@10": 0.4247602345884545
+        }
+      ],
+      "best_epoch": 3,
+      "full_train_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.592803842482383,
+          "train_ndcg@10": 0.44263457347535906
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5873870798011268,
+          "train_ndcg@10": 0.44775408941398503
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5845095738270729,
+          "train_ndcg@10": 0.4490405236111615
+        }
+      ]
+    }
+  }
+}

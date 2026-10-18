@@ -2,83 +2,78 @@
 
 ## Training-data declaration
 
-| Artifact | Trained on | Tuned on | Early stopping |
-|---|---|---|---|
-| LambdaMART `model.txt` | Full MSLR-WEB10K Fold1 TRAIN | Query-grouped five-fold CV within TRAIN, seed 0 | None; fixed 1200-tree final fit |
-| `pointwise_model.pt` | Full Fold1 TRAIN | Internal TRAIN fold 0 | Select six epochs internally, then fixed six-epoch full TRAIN refit |
-| `pairwise_model.pt` | Full Fold1 TRAIN | Internal TRAIN fold 0 | Select one epoch internally, then fixed one-epoch full TRAIN refit |
-| `recipe.py` when invoked | The supplied benchmark TRAIN file | Fixed adaptive design informed by MSLR TRAIN CV; synthetic transfer checks | Supplied benchmark validation, patience 40, at most 500 trees |
+| Artifact | Fitted on | Tuned / stopped on |
+|---|---|---|
+| LambdaMART `model.txt` | Full MSLR-WEB10K Fold1 TRAIN | Grouped five-fold TRAIN CV; fixed 800-tree final fit |
+| `pointwise_model.pt` | Full Fold1 TRAIN | Internal TRAIN fold 0; six-epoch full refit |
+| `pairwise_model.pt` | Full Fold1 TRAIN | Internal TRAIN fold 0; six MSE warm-up epochs plus two weighted-pairwise refit epochs |
+| `recipe.py` when invoked | Supplied benchmark TRAIN | Fixed adaptive design; supplied validation for early stopping |
 
-The released DEV partition is used only to evaluate the frozen MSLR models.
-It is never used for fitting, hyperparameter selection, or stopping. Neural
-training uses relevance labels only. No real dataset other than the released
-Fold1 TRAIN and DEV partitions is used. The official archive preparation opens
-only its Fold1 TRAIN and validation entries; no held-out or other-fold data
-is opened. No attempt is made to identify the undisclosed benchmarks.
+DEV is used only for final evaluation after selection. No held-out labels,
+other dataset folds, external relevance labels, or distillation targets are
+used. Official archive preparation opens only Fold1 TRAIN and validation.
+No attempt is made to identify the undisclosed benchmarks.
 
-## Fusion method and why
+## Fusion method
 
-CombSUM sums all four provided base channels after min-max normalization
-within each query. Constant channels contribute zero. It outperformed
-CombMNZ and RRF with c in {0, 10, 30, 60, 100} in a predeclared TRAIN-only
-comparison using 0.8 times raw nDCG@10 plus 0.2 times raw MAP@10 as a local
-selection proxy. Full measurements are in `results/fusion_selection.json`.
-RRF and both score-based textbook functions remain independently testable.
-All ties preserve candidate order.
+Weighted CombSUM uses within-query min-max scores, with weights 0.25 for BM25
+whole document, 0.25 for BM25 title, 0.50 for LMIR Dirichlet, and 0 for LMIR JM.
+It is selected on TRAIN from 41 fixed settings using the raw 0.8 nDCG + 0.2 MAP
+proxy. Textbook RRF, CombSUM, and CombMNZ remain separately testable.
 
-## LambdaMART hyperparameters and selection
+## Features and LambdaMART configuration
 
-The selected model has 1200 trees, 31 leaves, learning rate 0.05, minimum leaf
-size 50, L2 1, feature fraction 0.8, bagging fraction 0.8, and bagging frequency
-1. It uses seed 0, deterministic row-wise LightGBM training, and four threads.
-The 136 provided features are used directly, without additional features.
+The 136 raw MSLR features are augmented with 136 label-free within-query
+percentiles, using tied midranks and preserving NaNs. The text model identifies
+this transformation through feature names. The transfer recipe applies the
+same transformation to its arbitrary input width, with bounded sorting memory.
 
-The initial grouped five-fold TRAIN grid combines leaves {15, 31}, minimum
-leaf size {50, 150}, L2 {1, 10}, and trees {50, 100, 200, 400}. The initial
-winner was at 400 trees, so that configuration alone was extended to 800 and
-1200 trees on the same folds. None of the reported CV folds controls early
-stopping. Selection maximizes mean validation nDCG@10; ties prefer fewer
-trees and leaves. All 34 rows and their five fold scores are retained in
-`results/lambdamart_cv.json`, with a compact table in the root README.
+Final MSLR LambdaMART: 800 trees, 127 leaves, unlimited depth,
+learning rate 0.05, minimum leaf size 100, L2 10, feature fraction 0.8, bagging
+fraction 0.8/frequency 1, truncation 30, seed 0, deterministic row-wise training,
+four threads. All 49 complete configurations and five-fold scores are in
+`results/lambdamart_cv.json`; no reported fold controls early stopping.
 
-## Final configuration and generalization tradeoff
+## Final configuration and tradeoff
 
-The selected CV validation mean is 0.475014, sample SD 0.007563, training mean
-0.643263, and validation/training ratio 0.738444. Extra trees increase training
-accuracy much faster than validation accuracy. We retain the highest mean
-validation result in the bounded sweep, with 31-leaf capacity, shrinkage,
-and row/feature sampling, and document the increasing gap. Final fitting uses
-full TRAIN only. Its independent reproduction is byte-identical.
+The selected validation mean is 0.484133, sample SD
+0.008215, training mean 0.782033, and validation/training
+ratio 0.619071. Larger raw-feature trees failed to improve on
+the first-round result; query-relative features improved it. We choose the
+highest validation mean in the bounded search and explicitly retain the
+substantial training gap. This favors measured validation accuracy over
+the smaller candidates' narrower gaps; hidden robustness remains unmeasured
+locally. DEV plays no part in that choice. Independent refitting checks exact
+tree-artifact reproduction.
 
-Both neural scorers use the same 136 → 128 → 64 → 1 ReLU network,
-TRAIN-fitted standardization, Adam at 0.001, batch size 1024, and seed 0.
-Pointwise uses MSE; pairwise uses the plain stable RankNet loss with at most
-300 distinct preference pairs per query per epoch. Internal TRAIN fold 0
-chooses six pointwise epochs and one pairwise epoch from a maximum of 30,
-with patience 5, before full TRAIN refits. Both artifacts use the unchanged
-staff-loadable format and satisfy the architecture bounds.
+Both neural models keep the same 136 → 128 → 64 → 1 ReLU architecture,
+TRAIN-fitted standardization, Adam, batch size 1024, and seed 0. Pointwise MSE
+uses six full-TRAIN epochs at 0.001. Pairwise uses six supervised MSE warm-up
+epochs at 0.001, then two epochs at 0.0001 with separate absolute-nDCG-swap
+weighted RankNet training and up to 300 distinct pairs per query per epoch.
+The graded `ranknet_loss` remains plain and unweighted. Internal TRAIN fold 0
+selects the fine-tuning epoch and configuration before full refits.
 
-Final DEV nDCG@10 is 0.482608 for LambdaMART, 0.431708 for pointwise, and
-0.421922 for pairwise. Single-feature BM25 scores 0.288487. These are raw
-metrics; class percentiles and private-track scores are unavailable locally.
-The report is deferred until after submission feedback.
+Final DEV nDCG@10: LambdaMART 0.491177, pointwise
+0.431708, pairwise 0.444853. The BM25 floor is
+0.288487. These are raw DEV results, not private-track scores. The report
+is deferred until submission feedback.
 
 ## AI-use disclosure
 
 OpenAI Codex assisted with reading the assignment and starter files,
-implementing and reviewing the algorithms, writing tests and training scripts,
+implementing and reviewing algorithms, writing tests and training scripts,
 configuring and running IIT Delhi HPC experiments, interpreting measurements,
-and preparing repository documentation and the submission archive.
+and preparing documentation and the submission archive.
 
 ## Code provenance
 
-The original starter provides the unchanged harness, MLP architecture,
-standardizer, metrics, and grouped-fold helper. Fusion, squared-error, and
-RankNet formulas follow the assignment PDF and starter primer. No external
-fusion or neural ranking-training implementation was copied. LightGBM's
-permitted `lambdarank` objective implements the tree ranker.
+The starter supplies the unchanged harness, MLP architecture, standardizer,
+metrics, and grouped folds. Fusion, squared-error, and RankNet formulas follow
+the assignment and primer. Query percentiles and nDCG swap weights are
+implemented directly; no external fusion or neural ranking trainer was copied.
+LightGBM's permitted `lambdarank` objective implements the tree ranker.
 
 The [Microsoft Research dataset page](https://www.microsoft.com/en-us/research/project/mslr/)
-and [IIT Delhi HPC guide](https://supercomputing.iitd.ac.in/) were consulted
-for official data access and scheduled execution. Data provenance and all
-split usage are stated above and in the root README.
+and [IIT Delhi HPC guide](https://supercomputing.iitd.ac.in/) were consulted for
+data access and scheduled execution.

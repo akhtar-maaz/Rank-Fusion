@@ -1,0 +1,103 @@
+{
+  "arguments": {
+    "kind": "pairwise",
+    "train": "data/train",
+    "dev": null,
+    "folds": 5,
+    "threads": 4,
+    "history_out": "runs/neural_v2/candidate_0/history.json",
+    "out_dir": "runs/neural_v2/candidate_0",
+    "seed": 0,
+    "epochs": 20,
+    "batch_size": 1024,
+    "lr": 0.0003,
+    "pairs_per_query": 300,
+    "pair_weighting": "uniform",
+    "patience": 5,
+    "hidden": [
+      128,
+      64
+    ]
+  },
+  "seed": 0,
+  "trained_on": "TRAIN",
+  "selected_on": "TRAIN internal fold 0",
+  "hidden": [
+    128,
+    64
+  ],
+  "models": {
+    "pairwise": {
+      "selection_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6105296244582656,
+          "dev_ndcg@10": 0.41195436923838763
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5990820920411388,
+          "dev_ndcg@10": 0.4210859560866931
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5946796113361643,
+          "dev_ndcg@10": 0.4241583138646612
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5906979347698286,
+          "dev_ndcg@10": 0.43051405950540583
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5873592959349869,
+          "dev_ndcg@10": 0.4271103957111054
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5851990330789953,
+          "dev_ndcg@10": 0.4299737111775265
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.582613861275726,
+          "dev_ndcg@10": 0.4249931323918003
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.5805794950257223,
+          "dev_ndcg@10": 0.425939884839392
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.5786506824752801,
+          "dev_ndcg@10": 0.4235775345168873
+        }
+      ],
+      "best_epoch": 4,
+      "full_train_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6085222051354899,
+          "train_ndcg@10": 0.41672056503227434
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5969218127877272,
+          "train_ndcg@10": 0.4283664458647353
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5926286890045335,
+          "train_ndcg@10": 0.42631924978258395
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5891198916798414,
+          "train_ndcg@10": 0.4355051281868347
+        }
+      ]
+    }
+  }
+}

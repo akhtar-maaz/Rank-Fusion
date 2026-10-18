@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "model.txt": {
+      "bytes": 4246425,
+      "sha256": "40d2d93173582a139c5f978709fb787838fe0d45fb315e3eca121bdabf94961a",
+      "matches_hpc_copy": true,
+      "features": 136,
+      "trees": 1200
+    },
+    "pointwise_model.pt": {
+      "bytes": 109173,
+      "sha256": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+      "matches_hpc_copy": true,
+      "config": {
+        "n_features": 136,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "staff_loader_python312_passed": true
+    },
+    "pairwise_model.pt": {
+      "bytes": 109161,
+      "sha256": "4aa36d802917df5e5d250e8a3e5b398e1b42c057ddb16d10b28e54b6db8c8333",
+      "matches_hpc_copy": true,
+      "config": {
+        "n_features": 136,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "staff_loader_python312_passed": true
+    },
+    "fusion_config.json": {
+      "bytes": 26,
+      "sha256": "9d2c38a86e02bbe8189169f032d5940f527823557221e70bb037bccd9ed8688f",
+      "matches_hpc_copy": true
+    }
+  },
+  "local_python": "3.12.14",
+  "local_versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0"
+  },
+  "ranking_deterministic": true
+}

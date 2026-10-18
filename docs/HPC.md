@@ -59,3 +59,46 @@ packager refuses tracked real TRAIN/DEV files, downloads, or environments.
 The submitted transfer recipe runs independently, without PBS, network access,
 or any dependency on these HPC scripts. Its limit remains 20 minutes on four
 threads per benchmark.
+
+## Second-round experiments and frozen artifact reproduction
+
+The root README provides direct commands for reproducing the selected final
+artifacts from the committed configuration. The batch scripts below continue
+the original workspace, retaining its first-round CV parts and baseline
+artifacts. For a fresh search, first generate those original parts and retain
+the first-submission neural artifacts (commit `6533171`) as the baseline.
+
+```bash
+qsub scripts/hpc_cv_v2.pbs          # candidates 0-2
+qsub scripts/hpc_cv_rank_large.pbs  # candidate 3, bounded at 800 trees
+qsub scripts/hpc_cv_focus.pbs       # reported depth-limited candidate 4 only
+qsub scripts/hpc_neural_v2.pbs      # candidates 0-2
+qsub scripts/hpc_neural_warmup.pbs  # candidates 3-4
+```
+
+Run the weighted fusion comparison locally or inside a compute allocation,
+then place its two JSON outputs in the HPC work directory's `runs/`:
+
+```bash
+python scripts/select_fusion.py --train data/train/train.txt --weighted \
+    --out runs/fusion_selection_v2.json --config-out runs/fusion_config_v2.json
+```
+
+After candidate 3's CV completes, `hpc_prefit_v2.pbs` optionally fits that
+current winner on full TRAIN while other CV jobs finish. The final job reuses
+it only when its parameters, feature mode, dataset counts, and SHA-256 match
+the selected configuration. After all five reported tree parts and all five
+neural candidates complete:
+
+```bash
+qsub scripts/hpc_train_v2.pbs
+qsub scripts/hpc_verify.pbs  # final frozen-model and conformance checks
+```
+
+The final job retains the first-round records, selects from 49 complete tree
+configurations, promotes the TRAIN-selected neural artifact, evaluates DEV,
+and verifies an independent full-TRAIN tree refit. `hpc_verify.pbs` rechecks
+that proof, evaluates the frozen models, runs synthetic transfer checks, and
+tests a temporary copy. It performs no real-data training. An optional
+query-relative depth-limited CV variant was cancelled for runtime and is not
+part of the reported results.

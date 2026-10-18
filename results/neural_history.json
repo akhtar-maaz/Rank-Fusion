@@ -1,23 +1,4 @@
 {
-  "arguments": {
-    "kind": "both",
-    "train": "data/train",
-    "dev": null,
-    "folds": 5,
-    "threads": 4,
-    "history_out": "results/neural_history.json",
-    "out_dir": "submission",
-    "seed": 0,
-    "epochs": 30,
-    "batch_size": 1024,
-    "lr": 0.001,
-    "pairs_per_query": 300,
-    "patience": 5,
-    "hidden": [
-      128,
-      64
-    ]
-  },
   "seed": 0,
   "trained_on": "TRAIN",
   "selected_on": "TRAIN internal fold 0",
@@ -25,6 +6,48 @@
     128,
     64
   ],
+  "model_arguments": {
+    "pointwise": {
+      "kind": "both",
+      "train": "data/train",
+      "dev": null,
+      "folds": 5,
+      "threads": 4,
+      "history_out": "results/neural_history.json",
+      "out_dir": "submission",
+      "seed": 0,
+      "epochs": 30,
+      "batch_size": 1024,
+      "lr": 0.001,
+      "pairs_per_query": 300,
+      "patience": 5,
+      "hidden": [
+        128,
+        64
+      ]
+    },
+    "pairwise": {
+      "kind": "pairwise",
+      "train": "data/train",
+      "dev": null,
+      "folds": 5,
+      "threads": 4,
+      "history_out": "runs/neural_v2/candidate_3/history.json",
+      "out_dir": "runs/neural_v2/candidate_3",
+      "seed": 0,
+      "epochs": 15,
+      "batch_size": 1024,
+      "lr": 0.0001,
+      "pairs_per_query": 300,
+      "pair_weighting": "ndcg",
+      "warmup_epochs": 6,
+      "patience": 4,
+      "hidden": [
+        128,
+        64
+      ]
+    }
+  },
   "models": {
     "pointwise": {
       "selection_history": [
@@ -122,41 +145,46 @@
       "selection_history": [
         {
           "epoch": 1,
-          "train_loss": 0.6057861844557397,
-          "dev_ndcg@10": 0.42631962016190267
+          "train_loss": 0.3999281500639437,
+          "dev_ndcg@10": 0.4421713122478832
         },
         {
           "epoch": 2,
-          "train_loss": 0.594200751110796,
-          "dev_ndcg@10": 0.4256050999408077
+          "train_loss": 0.3836075563768812,
+          "dev_ndcg@10": 0.44476016845475064
         },
         {
           "epoch": 3,
-          "train_loss": 0.5882664108417205,
-          "dev_ndcg@10": 0.4249692597316347
+          "train_loss": 0.37590140497512725,
+          "dev_ndcg@10": 0.4431114223513084
         },
         {
           "epoch": 4,
-          "train_loss": 0.5830041526958035,
-          "dev_ndcg@10": 0.423846265819438
+          "train_loss": 0.3701910143787721,
+          "dev_ndcg@10": 0.44358327078644094
         },
         {
           "epoch": 5,
-          "train_loss": 0.5784953571369434,
-          "dev_ndcg@10": 0.42126729785285427
+          "train_loss": 0.36239365007438945,
+          "dev_ndcg@10": 0.44244213913134045
         },
         {
           "epoch": 6,
-          "train_loss": 0.5755141547056124,
-          "dev_ndcg@10": 0.422097091757305
+          "train_loss": 0.3584372995449198,
+          "dev_ndcg@10": 0.44168246409576245
         }
       ],
-      "best_epoch": 1,
+      "best_epoch": 2,
       "full_train_history": [
         {
           "epoch": 1,
-          "train_loss": 0.6040076710505425,
-          "train_ndcg@10": 0.4227405029045135
+          "train_loss": 0.39917531210711793,
+          "train_ndcg@10": 0.44762134520755065
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.3784217086910616,
+          "train_ndcg@10": 0.45115945312098515
         }
       ]
     }

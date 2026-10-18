@@ -2,8 +2,9 @@
 
 The first upload passes 7/7 conformance and 10/10 correctness checks. Its
 user-reported aggregate scores are retained in `results/leaderboard_v1.json`.
-The shipped artifacts remain the first-round models until these experiments
-finish and a candidate wins on TRAIN validation.
+The second-round artifacts are selected by the completed TRAIN-only protocol
+below. Final measurements and all reported fold scores are retained in
+`results/`; the first-round records remain available with `_v1` suffixes.
 
 ## Tree ablations
 

@@ -56,9 +56,457 @@
       },
       "ndcg@10": 0.2957970615522424,
       "map@10": 0.12091438805649728
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 1.0
+        }
+      },
+      "ndcg@10": 0.2621026016860927,
+      "map@10": 0.1035363175288182
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.75
+        }
+      },
+      "ndcg@10": 0.27329156255679343,
+      "map@10": 0.10912082059282932
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.5,
+          "lmir_jm_whole_document": 0.5
+        }
+      },
+      "ndcg@10": 0.2795663428325097,
+      "map@10": 0.11289111822148258
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.75,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.27880974063090397,
+      "map@10": 0.11144138443954722
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 1.0,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.27627388376669004,
+      "map@10": 0.10924250127815421
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.75
+        }
+      },
+      "ndcg@10": 0.27880517395079457,
+      "map@10": 0.11245460919824486
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.5
+        }
+      },
+      "ndcg@10": 0.2906046674888455,
+      "map@10": 0.11743159620817792
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.5,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.2959441869762701,
+      "map@10": 0.12058918177876342
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.75,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.2958745604528788,
+      "map@10": 0.11998313482669833
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.5,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.5
+        }
+      },
+      "ndcg@10": 0.2855864795934944,
+      "map@10": 0.11433585778337482
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.5,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.29416928505620177,
+      "map@10": 0.11815650401721678
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.5,
+          "lmir_dir_whole_document": 0.5,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.29633902397243933,
+      "map@10": 0.11948451805153547
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.75,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.28810262076192467,
+      "map@10": 0.11457845026436951
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 0.75,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.29216281246726356,
+      "map@10": 0.11670337798672513
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.0,
+          "bm25_title": 1.0,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.28159214934906096,
+      "map@10": 0.11104592652538113
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.75
+        }
+      },
+      "ndcg@10": 0.2693139406644271,
+      "map@10": 0.10790731872337696
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.5
+        }
+      },
+      "ndcg@10": 0.2792067573811327,
+      "map@10": 0.11396847381518374
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.5,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.2841807284437921,
+      "map@10": 0.11556330977728192
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.75,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.28300424835615057,
+      "map@10": 0.11432605593052049
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.5
+        }
+      },
+      "ndcg@10": 0.28482865206559477,
+      "map@10": 0.11577811074151655
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.5,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.29963608552896887,
+      "map@10": 0.12301762444429239
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.5,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.29182410674288256,
+      "map@10": 0.11764285351810382
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.5,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.29712426585101354,
+      "map@10": 0.12054034927201508
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.25,
+          "bm25_title": 0.75,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.29188418080354583,
+      "map@10": 0.11725537497975429
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.5,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.5
+        }
+      },
+      "ndcg@10": 0.2746516703347571,
+      "map@10": 0.11196316990156778
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.5,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.28410214503604786,
+      "map@10": 0.11669903818015806
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.5,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.5,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.2863508979638293,
+      "map@10": 0.11698978612757614
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.5,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.2904405221816246,
+      "map@10": 0.11854474151566713
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.5,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.29931992410476715,
+      "map@10": 0.12333939952089543
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.5,
+          "bm25_title": 0.5,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.2956061078690224,
+      "map@10": 0.11976599749818544
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.75,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.25
+        }
+      },
+      "ndcg@10": 0.2781783285231344,
+      "map@10": 0.11511208431017415
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.75,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.25,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.2877844611450215,
+      "map@10": 0.11818379944416883
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 0.75,
+          "bm25_title": 0.25,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.2954191237440271,
+      "map@10": 0.12135088926017491
+    },
+    {
+      "config": {
+        "method": "weighted_combsum",
+        "weights": {
+          "bm25_whole_document": 1.0,
+          "bm25_title": 0.0,
+          "lmir_dir_whole_document": 0.0,
+          "lmir_jm_whole_document": 0.0
+        }
+      },
+      "ndcg@10": 0.28353041960897846,
+      "map@10": 0.11778756960771763
     }
   ],
   "selected": {
-    "method": "combsum"
+    "method": "weighted_combsum",
+    "weights": {
+      "bm25_whole_document": 0.25,
+      "bm25_title": 0.25,
+      "lmir_dir_whole_document": 0.5,
+      "lmir_jm_whole_document": 0.0
+    }
   }
 }

@@ -1,0 +1,18 @@
+{
+  "split": "Fold1 TRAIN only",
+  "diagnostics": "Three constructed domains, one nested outer holdout each; not five-fold CV or unknown-benchmark estimates.",
+  "protocol": "docs/EXPERIMENTS_V3.md",
+  "mean_outer_ndcg@10": {
+    "baseline_v2": 0.4488705138213433,
+    "adaptive": 0.4505074626141004
+  },
+  "mean_improvement": 0.0016369487927571091,
+  "promoted": true,
+  "portability_tests_passed": true,
+  "budget_stress_check": "pending",
+  "domain_records": [
+    "results/recipe_domains_v3/domain_0.json",
+    "results/recipe_domains_v3/domain_1.json",
+    "results/recipe_domains_v3/domain_2.json"
+  ]
+}

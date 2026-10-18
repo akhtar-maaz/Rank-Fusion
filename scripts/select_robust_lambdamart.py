@@ -8,11 +8,14 @@ import numpy as np
 SCENARIOS = ("clean", "affine", "feature_dropout", "noise")
 
 
-def select(reports, baseline):
+def select(reports, baseline, ensemble_report=None):
     if sorted(report["arguments"]["candidate"] for report in reports) != [0, 1, 2, 3]:
         raise ValueError("all four distinct candidates must complete")
     rows = []
-    for report in reports:
+    all_reports = reports + ([ensemble_report] if ensemble_report is not None else [])
+    if ensemble_report is not None and sorted(row["name"] for row in ensemble_report["results"]) != ["blend_400_200", "blend_800_200"]:
+        raise ValueError("the two documented blends must both complete")
+    for report in all_reports:
         if (report["rows"], report["queries"]) != (baseline["rows"], baseline["queries"]):
             raise ValueError("candidate and baseline dataset sizes differ")
         if tuple(report["scenarios"]) != SCENARIOS:
@@ -58,11 +61,14 @@ def main():
     parser.add_argument("parts", nargs="+")
     parser.add_argument("--baseline", default="results/lambdamart_cv_v2.json")
     parser.add_argument("--out", default="results/lambdamart_cv.json")
+    parser.add_argument("--ensembles", help="complete report for the two documented fixed blends")
     args = parser.parse_args()
     result = select([json.loads(Path(path).read_text()) for path in args.parts],
-                    json.loads(Path(args.baseline).read_text()))
+                    json.loads(Path(args.baseline).read_text()),
+                    json.loads(Path(args.ensembles).read_text()) if args.ensembles else None)
     result["parts"] = args.parts
     result["baseline"] = args.baseline
+    result["ensembles"] = args.ensembles
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"promoted": result["promoted"], "selected": result["selected"]}, indent=2))

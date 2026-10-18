@@ -1,0 +1,42 @@
+{
+  "domain": 0,
+  "arguments": {
+    "train": "data/train/train.txt",
+    "domain": 0,
+    "out_dir": "runs/recipe_v3"
+  },
+  "rows": 36685,
+  "queries": 300,
+  "features": 40,
+  "max_label": 4,
+  "fit_queries": 192,
+  "validation_queries": 48,
+  "outer_queries": 60,
+  "models": {
+    "baseline_v2": {
+      "seconds": 8.210227743722498,
+      "trees": 52,
+      "leaves": 15,
+      "history": null,
+      "outer_ndcg@10": 0.3900310294979442
+    },
+    "adaptive": {
+      "seconds": 5.520116521045566,
+      "trees": 156,
+      "leaves": 15,
+      "history": [
+        {
+          "leaves": 15,
+          "trees": 156,
+          "validation_lightgbm_ndcg@10": 0.3965187563161754
+        },
+        {
+          "leaves": 31,
+          "trees": 32,
+          "validation_lightgbm_ndcg@10": 0.3807195838730106
+        }
+      ],
+      "outer_ndcg@10": 0.3953500720442366
+    }
+  }
+}

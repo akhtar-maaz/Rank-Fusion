@@ -5,6 +5,7 @@ from submission.data import group_sizes
 
 PREFIX = "rankfusion_qrank_v1_"
 NORMALIZED_PREFIX = "rankfusion_qnorm_v1_"
+ALL_PREFIX = "rankfusion_qall_v1_"
 
 
 def query_minmax(X):
@@ -58,22 +59,26 @@ def tree_features(X, qids=None, mode="raw"):
     X = np.asarray(X, dtype=np.float32)
     if mode == "raw":
         return X
-    if mode not in ("query_rank", "query_normalized"):
+    if mode not in ("query_rank", "query_normalized", "query_all"):
         raise ValueError(f"unknown tree feature mode: {mode}")
     ranks = np.empty_like(X)
-    values = X if mode == "query_rank" else np.empty_like(X)
+    normalized = np.empty_like(X) if mode != "query_rank" else None
     start = 0
     for size in (group_sizes(qids) if qids is not None else [len(X)]):
         ranks[start:start + size] = query_percentiles(X[start:start + size])
-        if mode == "query_normalized":
-            values[start:start + size] = query_minmax(X[start:start + size])
+        if normalized is not None:
+            normalized[start:start + size] = query_minmax(X[start:start + size])
         start += size
-    return np.concatenate([values, ranks], axis=1)
+    if mode == "query_all":
+        return np.concatenate([X, ranks, normalized], axis=1)
+    return np.concatenate([X if mode == "query_rank" else normalized, ranks], axis=1)
 
 
 def tree_feature_names(width, mode):
     if mode == "raw":
         return "auto"
+    if mode == "query_all":
+        return [f"{ALL_PREFIX}{block}_{i}" for block in ("raw", "rank", "minmax") for i in range(width)]
     if mode not in ("query_rank", "query_normalized"):
         raise ValueError(f"unknown tree feature mode: {mode}")
     prefix = PREFIX if mode == "query_rank" else NORMALIZED_PREFIX
@@ -82,8 +87,12 @@ def tree_feature_names(width, mode):
             [f"{prefix}rank_{i}" for i in range(width)])
 
 
-def features_for_model(model, X, qids=None):
+def feature_mode_for_model(model):
     name = model.feature_name()[0]
-    mode = ("query_rank" if name.startswith(PREFIX) else
+    return ("query_rank" if name.startswith(PREFIX) else
+            "query_all" if name.startswith(ALL_PREFIX) else
             "query_normalized" if name.startswith(NORMALIZED_PREFIX) else "raw")
-    return tree_features(X, qids, mode)
+
+
+def features_for_model(model, X, qids=None):
+    return tree_features(X, qids, feature_mode_for_model(model))

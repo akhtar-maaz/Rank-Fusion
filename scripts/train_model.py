@@ -18,7 +18,7 @@ import json
 import numpy as np
 
 from submission.data import load_ltr
-from scripts.lambdamart_utils import default_params, fit, ndcg10
+from scripts.lambdamart_utils import default_params, fit, fit_selected, ndcg10
 
 
 def _resolve(path, name):
@@ -66,12 +66,14 @@ def main():
         params["max_depth"] = args.max_depth
     if args.truncation is not None:
         params["lambdarank_truncation_level"] = args.truncation
+    selected = None
     if args.config:
         with open(args.config) as stream:
             selected = json.load(stream)["selected"]
         params, args.trees = selected["params"], selected["trees"]
         args.feature_mode = selected.get("feature_mode", "raw")
-    model = fit(X, y, q, params, args.trees, args.feature_mode)
+    model = (fit_selected(X, y, q, selected) if selected is not None else
+             fit(X, y, q, params, args.trees, args.feature_mode))
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     model.save_model(args.out)
     print(f"trained on {len(set(q))} queries ({'train+dev' if args.use_dev else 'train only'}) -> {args.out}")

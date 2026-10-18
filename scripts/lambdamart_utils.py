@@ -26,10 +26,20 @@ def fit(X, y, qids, params, num_trees, feature_mode="raw", prepared=False):
     import lightgbm as lgb
     if not prepared:
         X = tree_features(X, qids, feature_mode)
-    width = X.shape[1] if feature_mode == "raw" else X.shape[1] // 2
+    multiplier = 1 if feature_mode == "raw" else 3 if feature_mode == "query_all" else 2
+    width = X.shape[1] // multiplier
     names = tree_feature_names(width, feature_mode)
     return lgb.train(params, lgb.Dataset(X, label=y, group=group_sizes(qids), feature_name=names),
                      num_boost_round=num_trees)
+
+
+def fit_selected(X, y, qids, selected):
+    if "members" not in selected:
+        return fit(X, y, qids, selected["params"], selected["trees"], selected.get("feature_mode", "raw"))
+    from submission.tree_ensemble import combine
+    models = [fit(X, y, qids, member["params"], member["trees"], member["feature_mode"])
+              for member in selected["members"]]
+    return combine(models, [member["weight"] for member in selected["members"]])
 
 
 def ndcg10(model, X, y, qids, num_iteration=None, prepared=False):

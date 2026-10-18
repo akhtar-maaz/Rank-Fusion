@@ -52,3 +52,41 @@ Record all fold scores and discarded runs honestly. Freeze the choice and
 refit on full TRAIN before a final DEV evaluation. Website feedback is only
 aggregate feedback; no held-out examples or labels are accessed. Report
 writing remains deferred.
+
+## Adaptive transfer policy, also frozen before measurement
+
+Separately test a recipe that chooses between two leaf counts on the supplied
+validation file, with at most 500 trees and patience 40 per fit. Counts depend
+on training query count: 15/31 below 200 queries, 31/63 below 2000, otherwise
+63/127. Keep v2's other recipe regularization and query-rank features, changing
+LambdaRank truncation from 15 to 13. Exact validation ties prefer fewer leaves.
+Both fits use four threads. Fixed iteration limits keep search deterministic.
+
+Compare this policy with the exact v2 recipe on three constructed TRAIN-only
+domains (300 queries / 40 features / labels 0–4; 1200 / 90 / 0–4;
+4000 / 136 / labels clipped to 0–2). Whole queries and shuffled feature subsets
+are sampled with seeds 2026/2027/2028. Features receive fixed positive scale
+changes. Hold out outer fold 0 of grouped five-fold seed 0; choose trees and
+capacity using inner fold 0 of grouped five-fold seed 1 on the remaining data.
+The outer queries never control fitting or early stopping. These three
+single-holdout diagnostics are not the required five-fold LambdaMART sweep
+above and do not estimate unknown benchmarks. Adopt the new recipe only if
+its average outer nDCG exceeds v2's and all portability tests pass. Otherwise
+retain the v2 policy. No DEV or hidden dataset is consulted.
+
+## Bounded addition after the first TRAIN fold
+
+The first completed fold suggests complementary errors: normalized features
+improve affine robustness but lose clean accuracy. Before any remaining-fold
+results are examined, add two equal-weight score averages of candidates 0/1:
+400+200 trees and 800+200 trees. Reuse their completed out-of-fold predictions;
+compute actual training-fold ensemble scores from saved fold models. Apply
+the same clean guard and mixture improvement threshold to all completed rows.
+This is an adaptive TRAIN-only extension, not an unbiased new test set.
+
+If selected, combine the constituent numeric trees into one native LightGBM
+text model, with half-scaled leaf outputs and feature indices remapped into
+raw/rank/min-max blocks. Loading and scoring use only this one artifact.
+Tests compare the exported native model with explicit arithmetic averages,
+including after save/load and from `scripts/train_model.py`'s configuration
+fit helper. No neural model or distillation is involved.

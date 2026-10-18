@@ -1,9 +1,11 @@
 import copy
 
+import numpy as np
 import pytest
 
 from scripts.cv_augmented_lambdamart import summarize
-from scripts.select_fourth_round import select, specifications
+from scripts.lambdamart_utils import default_params, fit
+from scripts.select_fourth_round import predict_prefixes, select, specifications
 
 
 def row(name, clean, diagnostic, trees=200, members=None):
@@ -57,3 +59,15 @@ def test_fourth_round_rejects_partial_metrics_and_changed_control():
     baseline["selected"]["validation_mean"] += 0.001
     with pytest.raises(ValueError, match="reproduce"):
         select([control], baseline)
+
+
+def test_disjoint_tree_predictions_match_full_prefixes():
+    rng = np.random.RandomState(12)
+    X = rng.normal(size=(160, 4)).astype(np.float32)
+    q = np.repeat(np.arange(20), 8)
+    y = rng.randint(0, 5, len(X))
+    model = fit(X, y, q, default_params(7, min_data_in_leaf=2), 24)
+    for count, prediction in predict_prefixes(model, X, [6, 12, 24]).items():
+        expected = model.predict(X, num_iteration=count, num_threads=1)
+        assert np.allclose(prediction, expected, atol=1e-12)
+        assert np.array_equal(np.argsort(prediction, kind="stable"), np.argsort(expected, kind="stable"))

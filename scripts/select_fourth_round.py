@@ -39,6 +39,18 @@ def specifications(completed=range(4)):
     return settings
 
 
+def predict_prefixes(model, features, counts):
+    """Reuse disjoint tree ranges instead of rescoring overlapping prefixes."""
+    scores, cumulative, start = {}, np.zeros(len(features)), 0
+    for count in sorted(set(counts)):
+        if not start < count <= model.num_trees():
+            raise ValueError("invalid prefix count")
+        cumulative += model.predict(features, start_iteration=start, num_iteration=count - start, num_threads=4)
+        scores[count] = cumulative.copy()
+        start = count
+    return scores
+
+
 def select(rows, baseline):
     if not rows or len(set(row["name"] for row in rows)) != len(rows):
         raise ValueError("need distinct complete settings")
@@ -136,14 +148,15 @@ def main():
         for mode in ("query_rank", "query_normalized"):
             features = (prepared[tr, :2 * width] if mode == "query_rank" else
                         np.concatenate([prepared[tr, 2 * width:], prepared[tr, width:2 * width]], axis=1))
-            for version, candidate, count in sources:
-                source = (version, candidate, count)
-                if members[source]["feature_mode"] != mode:
+            for version, candidate in sorted(reports):
+                counts = [count for source_version, source_candidate, count in sources
+                          if (source_version, source_candidate) == (version, candidate)]
+                if not counts or members[(version, candidate, counts[0])]["feature_mode"] != mode:
                     continue
                 key = (version, candidate)
-                if key not in models:
-                    models[key] = lgb.Booster(model_file=str(directories[version] / f"candidate_{candidate}_fold_{fold}.txt"))
-                training[source] = models[key].predict(features, num_iteration=count, num_threads=4)
+                models[key] = lgb.Booster(model_file=str(directories[version] / f"candidate_{candidate}_fold_{fold}.txt"))
+                for count, prediction in predict_prefixes(models[key], features, counts).items():
+                    training[(version, candidate, count)] = prediction
             del features
         for setting in settings:
             train_scores = sum(weight * training[source] for source, weight in zip(setting["sources"], setting["weights"]))

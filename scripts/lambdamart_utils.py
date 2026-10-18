@@ -35,11 +35,18 @@ def fit(X, y, qids, params, num_trees, feature_mode="raw", prepared=False):
 
 def fit_selected(X, y, qids, selected):
     if "members" not in selected:
-        return fit(X, y, qids, selected["params"], selected["trees"], selected.get("feature_mode", "raw"))
+        return fit_specification(X, y, qids, selected)
     from submission.tree_ensemble import combine
-    models = [fit(X, y, qids, member["params"], member["trees"], member["feature_mode"])
-              for member in selected["members"]]
+    models = [fit_specification(X, y, qids, member) for member in selected["members"]]
     return combine(models, [member["weight"] for member in selected["members"]])
+
+
+def fit_specification(X, y, qids, specification):
+    if specification.get("augmentation") is not None:
+        from scripts.augmentation import augment_training
+        X, y, qids = augment_training(X, y, qids, specification["augmentation"])
+    return fit(X, y, qids, specification["params"], specification["trees"],
+               specification.get("feature_mode", "raw"))
 
 
 def ndcg10(model, X, y, qids, num_iteration=None, prepared=False):

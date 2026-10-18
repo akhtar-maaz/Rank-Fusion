@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-18",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "cpus_per_job": 4,
+    "memory_limit_gb": 8
+  },
+  "protocol": "docs/EXPERIMENTS_V3.md",
+  "jobs": {
+    "1103509[0].pbshpc": {
+      "Job_Name": "rankfusion-cv-v3",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:08:52",
+      "resources_used.mem": "2944720kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4443196kb",
+      "resources_used.walltime": "00:18:55",
+      "job_state": "F",
+      "exec_host": "cgen007/6*4",
+      "Exit_status": "0"
+    },
+    "1103509[1].pbshpc": {
+      "Job_Name": "rankfusion-cv-v3",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:20:53",
+      "resources_used.mem": "3016248kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4511664kb",
+      "resources_used.walltime": "00:22:01",
+      "job_state": "F",
+      "exec_host": "cgen007/7*4",
+      "Exit_status": "0"
+    },
+    "1103509[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v3",
+      "resources_used.cpupercent": "299",
+      "resources_used.cput": "00:43:14",
+      "resources_used.mem": "3164396kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4734132kb",
+      "resources_used.walltime": "00:17:06",
+      "job_state": "F",
+      "exec_host": "cgen019/4*4",
+      "Exit_status": "271"
+    },
+    "1103509[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v3",
+      "resources_used.cpupercent": "268",
+      "resources_used.cput": "00:42:57",
+      "resources_used.mem": "2771040kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4423040kb",
+      "resources_used.walltime": "00:17:06",
+      "job_state": "F",
+      "exec_host": "cgen019/5*4",
+      "Exit_status": "271"
+    },
+    "1103512[0].pbshpc": {
+      "Job_Name": "rankfusion-recipe-v3",
+      "resources_used.cpupercent": "120",
+      "resources_used.cput": "00:01:40",
+      "resources_used.mem": "387940kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "1877340kb",
+      "resources_used.walltime": "00:01:24",
+      "job_state": "F",
+      "exec_host": "cgen019/6*4",
+      "Exit_status": "0"
+    },
+    "1103512[1].pbshpc": {
+      "Job_Name": "rankfusion-recipe-v3",
+      "resources_used.cpupercent": "177",
+      "resources_used.cput": "00:01:51",
+      "resources_used.mem": "460692kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2101424kb",
+      "resources_used.walltime": "00:01:24",
+      "job_state": "F",
+      "exec_host": "cgen002/1*4",
+      "Exit_status": "0"
+    },
+    "1103512[2].pbshpc": {
+      "Job_Name": "rankfusion-recipe-v3",
+      "resources_used.cpupercent": "351",
+      "resources_used.cput": "00:06:33",
+      "resources_used.mem": "1855604kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3422228kb",
+      "resources_used.walltime": "00:03:02",
+      "job_state": "F",
+      "exec_host": "cgen002/2*4",
+      "Exit_status": "0"
+    },
+    "1103513.pbshpc": {
+      "Job_Name": "rankfusion-recipe-budget",
+      "resources_used.cpupercent": "267",
+      "resources_used.cput": "00:32:14",
+      "resources_used.mem": "4247476kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "6005604kb",
+      "resources_used.walltime": "00:13:26",
+      "job_state": "F",
+      "exec_host": "cgen019/3*4",
+      "Exit_status": "0"
+    },
+    "1103515[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v3-bounded",
+      "resources_used.cpupercent": "254",
+      "resources_used.cput": "00:32:23",
+      "resources_used.mem": "2787056kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4404600kb",
+      "resources_used.walltime": "00:13:47",
+      "job_state": "F",
+      "exec_host": "cgen019/6*4",
+      "Exit_status": "271"
+    },
+    "1103515[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v3-bounded",
+      "resources_used.cpupercent": "271",
+      "resources_used.cput": "00:32:29",
+      "resources_used.mem": "2782656kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4400888kb",
+      "resources_used.walltime": "00:13:47",
+      "job_state": "F",
+      "exec_host": "cgen019/7*4",
+      "Exit_status": "271"
+    },
+    "1103522.pbshpc": {
+      "Job_Name": "rankfusion-blends-v3",
+      "resources_used.cpupercent": "380",
+      "resources_used.cput": "00:14:40",
+      "resources_used.mem": "2422896kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4020416kb",
+      "resources_used.walltime": "00:04:43",
+      "job_state": "F",
+      "exec_host": "cgen007/6*4",
+      "Exit_status": "0"
+    },
+    "1103557.pbshpc": {
+      "Job_Name": "rankfusion-recipe-budget-bound",
+      "resources_used.cpupercent": "396",
+      "resources_used.cput": "00:10:02",
+      "resources_used.mem": "4396772kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "6005260kb",
+      "resources_used.walltime": "00:03:29",
+      "job_state": "F",
+      "exec_host": "cgen007/6*4",
+      "Exit_status": "0"
+    },
+    "1103562.pbshpc": {
+      "Job_Name": "rankfusion-final-v3",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "00:42:45",
+      "resources_used.mem": "2632052kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4148900kb",
+      "resources_used.walltime": "00:17:09",
+      "job_state": "F",
+      "exec_host": "cgen007/7*4",
+      "Exit_status": "0"
+    }
+  },
+  "runtime_excluded_candidates": [
+    2,
+    3
+  ],
+  "runtime_exclusion_reason": "Initial 1200/1600 and bounded 800-tree probes remained too slow for this round; no partial-fold mean was used.",
+  "cached_fold0_prefix_scores_identical": true,
+  "reported_complete_configurations": 8,
+  "final_verification": {
+    "job_id": "1103562.pbshpc",
+    "exit_status": 0,
+    "wall_seconds": 1029,
+    "pbs_peak_mem_kb": 2632052,
+    "tests_passed": 76,
+    "actual_frozen_dev_interface_passed": true,
+    "independent_byte_identical_refit": true,
+    "protected_v2_artifacts_unchanged": true
+  },
+  "local_verification": {
+    "python": "3.12.14",
+    "tests_passed": 76,
+    "staff_neural_loaders_passed": true,
+    "hpc_hashes_match": true
+  },
+  "recipe_budget": "results/recipe_budget_v3.json",
+  "synthetic_transfer": "results/recipe_smoke_v3.json"
+}

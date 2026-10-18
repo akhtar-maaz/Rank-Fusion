@@ -7,7 +7,7 @@ import zipfile
 
 REQUIRED = {"submission/ranking.py", "submission/fusion.py", "submission/pointwise_pairwise.py",
             "submission/recipe.py", "submission/model.txt", "submission/pointwise_model.pt",
-            "submission/pairwise_model.pt", "submission/fusion_config.json"}
+            "submission/pairwise_model.pt", "submission/fusion_config.json", "submission/features.py"}
 FORBIDDEN = (("data", "train"), ("data", "dev"), ("data", "downloads"), (".venv",), ("runs",), ("dist",))
 
 

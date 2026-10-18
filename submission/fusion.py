@@ -75,3 +75,15 @@ def combmnz_scores(base_scores: Dict[str, Dict[str, float]],
             scores[doc_id] += value
             counts[doc_id] += int(value > 0)
     return {d: scores[d] * counts[d] for d in base_scores}
+
+
+def weighted_combsum_scores(base_scores, weights):
+    """Additional fusion variant; textbook CombSUM above keeps equal weights."""
+    scores = dict.fromkeys(base_scores, 0.0)
+    for channel, weight in weights.items():
+        if weight < 0:
+            raise ValueError("fusion weights must be nonnegative")
+        normalized = minmax_normalize({d: row[channel] for d, row in base_scores.items()})
+        for doc_id, value in normalized.items():
+            scores[doc_id] += weight * value
+    return scores

@@ -17,7 +17,7 @@ def main():
             if report["arguments"][key] != reports[0]["arguments"][key]:
                 raise ValueError(f"incompatible CV parts: {key}")
     rows = [row for report in reports for row in report["results"]]
-    signatures = {(row["trees"], json.dumps(row["params"], sort_keys=True)) for row in rows}
+    signatures = {(row["trees"], row.get("feature_mode", "raw"), json.dumps(row["params"], sort_keys=True)) for row in rows}
     if len(signatures) != len(rows):
         raise ValueError("duplicate CV configurations")
     result = {"parts": args.parts, "rows": reports[0]["rows"], "queries": reports[0]["queries"], "results": rows,

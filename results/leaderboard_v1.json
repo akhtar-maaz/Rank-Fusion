@@ -1,0 +1,17 @@
+{
+  "source": "User-reported submission website results, 2026-10-18",
+  "commit": "6533171578c2ee72115229dec813e418ce70aa66",
+  "conformance_passed": 7,
+  "conformance_total": 7,
+  "correctness_passed": 10,
+  "correctness_total": 10,
+  "fusion_ndcg@10": 0.3056,
+  "fusion_map@10": 0.1285,
+  "ltr_ndcg@10": 0.4826,
+  "pairwise_heldout_ndcg@10": 0.4103,
+  "pairwise_dev_ndcg@10": 0.4219,
+  "c2_mean_ndcg@10": 0.3394,
+  "live_score": 0.1225,
+  "live_score_maximum": 0.65,
+  "note": "Feedback is an aggregate score only; no hidden labels or data were accessed. Candidate selection remains on TRAIN folds. C1 is not yet evaluated."
+}

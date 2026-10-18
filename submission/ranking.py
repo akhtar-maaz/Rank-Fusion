@@ -22,7 +22,8 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 
-from submission.fusion import rrf_scores, combsum_scores, combmnz_scores
+from submission.fusion import rrf_scores, combsum_scores, combmnz_scores, weighted_combsum_scores
+from submission.features import features_for_model
 
 _MODEL = None
 with open(os.path.join(os.path.dirname(__file__), "fusion_config.json")) as _stream:
@@ -58,6 +59,8 @@ def fuse_candidates(qid: str, candidate_doc_ids: List[str], base_scores: Dict[st
         fused = combsum_scores(base)
     elif method == "combmnz":
         fused = combmnz_scores(base)
+    elif method == "weighted_combsum":
+        fused = weighted_combsum_scores(base, _FUSION_CONFIG["weights"])
     else:
         raise ValueError(f"unknown fusion method: {method!r}")
     ranked = sorted(ids, key=lambda d: -fused[d])  # stable: ties keep candidate order
@@ -72,6 +75,7 @@ def rerank_with_ltr(qid: str, candidate_doc_ids: List[str], features: Dict[str, 
     if k <= 0 or not ids:
         return []
     X = np.asarray([features[d] for d in ids], dtype=np.float64)
+    X = features_for_model(_MODEL, X)
     preds = _MODEL.predict(X, num_threads=1)
     order = np.argsort(-preds, kind="stable")
     return [(ids[i], float(preds[i])) for i in order[:k]]

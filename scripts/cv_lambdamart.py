@@ -20,6 +20,7 @@ import numpy as np
 
 from harness.cv import grouped_kfold
 from submission.data import load_ltr
+from submission.features import tree_features
 from scripts.lambdamart_utils import default_params, fit, ndcg10
 
 
@@ -34,6 +35,7 @@ def main():
     ap.add_argument("--lambda-l2", type=float, nargs="+", default=[1.0, 10.0])
     ap.add_argument("--feature-fraction", type=float, default=0.8)
     ap.add_argument("--threads", type=int, default=4)
+    ap.add_argument("--feature-mode", choices=["raw", "query_rank"], default="raw")
     ap.add_argument("--out", default="runs/lambdamart_cv.json")
     ap.add_argument("--config", help="extend tree counts using the exact selected parameters and folds from prior CV")
     ap.add_argument("--seed", type=int, default=0)
@@ -50,8 +52,10 @@ def main():
         args.feature_fraction = configured["feature_fraction"]
         args.threads, args.seed = configured["num_threads"], configured["seed"]
         args.folds = len(selected["folds"])
+        args.feature_mode = selected.get("feature_mode", "raw")
     path = os.path.join(args.train, "train.txt") if os.path.isdir(args.train) else args.train
     X, y, q = load_ltr(path)[0]
+    X = tree_features(X, q, args.feature_mode)
     folds = grouped_kfold(q, k=args.folds, seed=args.seed)
     trees = sorted(set(args.trees))
     if min(trees) < 1:
@@ -65,16 +69,16 @@ def main():
         for fold, (tr_idx, va_idx) in enumerate(folds):
             # A model's first n trees equal a fixed n-tree fit with this seed.
             # The reported fold never affects training or stopping decisions.
-            model = fit(X[tr_idx], y[tr_idx], q[tr_idx], params, max(trees))
+            model = fit(X[tr_idx], y[tr_idx], q[tr_idx], params, max(trees), args.feature_mode, prepared=True)
             for n in trees:
                 measurements[n].append({"fold": fold,
-                    "train_ndcg@10": ndcg10(model, X[tr_idx], y[tr_idx], q[tr_idx], n),
-                    "validation_ndcg@10": ndcg10(model, X[va_idx], y[va_idx], q[va_idx], n)})
+                    "train_ndcg@10": ndcg10(model, X[tr_idx], y[tr_idx], q[tr_idx], n, prepared=True),
+                    "validation_ndcg@10": ndcg10(model, X[va_idx], y[va_idx], q[va_idx], n, prepared=True)})
             print(f"leaves={leaves} min_leaf={min_leaf} l2={regularization}: fold {fold + 1}/{args.folds}", flush=True)
         for n, rows in measurements.items():
             tr = np.array([r["train_ndcg@10"] for r in rows])
             va = np.array([r["validation_ndcg@10"] for r in rows])
-            entry = {"trees": n, "params": params, "train_mean": float(tr.mean()),
+            entry = {"trees": n, "params": params, "feature_mode": args.feature_mode, "train_mean": float(tr.mean()),
                      "validation_mean": float(va.mean()), "validation_std": float(va.std(ddof=1)),
                      "validation_train_ratio": float(va.mean() / tr.mean()) if tr.mean() else 0.0,
                      "folds": rows}

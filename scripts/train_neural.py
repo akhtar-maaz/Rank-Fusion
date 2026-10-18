@@ -37,6 +37,7 @@ def main():
     ap.add_argument("--batch-size", type=int, default=1024)
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--pairs-per-query", type=int, default=300)
+    ap.add_argument("--pair-weighting", choices=["uniform", "ndcg"], default="uniform")
     ap.add_argument("--patience", type=int, default=3)
     ap.add_argument("--hidden", type=int, nargs="+", default=[64],
                     help="hidden layer widths, e.g. --hidden 128 64 (at most 3 layers of at most 256 units)")
@@ -57,13 +58,13 @@ def main():
     for kind in (["pointwise", "pairwise"] if args.kind == "both" else [args.kind]):
         _, _, hist = train_model(kind, fit_data, selection_data, seed=args.seed, epochs=args.epochs, batch_size=args.batch_size,
                                      lr=args.lr, pairs_per_query=args.pairs_per_query, patience=args.patience,
-                                     hidden=args.hidden, verbose=True)
+                                     hidden=args.hidden, verbose=True, pair_weighting=args.pair_weighting)
         best_epoch = max(hist, key=lambda row: row["dev_ndcg@10"])["epoch"]
         print(f"{kind}: selected {best_epoch} epochs on TRAIN fold; refitting full TRAIN", flush=True)
         net, std, final_hist = train_model(kind, train, None, seed=args.seed, epochs=best_epoch,
                                           batch_size=args.batch_size, lr=args.lr,
                                           pairs_per_query=args.pairs_per_query, patience=0,
-                                          hidden=args.hidden, verbose=True)
+                                          hidden=args.hidden, verbose=True, pair_weighting=args.pair_weighting)
         path = os.path.join(args.out_dir, f"{kind}_model.pt")
         save_scorer(path, net, std, args.hidden)
         entry = {"selection_history": hist, "best_epoch": best_epoch, "full_train_history": final_hist}

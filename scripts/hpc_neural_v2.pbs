@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#PBS -N rankfusion-neural-v2
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=01:00:00
+#PBS -J 0-2%2
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+rank_dir="runs/neural_v2/candidate_${PBS_ARRAY_INDEX}"
+mkdir -p "$rank_dir"
+exec > >(tee "$rank_dir/job.log") 2>&1
+rank_weighting=ndcg
+rank_lr=0.0003
+if (( PBS_ARRAY_INDEX == 0 )); then rank_weighting=uniform; fi
+if (( PBS_ARRAY_INDEX == 2 )); then rank_lr=0.001; fi
+.venv/bin/python scripts/train_neural.py --train data/train --kind pairwise --hidden 128 64 \
+    --epochs 20 --patience 5 --pairs-per-query 300 --pair-weighting "$rank_weighting" \
+    --lr "$rank_lr" --out-dir "$rank_dir" --history-out "$rank_dir/history.json"

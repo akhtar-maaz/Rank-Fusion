@@ -38,6 +38,7 @@ def main():
     ap.add_argument("--lambda-l2", type=float, default=1.0)
     ap.add_argument("--feature-fraction", type=float, default=0.8)
     ap.add_argument("--threads", type=int, default=4)
+    ap.add_argument("--feature-mode", choices=["raw", "query_rank"], default="raw")
     ap.add_argument("--config", help="CV JSON; use its selected configuration and tree count")
     ap.add_argument("--use-dev", action="store_true", help="also train on dev (lowers Track C; declare it)")
     args = ap.parse_args()
@@ -63,7 +64,8 @@ def main():
         with open(args.config) as stream:
             selected = json.load(stream)["selected"]
         params, args.trees = selected["params"], selected["trees"]
-    model = fit(X, y, q, params, args.trees)
+        args.feature_mode = selected.get("feature_mode", "raw")
+    model = fit(X, y, q, params, args.trees, args.feature_mode)
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     model.save_model(args.out)
     print(f"trained on {len(set(q))} queries ({'train+dev' if args.use_dev else 'train only'}) -> {args.out}")

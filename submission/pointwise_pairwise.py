@@ -130,6 +130,35 @@ def ranknet_loss(s_preferred: torch.Tensor, s_other: torch.Tensor) -> torch.Tens
     return torch.nn.functional.softplus(-(s_preferred - s_other)).mean()
 
 
+def weighted_ranknet_loss(s_preferred, s_other, weights):
+    """Separate training objective; keep the graded RankNet loss unweighted."""
+    losses = torch.nn.functional.softplus(-(s_preferred - s_other))
+    return (losses * weights).sum() / weights.sum().clamp_min(1e-12)
+
+
+def ndcg_pair_weights(pairs, labels, qids, scores, k=10):
+    """Absolute nDCG@k change from swapping a sampled pair's current ranks."""
+    labels, scores = np.asarray(labels), np.asarray(scores)
+    gains = np.exp2(labels.astype(np.float64)) - 1.0
+    discounts = np.zeros(len(labels), dtype=np.float64)
+    inverse_ideal = np.zeros(len(labels), dtype=np.float64)
+    by_query = {}
+    for row, qid in enumerate(qids):
+        by_query.setdefault(qid, []).append(row)
+    for rows in by_query.values():
+        rows = np.asarray(rows, dtype=np.int64)
+        count = min(k, len(rows))
+        discount = 1.0 / np.log2(np.arange(count) + 2.0)
+        order = np.argsort(-scores[rows], kind="stable")
+        discounts[rows[order[:count]]] = discount
+        ideal = np.dot(np.sort(gains[rows])[::-1][:count], discount)
+        if ideal > 0:
+            inverse_ideal[rows] = 1.0 / ideal
+    preferred, other = pairs[:, 0], pairs[:, 1]
+    return ((gains[preferred] - gains[other]) *
+            np.abs(discounts[preferred] - discounts[other]) * inverse_ideal[preferred]).astype(np.float32)
+
+
 def pointwise_step(network: nn.Module, optimizer, x: torch.Tensor, y: torch.Tensor) -> float:
     """TODO(5): ONE optimisation step on a minibatch of documents: zero the
     gradients, forward pass, pointwise_loss, loss.backward(), optimizer.step().
@@ -167,13 +196,15 @@ def dev_ndcg(scorer: Callable[[np.ndarray], np.ndarray], X, y, qids) -> float:
 
 def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch_size: int = 1024,
                 lr: float = 1e-3, pairs_per_query: int = 300, patience: int = 3, hidden=64,
-                verbose: bool = False):
+                verbose: bool = False, pair_weighting: str = "uniform"):
     """Train a 'pointwise' or 'pairwise' scorer. train / dev are (X_raw, y, qids)
     tuples. Returns (network, standardizer, history) with the best-dev-nDCG
     weights restored. Pass dev=None for a fixed-epoch fit on full TRAIN:
     this reports training nDCG and returns the last epoch, without selection."""
     if kind not in ("pointwise", "pairwise"):
         raise ValueError("kind must be 'pointwise' or 'pairwise'")
+    if pair_weighting not in ("uniform", "ndcg"):
+        raise ValueError("pair_weighting must be uniform or ndcg")
     if epochs < 1 or batch_size < 1 or patience < 0:
         raise ValueError("epochs and batch_size must be positive; patience must be nonnegative")
     X, y, q = train
@@ -198,11 +229,27 @@ def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch
         if len(examples) == 0:
             raise ValueError("pairwise training needs at least one within-query preference pair")
         examples = examples[rng.permutation(len(examples))]
+        weights = None
+        if kind == "pairwise" and pair_weighting == "ndcg":
+            network.eval()
+            with torch.no_grad():
+                scores = np.concatenate([network(Xt[start:start + 4096]).numpy()
+                                         for start in range(0, len(Xt), 4096)])
+            weights = torch.from_numpy(ndcg_pair_weights(examples, y, q, scores))
+            network.train()
         total_loss = 0.0
         for start in range(0, len(examples), batch_size):
             batch = examples[start:start + batch_size]
             if kind == "pairwise":
-                loss = pairwise_step(network, optimizer, Xt[batch[:, 0]], Xt[batch[:, 1]])
+                if weights is None:
+                    loss = pairwise_step(network, optimizer, Xt[batch[:, 0]], Xt[batch[:, 1]])
+                else:
+                    optimizer.zero_grad()
+                    objective = weighted_ranknet_loss(network(Xt[batch[:, 0]]), network(Xt[batch[:, 1]]),
+                                                     weights[start:start + batch_size])
+                    objective.backward()
+                    optimizer.step()
+                    loss = float(objective.detach())
             else:
                 loss = pointwise_step(network, optimizer, Xt[batch], yt[batch])
             total_loss += loss * len(batch)

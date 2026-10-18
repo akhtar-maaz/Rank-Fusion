@@ -9,10 +9,32 @@
   "mean_improvement": 0.0016369487927571091,
   "promoted": true,
   "portability_tests_passed": true,
-  "budget_stress_check": "pending",
+  "budget_stress_check": "passed",
   "domain_records": [
     "results/recipe_domains_v3/domain_0.json",
     "results/recipe_domains_v3/domain_1.json",
     "results/recipe_domains_v3/domain_2.json"
+  ],
+  "budget_record": "results/recipe_budget_v3.json",
+  "tree_ceiling": "max(200, min(500, 30_000_000_000 // (training_rows * raw_feature_width)))",
+  "unchanged_domain_proof": [
+    {
+      "domain": 0,
+      "tree_cap_lower_bound": 500,
+      "largest_best_iteration_plus_patience": 196,
+      "training_and_stopping_unchanged": true
+    },
+    {
+      "domain": 1,
+      "tree_cap_lower_bound": 500,
+      "largest_best_iteration_plus_patience": 113,
+      "training_and_stopping_unchanged": true
+    },
+    {
+      "domain": 2,
+      "tree_cap_lower_bound": 451,
+      "largest_best_iteration_plus_patience": 328,
+      "training_and_stopping_unchanged": true
+    }
   ]
 }

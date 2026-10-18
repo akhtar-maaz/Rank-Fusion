@@ -86,3 +86,12 @@ def test_selector_rejects_partial_folds_and_changed_control():
     baseline["selected"]["validation_mean"] += 0.01
     with pytest.raises(ValueError, match="reproduce"):
         select(reports, baseline)
+
+
+def test_runtime_exclusions_must_be_explicit_and_cannot_include_control():
+    reports, baseline = selection_fixture()
+    with pytest.raises(ValueError, match="explicit"):
+        select(reports[:2], baseline)
+    assert select(reports[:2], baseline, excluded_candidates=[2, 3])["promoted"]
+    with pytest.raises(ValueError, match="explicit"):
+        select(reports[1:], baseline, excluded_candidates=[0])

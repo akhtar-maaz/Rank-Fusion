@@ -1,0 +1,23 @@
+[
+  {
+    "ndcg@10": 0.9446274370685649,
+    "map@10": 0.8838593147593147,
+    "train_seconds": 0.8905546721071005,
+    "num_eval_queries": 50,
+    "set": "a_40_features_labels0-4"
+  },
+  {
+    "ndcg@10": 0.943183579656621,
+    "map@10": 0.8679790815665812,
+    "train_seconds": 0.7989155407994986,
+    "num_eval_queries": 50,
+    "set": "b_90_features_labels0-4"
+  },
+  {
+    "ndcg@10": 0.9527570255821725,
+    "map@10": 0.9054432728206536,
+    "train_seconds": 2.064842365682125,
+    "num_eval_queries": 50,
+    "set": "c_250_features_labels0-2"
+  }
+]

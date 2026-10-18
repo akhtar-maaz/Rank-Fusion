@@ -1,0 +1,26 @@
+{
+  "source": "Fold1 TRAIN-derived size/dimension stress check; no new dataset labels",
+  "train_rows": 499918,
+  "validation_rows": 142390,
+  "raw_features": 300,
+  "model_features": 600,
+  "train_queries": 4123,
+  "validation_queries": 1200,
+  "fit_seconds": 742.277112191543,
+  "load_prepare_fit_save_seconds": 804.2125735180452,
+  "process_peak_rss_kb": 4239284,
+  "history": [
+    {
+      "leaves": 63,
+      "trees": 237,
+      "validation_lightgbm_ndcg@10": 0.5193035348423604
+    },
+    {
+      "leaves": 127,
+      "trees": 266,
+      "validation_lightgbm_ndcg@10": 0.5210803991999313
+    }
+  ],
+  "save_load_bit_identical_predictions": true,
+  "note": "300 derived columns repeat and rescale the 136 TRAIN columns; a compute check, not a new benchmark. File parsing uses the original TRAIN file; expanded columns are constructed in memory."
+}

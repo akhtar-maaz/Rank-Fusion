@@ -1,79 +1,73 @@
-# Submission notes
+# Submission notes — v3
 
 ## Training-data declaration
 
-| Artifact | Fitted on | Tuned / stopped on |
+| Artifact | Fitted on | Selection / stopping |
 |---|---|---|
-| LambdaMART `model.txt` | Full MSLR-WEB10K Fold1 TRAIN | Grouped five-fold TRAIN CV; fixed 800-tree final fit |
-| `pointwise_model.pt` | Full Fold1 TRAIN | Internal TRAIN fold 0; six-epoch full refit |
-| `pairwise_model.pt` | Full Fold1 TRAIN | Internal TRAIN fold 0; six MSE warm-up epochs plus two weighted-pairwise refit epochs |
-| `recipe.py` when invoked | Supplied benchmark TRAIN | Fixed adaptive design; supplied validation for early stopping |
+| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 800+200-tree refit |
+| `pointwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six-epoch refit |
+| `pairwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six MSE plus two weighted RankNet epochs |
+| `recipe.py` | Supplied benchmark TRAIN only when staff call it | Supplied validation selects two capacities and stopping point |
 
-DEV is used only for final evaluation after selection. No held-out labels,
-other dataset folds, external relevance labels, or distillation targets are
-used. Official archive preparation opens only Fold1 TRAIN and validation.
-No attempt is made to identify the undisclosed benchmarks.
-
-## Fusion method
-
-Weighted CombSUM uses within-query min-max scores, with weights 0.25 for BM25
-whole document, 0.25 for BM25 title, 0.50 for LMIR Dirichlet, and 0 for LMIR JM.
-It is selected on TRAIN from 41 fixed settings using the raw 0.8 nDCG + 0.2 MAP
-proxy. Textbook RRF, CombSUM, and CombMNZ remain separately testable.
-
-## Features and LambdaMART configuration
-
-The 136 raw MSLR features are augmented with 136 label-free within-query
-percentiles, using tied midranks and preserving NaNs. The text model identifies
-this transformation through feature names. The transfer recipe applies the
-same transformation to its arbitrary input width, with bounded sorting memory.
-
-Final MSLR LambdaMART: 800 trees, 127 leaves, unlimited depth,
-learning rate 0.05, minimum leaf size 100, L2 10, feature fraction 0.8, bagging
-fraction 0.8/frequency 1, truncation 30, seed 0, deterministic row-wise training,
-four threads. All 49 complete configurations and five-fold scores are in
-`results/lambdamart_cv.json`; no reported fold controls early stopping.
+DEV is evaluated only after configurations are frozen. It is never used for
+fitting, tuning or stopping the shipped MSLR models. No held-out labels,
+other MSLR folds, external relevance labels or distillation targets are used.
+No attempt is made to identify or inspect undisclosed C1 datasets. Website
+feedback is user-provided aggregate feedback only.
 
 ## Final configuration and tradeoff
 
-The selected validation mean is 0.484133, sample SD
-0.008215, training mean 0.782033, and validation/training
-ratio 0.619071. Larger raw-feature trees failed to improve on
-the first-round result; query-relative features improved it. We choose the
-highest validation mean in the bounded search and explicitly retain the
-substantial training gap. This favors measured validation accuracy over
-the smaller candidates' narrower gaps; hidden robustness remains unmeasured
-locally. DEV plays no part in that choice. Independent refitting checks exact
-tree-artifact reproduction.
+The native LightGBM artifact averages an 800-tree raw-plus-percentile
+LambdaMART and a 200-tree min-max-plus-percentile LambdaMART, each weighted
+0.5. Both use 127 leaves, minimum leaf size 100, L2 10, learning rate 0.05,
+feature and row fractions 0.8, truncation 30, seed 0, deterministic row-wise
+fitting and four threads. Its 1,000 native trees accept 136 raw inputs via
+408 label-free query-local features. Selection retains clean CV accuracy
+within 0.0025 of the best complete candidate and favors the declared clean /
+diagnostic mixture. Clean CV improves from 0.484133 to 0.485550;
+diagnostics improve from 0.454990 to 0.468450. The
+validation/training ratio improves from 0.619071 to 0.674514.
+The remaining gap and sample SD 0.008929 limit what
+these adaptive selection estimates establish. No hidden C2 gain is claimed.
 
-Both neural models keep the same 136 → 128 → 64 → 1 ReLU architecture,
-TRAIN-fitted standardization, Adam, batch size 1024, and seed 0. Pointwise MSE
-uses six full-TRAIN epochs at 0.001. Pairwise uses six supervised MSE warm-up
-epochs at 0.001, then two epochs at 0.0001 with separate absolute-nDCG-swap
-weighted RankNet training and up to 300 distinct pairs per query per epoch.
-The graded `ranknet_loss` remains plain and unweighted. Internal TRAIN fold 0
-selects the fine-tuning epoch and configuration before full refits.
+## Transfer policy and limits
 
-Final DEV nDCG@10: LambdaMART 0.491177, pointwise
-0.431708, pairwise 0.444853. The BM25 floor is
-0.288487. These are raw DEV results, not private-track scores. The report
-is deferred until submission feedback.
+Two supplied-validation-selected leaf counts adapt to training query count:
+15/31, 31/63 or 63/127 at cutoffs 200 and 2,000. Features are raw plus query
+percentiles, regardless of their meaning. Minimum leaf size scales with row
+count. Each fit has a deterministic 200–500-tree cap based on rows × raw
+width, patience 40, L2 10, learning rate 0.05, truncation 13 and four threads.
+The near-maximum TRAIN-derived 300-column check finishes in
+208.2s at 4.19 GiB,
+with caveats recorded in `results/recipe_budget_v3.json`. Synthetic checks
+prove portability; the unknown datasets remain staff-only.
+
+## Verification and reproducibility
+
+76 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
+artifacts load with the unchanged staff-compatible loader under Python 3.12.
+The independent full-TRAIN tree refit is byte-identical; hashes and execution
+records are in `results/`. Fusion and both neural artifacts retain v2 hashes.
+The averaging exporter is checked against explicit arithmetic averaging
+before and after native save/load. Original starter files remain in the ZIP;
+real data, wheels, environments, Git metadata and intermediate runs do not.
 
 ## AI-use disclosure
 
-OpenAI Codex assisted with reading the assignment and starter files,
-implementing and reviewing algorithms, writing tests and training scripts,
-configuring and running IIT Delhi HPC experiments, interpreting measurements,
-and preparing documentation and the submission archive.
+OpenAI Codex assisted with specification reading, algorithms, implementation,
+tests, environment setup, scheduled HPC training, diagnostics, interpretation,
+documentation and packaging. The student must understand and explain these
+methods during the course walkthrough. Report writing remains deferred.
 
-## Code provenance
+## Code-provenance statement
 
-The starter supplies the unchanged harness, MLP architecture, standardizer,
-metrics, and grouped folds. Fusion, squared-error, and RankNet formulas follow
-the assignment and primer. Query percentiles and nDCG swap weights are
-implemented directly; no external fusion or neural ranking trainer was copied.
-LightGBM's permitted `lambdarank` objective implements the tree ranker.
-
-The [Microsoft Research dataset page](https://www.microsoft.com/en-us/research/project/mslr/)
-and [IIT Delhi HPC guide](https://supercomputing.iitd.ac.in/) were consulted for
-data access and scheduled execution.
+The original starter supplies the unchanged harness, network, standardizer,
+grouped folds and metrics. Hand-written fusion, MSE and RankNet follow the
+assignment and primer. Query transforms, metric swap weights, perturbations,
+native numeric-tree export and adaptive capacity/budget rules are implemented
+directly. No external fusion library, neural ranking trainer, solution code,
+other student's code, or extra labeled dataset is used. LightGBM 4.6's
+permitted ranking objective implements the tree learner. Official references:
+[MSLR](https://www.microsoft.com/en-us/research/project/mslr/),
+[LightGBM parameters](https://lightgbm.readthedocs.io/en/v4.6.0/Parameters.html),
+[IIT Delhi HPC](https://supercomputing.iitd.ac.in/).

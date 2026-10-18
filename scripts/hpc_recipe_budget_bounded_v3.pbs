@@ -1,0 +1,13 @@
+#!/bin/bash -l
+#PBS -N rankfusion-recipe-budget-bound
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:20:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+mkdir -p runs/recipe_v3_bounded
+exec > >(tee runs/recipe_v3_bounded/budget.log) 2>&1
+.venv/bin/python scripts/check_recipe_budget.py --out-dir runs/recipe_v3_bounded

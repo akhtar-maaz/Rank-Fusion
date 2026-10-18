@@ -90,3 +90,39 @@ raw/rank/min-max blocks. Loading and scoring use only this one artifact.
 Tests compare the exported native model with explicit arithmetic averages,
 including after save/load and from `scripts/train_model.py`'s configuration
 fit helper. No neural model or distillation is involved.
+
+## Runtime adjustment
+
+Candidates 2/3 prove substantially slower than the control. Their initial
+1200/1600-tree runs are cancelled before complete five-fold results and
+replaced by bounded 400/800-tree runs. Candidate 2's already completed
+fold-0 model can supply its first 400/800 trees: parameters and feature
+metadata are checked on reload, and its recomputed fold scores must match
+the initial prefix scores. No partial-fold aggregate enters selection.
+Initial logs and job outcomes remain available for the execution record.
+
+The largest recipe stress check (nearly 500k TRAIN-derived fitting rows,
+300 derived columns, 142,390 validation rows) uses about 4.2 GB but leaves too
+little runtime headroom with two 500-tree fits on a slower compute node.
+Set the deterministic per-fit tree ceiling to
+`max(200, min(500, 30_000_000_000 // (training_rows * raw_feature_width)))`.
+It is 200 at the specified largest input size. All three nested-holdout
+domains have fewer than 60 million raw training cells, so their existing
+500-tree ceilings and results remain unchanged. Repeat the wide budget
+check in a separate output directory; preserve the initial run's outcome.
+
+## Final bounded comparison
+
+The 800-tree replacements for candidates 2/3 also remain substantially
+slower than the control. Stop both for runtime and exclude them entirely
+from selection; their partial folds are never averaged or compared for
+promotion. The selector requires these omissions to be explicit. The final
+comparison contains eight complete five-fold rows: three control tree
+counts, three normalized tree counts, and the two fixed blends. Keep the
+original clean guard and mixture improvement threshold unchanged.
+The default `hpc_cv_v3.pbs` array now replays only reported candidates 0/1.
+
+The selected 800+200 blend has clean validation mean 0.485549585 versus
+the v2 control's 0.484133273; its three-diagnostic mean is 0.468449632
+versus 0.454990471. These are adaptive model-selection estimates. Freeze
+this choice before full-TRAIN fitting and final DEV evaluation.

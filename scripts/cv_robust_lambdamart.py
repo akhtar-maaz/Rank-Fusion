@@ -4,6 +4,7 @@ Run independent candidates via PBS, never read DEV, and retain out-of-fold
 scores for reproducible comparisons. No early stopping on reported folds.
 """
 import argparse
+import copy
 import json
 import os
 from pathlib import Path
@@ -41,8 +42,14 @@ def main():
     parser.add_argument("--train", default="data/train/train.txt")
     parser.add_argument("--candidate", type=int, choices=range(len(candidates())), required=True)
     parser.add_argument("--out-dir", default="runs/cv_v3")
+    parser.add_argument("--tree-cap", type=int, help="discard larger checkpoints to bound runtime")
+    parser.add_argument("--resume", action="store_true", help="reuse compatible saved fold models")
     args = parser.parse_args()
-    selected = candidates()[args.candidate]
+    selected = copy.deepcopy(candidates()[args.candidate])
+    if args.tree_cap is not None:
+        selected["trees"] = [count for count in selected["trees"] if count <= args.tree_cap]
+        if not selected["trees"]:
+            parser.error("tree cap leaves no checkpoints")
     destination = Path(args.out_dir)
     destination.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
@@ -51,10 +58,28 @@ def main():
     folds = grouped_kfold(q, k=5, seed=0)
     measurements = {n: [] for n in selected["trees"]}
     scores = np.empty((len(selected["trees"]), len(SCENARIOS), len(y)), dtype=np.float64)
+    reused_folds = []
     for fold, (tr, va) in enumerate(folds):
-        model = fit(prepared[tr], y[tr], q[tr], selected["params"], max(selected["trees"]),
-                    selected["feature_mode"], prepared=True)
-        model.save_model(str(destination / f"candidate_{args.candidate}_fold_{fold}.txt"))
+        path = destination / f"candidate_{args.candidate}_fold_{fold}.txt"
+        if args.resume and path.exists():
+            import lightgbm as lgb
+            from submission.features import feature_mode_for_model
+            model = lgb.Booster(model_file=str(path))
+            aliases = {"verbose": "verbosity"}
+            if (model.num_trees() < max(selected["trees"]) or model.num_feature() != prepared.shape[1] or
+                    feature_mode_for_model(model) != selected["feature_mode"]):
+                raise ValueError("cached fold model has incompatible trees or features")
+            for key, expected in selected["params"].items():
+                actual = model.params.get(aliases.get(key, key))
+                if key == "metric":
+                    actual = actual[0] if isinstance(actual, list) and len(actual) == 1 else actual
+                if actual != expected:
+                    raise ValueError(f"cached fold parameter differs: {key}: {actual!r} != {expected!r}")
+            reused_folds.append(fold)
+        else:
+            model = fit(prepared[tr], y[tr], q[tr], selected["params"], max(selected["trees"]),
+                        selected["feature_mode"], prepared=True)
+            model.save_model(str(path))
         entries = {}
         for count in selected["trees"]:
             prediction = model.predict(prepared[tr], num_iteration=count, num_threads=4)
@@ -84,7 +109,8 @@ def main():
                         "scenario_means": means, "diagnostic_mean": diagnostic_mean,
                         "selection_score": 0.5 * (means["clean"] + diagnostic_mean), "folds": entries})
     report = {"arguments": vars(args), "candidate": selected, "rows": len(y), "queries": len(set(q)),
-              "scenarios": SCENARIOS, "results": results, "seconds": time.perf_counter() - started}
+              "scenarios": SCENARIOS, "results": results, "seconds": time.perf_counter() - started,
+              "reused_folds": reused_folds}
     (destination / f"part_{args.candidate}.json").write_text(json.dumps(report, indent=2) + "\n")
     np.savez_compressed(destination / f"oof_{args.candidate}.npz", scores=scores, labels=y, qids=q.astype(str),
                         trees=selected["trees"], scenarios=SCENARIOS)

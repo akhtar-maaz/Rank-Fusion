@@ -1,0 +1,42 @@
+#!/bin/bash -l
+#PBS -N rankfusion-final-v3
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:40:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/final_train_v3.log) 2>&1
+.venv/bin/python scripts/select_robust_lambdamart.py \
+    runs/cv_v3/part_0.json runs/cv_v3/part_1.json --excluded-candidates 2 3 \
+    --ensembles runs/cv_v3/blends.json --baseline results/lambdamart_cv_v2.json
+.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+# Selection and full-TRAIN fit finish before this single frozen DEV evaluation.
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json
+.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v3.txt
+.venv/bin/python - <<'PY'
+import hashlib,json,os,tempfile
+from pathlib import Path
+from harness.recipe_eval import run_recipe_and_evaluate
+digest=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
+original=digest('submission/model.txt')
+reproduced=digest('runs/reproduced_model_v3.txt')
+record={'artifact':'submission/model.txt','original_sha256':original,'reproduced_sha256':reproduced,
+        'byte_identical':original==reproduced,'command':'python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v3.txt'}
+Path('results/lambdamart_reproducibility.json').write_text(json.dumps(record,indent=2)+'\n')
+assert record['byte_identical'], 'independent refit differed'
+results=[]
+for folder in sorted(Path('data/toy_transfer').iterdir()):
+    if folder.is_dir():
+        with tempfile.TemporaryDirectory() as scratch:
+            result=run_recipe_and_evaluate(str(folder/'train.txt'),str(folder/'vali.txt'),str(folder/'vali.txt'),str(Path(scratch)/'model.txt'))
+        result['set']=folder.name
+        results.append(result)
+Path('results/recipe_smoke_v3.json').write_text(json.dumps(results,indent=2)+'\n')
+print(json.dumps({'reproduction':record,'synthetic_transfer':results},indent=2),flush=True)
+PY
+.venv/bin/python scripts/record_artifacts.py --out results/artifacts_hpc_v3.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

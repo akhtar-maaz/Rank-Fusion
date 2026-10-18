@@ -8,9 +8,12 @@ import numpy as np
 SCENARIOS = ("clean", "affine", "feature_dropout", "noise")
 
 
-def select(reports, baseline, ensemble_report=None):
-    if sorted(report["arguments"]["candidate"] for report in reports) != [0, 1, 2, 3]:
-        raise ValueError("all four distinct candidates must complete")
+def select(reports, baseline, ensemble_report=None, excluded_candidates=()):
+    completed = sorted(report["arguments"]["candidate"] for report in reports)
+    excluded = sorted(excluded_candidates)
+    if (0 not in completed or len(set(completed + excluded)) != 4 or
+            sorted(completed + excluded) != [0, 1, 2, 3]):
+        raise ValueError("all four distinct candidates must complete or have explicit runtime exclusions")
     rows = []
     all_reports = reports + ([ensemble_report] if ensemble_report is not None else [])
     if ensemble_report is not None and sorted(row["name"] for row in ensemble_report["results"]) != ["blend_400_200", "blend_800_200"]:
@@ -62,13 +65,17 @@ def main():
     parser.add_argument("--baseline", default="results/lambdamart_cv_v2.json")
     parser.add_argument("--out", default="results/lambdamart_cv.json")
     parser.add_argument("--ensembles", help="complete report for the two documented fixed blends")
+    parser.add_argument("--excluded-candidates", type=int, nargs="*", default=[],
+                        help="explicitly excluded incomplete candidates; never read their partial scores")
     args = parser.parse_args()
     result = select([json.loads(Path(path).read_text()) for path in args.parts],
                     json.loads(Path(args.baseline).read_text()),
-                    json.loads(Path(args.ensembles).read_text()) if args.ensembles else None)
+                    json.loads(Path(args.ensembles).read_text()) if args.ensembles else None,
+                    args.excluded_candidates)
     result["parts"] = args.parts
     result["baseline"] = args.baseline
     result["ensembles"] = args.ensembles
+    result["runtime_excluded_candidates"] = args.excluded_candidates
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"promoted": result["promoted"], "selected": result["selected"]}, indent=2))

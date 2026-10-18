@@ -1,17 +1,19 @@
 {
   "artifacts": {
     "model.txt": {
-      "bytes": 11450813,
-      "sha256": "80e3d894cfae49591bc2d8d2b4b9e117c49655dd82b3bdf3b3fdf479588b8e48",
+      "bytes": 14386975,
+      "sha256": "e36d1a2f52545fd898f91ad196dc826beca4ee18c360b2c927c4b1115911f5c9",
+      "unchanged_from_v2": false,
       "matches_hpc_copy": true,
-      "features": 272,
+      "features": 408,
       "input_features": 136,
-      "feature_mode": "query_rank",
-      "trees": 800
+      "feature_mode": "query_all",
+      "trees": 1000
     },
     "pointwise_model.pt": {
       "bytes": 109173,
       "sha256": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+      "unchanged_from_v2": true,
       "matches_hpc_copy": true,
       "config": {
         "n_features": 136,
@@ -20,11 +22,13 @@
           64
         ]
       },
+      "staff_loader_passed": true,
       "staff_loader_python312_passed": true
     },
     "pairwise_model.pt": {
       "bytes": 109161,
       "sha256": "bc7d580632a4f6909edcecf696f51983369f6fbf3df5f80323180d83f85c5202",
+      "unchanged_from_v2": true,
       "matches_hpc_copy": true,
       "config": {
         "n_features": 136,
@@ -33,11 +37,13 @@
           64
         ]
       },
+      "staff_loader_passed": true,
       "staff_loader_python312_passed": true
     },
     "fusion_config.json": {
       "bytes": 182,
       "sha256": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
+      "unchanged_from_v2": true,
       "matches_hpc_copy": true
     }
   },

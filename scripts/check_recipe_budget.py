@@ -1,4 +1,5 @@
 """Compute/memory check on a wide, large domain derived only from TRAIN."""
+import argparse
 import json
 import os
 from pathlib import Path
@@ -12,13 +13,15 @@ import lightgbm as lgb
 import numpy as np
 
 from harness.cv import grouped_kfold
-from scripts.lambdamart_utils import ndcg10
 from submission.data import group_sizes, load_ltr
 from submission.features import features_for_model
 from submission.recipe import fit_arrays
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out-dir", default="runs/recipe_v3")
+    args = parser.parse_args()
     started = time.perf_counter()
     X, y, q = load_ltr("data/train/train.txt")[0]
     tr, va = grouped_kfold(q, k=5, seed=0)[0]
@@ -35,7 +38,7 @@ def main():
     fitting = time.perf_counter()
     model, history = fit_arrays(Xt, yt, qt, Xv, yv, qv, seed=0)
     fit_seconds = time.perf_counter() - fitting
-    destination = Path("runs/recipe_v3")
+    destination = Path(args.out_dir)
     destination.mkdir(parents=True, exist_ok=True)
     path = destination / "budget_model.txt"
     model.save_model(str(path))

@@ -26,12 +26,13 @@ from submission.features import tree_features, tree_feature_names
 def fit_arrays(X, y, q, Xv, yv, qv, seed=0):
     """Choose capacity using only the supplied validation split, with fixed work.
 
-    Two fits of at most 500 trees each, with 40-round patience. No timing-based
+    Two fits of at most 200--500 trees each, with 40-round patience. No timing-based
     stopping decisions: identical inputs and seed follow the same search.
     """
     import lightgbm as lgb
 
     width = X.shape[1]
+    max_rounds = max(200, min(500, 30_000_000_000 // max(1, len(y) * width)))
     names = tree_feature_names(width, "query_rank")
     X = tree_features(X, q, "query_rank")
     Xv = tree_features(Xv, qv, "query_rank")
@@ -51,10 +52,11 @@ def fit_arrays(X, y, q, Xv, yv, qv, seed=0):
     capacities = (15, 31) if n_queries < 200 else (31, 63) if n_queries < 2000 else (63, 127)
     best, best_score, history = None, -float("inf"), []
     for leaves in capacities:
-        booster = lgb.train(dict(params, num_leaves=leaves), training, num_boost_round=500,
+        booster = lgb.train(dict(params, num_leaves=leaves), training, num_boost_round=max_rounds,
                             valid_sets=[validation], callbacks=[lgb.early_stopping(40, verbose=False)])
         score = booster.best_score["valid_0"]["ndcg@10"]
-        history.append({"leaves": leaves, "trees": booster.best_iteration, "validation_lightgbm_ndcg@10": score})
+        history.append({"leaves": leaves, "trees": booster.best_iteration, "maximum_trees": max_rounds,
+                        "validation_lightgbm_ndcg@10": score})
         if score > best_score + 1e-12:
             best, best_score = booster, score
     return best, history

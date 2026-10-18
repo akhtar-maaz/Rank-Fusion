@@ -102,3 +102,39 @@ that proof, evaluates the frozen models, runs synthetic transfer checks, and
 tests a temporary copy. It performs no real-data training. An optional
 query-relative depth-limited CV variant was cancelled for runtime and is not
 part of the reported results.
+
+## Third-round TRAIN robustness comparison
+
+V3 retains the v2 fusion and both neural artifacts exactly. The selected
+tree configuration and adaptive recipe are described in the root README.
+The reported search can be replayed with:
+
+```bash
+qsub scripts/hpc_cv_v3.pbs  # control / normalized, all five TRAIN folds
+# After both subjobs finish, including writing their OOF .npz files:
+qsub scripts/hpc_blends_v3.pbs
+# After the blend report is complete:
+qsub scripts/hpc_train_v3.pbs
+```
+
+The final job applies the fixed mixture/clean-accuracy guard, refits the
+800+200-tree blend, evaluates frozen DEV, independently refits from TRAIN,
+checks identical native-model hashes, runs synthetic transfer checks, checks
+protected v2 hashes, and tests a temporary copy. A fresh workspace needs
+the committed `results/lambdamart_cv_v2.json` and `results/artifacts_v2.json`.
+For artifact reproduction alone, use the root README's `train_model.py`
+command with the committed final configuration; CV need not be repeated.
+
+`hpc_recipe_v3.pbs` compares the adaptive C1 policy with v2 on three
+TRAIN-derived nested holdouts. `hpc_recipe_budget_bounded_v3.pbs` checks
+the final row/width-dependent tree ceiling on a near-maximum derived input.
+The initial wide budget run and slow regularization probes are retained in
+the execution record. The optional bounded regularization array was also
+cancelled for runtime; its incomplete results are excluded, and the final
+selector requires candidates 2/3 to be explicitly marked excluded.
+
+Copy back the new `model.txt`, final metrics/reproduction/manifest records,
+recipe smoke records and PBS logs. Verify model hashes across HPC and local
+copies with `scripts/record_artifacts.py`. The v2 neural and fusion files
+must retain their hashes. The final upload archive is
+`dist/rank-fusion-submission-v3.zip`.

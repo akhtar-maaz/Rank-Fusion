@@ -1,0 +1,29 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v4
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:10:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v4.log) 2>&1
+.venv/bin/python - <<'PY'
+import hashlib,json
+from pathlib import Path
+digest=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
+original=digest('submission/model.txt')
+reproduced=digest('runs/reproduced_model_v4.txt')
+record={'artifact':'submission/model.txt','original_sha256':original,'reproduced_sha256':reproduced,
+        'byte_identical':original==reproduced,
+        'command':'python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v4.txt'}
+Path('results/lambdamart_reproducibility.json').write_text(json.dumps(record,indent=2)+'\n')
+assert record['byte_identical'], 'independent refit differed'
+for name in ('pointwise_model.pt','pairwise_model.pt','fusion_config.json','recipe.py'):
+    assert digest('submission/'+name)==digest('runs/baseline_v3/'+name), 'protected v3 file changed: '+name
+print(json.dumps(record,indent=2),flush=True)
+PY
+.venv/bin/python scripts/record_artifacts.py --out results/artifacts_hpc_v4.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

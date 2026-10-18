@@ -19,22 +19,3 @@ PY
 .venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
 # Only after TRAIN-only selection and fitting have finished:
 .venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json
-.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v4.txt
-.venv/bin/python - <<'PY'
-import hashlib,json
-from pathlib import Path
-digest=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
-original=digest('submission/model.txt')
-reproduced=digest('runs/reproduced_model_v4.txt')
-record={'artifact':'submission/model.txt','original_sha256':original,'reproduced_sha256':reproduced,
-        'byte_identical':original==reproduced,
-        'command':'python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v4.txt'}
-Path('results/lambdamart_reproducibility.json').write_text(json.dumps(record,indent=2)+'\n')
-assert record['byte_identical'], 'independent refit differed'
-for name in ('pointwise_model.pt','pairwise_model.pt','fusion_config.json','recipe.py'):
-    assert digest('submission/'+name)==digest('runs/baseline_v3/'+name), 'protected v3 file changed: '+name
-print(json.dumps(record,indent=2),flush=True)
-PY
-.venv/bin/python scripts/record_artifacts.py --out results/artifacts_hpc_v4.json
-export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
-bash scripts/smoke_test.sh

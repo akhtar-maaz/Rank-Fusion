@@ -1,14 +1,14 @@
 {
   "artifacts": {
     "model.txt": {
-      "bytes": 14386975,
-      "sha256": "e36d1a2f52545fd898f91ad196dc826beca4ee18c360b2c927c4b1115911f5c9",
+      "bytes": 25920965,
+      "sha256": "53077583915535c6e28dde294087a991ce29f69d7141678e41d64342afb8a95f",
       "unchanged_from_v2": false,
       "matches_hpc_copy": true,
       "features": 408,
       "input_features": 136,
       "feature_mode": "query_all",
-      "trees": 1000
+      "trees": 1800
     },
     "pointwise_model.pt": {
       "bytes": 109173,

@@ -65,3 +65,15 @@ native exported winner with the explicit score average on all TRAIN folds,
 check the submission interface and runtime, and independently refit to
 verify reproducibility. Preserve all fold measurements and exclusions.
 These are adaptively selected TRAIN estimates, not an unbiased new test.
+
+## Completed outcome
+
+All four candidates complete five folds. All 36 fixed settings are recorded
+in `results/lambdamart_cv_v4.json` (also the current `lambdamart_cv.json`).
+The selected `v3_plus_3_800` has clean mean 0.486042660,
+diagnostic mean 0.470255398 and mixture
+0.478149029, versus v3's 0.476999608.
+The choice is frozen before full-TRAIN fitting and the final DEV run.
+Independent full-TRAIN fits are byte-identical; 83 tests and actual
+submission-interface/runtime checks pass. Fusion, neural artifacts and the
+C1 recipe preserve v3 hashes. V3 remains a recoverable Git/ZIP checkpoint.

@@ -1,10 +1,10 @@
-# Submission notes — v3
+# Submission notes — v4
 
 ## Training-data declaration
 
 | Artifact | Fitted on | Selection / stopping |
 |---|---|---|
-| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 800+200-tree refit |
+| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 1800-tree native model |
 | `pointwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six-epoch refit |
 | `pairwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six MSE plus two weighted RankNet epochs |
 | `recipe.py` | Supplied benchmark TRAIN only when staff call it | Supplied validation selects two capacities and stopping point |
@@ -17,18 +17,27 @@ feedback is user-provided aggregate feedback only.
 
 ## Final configuration and tradeoff
 
-The native LightGBM artifact averages an 800-tree raw-plus-percentile
-LambdaMART and a 200-tree min-max-plus-percentile LambdaMART, each weighted
-0.5. Both use 127 leaves, minimum leaf size 100, L2 10, learning rate 0.05,
-feature and row fractions 0.8, truncation 30, seed 0, deterministic row-wise
-fitting and four threads. Its 1,000 native trees accept 136 raw inputs via
-408 label-free query-local features. Selection retains clean CV accuracy
-within 0.0025 of the best complete candidate and favors the declared clean /
-diagnostic mixture. Clean CV improves from 0.484133 to 0.485550;
-diagnostics improve from 0.454990 to 0.468450. The
-validation/training ratio improves from 0.619071 to 0.674514.
-The remaining gap and sample SD 0.008929 limit what
-these adaptive selection estimates establish. No hidden C2 gain is claimed.
+The native artifact uses the following frozen TRAIN-selected members:
+
+| Features | Trees | Weight | Truncation | Training augmentation |
+|---|---:|---:|---:|---|
+| query_rank | 800 | 0.25 | 30 | none |
+| query_normalized | 200 | 0.25 | 30 | none |
+| query_rank | 800 | 0.5 | 13 | dropout/noise copies |
+
+All use 127 leaves, minimum leaf size 100, L2 10, learning rate 0.05,
+feature/row fractions 0.8, seed 0 and four deterministic fitting threads.
+It accepts 136 raw features through 408 label-free query features.
+Any augmented fit keeps all original queries and adds deterministic perturbed
+copies of about half, after splitting TRAIN. No validation query is fitted.
+Clean CV changes from 0.485550 to 0.486043,
+and the three-diagnostic mean from 0.468450 to 0.470255.
+The selected sample SD is 0.010684; validation/training
+ratio is 0.653918. The v4 protocol records all
+36 complete settings and the frozen clean guard / improvement threshold.
+Noise and feature-loss diagnostics improve, while affine robustness declines.
+The small clean gain and larger generalization gap limit confidence. These
+adaptive estimates do not establish a hidden C2 gain.
 
 ## Transfer policy and limits
 
@@ -44,7 +53,7 @@ prove portability; the unknown datasets remain staff-only.
 
 ## Verification and reproducibility
 
-76 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
+83 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
 artifacts load with the unchanged staff-compatible loader under Python 3.12.
 The independent full-TRAIN tree refit is byte-identical; hashes and execution
 records are in `results/`. Fusion and both neural artifacts retain v2 hashes.
@@ -64,8 +73,8 @@ methods during the course walkthrough. Report writing remains deferred.
 The original starter supplies the unchanged harness, network, standardizer,
 grouped folds and metrics. Hand-written fusion, MSE and RankNet follow the
 assignment and primer. Query transforms, metric swap weights, perturbations,
-native numeric-tree export and adaptive capacity/budget rules are implemented
-directly. No external fusion library, neural ranking trainer, solution code,
+training augmentation, native numeric-tree export and adaptive capacity/budget
+rules are implemented directly. No external fusion library, neural ranking trainer, solution code,
 other student's code, or extra labeled dataset is used. LightGBM 4.6's
 permitted ranking objective implements the tree learner. Official references:
 [MSLR](https://www.microsoft.com/en-us/research/project/mslr/),

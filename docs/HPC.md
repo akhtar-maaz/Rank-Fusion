@@ -138,3 +138,16 @@ recipe smoke records and PBS logs. Verify model hashes across HPC and local
 copies with `scripts/record_artifacts.py`. The v2 neural and fusion files
 must retain their hashes. The final upload archive is
 `dist/rank-fusion-submission-v3.zip`.
+
+## Fourth-round workflow
+
+`hpc_cv_v4.pbs` runs four fixed-count five-fold TRAIN experiments. The
+dependent `hpc_select_v4.pbs` evaluates the frozen 36-setting comparison.
+After promotion, `hpc_train_v4.pbs` fits the artifact and evaluates frozen
+DEV, while `hpc_reproduce_v4.pbs` independently refits from the same config.
+`hpc_verify_v4.pbs` depends on both, checks byte identity, protected v3 hashes,
+native/staff loading and the temporary-copy smoke tests. Each job receives
+four CPU threads and 8 GB. Heavy fitting runs only in scheduled compute jobs.
+Actual job IDs, outcomes and resource use are in `results/execution.json`.
+The earlier held sequential job was replaced before execution by these
+parallel refits; it did not consume training data or produce an artifact.

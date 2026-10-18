@@ -35,8 +35,21 @@ def main():
     ap.add_argument("--feature-fraction", type=float, default=0.8)
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--out", default="runs/lambdamart_cv.json")
+    ap.add_argument("--config", help="extend tree counts using the exact selected parameters and folds from prior CV")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
+    configured = None
+    if args.config:
+        with open(args.config) as stream:
+            selected = json.load(stream)["selected"]
+        configured = selected["params"]
+        args.num_leaves = [configured["num_leaves"]]
+        args.min_data_in_leaf = [configured["min_data_in_leaf"]]
+        args.lambda_l2 = [configured["lambda_l2"]]
+        args.learning_rate = configured["learning_rate"]
+        args.feature_fraction = configured["feature_fraction"]
+        args.threads, args.seed = configured["num_threads"], configured["seed"]
+        args.folds = len(selected["folds"])
     path = os.path.join(args.train, "train.txt") if os.path.isdir(args.train) else args.train
     X, y, q = load_ltr(path)[0]
     folds = grouped_kfold(q, k=args.folds, seed=args.seed)
@@ -46,7 +59,7 @@ def main():
     report = {"arguments": vars(args), "rows": len(y), "queries": len(set(q)), "results": []}
     started = time.perf_counter()
     for leaves, min_leaf, regularization in itertools.product(args.num_leaves, args.min_data_in_leaf, args.lambda_l2):
-        params = default_params(leaves, args.learning_rate, min_leaf, lambda_l2=regularization,
+        params = dict(configured) if configured is not None else default_params(leaves, args.learning_rate, min_leaf, lambda_l2=regularization,
                                 seed=args.seed, feature_fraction=args.feature_fraction, num_threads=args.threads)
         measurements = {n: [] for n in trees}
         for fold, (tr_idx, va_idx) in enumerate(folds):

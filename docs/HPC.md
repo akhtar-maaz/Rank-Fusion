@@ -25,12 +25,19 @@ qstat -u "$USER"
 # After smoke tests pass:
 qsub scripts/hpc_cv.pbs
 # After all eight CV subjobs finish successfully:
+.venv/bin/python scripts/collect_cv.py runs/cv/part_{0..7}.json \
+    --out runs/lambdamart_cv_initial.json
+# The initial sweep's best result was at its 400-tree upper boundary.
+# Extend that configuration on the same TRAIN folds, without consulting DEV:
+qsub scripts/hpc_extend.pbs
+# After the extension completes successfully:
 qsub scripts/hpc_train.pbs
 ```
 
 The CV array permits at most four simultaneous four-CPU jobs. Each job fits
 five grouped folds for one regularization configuration and evaluates fixed
 tree-count checkpoints, without early stopping on the reported folds.
+The bounded extension checks 800 and 1200 trees for the initial winner.
 The final job collects the results, refits the selected LambdaMART model,
 selects neural stopping epochs on an internal TRAIN fold, refits both neural
 models on full TRAIN, selects fusion on TRAIN, and finally evaluates DEV.
@@ -38,6 +45,16 @@ models on full TRAIN, selects fusion on TRAIN, and finally evaluates DEV.
 Copy back `submission/model.txt`, both `submission/*_model.pt` files,
 `submission/fusion_config.json`, and `results/`. Save the PBS output logs
 locally. Real TRAIN/DEV files and downloaded packages stay outside Git.
+
+After copying back and committing the trained artifacts and results, create
+the upload archive from tracked repository files:
+
+```bash
+python scripts/package_submission.py
+```
+
+The ZIP retains the original repository structure and toy datasets, and the
+packager refuses tracked real TRAIN/DEV files, downloads, or environments.
 
 The submitted transfer recipe runs independently, without PBS, network access,
 or any dependency on these HPC scripts. Its limit remains 20 minutes on four

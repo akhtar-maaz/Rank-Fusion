@@ -25,7 +25,7 @@ from submission.data import group_sizes, load_ltr
 def train(train_path: str, vali_path: str, out_model_path: str, seed: int = 0) -> None:
     import lightgbm as lgb
 
-    (X, y, q), (Xv, yv, qv) = load_ltr(train_path, vali_path)
+    (X, y, q), (Xv, yv, qv) = load_ltr(train_path, vali_path, allow_nan=True)
     n_queries = len(group_sizes(q))
     params = {
         "objective": "lambdarank", "metric": "ndcg", "eval_at": [10],

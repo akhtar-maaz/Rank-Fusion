@@ -51,7 +51,7 @@ def main():
     fit_rows, selection_rows = grouped_kfold(train[2], k=args.folds, seed=args.seed)[0]
     fit_data = tuple(a[fit_rows] for a in train)
     selection_data = tuple(a[selection_rows] for a in train)
-    results = {"seed": args.seed, "trained_on": "TRAIN", "selected_on": "TRAIN internal fold 0",
+    results = {"arguments": vars(args), "seed": args.seed, "trained_on": "TRAIN", "selected_on": "TRAIN internal fold 0",
                "hidden": args.hidden, "models": {}}
     os.makedirs(args.out_dir, exist_ok=True)
     for kind in (["pointwise", "pairwise"] if args.kind == "both" else [args.kind]):

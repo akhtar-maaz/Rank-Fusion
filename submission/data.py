@@ -16,8 +16,12 @@ def _rows(path):
                 yield line_no, fields
 
 
-def load_ltr(*paths):
-    """Return one (float32 X, integer labels, qids) tuple per input path."""
+def load_ltr(*paths, allow_nan=False):
+    """Return one (float32 X, integer labels, qids) tuple per input path.
+
+    Tree recipes may preserve NaNs for native missing-value handling; neural
+    training requires finite features because its standardizer is arithmetic.
+    """
     metadata, width = [], 0
     for path in paths:
         count = 0
@@ -54,7 +58,8 @@ def load_ltr(*paths):
                 for token in fields[2:]:
                     index, value = token.split(":", 1)
                     X[row, int(index) - 1] = float(value)
-                if not np.isfinite(X[row]).all():
+                invalid = np.isinf(X[row]) if allow_nan else ~np.isfinite(X[row])
+                if invalid.any():
                     raise ValueError("features must be finite")
             except (ValueError, OverflowError) as exc:
                 raise ValueError(f"{path}:{line_no}: {exc}") from exc

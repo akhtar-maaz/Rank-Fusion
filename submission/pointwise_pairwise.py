@@ -101,18 +101,21 @@ def make_pairs(qids, labels, pairs_per_query: int, rng: np.random.RandomState) -
             continue
         # Floyd's algorithm samples indices without allocating all possible pairs.
         chosen, sample = set(), []
-        for end in range(total - count, total):
-            pick = int(rng.randint(end + 1))
+        draws = rng.randint(0, np.arange(total - count + 1, total + 1, dtype=np.int64))
+        for end, draw in zip(range(total - count, total), draws):
+            pick = int(draw)
             pick = end if pick in chosen else pick
             chosen.add(pick)
             sample.append(pick)
         cumulative = np.cumsum(sizes)
         pairs = np.empty((count, 2), dtype=np.int64)
-        for i, pick in enumerate(sample):
-            block = int(np.searchsorted(cumulative, pick, side="right"))
-            offset = pick - (int(cumulative[block - 1]) if block else 0)
-            hi, lo = blocks[block]
-            pairs[i] = hi[offset // len(lo)], lo[offset % len(lo)]
+        sample = np.asarray(sample, dtype=np.int64)
+        block_of_pair = np.searchsorted(cumulative, sample, side="right")
+        for block, (hi, lo) in enumerate(blocks):
+            mask = block_of_pair == block
+            offset = sample[mask] - (int(cumulative[block - 1]) if block else 0)
+            pairs[mask, 0] = hi[offset // len(lo)]
+            pairs[mask, 1] = lo[offset % len(lo)]
         parts.append(pairs)
     return np.concatenate(parts) if parts else np.empty((0, 2), dtype=np.int64)
 

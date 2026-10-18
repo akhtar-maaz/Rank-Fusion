@@ -5,9 +5,10 @@ and RankNet, plus LightGBM LambdaMART training and a transfer recipe.
 
 ## Current status
 
-The hand-written components and training pipeline pass all 51 tests on macOS
+The hand-written components and training pipeline pass all 53 tests on macOS
 (Python 3.12) and on an IIT Delhi HPC compute node (Python 3.9, four CPUs, 8 GB).
-The real Fold1 TRAIN-only cross-validation sweep is running. The checked-in
+The real Fold1 TRAIN-only cross-validation sweep is complete; final training
+is running with the selected configuration. The checked-in
 model artifacts are still the starter's toy-trained artifacts until the real
 training run finishes. The report will be written after results are frozen.
 
@@ -74,7 +75,7 @@ signatures and loads artifacts without training.
 
 | Artifact | Currently trained on | Selection / early stopping |
 |---|---|---|
-| `model.txt` | Starter toy data; real TRAIN fit pending | TRAIN-only grouped CV running |
+| `model.txt` | Starter toy data; real TRAIN fit pending | TRAIN-only grouped CV complete |
 | `pointwise_model.pt` | Starter toy data; real TRAIN fit pending | Internal TRAIN fold planned |
 | `pairwise_model.pt` | Starter toy data; real TRAIN fit pending | Internal TRAIN fold planned |
 | `recipe.py` | Staff-supplied benchmark TRAIN when invoked | Its supplied validation split |

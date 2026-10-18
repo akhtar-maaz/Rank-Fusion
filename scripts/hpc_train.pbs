@@ -8,7 +8,9 @@
 set -euo pipefail
 cd "$PBS_O_WORKDIR"
 export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
-.venv/bin/python scripts/collect_cv.py runs/cv/part_{0..7}.json --out results/lambdamart_cv.json
+rank_parts=(runs/cv/part_{0..7}.json)
+if [ -f runs/cv/extension.json ]; then rank_parts+=(runs/cv/extension.json); fi
+.venv/bin/python scripts/collect_cv.py "${rank_parts[@]}" --out results/lambdamart_cv.json
 .venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
 .venv/bin/python scripts/train_neural.py --train data/train --kind both --hidden 128 64 \
     --epochs 30 --patience 5 --pairs-per-query 300 --history-out results/neural_history.json

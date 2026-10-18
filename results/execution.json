@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-18",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "cpus_per_job": 4,
+    "memory_limit_gb": 8
+  },
+  "final_pipeline": {
+    "job_id": "1103293.pbshpc",
+    "exit_status": 0,
+    "wall_seconds": 424,
+    "pbs_peak_mem_kb": 1639804,
+    "tests_passed": 53
+  },
+  "independent_lambdamart_reproduction": {
+    "job_id": "1103297.pbshpc",
+    "exit_status": 0,
+    "wall_seconds": 183,
+    "byte_identical": true
+  },
+  "expanded_hpc_smoke": {
+    "job_id": "1103289.pbshpc",
+    "exit_status": 0,
+    "tests_passed": 53
+  },
+  "synthetic_transfer": {
+    "note": "Scores and training times below retain the printed precision from the successful final PBS log. These are synthetic validation checks, not hidden benchmark scores.",
+    "results": [
+      {"set": "a_40_features_labels0-4", "validation_ndcg@10": 0.9435, "train_seconds": 0.5},
+      {"set": "b_90_features_labels0-4", "validation_ndcg@10": 0.9424, "train_seconds": 0.6},
+      {"set": "c_250_features_labels0-2", "validation_ndcg@10": 0.9472, "train_seconds": 1.2}
+    ]
+  }
+}

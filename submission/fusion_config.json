@@ -1,1 +1,3 @@
-{"method": "rrf", "c": 60.0}
+{
+  "method": "combsum"
+}

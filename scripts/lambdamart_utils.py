@@ -35,4 +35,5 @@ def fit(X, y, qids, params, num_trees, feature_mode="raw", prepared=False):
 def ndcg10(model, X, y, qids, num_iteration=None, prepared=False):
     if not prepared:
         X = features_for_model(model, X, qids)
-    return mean_ndcg_from_scores(model.predict(X, num_iteration=num_iteration, num_threads=1), y, qids, k=10)
+    threads = model.params.get("num_threads", 1)
+    return mean_ndcg_from_scores(model.predict(X, num_iteration=num_iteration, num_threads=threads), y, qids, k=10)

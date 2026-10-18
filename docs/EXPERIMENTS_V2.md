@@ -7,8 +7,10 @@ finish and a candidate wins on TRAIN validation.
 
 ## Tree ablations
 
-Every row uses grouped five-fold TRAIN CV, seed 0, fixed tree checkpoints
-400/800/1600, learning rate 0.05, feature and row fractions 0.8, four threads.
+Every row uses grouped five-fold TRAIN CV, seed 0, learning rate 0.05,
+feature and row fractions 0.8, and four threads. Candidates 0–2 use fixed
+tree checkpoints 400/800/1600; the widest candidate 3 uses 200/400/800 to
+bound its compute cost. The incomplete initial candidate-3 run is discarded.
 No reported fold controls early stopping.
 
 | Candidate | Features | Leaves | Minimum leaf size | L2 |
@@ -47,6 +49,15 @@ separate function; the graded `ranknet_loss` remains plain and unweighted.
 Compare internal selection nDCG against the original 0.426320. Keep the
 original pairwise artifact if no candidate improves. The pointwise artifact
 keeps the same architecture and its original TRAIN-only fit.
+
+After candidate 1 improved internal selection nDCG to 0.433502, a bounded
+second stage tests six supervised MSE warm-up epochs before pairwise training:
+candidate 3 uses nDCG weighting at learning rate 0.0001; candidate 4 uses plain
+RankNet at 0.0003. Six warm-up epochs come from the original pointwise TRAIN
+selection. Each uses at most 15 fine-tuning epochs with patience 4. Warm-up
+is fitted separately on each training split, then repeated on full TRAIN
+during refit. It uses relevance labels directly, with a fresh Adam optimizer
+for fine-tuning. No DEV or other model's predictions enter training.
 
 ## Fusion ablation and final evaluation
 

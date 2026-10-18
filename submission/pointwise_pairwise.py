@@ -196,7 +196,7 @@ def dev_ndcg(scorer: Callable[[np.ndarray], np.ndarray], X, y, qids) -> float:
 
 def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch_size: int = 1024,
                 lr: float = 1e-3, pairs_per_query: int = 300, patience: int = 3, hidden=64,
-                verbose: bool = False, pair_weighting: str = "uniform"):
+                verbose: bool = False, pair_weighting: str = "uniform", warmup_epochs: int = 0):
     """Train a 'pointwise' or 'pairwise' scorer. train / dev are (X_raw, y, qids)
     tuples. Returns (network, standardizer, history) with the best-dev-nDCG
     weights restored. Pass dev=None for a fixed-epoch fit on full TRAIN:
@@ -205,8 +205,8 @@ def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch
         raise ValueError("kind must be 'pointwise' or 'pairwise'")
     if pair_weighting not in ("uniform", "ndcg"):
         raise ValueError("pair_weighting must be uniform or ndcg")
-    if epochs < 1 or batch_size < 1 or patience < 0:
-        raise ValueError("epochs and batch_size must be positive; patience must be nonnegative")
+    if epochs < 1 or batch_size < 1 or patience < 0 or warmup_epochs < 0:
+        raise ValueError("epochs and batch_size must be positive; patience and warmup_epochs must be nonnegative")
     X, y, q = train
     select_best = dev is not None
     Xd, yd, qd = dev if select_best else train
@@ -219,6 +219,21 @@ def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch
     network = ScoringNetwork(X.shape[1], hidden)
     optimizer = torch.optim.Adam(network.parameters(), lr=lr)
     rng = np.random.RandomState(seed)
+
+    if kind == "pairwise" and warmup_epochs:
+        # Supervised MSE pretraining on this fit split only. No model scores or
+        # validation labels become training targets. Reset Adam for RankNet.
+        warm_optimizer = torch.optim.Adam(network.parameters(), lr=1e-3)
+        for epoch in range(warmup_epochs):
+            network.train()
+            order = rng.permutation(len(y))
+            loss_sum = 0.0
+            for start in range(0, len(order), batch_size):
+                batch = order[start:start + batch_size]
+                loss_sum += pointwise_step(network, warm_optimizer, Xt[batch], yt[batch]) * len(batch)
+            if verbose:
+                print(f"MSE warm-up {epoch + 1}: loss={loss_sum / len(y):.6f}", flush=True)
+        optimizer = torch.optim.Adam(network.parameters(), lr=lr)
 
     history = []
     best_score, stale = -float("inf"), 0

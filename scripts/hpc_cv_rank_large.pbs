@@ -1,0 +1,15 @@
+#!/bin/bash -l
+#PBS -N rankfusion-rank-large
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=01:00:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+mkdir -p runs/cv_v2
+exec > >(tee runs/cv_v2/job_3_bounded.log) 2>&1
+.venv/bin/python scripts/cv_lambdamart.py --train data/train --trees 200 400 800 \
+    --num-leaves 127 --min-data-in-leaf 100 --lambda-l2 10 --feature-mode query_rank \
+    --threads 4 --out runs/cv_v2/part_3.json

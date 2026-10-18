@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-from submission.pointwise_pairwise import ndcg_pair_weights, ranknet_loss, weighted_ranknet_loss
+from submission.pointwise_pairwise import ndcg_pair_weights, ranknet_loss, weighted_ranknet_loss, train_model
 
 
 def test_weighted_loss_keeps_plain_loss_and_ignores_zero_weights():
@@ -26,3 +26,12 @@ def test_ndcg_swap_weights_match_hand_example_and_query_boundaries():
     assert np.allclose(weights, [7 * (1 - discount2) / ideal,
                                  6 * (discount2 - 0.5) / ideal,
                                  1 - discount2])
+
+
+def test_supervised_warmup_matches_pointwise_fit_without_pairwise_updates():
+    X = np.random.RandomState(2).normal(size=(100, 3)).astype(np.float32)
+    data = X, (X[:, 0] > 0).astype(int), np.repeat(np.arange(20), 5)
+    point, _, _ = train_model("pointwise", data, None, epochs=2, seed=4, hidden=8, batch_size=16)
+    warm, _, _ = train_model("pairwise", data, None, epochs=1, warmup_epochs=2, lr=0,
+                              seed=4, hidden=8, batch_size=16)
+    assert all(torch.equal(a, b) for a, b in zip(point.parameters(), warm.parameters()))

@@ -1,0 +1,48 @@
+#!/bin/bash -l
+#PBS -N rankfusion-train-v2
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=02:00:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/final_train_v2.log) 2>&1
+.venv/bin/python - <<'PY'
+from pathlib import Path
+import shutil
+Path("runs/baseline_v1").mkdir(parents=True, exist_ok=True)
+for name in ("model.txt", "pairwise_model.pt", "pointwise_model.pt", "fusion_config.json"):
+    backup = Path("runs/baseline_v1") / name
+    if not backup.exists():
+        shutil.copy2(Path("submission") / name, backup)
+for name in ("lambdamart_cv", "neural_history", "dev_metrics", "fusion_selection", "lambdamart_reproducibility"):
+    backup = Path("results") / (name + "_v1.json")
+    if not backup.exists():
+        shutil.copy2(Path("results") / (name + ".json"), backup)
+PY
+.venv/bin/python scripts/collect_cv.py runs/cv/part_{0..7}.json runs/cv/extension.json \
+    runs/cv_v2/part_{0..3}.json --out results/lambdamart_cv.json
+.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+.venv/bin/python scripts/select_neural.py --candidate-dir runs/neural_v2/candidate_{0..4}
+cp runs/fusion_selection_v2.json results/fusion_selection.json
+cp runs/fusion_config_v2.json submission/fusion_config.json
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json
+.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v2.txt
+.venv/bin/python - <<'PY'
+import hashlib
+import json
+from pathlib import Path
+original = hashlib.sha256(Path("submission/model.txt").read_bytes()).hexdigest()
+reproduced = hashlib.sha256(Path("runs/reproduced_model_v2.txt").read_bytes()).hexdigest()
+record = {"artifact": "submission/model.txt", "original_sha256": original, "reproduced_sha256": reproduced,
+          "byte_identical": original == reproduced,
+          "command": "python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v2.txt"}
+Path("results/lambdamart_reproducibility.json").write_text(json.dumps(record, indent=2) + "\n")
+print(json.dumps(record, indent=2), flush=True)
+assert record["byte_identical"], "LambdaMART reproduction differed"
+PY
+.venv/bin/python scripts/run_recipe.py
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

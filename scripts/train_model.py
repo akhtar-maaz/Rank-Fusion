@@ -13,8 +13,11 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 import argparse
+import json
 
-from harness.feature_io import read_svmlight_ltr, stack
+import numpy as np
+
+from submission.data import load_ltr
 from scripts.lambdamart_utils import default_params, fit, ndcg10
 
 
@@ -32,27 +35,41 @@ def main():
     ap.add_argument("--learning-rate", type=float, default=0.05)
     ap.add_argument("--min-data-in-leaf", type=int, default=50)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--lambda-l2", type=float, default=1.0)
+    ap.add_argument("--feature-fraction", type=float, default=0.8)
+    ap.add_argument("--threads", type=int, default=4)
+    ap.add_argument("--config", help="CV JSON; use its selected configuration and tree count")
     ap.add_argument("--use-dev", action="store_true", help="also train on dev (lowers Track C; declare it)")
     args = ap.parse_args()
 
-    train = read_svmlight_ltr(_resolve(args.train, "train.txt"))
-    dev_path = _resolve(args.dev, "vali.txt") if args.dev else _resolve(args.train, "vali.txt")
-    dev = read_svmlight_ltr(dev_path) if os.path.isfile(dev_path) else None
+    train_path = _resolve(args.train, "train.txt")
+    dev_path = _resolve(args.dev, "vali.txt") if args.dev else os.path.join(args.train, "vali.txt")
+    paths = [train_path] + ([dev_path] if os.path.isfile(dev_path) else [])
+    if args.dev and not os.path.isfile(dev_path):
+        raise SystemExit(f"missing dev file: {dev_path}")
+    splits = load_ltr(*paths)
+    train, dev = splits[0], splits[1] if len(splits) > 1 else None
     if args.use_dev:
         if dev is None:
             raise SystemExit("--use-dev needs a dev file")
-        merged = dict(train); merged.update(dev); train_used = merged
+        # Namespace IDs so a query ID reused in another split cannot be merged.
+        X, y = np.vstack([train[0], dev[0]]), np.concatenate([train[1], dev[1]])
+        q = np.concatenate([[f"train:{v}" for v in train[2]], [f"dev:{v}" for v in dev[2]]])
     else:
-        train_used = train
-    X, y, q = stack(train_used)
-    params = default_params(args.num_leaves, args.learning_rate, args.min_data_in_leaf, seed=args.seed)
+        X, y, q = train
+    params = default_params(args.num_leaves, args.learning_rate, args.min_data_in_leaf, seed=args.seed,
+                            lambda_l2=args.lambda_l2, feature_fraction=args.feature_fraction, num_threads=args.threads)
+    if args.config:
+        with open(args.config) as stream:
+            selected = json.load(stream)["selected"]
+        params, args.trees = selected["params"], selected["trees"]
     model = fit(X, y, q, params, args.trees)
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     model.save_model(args.out)
-    print(f"trained on {len(train_used)} queries ({'train+dev' if args.use_dev else 'train only'}) -> {args.out}")
+    print(f"trained on {len(set(q))} queries ({'train+dev' if args.use_dev else 'train only'}) -> {args.out}")
     print(f"train nDCG@10 = {ndcg10(model, X, y, q):.4f}")
     if dev is not None and not args.use_dev:
-        Xd, yd, qd = stack(dev)
+        Xd, yd, qd = dev
         print(f"dev   nDCG@10 = {ndcg10(model, Xd, yd, qd):.4f}")
 
 

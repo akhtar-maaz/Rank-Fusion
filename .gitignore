@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.DS_Store
+data/train/
+data/dev/
+data/downloads/
+runs/
+*.zip
+*.o[0-9]*
+*.e[0-9]*

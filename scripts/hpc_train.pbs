@@ -1,0 +1,19 @@
+#!/bin/bash -l
+#PBS -N rankfusion-train
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=02:00:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+.venv/bin/python scripts/collect_cv.py runs/cv/part_{0..7}.json --out results/lambdamart_cv.json
+.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+.venv/bin/python scripts/train_neural.py --train data/train --kind both --hidden 128 64 \
+    --epochs 30 --patience 5 --pairs-per-query 300 --history-out results/neural_history.json
+.venv/bin/python scripts/select_fusion.py --train data/train/train.txt --out results/fusion_selection.json
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json
+.venv/bin/python scripts/run_recipe.py
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

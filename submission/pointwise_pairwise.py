@@ -55,14 +55,16 @@ def set_seed(seed: int) -> None:
     """TODO(1): make training reproducible -- seed Python's `random`, NumPy,
     and torch (torch.manual_seed). Staff check two runs with the same seed
     give identical weights."""
-    raise NotImplementedError("TODO(1): set_seed")
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
 
 
 def pointwise_loss(scores: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
     """TODO(2): mean squared error between predicted scores and graded labels
     (both 1-D tensors of equal length). Returns a scalar tensor.
     Example: scores=[1, 2], labels=[0, 2] -> ((1-0)^2 + (2-2)^2) / 2 = 0.5"""
-    raise NotImplementedError("TODO(2): pointwise_loss")
+    return ((scores - labels) ** 2).mean()
 
 
 def make_pairs(qids, labels, pairs_per_query: int, rng: np.random.RandomState) -> np.ndarray:
@@ -79,7 +81,40 @@ def make_pairs(qids, labels, pairs_per_query: int, rng: np.random.RandomState) -
     reproducible. Never build the pairs of the whole TRAIN split at once.
     Example: qids=[a,a,a,b,b], labels=[2,0,1,1,1], pairs_per_query large ->
     the 3 pairs (0,1), (0,2), (2,1); query b has only ties -> no pairs."""
-    raise NotImplementedError("TODO(3): make_pairs")
+    labels = np.asarray(labels)
+    if labels.ndim != 1 or len(qids) != len(labels):
+        raise ValueError("qids and labels must have the same number of rows")
+    if pairs_per_query < 0:
+        raise ValueError("pairs_per_query must be nonnegative")
+    by_query = {}
+    for row, qid in enumerate(qids):
+        by_query.setdefault(qid, []).append(row)
+    parts = []
+    for rows in by_query.values():
+        rows = np.asarray(rows, dtype=np.int64)
+        groups = [rows[labels[rows] == level] for level in np.unique(labels[rows])]
+        blocks = [(higher, lower) for i, higher in enumerate(groups) for lower in groups[:i]]
+        sizes = np.asarray([len(hi) * len(lo) for hi, lo in blocks], dtype=np.int64)
+        total = int(sizes.sum())
+        count = min(pairs_per_query, total)
+        if count == 0:
+            continue
+        # Floyd's algorithm samples indices without allocating all possible pairs.
+        chosen, sample = set(), []
+        for end in range(total - count, total):
+            pick = int(rng.randint(end + 1))
+            pick = end if pick in chosen else pick
+            chosen.add(pick)
+            sample.append(pick)
+        cumulative = np.cumsum(sizes)
+        pairs = np.empty((count, 2), dtype=np.int64)
+        for i, pick in enumerate(sample):
+            block = int(np.searchsorted(cumulative, pick, side="right"))
+            offset = pick - (int(cumulative[block - 1]) if block else 0)
+            hi, lo = blocks[block]
+            pairs[i] = hi[offset // len(lo)], lo[offset % len(lo)]
+        parts.append(pairs)
+    return np.concatenate(parts) if parts else np.empty((0, 2), dtype=np.int64)
 
 
 def ranknet_loss(s_preferred: torch.Tensor, s_other: torch.Tensor) -> torch.Tensor:
@@ -89,7 +124,7 @@ def ranknet_loss(s_preferred: torch.Tensor, s_other: torch.Tensor) -> torch.Tens
     torch.logaddexp(0, -d) with d = s_i - s_j -- not a raw exp.
     Example: s_preferred=[2, 0], s_other=[0, 0] ->
     mean(log(1+e^-2), log 2) = mean(0.126928, 0.693147) = 0.410038"""
-    raise NotImplementedError("TODO(4): ranknet_loss")
+    return torch.nn.functional.softplus(-(s_preferred - s_other)).mean()
 
 
 def pointwise_step(network: nn.Module, optimizer, x: torch.Tensor, y: torch.Tensor) -> float:
@@ -97,7 +132,11 @@ def pointwise_step(network: nn.Module, optimizer, x: torch.Tensor, y: torch.Tens
     gradients, forward pass, pointwise_loss, loss.backward(), optimizer.step().
     Return the loss as a float. (Forgetting optimizer.zero_grad() is the classic
     bug: gradients silently accumulate across batches.)"""
-    raise NotImplementedError("TODO(5): pointwise_step")
+    optimizer.zero_grad()
+    loss = pointwise_loss(network(x), y)
+    loss.backward()
+    optimizer.step()
+    return float(loss.detach())
 
 
 def pairwise_step(network: nn.Module, optimizer, x_preferred: torch.Tensor, x_other: torch.Tensor) -> float:
@@ -106,7 +145,11 @@ def pairwise_step(network: nn.Module, optimizer, x_preferred: torch.Tensor, x_ot
     relevant document. Run both through the SAME network (shared weights),
     ranknet_loss on the two score vectors, backward, step. Return the loss as a
     float. Staff check one step on a pair raises s_preferred - s_other."""
-    raise NotImplementedError("TODO(5): pairwise_step")
+    optimizer.zero_grad()
+    loss = ranknet_loss(network(x_preferred), network(x_other))
+    loss.backward()
+    optimizer.step()
+    return float(loss.detach())
 
 
 # ---- provided helpers -------------------------------------------------------
@@ -124,11 +167,17 @@ def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch
                 verbose: bool = False):
     """Train a 'pointwise' or 'pairwise' scorer. train / dev are (X_raw, y, qids)
     tuples. Returns (network, standardizer, history) with the best-dev-nDCG
-    weights restored. The setup below is PROVIDED; the loop is yours (TODO(6))."""
+    weights restored. Pass dev=None for a fixed-epoch fit on full TRAIN:
+    this reports training nDCG and returns the last epoch, without selection."""
     if kind not in ("pointwise", "pairwise"):
         raise ValueError("kind must be 'pointwise' or 'pairwise'")
+    if epochs < 1 or batch_size < 1 or patience < 0:
+        raise ValueError("epochs and batch_size must be positive; patience must be nonnegative")
     X, y, q = train
-    Xd, yd, qd = dev
+    select_best = dev is not None
+    Xd, yd, qd = dev if select_best else train
+    if len(X) == 0 or len(Xd) == 0:
+        raise ValueError("training and validation data must be nonempty")
     set_seed(seed)                                    # TODO(1) makes this meaningful
     standardizer = Standardizer().fit(X)              # fit on TRAIN only
     Xt = torch.from_numpy(standardizer.transform(X))
@@ -138,19 +187,34 @@ def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch
     rng = np.random.RandomState(seed)
 
     history = []
-    # TODO(6): for each epoch (at most `epochs`):
-    #   a) network.train(); build this epoch's training examples --
-    #        pairwise : pairs = make_pairs(q, y, pairs_per_query, rng)
-    #        pointwise: all document row indices
-    #      and RESHUFFLE them (use rng.permutation) so one query's examples are
-    #      not adjacent;
-    #   b) loop over minibatches of `batch_size` examples, building the feature
-    #      tensors from Xt (and yt for pointwise) and calling pairwise_step /
-    #      pointwise_step; keep the batch losses to average;
-    #   c) after the epoch, nd = dev_ndcg(make_scorer(network, standardizer), Xd, yd, qd)
-    #      and append {"epoch", "train_loss", "dev_ndcg@10"} to `history`;
-    #   d) early stopping: remember the best dev nDCG@10 and a deep copy of
-    #      network.state_dict(); stop after `patience` epochs without improvement;
-    #   e) at the end restore the best weights: network.load_state_dict(best_state).
-    raise NotImplementedError("TODO(6): the training loop in train_model")
+    best_score, stale = -float("inf"), 0
+    best_state = copy.deepcopy(network.state_dict())
+    for epoch in range(1, epochs + 1):
+        network.train()
+        examples = make_pairs(q, y, pairs_per_query, rng) if kind == "pairwise" else np.arange(len(y))
+        if len(examples) == 0:
+            raise ValueError("pairwise training needs at least one within-query preference pair")
+        examples = examples[rng.permutation(len(examples))]
+        total_loss = 0.0
+        for start in range(0, len(examples), batch_size):
+            batch = examples[start:start + batch_size]
+            if kind == "pairwise":
+                loss = pairwise_step(network, optimizer, Xt[batch[:, 0]], Xt[batch[:, 1]])
+            else:
+                loss = pointwise_step(network, optimizer, Xt[batch], yt[batch])
+            total_loss += loss * len(batch)
+        nd = dev_ndcg(make_scorer(network, standardizer), Xd, yd, qd)
+        metric_name = "dev_ndcg@10" if select_best else "train_ndcg@10"
+        history.append({"epoch": epoch, "train_loss": total_loss / len(examples), metric_name: nd})
+        if verbose:
+            print(f"epoch {epoch:3d}: loss={history[-1]['train_loss']:.6f} {metric_name}={nd:.6f}", flush=True)
+        if not select_best or nd > best_score:
+            best_score, stale = nd, 0
+            best_state = copy.deepcopy(network.state_dict())
+        else:
+            stale += 1
+        if select_best and patience and stale >= patience:
+            break
+    network.load_state_dict(best_state)
+    network.eval()
     return network, standardizer, history

@@ -19,29 +19,28 @@ queries and features rather than hard-coding numbers tuned on MSLR, or run a sma
 
 Test it locally on the synthetic transfer sets:  python scripts/run_recipe.py
 """
-from harness.feature_io import read_svmlight_ltr, stack
-
-
-def _group_sizes(qids):
-    sizes, last = [], object()
-    for q in qids:
-        if q == last:
-            sizes[-1] += 1
-        else:
-            sizes.append(1)
-            last = q
-    return sizes
+from submission.data import group_sizes, load_ltr
 
 
 def train(train_path: str, vali_path: str, out_model_path: str, seed: int = 0) -> None:
     import lightgbm as lgb
 
-    X, y, q = stack(read_svmlight_ltr(train_path))
+    (X, y, q), (Xv, yv, qv) = load_ltr(train_path, vali_path)
+    n_queries = len(group_sizes(q))
     params = {
         "objective": "lambdarank", "metric": "ndcg", "eval_at": [10],
-        "num_leaves": 15, "learning_rate": 0.05, "min_data_in_leaf": 50, "lambda_l2": 1.0,
-        "feature_fraction": 0.8, "bagging_fraction": 0.8, "bagging_freq": 1, "seed": seed,
+        "num_leaves": 15 if n_queries < 200 else 31,
+        "learning_rate": 0.05,
+        "min_data_in_leaf": max(20, min(200, len(y) // 2000)),
+        "lambda_l2": 10.0,
+        "feature_fraction": 0.9 if X.shape[1] < 100 else 0.8,
+        "bagging_fraction": 0.9, "bagging_freq": 1, "seed": seed,
+        "lambdarank_truncation_level": 15,
         "deterministic": True, "force_row_wise": True, "verbose": -1, "num_threads": 4,
     }
-    booster = lgb.train(params, lgb.Dataset(X, label=y, group=_group_sizes(q)), num_boost_round=100)
+    training = lgb.Dataset(X, label=y, group=group_sizes(q))
+    validation = lgb.Dataset(Xv, label=yv, group=group_sizes(qv), reference=training)
+    booster = lgb.train(params, training, num_boost_round=500, valid_sets=[validation],
+                        callbacks=[lgb.early_stopping(40, verbose=False)])
+    # Save only the validation-selected iteration; never access an evaluation split.
     booster.save_model(out_model_path)

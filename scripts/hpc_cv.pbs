@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#PBS -N rankfusion-cv
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=02:00:00
+#PBS -J 0-7%4
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+rank_index="${PBS_ARRAY_INDEX:?submit as an array job}"
+rank_leaves=15
+if (( rank_index >= 4 )); then rank_leaves=31; fi
+rank_min_leaf=50
+if (( rank_index % 4 >= 2 )); then rank_min_leaf=150; fi
+rank_l2=1
+if (( rank_index % 2 == 1 )); then rank_l2=10; fi
+.venv/bin/python scripts/cv_lambdamart.py --train data/train --trees 50 100 200 400 \
+    --num-leaves "$rank_leaves" --min-data-in-leaf "$rank_min_leaf" --lambda-l2 "$rank_l2" \
+    --threads 4 --out "runs/cv/part_${rank_index}.json"

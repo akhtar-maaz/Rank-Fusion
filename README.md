@@ -1,32 +1,94 @@
-# A3 -- Rank Fusion + LTR Arena (student starter)
+# A3 — Rank Fusion and Learning to Rank
 
-Fuse four base rankers, then train pointwise / RankNet / LambdaMART rankers on MSLR-WEB10K Fold1 without overfitting. Full spec: the assignment PDF. Held-out data is **not** here and must not be sought (honor code).
+Python implementation of hand-written RRF, CombSUM, CombMNZ, pointwise regression,
+and RankNet, plus LightGBM LambdaMART training and a transfer recipe.
 
-## Quick start
+## Current status
+
+The hand-written components and training pipeline pass all 51 tests on macOS
+(Python 3.12) and on an IIT Delhi HPC compute node (Python 3.9, four CPUs, 8 GB).
+The real Fold1 TRAIN-only cross-validation sweep is running. The checked-in
+model artifacts are still the starter's toy-trained artifacts until the real
+training run finishes. The report will be written after results are frozen.
+
+## Setup and checks
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+bash scripts/smoke_test.sh
 ```
-pip install -r requirements.txt
-bash scripts/smoke_test.sh                 # toy data, trains, runs the harness, runs tests
-python scripts/prepare_mslr.py --fold-dir <MSLR-WEB10K/Fold1>     # real data -> data/train, data/dev
-python scripts/run_recipe.py                      # Track C1 dry run on toy data (synthetic transfer sets; see docs/TRANSFER_TRACK.md)
-python scripts/cv_lambdamart.py --train data/train --trees 50 100 200 400   # local train-vs-validation gap
-python scripts/train_model.py --train data/train --out submission/model.txt --trees 200
-python -m harness.run_harness --features data/dev/vali.txt --model submission/model.txt
+
+On macOS, install OpenMP with `brew install libomp`. The smoke script makes
+LightGBM share PyTorch's bundled OpenMP runtime, and tests a temporary copy:
+it cannot overwrite the actual submitted models.
+
+## Data
+
+Use only MSLR-WEB10K Fold1 TRAIN and DEV. The official archive is linked from
+[Microsoft Research](https://www.microsoft.com/en-us/research/project/mslr/).
+Its published MD5 is `97c5d4e7c171e475c91d7031e4fd8e79`.
+
+```bash
+python scripts/prepare_mslr.py --archive /path/to/MSLR-WEB10K.zip --out data
+# Alternatively, use an already prepared Fold1 directory:
+python scripts/prepare_mslr.py --fold-dir /path/to/Fold1 --out data
 ```
 
-## What you write
-| file | what |
-|---|---|
-| `submission/fusion.py` | `rrf_scores` and `combsum_scores` and/or `combmnz_scores` (TODOs). Until RRF works, `ranking.py` falls back to sorting by the BM25 channel |
-| `submission/pointwise_pairwise.py` | `set_seed`, `pointwise_loss`, `make_pairs`, `ranknet_loss`, the two `*_step`s, the training loop (TODOs). Your trained `pairwise_model.pt` is also scored on the leaderboard (Track P): see the module docstring for what you may tune |
-| `submission/ranking.py` | the competition entry: keep the shape, improve the internals |
-| `scripts/train_model.py` | your reproducible LambdaMART training script |
-| `submission/recipe.py` | your training recipe, run by staff on undisclosed benchmarks for Track C1 (working default provided; tune it so it transfers) |
+Archive preparation opens only `Fold1/train.txt` and `Fold1/vali.txt`;
+it never opens the held-out file or another fold. Real data, downloads,
+environments, and intermediate runs are ignored by Git.
 
-Self-check your parts: `python -m pytest tests/test_student_todos.py` (fails until TODOs are done). CI only gates the interface (`tests/` minus that file).
+## Reproducible training
 
-Docs: `docs/SUBMISSION_INTERFACE.md`, `docs/GRADING.md`, `docs/RANKNET_PRIMER.md`, `docs/DATA.md`, `docs/TRANSFER_TRACK.md`, `docs/SUBMISSION_NOTES.md` (fill in and keep as your README section).
+```bash
+python scripts/cv_lambdamart.py --train data/train --out runs/lambdamart_cv.json
+python scripts/train_model.py --train data/train --config runs/lambdamart_cv.json
+python scripts/train_neural.py --train data/train --kind both --hidden 128 64 \
+    --epochs 30 --patience 5 --history-out results/neural_history.json
+python scripts/select_fusion.py --train data/train/train.txt --out results/fusion_selection.json
+# Run only after configurations and models are frozen:
+python scripts/evaluate_models.py --features data/dev/vali.txt
+python scripts/run_recipe.py
+```
 
-## Layout
-`harness/` metrics, I/O, CV, leaderboard formulas, runner (do not edit; staff run an identical copy) - `submission/` your entry - `scripts/` tooling - `data/toy/` and `data/toy_transfer/` synthetic data - `tests/`.
+CV groups documents by query and reports validation mean, standard deviation,
+training accuracy, and the validation/training ratio at fixed tree counts.
+No reported CV fold is used for early stopping. The neural script selects
+epochs on an internal TRAIN fold, then refits on all TRAIN for that fixed
+number of epochs. Both neural models use the same scoring architecture.
+DEV is used only for final evaluation.
 
-The shipped `submission/model.txt` / `pointwise_model.pt` / `pairwise_model.pt` are trained on the toy data only: they exist so the pipeline runs end to end.
+Fusion configuration lives in `submission/fusion_config.json`. The textbook
+fusion functions remain independently testable. The transfer recipe handles
+arbitrary feature widths, uses the supplied validation file for early
+stopping, and runs on four threads. Training uses a two-pass float32 loader
+to avoid retaining Python objects for every feature of the full dataset.
+
+For HPC submission and offline dependency installation, see [docs/HPC.md](docs/HPC.md).
+The grading harness is unchanged; the ranking interface preserves its exact
+signatures and loads artifacts without training.
+
+## Training-data declaration
+
+| Artifact | Currently trained on | Selection / early stopping |
+|---|---|---|
+| `model.txt` | Starter toy data; real TRAIN fit pending | TRAIN-only grouped CV running |
+| `pointwise_model.pt` | Starter toy data; real TRAIN fit pending | Internal TRAIN fold planned |
+| `pairwise_model.pt` | Starter toy data; real TRAIN fit pending | Internal TRAIN fold planned |
+| `recipe.py` | Staff-supplied benchmark TRAIN when invoked | Its supplied validation split |
+
+## AI-use disclosure
+
+OpenAI Codex assisted with reading the specification, implementing and reviewing
+the algorithms, writing tests and training scripts, and configuring HPC execution.
+
+## Code provenance
+
+The original starter supplies the unchanged harness, MLP, and standardizer.
+Fusion and neural-loss formulas follow the assignment PDF and starter primer;
+no external fusion or ranking-training implementation was copied. The
+[Microsoft dataset page](https://www.microsoft.com/en-us/research/project/mslr/)
+and [IIT Delhi HPC guide](https://supercomputing.iitd.ac.in/) were consulted
+for dataset access and scheduled execution.

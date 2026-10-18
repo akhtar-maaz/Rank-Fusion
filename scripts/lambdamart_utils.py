@@ -7,19 +7,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 import numpy as np
 
 from harness.metrics import mean_ndcg_from_scores
-
-
-def group_sizes(qids):
-    """Per-query row counts in order of first appearance. LightGBM requires each
-    query's rows to be CONTIGUOUS; stack() from harness.feature_io guarantees this."""
-    sizes, last = [], object()
-    for q in qids:
-        if q == last:
-            sizes[-1] += 1
-        else:
-            sizes.append(1)
-            last = q
-    return sizes
+from submission.data import group_sizes
 
 
 def default_params(num_leaves=31, learning_rate=0.05, min_data_in_leaf=50, lambda_l2=1.0, seed=0, **extra):
@@ -38,5 +26,5 @@ def fit(X, y, qids, params, num_trees):
     return lgb.train(params, lgb.Dataset(X, label=y, group=group_sizes(qids)), num_boost_round=num_trees)
 
 
-def ndcg10(model, X, y, qids):
-    return mean_ndcg_from_scores(model.predict(X), y, qids, k=10)
+def ndcg10(model, X, y, qids, num_iteration=None):
+    return mean_ndcg_from_scores(model.predict(X, num_iteration=num_iteration, num_threads=1), y, qids, k=10)

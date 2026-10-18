@@ -36,6 +36,8 @@ def main():
     ap.add_argument("--feature-fraction", type=float, default=0.8)
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--feature-mode", choices=["raw", "query_rank"], default="raw")
+    ap.add_argument("--max-depth", type=int, default=None)
+    ap.add_argument("--truncation", type=int, default=None, help="LambdaRank truncation level")
     ap.add_argument("--out", default="runs/lambdamart_cv.json")
     ap.add_argument("--config", help="extend tree counts using the exact selected parameters and folds from prior CV")
     ap.add_argument("--seed", type=int, default=0)
@@ -65,6 +67,11 @@ def main():
     for leaves, min_leaf, regularization in itertools.product(args.num_leaves, args.min_data_in_leaf, args.lambda_l2):
         params = dict(configured) if configured is not None else default_params(leaves, args.learning_rate, min_leaf, lambda_l2=regularization,
                                 seed=args.seed, feature_fraction=args.feature_fraction, num_threads=args.threads)
+        if configured is None:
+            if args.max_depth is not None:
+                params["max_depth"] = args.max_depth
+            if args.truncation is not None:
+                params["lambdarank_truncation_level"] = args.truncation
         measurements = {n: [] for n in trees}
         for fold, (tr_idx, va_idx) in enumerate(folds):
             # A model's first n trees equal a fixed n-tree fit with this seed.

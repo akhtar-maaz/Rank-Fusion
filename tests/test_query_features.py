@@ -24,6 +24,13 @@ def test_transform_is_query_local():
     assert np.array_equal(result[:, 1], [0, 1, 0, 1])
 
 
+def test_percentiles_preserve_missing_values_across_column_blocks():
+    X = np.tile([[1, np.nan, 4], [2, 3, 4], [2, np.nan, 4], [4, 5, 4]], (1, 7)).astype(np.float32)
+    expected = np.tile([[0, np.nan, 0.5], [0.5, 0, 0.5], [0.5, np.nan, 0.5], [1, 1, 0.5]], (1, 7))
+    assert np.allclose(query_percentiles(X), expected, equal_nan=True)
+    assert np.isnan(query_percentiles(np.array([[np.nan]], np.float32))[0, 0])
+
+
 def test_weighted_fusion_is_separate_from_textbook_combsum():
     base = {"a": {"x": 1, "y": 10}, "b": {"x": 3, "y": 20}, "c": {"x": 2, "y": 30}}
     scores = weighted_combsum_scores(base, {"x": 0.75, "y": 0.25})

@@ -23,8 +23,32 @@ for name in ("lambdamart_cv", "neural_history", "dev_metrics", "fusion_selection
         shutil.copy2(Path("results") / (name + ".json"), backup)
 PY
 .venv/bin/python scripts/collect_cv.py runs/cv/part_{0..7}.json runs/cv/extension.json \
-    runs/cv_v2/part_{0..3}.json --out results/lambdamart_cv.json
-.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+    runs/cv_v2/part_{0..4}.json --out results/lambdamart_cv.json
+if .venv/bin/python - <<'PY'
+import hashlib,json,shutil,sys
+from pathlib import Path
+ready=Path("runs/prefit_v2_ready.json")
+if not ready.exists():
+    sys.exit(1)
+prefit=json.loads(ready.read_text())
+target=json.loads(Path("results/lambdamart_cv.json").read_text())
+def configuration(row):
+    return row["trees"],row["params"],row.get("feature_mode","raw")
+if configuration(prefit["selected"]) != configuration(target["selected"]):
+    sys.exit(1)
+if (prefit["rows"],prefit["queries"]) != (target["rows"],target["queries"]):
+    sys.exit(1)
+path=Path("runs/prefit_v2_model.txt")
+if hashlib.sha256(path.read_bytes()).hexdigest() != prefit["sha256"]:
+    sys.exit(1)
+shutil.copy2(path,"submission/model.txt")
+print("Reusing matching full-TRAIN prefit; independent reproduction follows",flush=True)
+PY
+then
+    :
+else
+    .venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+fi
 .venv/bin/python scripts/select_neural.py --candidate-dir runs/neural_v2/candidate_{0..4}
 cp runs/fusion_selection_v2.json results/fusion_selection.json
 cp runs/fusion_config_v2.json submission/fusion_config.json

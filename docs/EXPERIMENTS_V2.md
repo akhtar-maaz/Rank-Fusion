@@ -24,12 +24,23 @@ Percentiles use tied midranks within each query, computed without labels.
 Each query is transformed independently before CV splitting, so features
 never combine information from training and validation queries. The LightGBM
 text model carries feature names identifying this transform; the same
-transform is applied within `rerank_with_ltr`. Plain recipe models continue
-to receive their original features. These properties have regression tests.
+transform is applied within `rerank_with_ltr`. Legacy raw-feature text models
+continue to receive their original features. These properties have regression
+tests.
 
 Compare the best mean validation result with the first-round best, 0.475014.
 Keep the first-round artifact if no candidate improves. These are selection
 estimates, not unbiased hidden-test estimates.
+
+The first completed comparison (candidate 0) peaks at 0.474716, below the
+baseline, while its training score rises strongly. A bounded second stage
+therefore tests two 31-leaf configurations with maximum depth 6 and LambdaRank
+truncation 10, at 400/800/1600 trees on the same five TRAIN folds: candidate 4
+uses raw features, minimum leaf size 50, L2 1; candidate 5 uses query-rank
+features, minimum leaf size 100, L2 10. No DEV result is used for this decision.
+Candidate 5 is subsequently cancelled for runtime before completing all five
+folds. Its partial run is excluded; candidate 4 must complete all five folds
+before promotion. The final comparison then contains 49 complete configurations.
 
 ## Pairwise ablations
 
@@ -69,3 +80,18 @@ same raw 0.8 nDCG + 0.2 MAP proxy.
 Freeze selected artifacts and fusion before final DEV evaluation. No hidden
 labels are used. Hidden robustness construction is unknown, and an improved
 TRAIN CV score does not establish an improved C2 or class-percentile score.
+
+## Transfer recipe
+
+The matched 63-leaf comparison supports the query-relative transform:
+at 400 trees it changes TRAIN-CV validation mean from 0.474716 to 0.482138.
+The updated transfer recipe therefore adds the same label-free percentiles
+for arbitrary input widths, retaining its previous regularization, adaptive
+leaf sizes, and 500-tree / patience-40 budget. Feature sorting processes at
+most 16 columns at once to bound temporary memory for large queries. NaNs
+stay missing, and finite tied values receive identical midranks. Finite MSLR
+feature values are bit-identical to those used by the in-flight CV jobs.
+
+The three synthetic dimension/label checks pass; they establish portability
+rather than hidden-benchmark performance. No undisclosed benchmark is sought
+or accessed.

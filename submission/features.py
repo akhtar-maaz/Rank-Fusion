@@ -10,8 +10,14 @@ def query_percentiles(X):
     """Midrank percentiles; equal values receive equal ranks, including constants."""
     X = np.asarray(X, dtype=np.float32)
     n, width = X.shape
+    # Bound sorting temporaries even for a single very large query.
+    if width > 16:
+        result = np.empty_like(X)
+        for start in range(0, width, 16):
+            result[:, start:start + 16] = query_percentiles(X[:, start:start + 16])
+        return result
     if n < 2:
-        return np.full_like(X, 0.5)
+        return np.where(np.isnan(X), np.nan, np.float32(0.5)).astype(np.float32)
     order = np.argsort(X, axis=0, kind="stable")
     ordered = np.take_along_axis(X, order, axis=0)
     positions = np.arange(n)[:, None]
@@ -21,9 +27,12 @@ def query_percentiles(X):
     ends[:-1] = starts[1:]
     left = np.maximum.accumulate(np.where(starts, positions, 0), axis=0)
     right = np.minimum.accumulate(np.where(ends, positions, n - 1)[::-1], axis=0)[::-1]
-    ranked = ((left + right) / (2.0 * (n - 1))).astype(np.float32)
+    finite_count = np.isfinite(X).sum(axis=0)
+    ranked = ((left + right) / (2.0 * np.maximum(finite_count - 1, 1))).astype(np.float32)
     result = np.empty_like(X)
     np.put_along_axis(result, order, ranked, axis=0)
+    result[:, finite_count < 2] = 0.5
+    result[np.isnan(X)] = np.nan
     return result
 
 

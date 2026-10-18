@@ -39,6 +39,8 @@ def main():
     ap.add_argument("--feature-fraction", type=float, default=0.8)
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--feature-mode", choices=["raw", "query_rank"], default="raw")
+    ap.add_argument("--max-depth", type=int, default=None)
+    ap.add_argument("--truncation", type=int, default=None)
     ap.add_argument("--config", help="CV JSON; use its selected configuration and tree count")
     ap.add_argument("--use-dev", action="store_true", help="also train on dev (lowers Track C; declare it)")
     args = ap.parse_args()
@@ -60,6 +62,10 @@ def main():
         X, y, q = train
     params = default_params(args.num_leaves, args.learning_rate, args.min_data_in_leaf, seed=args.seed,
                             lambda_l2=args.lambda_l2, feature_fraction=args.feature_fraction, num_threads=args.threads)
+    if args.max_depth is not None:
+        params["max_depth"] = args.max_depth
+    if args.truncation is not None:
+        params["lambdarank_truncation_level"] = args.truncation
     if args.config:
         with open(args.config) as stream:
             selected = json.load(stream)["selected"]

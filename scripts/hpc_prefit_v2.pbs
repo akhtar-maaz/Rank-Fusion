@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#PBS -N rankfusion-prefit-v2
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=01:00:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/prefit_v2.log) 2>&1
+.venv/bin/python scripts/train_model.py --train data/train --config runs/cv_v2/part_3.json --out runs/prefit_v2_model.txt
+.venv/bin/python - <<'PY'
+import hashlib,json
+from pathlib import Path
+report=json.loads(Path("runs/cv_v2/part_3.json").read_text())
+record={"selected":report["selected"], "rows":report["rows"], "queries":report["queries"],
+        "sha256":hashlib.sha256(Path("runs/prefit_v2_model.txt").read_bytes()).hexdigest()}
+Path("runs/prefit_v2_ready.json").write_text(json.dumps(record,indent=2)+"\n")
+print("Current-best TRAIN fit complete",record["sha256"],flush=True)
+PY

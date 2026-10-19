@@ -55,8 +55,12 @@ def main():
     parser.add_argument("--train", default="data/train/train.txt")
     parser.add_argument("--candidate", type=int, choices=range(4), required=True)
     parser.add_argument("--out-dir", default="runs/cv_v4")
+    parser.add_argument("--specs", help="frozen JSON list of four candidate specifications")
     args = parser.parse_args()
-    chosen = candidates()[args.candidate]
+    specifications = json.loads(Path(args.specs).read_text()) if args.specs else candidates()
+    if len(specifications) != 4 or len({entry["name"] for entry in specifications}) != 4:
+        parser.error("need four distinct candidate specifications")
+    chosen = specifications[args.candidate]
     destination = Path(args.out_dir)
     destination.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()

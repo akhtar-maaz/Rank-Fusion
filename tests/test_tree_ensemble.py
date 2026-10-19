@@ -8,7 +8,7 @@ from submission.features import features_for_model, tree_features
 from submission.tree_ensemble import combine
 
 
-@pytest.mark.parametrize("first_mode", ["raw", "query_rank"])
+@pytest.mark.parametrize("first_mode", ["raw", "query_rank", "query_all"])
 def test_native_average_matches_both_transforms_after_save(tmp_path, first_mode):
     rng = np.random.RandomState(42)
     X = rng.normal(size=(120, 3)).astype(np.float32)

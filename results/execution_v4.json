@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-19",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "cpus_per_job": 4,
+    "memory_limit_gb": 8
+  },
+  "protocol": "docs/EXPERIMENTS_V4.md",
+  "protocol_commit": "7ce7ee3",
+  "implementation_commit": "d5b7b96",
+  "selection_commit": "19a3a9d",
+  "jobs": {
+    "1103978[0].pbshpc": {
+      "Job_Name": "rankfusion-cv-v4",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:07:05",
+      "resources_used.mem": "3274328kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4770176kb",
+      "resources_used.walltime": "00:18:15",
+      "job_state": "F",
+      "exec_host": "cgen007/1*4",
+      "stime": "Mon Oct 19 03:19:06 2026",
+      "obittime": "Mon Oct 19 03:37:25 2026",
+      "Exit_status": "0"
+    },
+    "1103978[1].pbshpc": {
+      "Job_Name": "rankfusion-cv-v4",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:06:19",
+      "resources_used.mem": "2999916kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4498020kb",
+      "resources_used.walltime": "00:18:11",
+      "job_state": "F",
+      "exec_host": "cgen007/3*4",
+      "stime": "Mon Oct 19 03:19:07 2026",
+      "obittime": "Mon Oct 19 03:37:22 2026",
+      "Exit_status": "0"
+    },
+    "1103978[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v4",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:21:39",
+      "resources_used.mem": "4471868kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "5984844kb",
+      "resources_used.walltime": "00:22:34",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 03:19:07 2026",
+      "obittime": "Mon Oct 19 03:41:46 2026",
+      "Exit_status": "0"
+    },
+    "1103978[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v4",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:22:52",
+      "resources_used.mem": "4548444kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "6012568kb",
+      "resources_used.walltime": "00:22:47",
+      "job_state": "F",
+      "exec_host": "cgen007/6*4",
+      "stime": "Mon Oct 19 03:19:07 2026",
+      "obittime": "Mon Oct 19 03:41:58 2026",
+      "Exit_status": "0"
+    },
+    "1103980.pbshpc": {
+      "Job_Name": "rankfusion-select-v4",
+      "resources_used.cpupercent": "378",
+      "resources_used.cput": "00:26:40",
+      "resources_used.mem": "2448280kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4040640kb",
+      "resources_used.walltime": "00:09:05",
+      "job_state": "F",
+      "exec_host": "cgen007/1*4",
+      "stime": "Mon Oct 19 03:41:59 2026",
+      "obittime": "Mon Oct 19 03:51:06 2026",
+      "Exit_status": "0"
+    },
+    "1103981.pbshpc": {
+      "Job_Name": "rankfusion-final-v4",
+      "job_state": "F"
+    },
+    "1103982.pbshpc": {
+      "Job_Name": "rankfusion-final-v4",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "00:34:23",
+      "resources_used.mem": "3542596kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4986452kb",
+      "resources_used.walltime": "00:13:44",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 03:51:06 2026",
+      "obittime": "Mon Oct 19 04:04:53 2026",
+      "Exit_status": "0"
+    },
+    "1103983.pbshpc": {
+      "Job_Name": "rankfusion-reproduce-v4",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "00:32:39",
+      "resources_used.mem": "3534388kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4984036kb",
+      "resources_used.walltime": "00:11:35",
+      "job_state": "F",
+      "exec_host": "cgen007/3*4",
+      "stime": "Mon Oct 19 03:51:06 2026",
+      "obittime": "Mon Oct 19 04:02:44 2026",
+      "Exit_status": "0"
+    },
+    "1103984.pbshpc": {
+      "Job_Name": "rankfusion-verify-v4",
+      "resources_used.cpupercent": "39",
+      "resources_used.cput": "00:00:17",
+      "resources_used.mem": "273076kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2435476kb",
+      "resources_used.walltime": "00:00:45",
+      "job_state": "F",
+      "exec_host": "cgen007/1*4",
+      "stime": "Mon Oct 19 04:04:52 2026",
+      "obittime": "Mon Oct 19 04:05:41 2026",
+      "Exit_status": "0"
+    }
+  },
+  "runtime_excluded_candidates": [],
+  "reported_complete_configurations": 36,
+  "superseded_job": {
+    "id": "1103981.pbshpc",
+    "reason": "Held sequential refit job replaced before execution by independent parallel refits."
+  },
+  "augmentation": {
+    "original_queries": 6000,
+    "original_rows": 723412,
+    "augmented_queries": 2990,
+    "augmented_rows": 362923,
+    "feature_dropout_queries": 1446,
+    "noise_queries": 1544
+  },
+  "final_verification": {
+    "training_job": "1103982.pbshpc",
+    "independent_refit_job": "1103983.pbshpc",
+    "verification_job": "1103984.pbshpc",
+    "tests_passed": 83,
+    "actual_frozen_dev_interface_passed": true,
+    "independent_byte_identical_refit": true,
+    "protected_v3_artifacts_unchanged": true,
+    "native_oof_max_abs_error": 2.3092638912203256e-14
+  },
+  "local_verification": {
+    "python": "3.12.14",
+    "tests_passed": 83,
+    "staff_neural_loaders_passed": true,
+    "hpc_hashes_match": true
+  },
+  "workflow_ci": {
+    "id": 39170375515,
+    "commit": "d5b7b9691d852dfcd54a6d2b1b49776308d4ae84",
+    "conclusion": "success",
+    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39170375515"
+  },
+  "unchanged_recipe_budget": "results/recipe_budget_v3.json",
+  "unchanged_synthetic_transfer": "results/recipe_smoke_v3.json"
+}

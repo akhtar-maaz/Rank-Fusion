@@ -23,16 +23,25 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default="results/artifacts.json")
     parser.add_argument("--hpc-manifest")
+    parser.add_argument("--pairwise-refit", help="full-TRAIN refit record for a frozen promoted pairwise choice")
     args = parser.parse_args()
     torch.set_num_threads(4)
     previous = json.loads((ROOT / "results/artifacts_v2.json").read_text())["artifacts"]
     hpc = json.loads(Path(args.hpc_manifest).read_text())["artifacts"] if args.hpc_manifest else None
+    permitted_pairwise = None
+    if args.pairwise_refit:
+        refit = json.loads(Path(args.pairwise_refit).read_text())
+        selection = json.loads(Path(refit["arguments"]["selection"]).read_text())
+        if refit["promoted"] != selection["promoted"] or refit["specification"] != selection["selected"]["candidate"]:
+            raise ValueError("pairwise refit does not match its frozen selection")
+        if refit["promoted"]:
+            permitted_pairwise = refit["artifact_sha256"]
     records = {}
     for name in ("model.txt", "pointwise_model.pt", "pairwise_model.pt", "fusion_config.json"):
         path = ROOT / "submission" / name
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         unchanged = digest == previous[name]["sha256"]
-        if name != "model.txt" and not unchanged:
+        if name != "model.txt" and not unchanged and not (name == "pairwise_model.pt" and digest == permitted_pairwise):
             raise ValueError(f"protected v2 artifact changed: {name}")
         records[name] = dict(bytes=path.stat().st_size, sha256=digest, unchanged_from_v2=unchanged)
         if hpc is not None:

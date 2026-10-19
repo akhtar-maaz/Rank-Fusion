@@ -1,0 +1,19 @@
+#!/bin/bash -l
+#PBS -N rankfusion-refit-v6
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=12gb:centos=genoa
+#PBS -l walltime=01:05:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+mkdir -p runs/reproduced_v6
+exec > >(tee runs/reproduce_v6.log) 2>&1
+rank_promoted="$(.venv/bin/python -c 'import json;print(int(json.load(open("results/lambdamart_cv_v6.json"))["promoted"]))')"
+if [[ "$rank_promoted" == 1 ]]; then
+    .venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv_v6.json --out runs/reproduced_v6/model.txt
+else
+    cp runs/baseline_v5/model.txt runs/reproduced_v6/model.txt
+fi
+.venv/bin/python scripts/fit_pairwise_v6.py --out runs/reproduced_v6/pairwise_model.pt --history-out runs/reproduced_v6/pairwise_history.json

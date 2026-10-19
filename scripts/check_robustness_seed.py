@@ -25,6 +25,9 @@ def main():
     parser.add_argument("--selection", default="results/lambdamart_cv_v5.json")
     parser.add_argument("--out", default="results/robustness_seed_v5.json")
     parser.add_argument("--seed", type=int, default=271828)
+    parser.add_argument("--control-key", default="v4_control")
+    parser.add_argument("--control-label", default="v4")
+    parser.add_argument("--selected-label", default="v5")
     args = parser.parse_args()
     if args.seed in (1729, 20261019, 20261020):
         parser.error("use a seed distinct from training and model selection")
@@ -32,10 +35,11 @@ def main():
     selection = json.loads(Path(args.selection).read_text())
     if not selection["promoted"]:
         raise ValueError("check only the frozen promoted configuration")
+    rows = {args.control_label: selection[args.control_key], args.selected_label: selection["selected"]}
+    versions = {source[0] for row in rows.values() for source in row["sources"]}
     directories = {version: Path(selection.get("arguments", {}).get(f"{version}_dir", f"runs/cv_{version}"))
-                   for version in ("v3", "v4", "v5")}
+                   for version in versions}
     X, y, q = load_ltr(args.train)[0]
-    rows = dict(v4=selection["v4_control"], v5=selection["selected"])
     entries = []
     for fold, (_, va) in enumerate(grouped_kfold(q, k=5, seed=0)):
         scorers = {}

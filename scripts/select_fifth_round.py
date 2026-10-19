@@ -35,7 +35,7 @@ def specifications(completed=range(4)):
     return settings
 
 
-def select(rows, baseline):
+def select(rows, baseline, *, control_name=CONTROL, control_key="v4_control"):
     if not rows or len({row["name"] for row in rows}) != len(rows):
         raise ValueError("need distinct complete settings")
     for row in rows:
@@ -51,23 +51,23 @@ def select(rows, baseline):
             raise ValueError("non-finite diagnostic")
         if row["scenario_means"] != expected["scenario_means"]:
             raise ValueError("inconsistent diagnostic means")
-    controls = [row for row in rows if row["name"] == CONTROL]
+    controls = [row for row in rows if row["name"] == control_name]
     if len(controls) != 1:
-        raise ValueError("missing exact v4 control")
+        raise ValueError("missing exact baseline control")
     control = controls[0]
     old = baseline["selected"]
     if control.get("members") != old["members"]:
-        raise ValueError("v4 control specifications changed")
+        raise ValueError("baseline control specifications changed")
     for key in ("train_mean", "validation_mean", "diagnostic_mean", "selection_score"):
         if abs(control[key] - old[key]) > 1e-12:
-            raise ValueError("v4 control does not reproduce previous TRAIN CV")
+            raise ValueError("baseline control does not reproduce previous TRAIN CV")
     best_clean = max(row["validation_mean"] for row in rows)
     eligible = [row for row in rows if row["validation_mean"] >= best_clean - 0.0025 and
                 all(row["scenario_means"][name] >= control["scenario_means"][name] - 0.0025 for name in SCENARIOS[1:])]
     winner = max(eligible, key=lambda row: (row["selection_score"], -row["trees"])) if eligible else control
     promoted = bool(eligible) and winner["selection_score"] >= control["selection_score"] + 0.0005
     return dict(results=rows, selected=winner if promoted else control, promoted=promoted,
-                v4_control=control, best_clean_mean=best_clean, eligible_settings=[row["name"] for row in eligible],
+                **{control_key: control}, best_clean_mean=best_clean, eligible_settings=[row["name"] for row in eligible],
                 selection_protocol=dict(split="TRAIN only", folds=5, seed=0, clean_tolerance=0.0025,
                                         per_diagnostic_tolerance=0.0025, minimum_mixture_improvement=0.0005,
                                         score="0.5 clean + 0.5 mean(affine, feature_dropout, noise)",

@@ -1,0 +1,14 @@
+#!/bin/bash -l
+#PBS -N rankfusion-neural-v6
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=01:15:00
+#PBS -J 0-3
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+mkdir -p runs/neural_v6
+exec > >(tee "runs/neural_v6/job_${PBS_ARRAY_INDEX}.log") 2>&1
+.venv/bin/python scripts/cv_pairwise_v6.py --candidate "$PBS_ARRAY_INDEX"

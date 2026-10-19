@@ -1,0 +1,27 @@
+{
+  "source": "User-provided leaderboard snapshot, 2026-10-19",
+  "commit": "be4a32dd2c948d796248d8ce285bfd327c9278ed",
+  "submission": 141,
+  "conformance_passed": 7,
+  "conformance_total": 7,
+  "correctness_passed": 10,
+  "correctness_total": 10,
+  "fusion_ndcg@10": 0.3078,
+  "fusion_map@10": 0.1289,
+  "ltr_ndcg@10": 0.4976,
+  "pairwise_heldout_ndcg@10": 0.4333,
+  "pairwise_dev_ndcg@10": 0.4449,
+  "c2_mean_ndcg@10": 0.3724,
+  "live_score": 0.4695,
+  "live_score_maximum": 0.65,
+  "position": 4,
+  "teams": 21,
+  "leader": {
+    "name": "KRISHNA_PURBIA",
+    "ltr_ndcg@10": 0.591,
+    "pairwise_heldout_ndcg@10": 0.4332,
+    "c2_mean_ndcg@10": 0.3991,
+    "live_score": 0.5745
+  },
+  "note": "Aggregate user feedback only; no hidden examples or labels accessed. Future MSLR selection remains TRAIN-only. C1 remains unevaluated."
+}

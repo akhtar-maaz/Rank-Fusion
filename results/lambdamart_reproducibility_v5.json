@@ -1,0 +1,9 @@
+{
+  "artifact": "submission/model.txt",
+  "original_sha256": "edacb0ab88cef937c36ab564d55d89013198d2ee105ad4af7b743c8f8c98ff5f",
+  "reproduced_sha256": "edacb0ab88cef937c36ab564d55d89013198d2ee105ad4af7b743c8f8c98ff5f",
+  "byte_identical": true,
+  "command": "python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_model_v5.txt",
+  "executed_command": "python scripts/train_model.py --train data/train --config results/lambdamart_cv_v5.json --out runs/reproduced_model_v5.txt",
+  "configuration_files_byte_identical": true
+}

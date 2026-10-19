@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "model.txt": {
+      "bytes": 37549329,
+      "sha256": "edacb0ab88cef937c36ab564d55d89013198d2ee105ad4af7b743c8f8c98ff5f",
+      "unchanged_from_v2": false,
+      "matches_hpc_copy": true,
+      "features": 408,
+      "input_features": 136,
+      "feature_mode": "query_all",
+      "trees": 2600
+    },
+    "pointwise_model.pt": {
+      "bytes": 109173,
+      "sha256": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+      "unchanged_from_v2": true,
+      "matches_hpc_copy": true,
+      "config": {
+        "n_features": 136,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "staff_loader_passed": true,
+      "staff_loader_python312_passed": true
+    },
+    "pairwise_model.pt": {
+      "bytes": 109161,
+      "sha256": "bc7d580632a4f6909edcecf696f51983369f6fbf3df5f80323180d83f85c5202",
+      "unchanged_from_v2": true,
+      "matches_hpc_copy": true,
+      "config": {
+        "n_features": 136,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "staff_loader_passed": true,
+      "staff_loader_python312_passed": true
+    },
+    "fusion_config.json": {
+      "bytes": 182,
+      "sha256": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
+      "unchanged_from_v2": true,
+      "matches_hpc_copy": true
+    }
+  },
+  "local_python": "3.12.14",
+  "local_versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0"
+  },
+  "ranking_deterministic": true
+}

@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#PBS -N rankfusion-final-v5
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:45:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/final_train_v5.log) 2>&1
+.venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+result=json.loads(Path('results/lambdamart_cv_v5.json').read_text())
+assert result['promoted'], 'no candidate passed the frozen promotion rule; retain v4'
+Path('results/lambdamart_cv.json').write_text(json.dumps(result,indent=2)+'\n')
+PY
+.venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+# Only after TRAIN-only selection and fitting have finished:
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json

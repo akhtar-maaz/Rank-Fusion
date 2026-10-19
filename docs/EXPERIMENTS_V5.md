@@ -62,3 +62,12 @@ Verify native export, independent refitting, submission behavior and time
 limits. These reused-fold adaptive selection estimates are not an unbiased
 new held-out test, and the public diagnostics do not identify staff's C2
 construction or establish a hidden-score gain.
+
+## Post-selection stress measurement
+
+After freezing a promoted choice, compare it with v4 on the same TRAIN
+validation folds under perturbation seed 271828. This seed differs from
+the selection and augmentation seeds. Run all three diagnostics, report
+every fold and both means, and do not use this check to change the artifact
+or promotion decision. It measures sensitivity to perturbation randomness;
+reusing validation queries means it is not a new held-out label test.

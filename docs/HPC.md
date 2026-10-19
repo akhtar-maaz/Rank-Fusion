@@ -151,3 +151,17 @@ four CPU threads and 8 GB. Heavy fitting runs only in scheduled compute jobs.
 Actual job IDs, outcomes and resource use are in `results/execution.json`.
 The earlier held sequential job was replaced before execution by these
 parallel refits; it did not consume training data or produce an artifact.
+
+## Fifth-round workflow
+
+`hpc_cv_v5.pbs` uses `configs/v5_candidates.json` for four fixed-count
+five-fold TRAIN experiments. The dependent `hpc_select_v5.pbs` compares the
+fixed 54-setting plan with v4 and verifies native export of the winner.
+Only after promotion, `hpc_train_v5.pbs` fits the final artifact and evaluates
+frozen DEV while `hpc_reproduce_v5.pbs` independently refits it.
+`hpc_verify_v5.pbs` depends on both and checks byte identity, protected hashes,
+native/staff loading and smoke tests. Every job receives four threads and
+8 GB. Actual IDs, runtime exclusions and resource use are in
+`results/execution.json`. No heavy fitting runs on the login node.
+`hpc_seed_check_v5.pbs` measures both frozen configurations under perturbation
+seed 271828 on TRAIN validation folds; it never changes model selection.

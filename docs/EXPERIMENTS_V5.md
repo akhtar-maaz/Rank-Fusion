@@ -71,3 +71,19 @@ the selection and augmentation seeds. Run all three diagnostics, report
 every fold and both means, and do not use this check to change the artifact
 or promotion decision. It measures sensitivity to perturbation randomness;
 reusing validation queries means it is not a new held-out label test.
+
+## Completed outcome
+
+All four new candidates complete every fold. The result contains 54 complete settings.
+The selected `v4_plus_1_800_weight0.5` has clean mean 0.487398492,
+diagnostic mean 0.474074548 and mixture
+0.480736520, versus v4's 0.478149029.
+Choice is frozen before full-TRAIN fitting and the final DEV evaluation.
+Independent full-TRAIN fits are byte-identical. All 91 tests and actual
+submission-interface/runtime checks pass. Fusion, neural artifacts and the
+C1 recipe preserve v4 hashes; v4 remains a recoverable Git/ZIP checkpoint.
+
+The post-selection check with perturbation seed 271828 improves all three
+diagnostics. Their mean changes from 0.470960962 to 0.474550300; full fold
+results are in `results/robustness_seed_v5.json`. This measurement does not
+change the frozen artifact or promotion decision.

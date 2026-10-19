@@ -1,43 +1,49 @@
-# Submission notes — v4
+# Submission notes — v5
 
 ## Training-data declaration
 
 | Artifact | Fitted on | Selection / stopping |
 |---|---|---|
-| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 1800-tree native model |
+| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 2600-tree native model |
 | `pointwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six-epoch refit |
 | `pairwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six MSE plus two weighted RankNet epochs |
 | `recipe.py` | Supplied benchmark TRAIN only when staff call it | Supplied validation selects two capacities and stopping point |
 
 DEV is evaluated only after configurations are frozen. It is never used for
-fitting, tuning or stopping the shipped MSLR models. No held-out labels,
+fitting, tuning or stopping the shipped MSLR models. No official test labels,
 other MSLR folds, external relevance labels or distillation targets are used.
 No attempt is made to identify or inspect undisclosed C1 datasets. Website
 feedback is user-provided aggregate feedback only.
 
 ## Final configuration and tradeoff
 
-The native artifact uses the following frozen TRAIN-selected members:
+The frozen TRAIN-selected configuration is `v4_plus_1_800_weight0.5`:
 
-| Features | Trees | Weight | Truncation | Training augmentation |
-|---|---:|---:|---:|---|
-| query_rank | 800 | 0.25 | 30 | none |
-| query_normalized | 200 | 0.25 | 30 | none |
-| query_rank | 800 | 0.5 | 13 | dropout/noise copies |
+| Member | Features | Trees | Weight | Augmentation |
+|---:|---|---:|---:|---|
+| 1 | query_rank | 800 | 0.125 | none |
+| 2 | query_normalized | 200 | 0.125 | none |
+| 3 | query_rank | 800 | 0.25 | dropout/noise |
+| 4 | query_all | 800 | 0.5 | affine/dropout/noise |
 
-All use 127 leaves, minimum leaf size 100, L2 10, learning rate 0.05,
-feature/row fractions 0.8, seed 0 and four deterministic fitting threads.
-It accepts 136 raw features through 408 label-free query features.
-Any augmented fit keeps all original queries and adds deterministic perturbed
-copies of about half, after splitting TRAIN. No validation query is fitted.
-Clean CV changes from 0.485550 to 0.486043,
-and the three-diagnostic mean from 0.468450 to 0.470255.
-The selected sample SD is 0.010684; validation/training
-ratio is 0.653918. The v4 protocol records all
-36 complete settings and the frozen clean guard / improvement threshold.
-Noise and feature-loss diagnostics improve, while affine robustness declines.
-The small clean gain and larger generalization gap limit confidence. These
-adaptive estimates do not establish a hidden C2 gain.
+| Member | Leaves | Minimum leaf size | L2 | Feature fraction | Truncation |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 127 | 100 | 10 | 0.8 | 30 |
+| 2 | 127 | 100 | 10 | 0.8 | 30 |
+| 3 | 127 | 100 | 10 | 0.8 | 13 |
+| 4 | 127 | 100 | 10 | 0.8 | 30 |
+
+All members use learning rate 0.05, row fraction 0.8, seed 0 and four
+deterministic fitting threads. The native model accepts 136 raw features.
+Any augmentation retains original training queries and appends deterministic
+perturbed copies after splitting TRAIN. Validation queries never enter fitting.
+The full protocol and all 54 complete settings are recorded.
+Clean CV changes from 0.486043 to 0.487398;
+the diagnostic mean from 0.470255 to 0.474075.
+Selected sample SD is 0.009563; validation/training ratio
+is 0.644007. The per-diagnostic regression guard
+and clean guard apply before the mixture threshold. The remaining gap and
+adaptive selection limit confidence. No hidden C2 gain is claimed.
 
 ## Transfer policy and limits
 
@@ -53,7 +59,7 @@ prove portability; the unknown datasets remain staff-only.
 
 ## Verification and reproducibility
 
-83 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
+91 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
 artifacts load with the unchanged staff-compatible loader under Python 3.12.
 The independent full-TRAIN tree refit is byte-identical; hashes and execution
 records are in `results/`. Fusion and both neural artifacts retain v2 hashes.

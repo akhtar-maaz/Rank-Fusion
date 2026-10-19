@@ -73,3 +73,17 @@ candidate index. Promote only if the mean improves by at least 0.001 over
 control and improves at least three of five folds. Otherwise preserve the
 exact v5 pairwise artifact. Then fit the frozen choice on full TRAIN and
 independently refit it, with staff-loader and reproducibility checks.
+
+## Completed outcome
+
+All reported settings contain five complete folds. Tree promotion:
+True; selected `v5_plus_3_800_weight0.25` with clean mean
+0.487342862, diagnostic mean 0.475630864
+and mixture 0.481486863. Pairwise promotion:
+True; selected `longer_warmup` with five-fold mean
+0.435046121, versus control
+0.431178559. Choices were frozen from TRAIN
+before full fitting and final DEV evaluation. All 96 tests pass locally
+and on the college server; promoted artifacts reproduce byte-identically.
+Pointwise, fusion and the C1 recipe preserve v5 hashes. Formal report
+writing remains deferred. V6 still needs staff C2/held-out/live evaluation.

@@ -1,0 +1,22 @@
+{
+  "artifact": "submission/pairwise_model.pt",
+  "original_sha256": "08f0911165e7ecf0749aa56c1bcd930e75fdc8069eab0237667d8104e2f5c416",
+  "reproduced_sha256": "08f0911165e7ecf0749aa56c1bcd930e75fdc8069eab0237667d8104e2f5c416",
+  "byte_identical": true,
+  "refitted": true,
+  "specification": {
+    "hidden": [
+      128,
+      64
+    ],
+    "warmup_epochs": 10,
+    "epochs": 2,
+    "lr": 0.0001,
+    "pairs_per_query": 300,
+    "pair_weighting": "ndcg",
+    "batch_size": 1024,
+    "seed": 0,
+    "name": "longer_warmup"
+  },
+  "command": "python scripts/fit_pairwise_v6.py --out runs/reproduced_v6/pairwise_model.pt --history-out runs/reproduced_v6/pairwise_history.json"
+}

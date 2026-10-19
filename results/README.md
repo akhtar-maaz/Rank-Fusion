@@ -1,24 +1,23 @@
 # Frozen experiment records
 
-- `lambdamart_cv.json`, `lambdamart_cv_v5.json`: complete fifth-round TRAIN
-  comparisons, frozen guards and promotion rule, member specifications, all
-  fold metrics and native-export equivalence checks.
-- `lambdamart_v5_parts/`: source five-fold reports for the new candidates.
-- `dev_metrics.json`: final frozen DEV evaluation of the current artifacts.
-- `artifacts.json`: local Python 3.12 loading, hashes, determinism and HPC checks.
-- `lambdamart_reproducibility.json`: independent byte-identical full-TRAIN refit.
-- `execution.json`: PBS outcomes, resource use, preflight and verification.
-- `robustness_seed_v5.json`: post-selection TRAIN-fold diagnostics with seed
-  271828, reporting both configurations without changing the chosen artifact.
-- `leaderboard_v1.json` through `leaderboard_v4.json`: user-provided aggregate
-  website feedback, with no hidden examples or labels.
-- Versioned `_v1` through `_v4` records preserve earlier checkpoints.
-  Fusion and neural choices remain v2; the C1 recipe and its diagnostics
-  remain v3. Earlier source reports remain in `lambdamart_v4_parts/`.
-- `recipe_selection_v3.json`, `recipe_domains_v3/`: TRAIN-only nested diagnostics.
-- `recipe_budget_v3.json`: deterministic wide compute check; the initial check
-  remains in `recipe_budget_initial_v3.json`.
-- `recipe_smoke_v3.json`: synthetic arbitrary-width portability checks.
+- `lambdamart_cv.json`, `lambdamart_cv_v6.json`: sixth-round complete
+  TRAIN tree comparisons, frozen guards, full folds and native equivalence.
+- `lambdamart_v6_parts/`: four source five-fold tree reports.
+- `neural_selection_v6.json`: all four fixed-epoch five-fold pairwise reports,
+  exact control reproduction and frozen mean/win promotion guards.
+- `pairwise_refit_v6.json`, `pairwise_reproducibility_v6.json`: full-TRAIN
+  neural fitting or exact baseline preservation and independent verification.
+- `dev_metrics.json`: final frozen DEV evaluation of current artifacts.
+- `artifacts.json`, `artifacts_hpc_v6.json`: hashes and native/staff loading.
+- `lambdamart_reproducibility.json`: independent tree refit or exact preservation.
+- `execution.json`: complete PBS outcomes, resource use, preflight and checks.
+- `robustness_seed_v6.json`: post-selection perturbation sensitivity check,
+  without changing the artifact; skipped when the v5 tree is retained.
+- `leaderboard_v1.json` through `leaderboard_v5.json`: user-reported aggregate
+  feedback, never hidden examples or relevance labels.
+- Versioned records through `_v5` preserve earlier checkpoints and sweeps.
+- `recipe_selection_v3.json`, `recipe_domains_v3/`, `recipe_budget_v3.json`
+  and `recipe_smoke_v3.json`: unchanged C1 TRAIN-derived and synthetic checks.
 
-Local diagnostics do not estimate undisclosed C1/C2 scores. No held-out
-examples, labels or outside benchmark data are included here.
+Local diagnostics do not estimate undisclosed C1/C2 scores. No official
+test examples, labels or outside benchmark data are included here.

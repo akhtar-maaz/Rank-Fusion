@@ -1,7 +1,10 @@
 {
   "seed": 0,
   "trained_on": "TRAIN",
-  "selected_on": "TRAIN internal fold 0",
+  "selected_on": {
+    "pointwise": "TRAIN internal fold 0",
+    "pairwise": "Five-fold fixed-epoch TRAIN assessment"
+  },
   "hidden": [
     128,
     64
@@ -27,25 +30,18 @@
       ]
     },
     "pairwise": {
-      "kind": "pairwise",
-      "train": "data/train",
-      "dev": null,
-      "folds": 5,
-      "threads": 4,
-      "history_out": "runs/neural_v2/candidate_3/history.json",
-      "out_dir": "runs/neural_v2/candidate_3",
-      "seed": 0,
-      "epochs": 15,
-      "batch_size": 1024,
-      "lr": 0.0001,
-      "pairs_per_query": 300,
-      "pair_weighting": "ndcg",
-      "warmup_epochs": 6,
-      "patience": 4,
       "hidden": [
         128,
         64
-      ]
+      ],
+      "warmup_epochs": 10,
+      "epochs": 2,
+      "lr": 0.0001,
+      "pairs_per_query": 300,
+      "pair_weighting": "ndcg",
+      "batch_size": 1024,
+      "seed": 0,
+      "name": "longer_warmup"
     }
   },
   "models": {
@@ -142,49 +138,20 @@
       ]
     },
     "pairwise": {
-      "selection_history": [
-        {
-          "epoch": 1,
-          "train_loss": 0.3999281500639437,
-          "dev_ndcg@10": 0.4421713122478832
-        },
-        {
-          "epoch": 2,
-          "train_loss": 0.3836075563768812,
-          "dev_ndcg@10": 0.44476016845475064
-        },
-        {
-          "epoch": 3,
-          "train_loss": 0.37590140497512725,
-          "dev_ndcg@10": 0.4431114223513084
-        },
-        {
-          "epoch": 4,
-          "train_loss": 0.3701910143787721,
-          "dev_ndcg@10": 0.44358327078644094
-        },
-        {
-          "epoch": 5,
-          "train_loss": 0.36239365007438945,
-          "dev_ndcg@10": 0.44244213913134045
-        },
-        {
-          "epoch": 6,
-          "train_loss": 0.3584372995449198,
-          "dev_ndcg@10": 0.44168246409576245
-        }
-      ],
-      "best_epoch": 2,
+      "fixed_epochs": true,
+      "epochs": 2,
+      "warmup_epochs": 10,
+      "selection_record": "results/neural_selection_v6.json",
       "full_train_history": [
         {
           "epoch": 1,
-          "train_loss": 0.39917531210711793,
-          "train_ndcg@10": 0.44762134520755065
+          "train_loss": 0.3899565580798221,
+          "train_ndcg@10": 0.4549908764242085
         },
         {
           "epoch": 2,
-          "train_loss": 0.3784217086910616,
-          "train_ndcg@10": 0.45115945312098515
+          "train_loss": 0.36842673928697217,
+          "train_ndcg@10": 0.4605747435290237
         }
       ]
     }

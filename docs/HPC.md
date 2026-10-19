@@ -165,3 +165,28 @@ native/staff loading and smoke tests. Every job receives four threads and
 `results/execution.json`. No heavy fitting runs on the login node.
 `hpc_seed_check_v5.pbs` measures both frozen configurations under perturbation
 seed 271828 on TRAIN validation folds; it never changes model selection.
+
+## Sixth-round workflow
+
+`hpc_cv_v6.pbs` and `hpc_neural_v6.pbs` run the frozen four-candidate tree
+and pairwise TRAIN experiments. Dependent selection jobs validate all
+complete folds, reproduce v5 controls and apply frozen promotion guards.
+`hpc_train_v6.pbs` and `hpc_reproduce_v6.pbs` independently refit promoted
+choices; retained files are copied byte-for-byte from the v5 checkpoint.
+The primary job evaluates DEV once after both choices are fixed.
+`hpc_seed_check_v6.pbs` measures a promoted tree choice under a second seed,
+and `hpc_verify_v6.pbs` checks reproduction, staff loading, protected hashes
+and the full smoke suite. Actual IDs, resources and outcomes are in
+`results/execution.json`. Heavy fitting runs only on scheduled compute nodes.
+
+Reproduce the current pairwise artifact from the frozen five-fold selection:
+
+```bash
+python scripts/fit_pairwise_v6.py --train data/train \
+  --selection results/neural_selection_v6.json \
+  --out submission/pairwise_model.pt --history-out runs/pairwise_refit.json
+```
+
+This uses ten supervised MSE warm-up epochs followed by two weighted
+RankNet epochs; it does not repeat selection or load DEV. Earlier neural
+commands above describe the archived v2 checkpoint.

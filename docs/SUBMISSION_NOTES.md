@@ -1,12 +1,12 @@
-# Submission notes — v5
+# Submission notes — v6
 
 ## Training-data declaration
 
 | Artifact | Fitted on | Selection / stopping |
 |---|---|---|
-| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 2600-tree native model |
+| `model.txt` | Full Fold1 TRAIN only | Five-fold grouped TRAIN CV; fixed 3400-tree native model |
 | `pointwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six-epoch refit |
-| `pairwise_model.pt` | Full Fold1 TRAIN only | Internal TRAIN fold 0; fixed six MSE plus two weighted RankNet epochs |
+| `pairwise_model.pt` | Full Fold1 TRAIN only | Five-fold fixed-epoch TRAIN assessment; 10 MSE plus 2 weighted RankNet epochs |
 | `recipe.py` | Supplied benchmark TRAIN only when staff call it | Supplied validation selects two capacities and stopping point |
 
 DEV is evaluated only after configurations are frozen. It is never used for
@@ -17,33 +17,39 @@ feedback is user-provided aggregate feedback only.
 
 ## Final configuration and tradeoff
 
-The frozen TRAIN-selected configuration is `v4_plus_1_800_weight0.5`:
+The promotion rule selected `v5_plus_3_800_weight0.25`.
 
 | Member | Features | Trees | Weight | Augmentation |
 |---:|---|---:|---:|---|
-| 1 | query_rank | 800 | 0.125 | none |
-| 2 | query_normalized | 200 | 0.125 | none |
-| 3 | query_rank | 800 | 0.25 | dropout/noise |
-| 4 | query_all | 800 | 0.5 | affine/dropout/noise |
+| 1 | query_rank | 800 | 0.09375 | none |
+| 2 | query_normalized | 200 | 0.09375 | none |
+| 3 | query_rank | 800 | 0.1875 | half_query_dropout_noise |
+| 4 | query_all | 800 | 0.375 | half_query_mixed |
+| 5 | query_all | 800 | 0.25 | full_query_mixed |
 
-| Member | Leaves | Minimum leaf size | L2 | Feature fraction | Truncation |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 127 | 100 | 10 | 0.8 | 30 |
-| 2 | 127 | 100 | 10 | 0.8 | 30 |
-| 3 | 127 | 100 | 10 | 0.8 | 13 |
-| 4 | 127 | 100 | 10 | 0.8 | 30 |
+| Member | Leaves | Minimum leaf | L2 | Feature fraction | Seed | Truncation |
+|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 127 | 100 | 10 | 0.8 | 0 | 30 |
+| 2 | 127 | 100 | 10 | 0.8 | 0 | 30 |
+| 3 | 127 | 100 | 10 | 0.8 | 0 | 13 |
+| 4 | 127 | 100 | 10 | 0.8 | 0 | 30 |
+| 5 | 127 | 100 | 10 | 0.8 | 0 | 30 |
 
-All members use learning rate 0.05, row fraction 0.8, seed 0 and four
-deterministic fitting threads. The native model accepts 136 raw features.
-Any augmentation retains original training queries and appends deterministic
-perturbed copies after splitting TRAIN. Validation queries never enter fitting.
-The full protocol and all 54 complete settings are recorded.
-Clean CV changes from 0.486043 to 0.487398;
-the diagnostic mean from 0.470255 to 0.474075.
-Selected sample SD is 0.009563; validation/training ratio
-is 0.644007. The per-diagnostic regression guard
-and clean guard apply before the mixture threshold. The remaining gap and
-adaptive selection limit confidence. No hidden C2 gain is claimed.
+The [v6 protocol](EXPERIMENTS_V6.md) records all 49
+complete tree settings and four complete fixed-epoch neural candidates.
+Clean tree CV changes from 0.487398 to 0.487343;
+the diagnostic mean from 0.474075 to 0.475631.
+Selected clean SD is 0.010004, training mean
+0.758586, and validation/training ratio 0.642436.
+All augmentation runs after splitting; labels are copied without inspection.
+The generalization gap and reused-fold adaptive estimates limit confidence.
+No hidden C2 gain is established by these diagnostics.
+
+Pairwise `longer_warmup` uses 10 MSE warm-up epochs,
+then 2 nDCG-weighted RankNet epochs at 0.0001,
+batch size 1024 and at most 300 pairs
+per query. Network architecture stays 136→128→64→1 ReLU. Five-fold fixed
+TRAIN CV selected this configuration, without DEV use.
 
 ## Transfer policy and limits
 
@@ -59,10 +65,11 @@ prove portability; the unknown datasets remain staff-only.
 
 ## Verification and reproducibility
 
-91 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
+96 tests pass. The actual frozen DEV run uses `rerank_with_ltr`; neural
 artifacts load with the unchanged staff-compatible loader under Python 3.12.
-The independent full-TRAIN tree refit is byte-identical; hashes and execution
-records are in `results/`. Fusion and both neural artifacts retain v2 hashes.
+Both promoted artifacts have byte-identical independent full-TRAIN refits.
+Hashes and execution records are in `results/`. Fusion and pointwise retain
+v2 hashes; the C1 recipe retains its v3 hash.
 The averaging exporter is checked against explicit arithmetic averaging
 before and after native save/load. Original starter files remain in the ZIP;
 real data, wheels, environments, Git metadata and intermediate runs do not.

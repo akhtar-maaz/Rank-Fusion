@@ -1,0 +1,39 @@
+{
+  "arguments": {
+    "train": "data/train/train.txt",
+    "selection": "results/neural_selection_v6.json",
+    "baseline": "runs/baseline_v5/pairwise_model.pt",
+    "out": "submission/pairwise_model.pt",
+    "history_out": "results/pairwise_refit_v6.json"
+  },
+  "promoted": true,
+  "specification": {
+    "hidden": [
+      128,
+      64
+    ],
+    "warmup_epochs": 10,
+    "epochs": 2,
+    "lr": 0.0001,
+    "pairs_per_query": 300,
+    "pair_weighting": "ndcg",
+    "batch_size": 1024,
+    "seed": 0,
+    "name": "longer_warmup"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.3899565580798221,
+      "train_ndcg@10": 0.4549908764242085
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.36842673928697217,
+      "train_ndcg@10": 0.4605747435290237
+    }
+  ],
+  "artifact_sha256": "08f0911165e7ecf0749aa56c1bcd930e75fdc8069eab0237667d8104e2f5c416",
+  "seconds": 111.84665077738464,
+  "trained_on": "TRAIN only"
+}

@@ -1,14 +1,14 @@
 {
   "artifacts": {
     "model.txt": {
-      "bytes": 37549329,
-      "sha256": "edacb0ab88cef937c36ab564d55d89013198d2ee105ad4af7b743c8f8c98ff5f",
+      "bytes": 49211868,
+      "sha256": "71d6d16730b607bfbbc8e18ead972f2a72f8ac5f5f972627f2fdf8b8fd5d8614",
       "unchanged_from_v2": false,
       "matches_hpc_copy": true,
       "features": 408,
       "input_features": 136,
       "feature_mode": "query_all",
-      "trees": 2600
+      "trees": 3400
     },
     "pointwise_model.pt": {
       "bytes": 109173,
@@ -27,8 +27,8 @@
     },
     "pairwise_model.pt": {
       "bytes": 109161,
-      "sha256": "bc7d580632a4f6909edcecf696f51983369f6fbf3df5f80323180d83f85c5202",
-      "unchanged_from_v2": true,
+      "sha256": "08f0911165e7ecf0749aa56c1bcd930e75fdc8069eab0237667d8104e2f5c416",
+      "unchanged_from_v2": false,
       "matches_hpc_copy": true,
       "config": {
         "n_features": 136,

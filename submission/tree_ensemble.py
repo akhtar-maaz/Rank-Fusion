@@ -35,7 +35,7 @@ def combine(models, weights, iterations=None):
         source = model.model_to_string(num_iteration=count)
         head = source[:source.index("\nTree=0\n")]
         metadata = dict(line.split("=", 1) for line in head.splitlines() if "=" in line)
-        if (metadata.get("version") != "v4" or metadata.get("objective") != "lambdarank" or
+        if (metadata.get("version") != "v4" or metadata.get("objective") not in {"lambdarank", "rank_xendcg"} or
                 metadata.get("num_class") != "1" or metadata.get("num_tree_per_iteration") != "1" or
                 "average_output" in head):
             raise ValueError("only ordinary, single-output numeric LambdaMART models are supported")

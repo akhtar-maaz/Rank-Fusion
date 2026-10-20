@@ -1,0 +1,33 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v9
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:12:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v9.log) 2>&1
+.venv/bin/python - <<'PY'
+import hashlib,json
+from pathlib import Path
+digest=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
+selection=json.loads(Path('results/lambdamart_cv_v9.json').read_text())
+assert Path('results/lambdamart_cv.json').read_bytes()==Path('results/lambdamart_cv_v9.json').read_bytes()
+first=digest('submission/model.txt')
+second=digest('runs/reproduced_v9/model.txt')
+assert first==second, 'independent tree artifact differed'
+if not selection['promoted']:assert first==digest('runs/baseline_v8/model.txt')
+record=dict(artifact='submission/model.txt',original_sha256=first,reproduced_sha256=second,
+            byte_identical=True,refitted=selection['promoted'],configuration_files_byte_identical=True,
+            executed_command='python scripts/train_model.py --train data/train --config results/lambdamart_cv_v9.json --out runs/reproduced_v9/model.txt' if selection['promoted'] else 'cp runs/baseline_v8/model.txt runs/reproduced_v9/model.txt')
+Path('results/lambdamart_reproducibility.json').write_text(json.dumps(record,indent=2)+'\n')
+for name in ('pointwise_model.pt','pairwise_model.pt','fusion_config.json','recipe.py','pointwise_pairwise.py'):
+    assert digest('submission/'+name)==digest('runs/baseline_v8/'+name), 'protected V8 file changed: '+name
+print(json.dumps(record),flush=True)
+PY
+.venv/bin/python scripts/record_artifacts.py --baseline-manifest results/artifacts_v8.json \
+    --pairwise-refit results/pairwise_refit_v8.json --out results/artifacts_hpc_v9.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

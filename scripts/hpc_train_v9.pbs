@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#PBS -N rankfusion-final-v9
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=12gb:centos=genoa
+#PBS -l walltime=01:30:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/final_train_v9.log) 2>&1
+cp results/lambdamart_cv_v9.json results/lambdamart_cv.json
+rank_promoted="$(.venv/bin/python -c 'import json;print(int(json.load(open("results/lambdamart_cv_v9.json"))["promoted"]))')"
+if [[ "$rank_promoted" == 1 ]]; then
+    .venv/bin/python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out submission/model.txt
+else
+    cp runs/baseline_v8/model.txt submission/model.txt
+fi
+# All neural/fusion/recipe artifacts remain the exact evaluated V8 versions.
+# This is the only DEV evaluation after the TRAIN-only tree choice freezes.
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "v6_pairwise_control",
+    "members": [
+      {"hidden": [128, 64], "warmup_epochs": 10, "epochs": 2, "lr": 0.0001, "pairs_per_query": 300, "pair_weighting": "ndcg", "batch_size": 1024, "seed": 0, "weight": 1.0}
+    ]
+  },
+  {
+    "name": "pairwise_seeds_0_17",
+    "members": [
+      {"hidden": [128, 64], "warmup_epochs": 10, "epochs": 2, "lr": 0.0001, "pairs_per_query": 300, "pair_weighting": "ndcg", "batch_size": 1024, "seed": 0, "weight": 0.5},
+      {"hidden": [128, 64], "warmup_epochs": 10, "epochs": 2, "lr": 0.0001, "pairs_per_query": 300, "pair_weighting": "ndcg", "batch_size": 1024, "seed": 17, "weight": 0.5}
+    ]
+  },
+  {
+    "name": "pairwise_seeds_0_41",
+    "members": [
+      {"hidden": [128, 64], "warmup_epochs": 10, "epochs": 2, "lr": 0.0001, "pairs_per_query": 300, "pair_weighting": "ndcg", "batch_size": 1024, "seed": 0, "weight": 0.5},
+      {"hidden": [128, 64], "warmup_epochs": 10, "epochs": 2, "lr": 0.0001, "pairs_per_query": 300, "pair_weighting": "ndcg", "batch_size": 1024, "seed": 41, "weight": 0.5}
+    ]
+  }
+]

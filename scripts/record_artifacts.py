@@ -24,26 +24,40 @@ def main():
     parser.add_argument("--out", default="results/artifacts.json")
     parser.add_argument("--hpc-manifest")
     parser.add_argument("--pairwise-refit", help="full-TRAIN refit record for a frozen promoted pairwise choice")
+    parser.add_argument("--baseline-manifest", help="protected checkpoint hashes; defaults to the original v2 artifacts")
     args = parser.parse_args()
     torch.set_num_threads(4)
     previous = json.loads((ROOT / "results/artifacts_v2.json").read_text())["artifacts"]
+    protected = json.loads(Path(args.baseline_manifest).read_text())["artifacts"] if args.baseline_manifest else previous
     hpc = json.loads(Path(args.hpc_manifest).read_text())["artifacts"] if args.hpc_manifest else None
     permitted_pairwise = None
+    pairwise_hidden = protected["pairwise_model.pt"].get("config", {}).get("hidden", [128, 64])
     if args.pairwise_refit:
         refit = json.loads(Path(args.pairwise_refit).read_text())
         selection = json.loads(Path(refit["arguments"]["selection"]).read_text())
-        if refit["promoted"] != selection["promoted"] or refit["specification"] != selection["selected"]["candidate"]:
+        specification = refit.get("specification", refit.get("candidate"))
+        if refit["promoted"] != selection["promoted"] or specification != selection["selected"]["candidate"]:
             raise ValueError("pairwise refit does not match its frozen selection")
         if refit["promoted"]:
             permitted_pairwise = refit["artifact_sha256"]
+            if "members" in specification:
+                hidden = [member["hidden"] for member in specification["members"]]
+                if len({len(sizes) for sizes in hidden}) != 1:
+                    raise ValueError("frozen pairwise members have different depths")
+                pairwise_hidden = [sum(sizes[layer] for sizes in hidden) for layer in range(len(hidden[0]))]
+            else:
+                pairwise_hidden = specification["hidden"]
     records = {}
     for name in ("model.txt", "pointwise_model.pt", "pairwise_model.pt", "fusion_config.json"):
         path = ROOT / "submission" / name
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         unchanged = digest == previous[name]["sha256"]
-        if name != "model.txt" and not unchanged and not (name == "pairwise_model.pt" and digest == permitted_pairwise):
-            raise ValueError(f"protected v2 artifact changed: {name}")
+        unchanged_protected = digest == protected[name]["sha256"]
+        if name != "model.txt" and not unchanged_protected and not (name == "pairwise_model.pt" and digest == permitted_pairwise):
+            raise ValueError(f"protected checkpoint artifact changed: {name}")
         records[name] = dict(bytes=path.stat().st_size, sha256=digest, unchanged_from_v2=unchanged)
+        if args.baseline_manifest:
+            records[name]["unchanged_from_baseline"] = unchanged_protected
         if hpc is not None:
             if digest != hpc[name]["sha256"]:
                 raise ValueError(f"local/HPC artifact differed: {name}")
@@ -59,7 +73,8 @@ def main():
     for kind in ("pointwise", "pairwise"):
         path = ROOT / "submission" / f"{kind}_model.pt"
         blob = torch.load(path, weights_only=True)
-        if blob["config"] != {"n_features": 136, "hidden": [128, 64]}:
+        expected_hidden = [128, 64] if kind == "pointwise" else pairwise_hidden
+        if blob["config"] != {"n_features": 136, "hidden": expected_hidden}:
             raise ValueError("staff neural architecture changed")
         scorer = load_scorer(str(path))
         scores = scorer(X)

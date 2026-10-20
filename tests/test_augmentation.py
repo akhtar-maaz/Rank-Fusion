@@ -11,6 +11,7 @@ from submission.features import features_for_model
 CONFIG = {"name": "half_query_dropout_noise", "seed": 20261019}
 MIXED = {"name": "half_query_mixed", "seed": 20261020}
 FULL_MIXED = {"name": "full_query_mixed", "seed": 20261021}
+FULL_STRESS = {"name": "full_query_stress", "seed": 20261022}
 
 
 def sample():
@@ -22,7 +23,7 @@ def sample():
     return X, y, q
 
 
-@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED])
+@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED, FULL_STRESS])
 def test_augmentation_keeps_originals_and_query_labels_without_leaking_validation(config):
     X, y, q = sample()
     original = X.copy()
@@ -30,7 +31,7 @@ def test_augmentation_keeps_originals_and_query_labels_without_leaking_validatio
     augmented, labels, ids = augment_training(X[tr], y[tr], q[tr], config)
     assert np.array_equal(augmented[:len(tr)], X[tr], equal_nan=True)
     assert np.array_equal(labels[:len(tr)], y[tr])
-    if config == FULL_MIXED:
+    if config["name"].startswith("full_query_"):
         assert len(augmented) == 2 * len(tr)
     else:
         assert len(tr) < len(augmented) < 2 * len(tr)
@@ -47,7 +48,7 @@ def test_augmentation_keeps_originals_and_query_labels_without_leaking_validatio
     assert np.array_equal(ids, changed_ids)
 
 
-@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED])
+@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED, FULL_STRESS])
 def test_augmentation_is_query_local_and_repeatable(config):
     X, y, q = sample()
     whole, _, ids = augment_training(X, y, q, config)

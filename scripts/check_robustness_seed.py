@@ -29,7 +29,7 @@ def main():
     parser.add_argument("--control-label", default="v4")
     parser.add_argument("--selected-label", default="v5")
     args = parser.parse_args()
-    if args.seed in (1729, 20261019, 20261020):
+    if args.seed in (1729, 20261019, 20261020, 20261021, 20261022):
         parser.error("use a seed distinct from training and model selection")
     started = time.perf_counter()
     selection = json.loads(Path(args.selection).read_text())

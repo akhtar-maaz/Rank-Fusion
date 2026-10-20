@@ -16,7 +16,8 @@ def augment_training(X, y, qids, config):
     """
     if config not in ({"name": "half_query_dropout_noise", "seed": 20261019},
                       {"name": "half_query_mixed", "seed": 20261020},
-                      {"name": "full_query_mixed", "seed": 20261021}):
+                      {"name": "full_query_mixed", "seed": 20261021},
+                      {"name": "full_query_stress", "seed": 20261022}):
         raise ValueError("unsupported augmentation configuration")
     X, y, qids = np.asarray(X), np.asarray(y), np.asarray(qids)
     if len(X) != len(y) or len(y) != len(qids):
@@ -26,12 +27,13 @@ def augment_training(X, y, qids, config):
     for size in group_sizes(qids):
         stop = start + size
         digest = hashlib.sha256(f"augment:{config['seed']}:{qids[start]}".encode()).digest()
-        if config["name"] == "full_query_mixed" or digest[0] % 2 == 0:
+        if config["name"].startswith("full_query_") or digest[0] % 2 == 0:
             if config["name"] == "half_query_dropout_noise":
                 scenario = "feature_dropout" if digest[1] % 2 == 0 else "noise"
             else:
                 scenario = ("affine", "feature_dropout", "noise")[digest[1] % 3]
-            blocks.append(perturb_features(X[start:stop], qids[start:stop], scenario, seed=config["seed"]))
+            options = {"strength": 2.0} if config["name"] == "full_query_stress" else {}
+            blocks.append(perturb_features(X[start:stop], qids[start:stop], scenario, seed=config["seed"], **options))
             labels.append(y[start:stop])
             identities.append(np.full(size, f"augmented:{qids[start]}", dtype=object))
         start = stop

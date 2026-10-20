@@ -1,0 +1,23 @@
+{
+  "features": "data/dev/vali.txt",
+  "queries": 2000,
+  "rows": 235259,
+  "fusion_ndcg@10": 0.3077851635664398,
+  "fusion_map@10": 0.12891656880923077,
+  "lambdamart_ndcg@10": 0.4979321023604725,
+  "bm25_ndcg@10": 0.28848678060708594,
+  "timing": {
+    "prepare_seconds": 6.193006593734026,
+    "maximum_fusion_seconds": 0.0011079870164394379,
+    "maximum_rerank_seconds": 0.465059669688344
+  },
+  "versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu"
+  },
+  "pointwise_ndcg@10": 0.43170774298680703,
+  "pairwise_ndcg@10": 0.4476433502213767,
+  "pairwise_beats_bm25": true,
+  "within_per_call_limits": true
+}

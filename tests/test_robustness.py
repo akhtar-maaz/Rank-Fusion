@@ -33,6 +33,23 @@ def test_diagnostics_are_query_local_deterministic_and_preserve_input(scenario):
     assert np.array_equal(changed[order], perturb_features(X[order], q[order], scenario), equal_nan=True)
 
 
+def test_broader_training_perturbations_use_same_draws_with_greater_magnitude():
+    X = np.random.RandomState(2).normal(size=(30, 40)).astype(np.float32)
+    q = np.repeat(["a", "b", "c"], 10)
+    original = X.copy()
+    noise = perturb_features(X, q, "noise", seed=20261022)
+    stronger = perturb_features(X, q, "noise", seed=20261022, strength=2)
+    assert np.allclose(stronger-X, 2*(noise-X), atol=5e-7)
+    dropout = perturb_features(X, q, "feature_dropout", seed=20261022)
+    stronger = perturb_features(X, q, "feature_dropout", seed=20261022, strength=2)
+    assert np.all((dropout != 0) | (stronger == 0))
+    assert np.count_nonzero(stronger == 0) > np.count_nonzero(dropout == 0)
+    assert np.array_equal(X, original)
+    for invalid in (0, -1, 11, np.inf, np.nan):
+        with pytest.raises(ValueError, match="strength"):
+            perturb_features(X, q, "noise", strength=invalid)
+
+
 def test_normalized_model_roundtrips_and_ranking_uses_metadata(tmp_path):
     import lightgbm as lgb
     rng = np.random.RandomState(3)

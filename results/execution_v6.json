@@ -1,0 +1,483 @@
+{
+  "date": "2026-10-19",
+  "protocol": "docs/EXPERIMENTS_V6.md",
+  "protocol_commit": "500e069fce66e7c56d1f1729c84b807194038da8",
+  "workflow_commit": "311f76d1ffec8f66fb92a08c1c844331669db92d",
+  "selection_record_commit": "51d53e8043e2f3bd08b651e40a12dd4e81f97adb",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "cpus_per_job": 4,
+    "memory_limit_gb": 8
+  },
+  "jobs": {
+    "1105090[0].pbshpc": {
+      "Job_Name": "rankfusion-cv-v6",
+      "resources_used.cpupercent": "398",
+      "resources_used.cput": "01:45:05",
+      "resources_used.mem": "5929508kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "7543104kb",
+      "resources_used.walltime": "00:28:46",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 17:48:02 2026",
+      "obittime": "Mon Oct 19 18:16:52 2026",
+      "comment": "Job run at Mon Oct 19 at 17:48 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105090[1].pbshpc": {
+      "Job_Name": "rankfusion-cv-v6",
+      "resources_used.cpupercent": "384",
+      "resources_used.cput": "01:24:55",
+      "resources_used.mem": "4588788kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "6076464kb",
+      "resources_used.walltime": "00:24:42",
+      "job_state": "F",
+      "exec_host": "cgen007/5*4",
+      "stime": "Mon Oct 19 17:48:02 2026",
+      "obittime": "Mon Oct 19 18:12:49 2026",
+      "comment": "Job run at Mon Oct 19 at 17:48 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105090[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v6",
+      "resources_used.cpupercent": "387",
+      "resources_used.cput": "02:06:27",
+      "resources_used.mem": "6045748kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "7547372kb",
+      "resources_used.walltime": "00:39:14",
+      "job_state": "F",
+      "exec_host": "cgen007/6*4",
+      "stime": "Mon Oct 19 17:48:03 2026",
+      "obittime": "Mon Oct 19 18:27:19 2026",
+      "comment": "Job run at Mon Oct 19 at 17:48 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105090[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v6",
+      "resources_used.cpupercent": "398",
+      "resources_used.cput": "02:12:14",
+      "resources_used.mem": "6971084kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "8499736kb",
+      "resources_used.walltime": "00:37:16",
+      "job_state": "F",
+      "exec_host": "cgen007/5*4",
+      "stime": "Mon Oct 19 18:12:50 2026",
+      "obittime": "Mon Oct 19 18:50:10 2026",
+      "comment": "Job run at Mon Oct 19 at 18:12 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105091[0].pbshpc": {
+      "Job_Name": "rankfusion-neural-v6",
+      "resources_used.cpupercent": "309",
+      "resources_used.cput": "00:05:20",
+      "resources_used.mem": "1573744kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3364592kb",
+      "resources_used.walltime": "00:03:10",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 18:16:53 2026",
+      "obittime": "Mon Oct 19 18:20:06 2026",
+      "comment": "Job run at Mon Oct 19 at 18:16 on (cgen007:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    },
+    "1105091[1].pbshpc": {
+      "Job_Name": "rankfusion-neural-v6",
+      "resources_used.cpupercent": "341",
+      "resources_used.cput": "00:09:22",
+      "resources_used.mem": "1692452kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3482612kb",
+      "resources_used.walltime": "00:03:30",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 18:20:07 2026",
+      "obittime": "Mon Oct 19 18:23:42 2026",
+      "comment": "Job run at Mon Oct 19 at 18:20 on (cgen007:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    },
+    "1105091[2].pbshpc": {
+      "Job_Name": "rankfusion-neural-v6",
+      "resources_used.cpupercent": "310",
+      "resources_used.cput": "00:07:24",
+      "resources_used.mem": "1503592kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3292188kb",
+      "resources_used.walltime": "00:03:05",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 18:23:43 2026",
+      "obittime": "Mon Oct 19 18:26:52 2026",
+      "comment": "Job run at Mon Oct 19 at 18:23 on (cgen007:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    },
+    "1105091[3].pbshpc": {
+      "Job_Name": "rankfusion-neural-v6",
+      "resources_used.cpupercent": "273",
+      "resources_used.cput": "00:05:54",
+      "resources_used.mem": "1518152kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3306724kb",
+      "resources_used.walltime": "00:02:31",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 18:26:53 2026",
+      "obittime": "Mon Oct 19 18:29:26 2026",
+      "comment": "Job run at Mon Oct 19 at 18:26 on (cgen007:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    },
+    "1105118.pbshpc": {
+      "Job_Name": "rankfusion-select-v6",
+      "resources_used.cpupercent": "371",
+      "resources_used.cput": "00:37:43",
+      "resources_used.mem": "2861816kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4476992kb",
+      "resources_used.walltime": "00:12:40",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 18:50:11 2026",
+      "obittime": "Mon Oct 19 19:02:53 2026",
+      "comment": "Job run at Mon Oct 19 at 18:50 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105119.pbshpc": {
+      "Job_Name": "rankfusion-pick-p-v6",
+      "resources_used.cpupercent": "31",
+      "resources_used.cput": "00:00:00",
+      "resources_used.mem": "0kb",
+      "resources_used.ncpus": "1",
+      "resources_used.vmem": "0kb",
+      "resources_used.walltime": "00:00:01",
+      "job_state": "F",
+      "exec_host": "cgen007/4",
+      "stime": "Mon Oct 19 18:29:28 2026",
+      "obittime": "Mon Oct 19 18:29:32 2026",
+      "comment": "Job run at Mon Oct 19 at 18:29 on (cgen007:ncpus=1:mem=1048576kb)",
+      "Exit_status": "0"
+    },
+    "1105120.pbshpc": {
+      "Job_Name": "rankfusion-final-v6",
+      "resources_used.cpupercent": "395",
+      "resources_used.cput": "01:43:04",
+      "resources_used.mem": "6146024kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "7762592kb",
+      "resources_used.walltime": "00:38:41",
+      "job_state": "F",
+      "exec_host": "cgen007/6*4",
+      "stime": "Mon Oct 19 19:02:53 2026",
+      "obittime": "Mon Oct 19 19:41:37 2026",
+      "comment": "Job run at Mon Oct 19 at 19:02 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105121.pbshpc": {
+      "Job_Name": "rankfusion-refit-v6",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:50:23",
+      "resources_used.mem": "5772628kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "7384864kb",
+      "resources_used.walltime": "00:38:20",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 19:02:54 2026",
+      "obittime": "Mon Oct 19 19:41:16 2026",
+      "comment": "Job run at Mon Oct 19 at 19:02 on (cgen007:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1105122.pbshpc": {
+      "Job_Name": "rankfusion-seed-v6",
+      "resources_used.cpupercent": "378",
+      "resources_used.cput": "00:32:53",
+      "resources_used.mem": "1126728kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2657224kb",
+      "resources_used.walltime": "00:09:33",
+      "job_state": "F",
+      "exec_host": "cgen007/5*4",
+      "stime": "Mon Oct 19 19:02:53 2026",
+      "obittime": "Mon Oct 19 19:12:29 2026",
+      "comment": "Job run at Mon Oct 19 at 19:02 on (cgen007:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    },
+    "1105123.pbshpc": {
+      "Job_Name": "rankfusion-verify-v6",
+      "resources_used.cpupercent": "84",
+      "resources_used.cput": "00:00:18",
+      "resources_used.mem": "324868kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2463464kb",
+      "resources_used.walltime": "00:00:21",
+      "job_state": "F",
+      "exec_host": "cgen007/4*4",
+      "stime": "Mon Oct 19 19:41:37 2026",
+      "obittime": "Mon Oct 19 19:42:02 2026",
+      "comment": "Job run at Mon Oct 19 at 19:41 on (cgen007:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    }
+  },
+  "tree_promoted": true,
+  "pairwise_promoted": true,
+  "complete_tree_configurations": 49,
+  "complete_pairwise_candidates": 4,
+  "runtime_excluded_candidates": [],
+  "frozen_configuration_sha256": {
+    "lambdamart_cv_v6.json": "951bfa0083627e27050f5c69ff311f3907de1954280274c7715f6e7963885f8d",
+    "neural_selection_v6.json": "f31cfd276217d7ed79c5a3e57d69c7bc865fa01d61ed595b1076e720e9053755"
+  },
+  "synthetic_tree_pipeline": {
+    "description": "Synthetic pipeline fixture only; no real TRAIN result",
+    "rows": 3000,
+    "queries": 120,
+    "settings": 13,
+    "native_equivalence": [
+      {
+        "fold": 0,
+        "native_max_abs_error": 2.5757174171303632e-14,
+        "native_ndcg_10": 0.9323967881265891,
+        "explicit_ndcg_10": 0.9323967881265891
+      },
+      {
+        "fold": 1,
+        "native_max_abs_error": 2.7533531010703882e-14,
+        "native_ndcg_10": 0.9319257725045694,
+        "explicit_ndcg_10": 0.9319257725045694
+      },
+      {
+        "fold": 2,
+        "native_max_abs_error": 2.5757174171303632e-14,
+        "native_ndcg_10": 0.9390143515578924,
+        "explicit_ndcg_10": 0.9390143515578924
+      },
+      {
+        "fold": 3,
+        "native_max_abs_error": 2.4868995751603507e-14,
+        "native_ndcg_10": 0.9315599130784075,
+        "explicit_ndcg_10": 0.9315599130784075
+      },
+      {
+        "fold": 4,
+        "native_max_abs_error": 2.398081733190338e-14,
+        "native_ndcg_10": 0.9573472615123918,
+        "explicit_ndcg_10": 0.9573472615123918
+      }
+    ]
+  },
+  "augmentation": {
+    "half_query_dropout_noise": {
+      "seed": 20261019,
+      "augmented_queries": 2990,
+      "augmented_rows": 362923,
+      "scenarios": {
+        "feature_dropout": {
+          "queries": 1446,
+          "rows": 177618
+        },
+        "noise": {
+          "queries": 1544,
+          "rows": 185305
+        }
+      }
+    },
+    "half_query_mixed": {
+      "seed": 20261020,
+      "augmented_queries": 2984,
+      "augmented_rows": 356838,
+      "scenarios": {
+        "affine": {
+          "queries": 977,
+          "rows": 117450
+        },
+        "feature_dropout": {
+          "queries": 991,
+          "rows": 120945
+        },
+        "noise": {
+          "queries": 1016,
+          "rows": 118443
+        }
+      }
+    },
+    "full_query_mixed": {
+      "seed": 20261021,
+      "augmented_queries": 6000,
+      "augmented_rows": 723412,
+      "scenarios": {
+        "affine": {
+          "queries": 2047,
+          "rows": 244168
+        },
+        "feature_dropout": {
+          "queries": 2001,
+          "rows": 243587
+        },
+        "noise": {
+          "queries": 1952,
+          "rows": 235657
+        }
+      }
+    }
+  },
+  "post_selection_seed_check": {
+    "arguments": {
+      "train": "data/train/train.txt",
+      "selection": "results/lambdamart_cv_v6.json",
+      "out": "results/robustness_seed_v6.json",
+      "seed": 271828,
+      "control_key": "v5_control",
+      "control_label": "v5",
+      "selected_label": "v6"
+    },
+    "purpose": "Post-selection TRAIN-fold stress check; does not choose or change the artifact",
+    "rows": 723412,
+    "queries": 6000,
+    "selection_seed": 1729,
+    "diagnostic_seed": 271828,
+    "scenarios": [
+      "affine",
+      "feature_dropout",
+      "noise"
+    ],
+    "scenario_means": {
+      "v5": {
+        "affine": 0.47471974066058636,
+        "feature_dropout": 0.47731166284498683,
+        "noise": 0.47161949601464964
+      },
+      "v6": {
+        "affine": 0.47717752682140163,
+        "feature_dropout": 0.4778352514285049,
+        "noise": 0.4727912434884066
+      }
+    },
+    "diagnostic_means": {
+      "v5": 0.4745502998400743,
+      "v6": 0.475934673912771
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "scenarios": {
+          "affine": {
+            "v5": 0.4919611225374199,
+            "v6": 0.4947751400584826
+          },
+          "feature_dropout": {
+            "v5": 0.49325479681654655,
+            "v6": 0.49423268855852126
+          },
+          "noise": {
+            "v5": 0.483638122033024,
+            "v6": 0.48557696408988493
+          }
+        }
+      },
+      {
+        "fold": 1,
+        "scenarios": {
+          "affine": {
+            "v5": 0.4667746632145684,
+            "v6": 0.46955727553658183
+          },
+          "feature_dropout": {
+            "v5": 0.4722113953963305,
+            "v6": 0.4727454058459951
+          },
+          "noise": {
+            "v5": 0.46737141482873085,
+            "v6": 0.4675993927237488
+          }
+        }
+      },
+      {
+        "fold": 2,
+        "scenarios": {
+          "affine": {
+            "v5": 0.4733219868115637,
+            "v6": 0.4751782593964694
+          },
+          "feature_dropout": {
+            "v5": 0.47701173588287427,
+            "v6": 0.47614027618677474
+          },
+          "noise": {
+            "v5": 0.46349603417631735,
+            "v6": 0.4658756609770458
+          }
+        }
+      },
+      {
+        "fold": 3,
+        "scenarios": {
+          "affine": {
+            "v5": 0.4709571078477951,
+            "v6": 0.4742303282168815
+          },
+          "feature_dropout": {
+            "v5": 0.46948121979891727,
+            "v6": 0.4711678575808895
+          },
+          "noise": {
+            "v5": 0.47005262277854637,
+            "v6": 0.47036006925354096
+          }
+        }
+      },
+      {
+        "fold": 4,
+        "scenarios": {
+          "affine": {
+            "v5": 0.4705838228915845,
+            "v6": 0.4721466308985928
+          },
+          "feature_dropout": {
+            "v5": 0.4745991663302655,
+            "v6": 0.47489002897034394
+          },
+          "noise": {
+            "v5": 0.47353928625662955,
+            "v6": 0.47454413039781257
+          }
+        }
+      }
+    ],
+    "seconds": 569.8123179767281
+  },
+  "final_verification": {
+    "training_job": "1105120.pbshpc",
+    "independent_job": "1105121.pbshpc",
+    "verification_job": "1105123.pbshpc",
+    "tests_passed": 96,
+    "actual_frozen_dev_interface_passed": true,
+    "independent_byte_identical_artifacts": true,
+    "tree_independently_refitted": true,
+    "pairwise_independently_refitted": true,
+    "pointwise_fusion_recipe_preserved": true,
+    "native_oof_max_abs_error": 2.930988785010413e-14
+  },
+  "local_verification": {
+    "python": "3.12.14",
+    "tests_passed": 96,
+    "staff_neural_loaders_passed": true,
+    "hpc_hashes_match": true
+  },
+  "workflow_ci": {
+    "id": 39251697350,
+    "commit": "311f76d1ffec8f66fb92a08c1c844331669db92d",
+    "conclusion": "success",
+    "tests_passed": 96,
+    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39251697350"
+  },
+  "unchanged_recipe_budget": "results/recipe_budget_v3.json",
+  "unchanged_synthetic_transfer": "results/recipe_smoke_v3.json"
+}

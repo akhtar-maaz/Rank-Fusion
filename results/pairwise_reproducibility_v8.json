@@ -1,0 +1,64 @@
+{
+  "artifact": "submission/pairwise_model.pt",
+  "original_sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+  "reproduced_sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+  "byte_identical": true,
+  "refitted": true,
+  "specification": {
+    "name": "warmup20_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 20,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 20,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  },
+  "command": "python scripts/cv_pairwise_ensemble_v8.py --mode fit --fresh --cache-dir runs/reproduced_v8/neural_cache --out runs/reproduced_v8/pairwise_model.pt --history-out runs/reproduced_v8/pairwise_history.json",
+  "exported_config": {
+    "n_features": 136,
+    "hidden": [
+      256,
+      128
+    ]
+  },
+  "primary_compilation": {
+    "exported_ndcg_10": 0.4733190005061741,
+    "arithmetic_average_ndcg_10": 0.4733342190647955,
+    "maximum_absolute_score_error": 9.5367431640625e-07,
+    "mean_absolute_score_error": 6.835179439708421e-08,
+    "score_atol": 2e-06,
+    "score_rtol": 2e-05
+  },
+  "independent_compilation": {
+    "exported_ndcg_10": 0.4733190005061741,
+    "arithmetic_average_ndcg_10": 0.4733342190647955,
+    "maximum_absolute_score_error": 9.5367431640625e-07,
+    "mean_absolute_score_error": 6.835179439708421e-08,
+    "score_atol": 2e-06,
+    "score_rtol": 2e-05
+  }
+}

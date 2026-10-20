@@ -119,3 +119,19 @@ complete test suite including the v7.1 reproducibility regressions. Preserve
 all previously evaluated ZIPs. Package and push only verified outputs.
 
 Parameter semantics follow the [official LightGBM4.6 documentation](https://lightgbm.readthedocs.io/en/v4.6.0/Parameters.html).
+
+## Completed outcome
+
+All reported settings contain five complete folds. Tree promotion:
+False; selected `cached_v7_control`, clean mean
+0.487559972, diagnostic mean 0.477024990,
+mixture 0.482292481. The highest eligible candidate was `v7_plus_1_600_weight0.25`: mixture gain +0.000720009, diagnostic gain +0.000896714, and positive paired mixture gains in 4/5 folds. Gate outcomes (mixture/diagnostic/paired) are True/False/True.
+
+Independent pairwise promotion: True; selected `warmup20_seeds_0_41`,
+five-fold mean 0.440370963, control
+0.437998762. Shipped architecture is 136→256→128→1.
+Choices were frozen using TRAIN before final fits and the only DEV evaluation.
+All 142 tests pass locally and on the college server; promoted artifacts
+reproduce byte-identically and retained artifacts preserve v7.1 hashes.
+Pointwise, fusion and the C1 recipe retain v7.1 hashes. Formal report remains
+deferred. Staff held-out/C2 evaluation is still pending for v8.

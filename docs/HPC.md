@@ -206,3 +206,20 @@ protected hashes, pristine loading and the full smoke suite.
 six single jobs), saved PBS requests and actual CPU/memory/walltime per job.
 Tree fitting requests 12 GB; neural CV, selection and verification use their
 saved per-workflow requests. Heavy fits run only on scheduled compute nodes.
+
+## Eighth-round workflow
+
+`hpc_cv_v8.pbs` runs four scheduled tree candidates; `hpc_select_v8.pbs`
+checks complete folds, exact v7 control and all promotion gates.
+One `hpc_neural_v8.pbs` job fits nine distinct complete member specifications
+within each TRAIN fold (45 fits total) and selects among five frozen
+neural candidates, including compiled averages and a direct dense singleton. This is not
+a neural array or a separate neural-selection job. Primary/independent jobs
+fresh-fit promoted configurations and preserve exact v7 bytes for either
+fallback. Only the primary job evaluates DEV after both choices are frozen.
+The seed job is descriptive and the verify job checks reproduction,
+protected hashes, pristine loading and the full smoke suite.
+`results/execution.json` records ten actual jobs (four array children and
+six single jobs), saved PBS requests and actual CPU/memory/walltime per job.
+Tree fitting requests 12 GB; neural CV, selection and verification use their
+saved per-workflow requests. Heavy fits run only on scheduled compute nodes.

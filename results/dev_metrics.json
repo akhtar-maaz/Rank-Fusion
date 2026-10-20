@@ -7,9 +7,9 @@
   "lambdamart_ndcg@10": 0.49837378503965435,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 3.3353209774941206,
-    "maximum_fusion_seconds": 0.0011877529323101044,
-    "maximum_rerank_seconds": 0.50764643214643
+    "prepare_seconds": 3.6739817783236504,
+    "maximum_fusion_seconds": 0.00112888403236866,
+    "maximum_rerank_seconds": 0.5189059935510159
   },
   "versions": {
     "numpy": "2.0.2",
@@ -17,7 +17,7 @@
     "torch": "2.8.0+cpu"
   },
   "pointwise_ndcg@10": 0.43170774298680703,
-  "pairwise_ndcg@10": 0.44944049626047466,
+  "pairwise_ndcg@10": 0.4499222004961721,
   "pairwise_beats_bm25": true,
   "within_per_call_limits": true
 }

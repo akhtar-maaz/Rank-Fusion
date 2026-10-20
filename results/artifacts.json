@@ -4,7 +4,7 @@
       "bytes": 55122370,
       "sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
       "unchanged_from_v2": false,
-      "unchanged_from_baseline": false,
+      "unchanged_from_baseline": true,
       "matches_hpc_copy": true,
       "features": 408,
       "input_features": 136,
@@ -29,7 +29,7 @@
     },
     "pairwise_model.pt": {
       "bytes": 278121,
-      "sha256": "db43ac75305185a7688e80be19d391825407bdfb67177a391c15c2a98647301d",
+      "sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
       "unchanged_from_v2": false,
       "unchanged_from_baseline": false,
       "matches_hpc_copy": true,

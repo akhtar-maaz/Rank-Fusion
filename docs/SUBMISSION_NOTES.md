@@ -1,12 +1,4 @@
-# Submission notes — v7.1
-
-V7.1 corrects seeded neural training while retaining every v7 model artifact.
-Each fit uses a private initialization generator and deterministic four-thread
-CPU execution. Four interference regressions fail the old source and pass
-the correction; eighteen synthetic comparisons preserve the original
-four-thread fit weights, histories and standardizers exactly. Submission 243
-restored 10/10 staff correctness, with model scores unchanged. Evidence:
-`results/reproducibility_fix_v7_1.json` and `results/leaderboard_v7.json`.
+# Submission notes — v8
 
 ## Training-data declaration
 
@@ -25,12 +17,12 @@ user-provided aggregate feedback only.
 |---|---|---|
 | `model.txt` | Full Fold1 TRAIN only | Five grouped TRAIN folds; frozen 3800-tree native configuration |
 | `pointwise_model.pt` | Full Fold1 TRAIN only | Original internal TRAIN fold 0; fixed six MSE epochs |
-| `pairwise_model.pt` | Full Fold1 TRAIN only | Five fixed-epoch TRAIN folds; `pairwise_seeds_0_41` |
+| `pairwise_model.pt` | Full Fold1 TRAIN only | Five fixed-epoch TRAIN folds; `warmup20_seeds_0_41` |
 | `recipe.py` | Only supplied benchmark TRAIN | Supplied validation chooses capacity and stopping |
 
 ## Final configuration and tradeoff
 
-The independent rules promoted a new tree configuration and promoted the selected pairwise average.
+The independent rules retained the exact v7.1 tree artifact and promoted the selected pairwise average.
 
 | Member | Features | Trees | Weight | Augmentation (seed) |
 |---|---|---|---|---|
@@ -50,17 +42,17 @@ The independent rules promoted a new tree configuration and promoted the selecte
 | 5 | 127 | 100 | 10 | 0.8 | 0 | 30 | none |
 | 6 | 127 | 100 | 10 | 0.8 | 0 | 30 | extra_trees; extra_seed=0 |
 
-| TRAIN-CV condition | v6 | v7 |
+| TRAIN-CV condition | v7 | v8 |
 |---|---|---|
-| clean | 0.487343 | 0.487560 |
-| affine | 0.476724 | 0.479000 |
-| feature_dropout | 0.476436 | 0.477154 |
-| noise | 0.473732 | 0.474921 |
+| clean | 0.487560 | 0.487560 |
+| affine | 0.479000 | 0.479000 |
+| feature_dropout | 0.477154 | 0.477154 |
+| noise | 0.474921 | 0.474921 |
 
-The highest eligible candidate was `v6_plus_2_400_weight0.25`: mixture gain +0.000805618, diagnostic gain +0.001394126, and positive paired mixture gains in 5/5 folds. Gate outcomes (mixture/diagnostic/paired) are True/True/True.
+The highest eligible candidate was `v7_plus_1_600_weight0.25`: mixture gain +0.000720009, diagnostic gain +0.000896714, and positive paired mixture gains in 4/5 folds. Gate outcomes (mixture/diagnostic/paired) are True/False/True.
 
-The [frozen v7 protocol](EXPERIMENTS_V7.md) records all 49
-complete tree settings and three complete neural candidates. Reused-fold
+The [frozen v8 protocol](EXPERIMENTS_V8.md) records all 49
+complete tree settings and five complete neural candidates. Reused-fold
 selection and the training/validation gap limit confidence. Augmentation
 occurs only after splitting and copies relevance labels without inspection.
 No local diagnostic establishes a hidden C2 gain.
@@ -69,22 +61,24 @@ Shipped pairwise architecture: 136→256→128→1 ReLU.
 
 | Member seed | Hidden sizes | Weight | MSE epochs | RankNet epochs | RankNet LR | Pair cap | Batch |
 |---|---|---|---|---|---|---|---|
-| 0 | 128→64 | 0.5 | 10 | 2 | 0.0001 | 300 | 1024 |
-| 41 | 128→64 | 0.5 | 10 | 2 | 0.0001 | 300 | 1024 |
+| 0 | 128→64 | 0.5 | 20 | 2 | 0.0001 | 300 | 1024 |
+| 41 | 128→64 | 0.5 | 20 | 2 | 0.0001 | 300 | 1024 |
 
-The seed averages compile to one plain MLP with unchanged staff loading.
-Selection uses exported-artifact nDCG, including float32 compilation effects.
-The full-TRAIN export differs from the explicit arithmetic score average by at most 1.43e-06; full-TRAIN exported/explicit nDCG are 0.461587306/0.461587306. Selection used the exported artifact's score, so float32 compilation effects are included.
+Two selected 128/64 members compile by concatenated first layers, block-diagonal second layers and weighted output rows into the shipped ordinary 256/128 MLP. The network fits staff's width/depth limits and needs no custom inference loader.
+Selection uses exported-artifact nDCG for both candidate types.
+The full-TRAIN compiled export differs from the explicit arithmetic score average by at most 9.54e-07; full-TRAIN exported/explicit nDCG are 0.473319001/0.473334219. Selection uses the exported artifact, including float32 compilation effects.
 
 ## Reproduction
 
-Tree: `python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_v7/model.txt`.
-For a retained tree, the final job preserved exact v6 bytes instead of refitting.
+Tree: `python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_v8/model.txt`.
+For a retained tree, the final job preserved exact v7.1 bytes instead of refitting.
 
-Pairwise (fresh member fits if promoted; exact shipped copy if retained):
+Pairwise (fresh member fits if promoted; exact shipped copy if retained).
+Use the recorded sources/runtime for exact reproduction: Linux CPU Torch
+2.8.0+cpu and the versions in `results/execution.json`, four threads:
 
 ```bash
-python scripts/cv_pairwise_ensemble_v7.py --mode fit --train data/train/train.txt --specs configs/v7_neural_candidates.json --selection results/neural_selection_v7.json --baseline submission/pairwise_model.pt --fresh --cache-dir runs/reproduction_v7/neural_cache --out runs/reproduction_v7/pairwise_model.pt --history-out runs/reproduction_v7/pairwise_history.json
+python scripts/cv_pairwise_ensemble_v8.py --mode fit --train data/train/train.txt --specs configs/v8_neural_candidates.json --selection results/neural_selection_v8.json --control-report results/neural_selection_v7.json --baseline submission/pairwise_model.pt --fresh --cache-dir runs/reproduction_v8/neural_cache --out runs/reproduction_v8/pairwise_model.pt --history-out runs/reproduction_v8/pairwise_history.json
 ```
 
 ## Transfer policy and limits
@@ -101,17 +95,14 @@ prove portability; the unknown datasets remain staff-only.
 
 ## Verification and reproducibility
 
-The v7 training run passed 112 tests locally and on the college server;
-the v7.1 source passes 120 local tests. Actual frozen DEV
+All 142 tests pass locally and on the college server. Actual frozen DEV
 evaluation meets prepare/rerank limits. Artifacts match HPC hashes and load
 through the pristine staff neural loader under Python 3.12. Independent
 fresh fits reproduce promoted artifacts byte-for-byte; retained artifacts
-preserve v6 bytes. Pointwise, fusion and the C1 recipe stay unchanged.
+preserve v7.1 bytes. Pointwise, fusion and the C1 recipe stay unchanged.
 Execution evidence covers ten actual scheduled job records with per-job
 requested/observed resources. No real data, environments, Git metadata or
 intermediate fits enter the ZIP. Original starter files remain present.
-The independent full-TRAIN artifact refits belong to v7 commit `50fea4f`.
-V7.1 preserves those artifact bytes; its new checks use synthetic data only.
 
 ## AI-use disclosure
 

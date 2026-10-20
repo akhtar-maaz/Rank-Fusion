@@ -7,9 +7,9 @@
   "lambdamart_ndcg@10": 0.49837378503965435,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 3.6739817783236504,
-    "maximum_fusion_seconds": 0.00112888403236866,
-    "maximum_rerank_seconds": 0.5189059935510159
+    "prepare_seconds": 0.5546637456864119,
+    "maximum_fusion_seconds": 0.0011156033724546432,
+    "maximum_rerank_seconds": 0.4910036027431488
   },
   "versions": {
     "numpy": "2.0.2",

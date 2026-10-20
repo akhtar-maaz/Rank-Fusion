@@ -223,3 +223,18 @@ protected hashes, pristine loading and the full smoke suite.
 six single jobs), saved PBS requests and actual CPU/memory/walltime per job.
 Tree fitting requests 12 GB; neural CV, selection and verification use their
 saved per-workflow requests. Heavy fits run only on scheduled compute nodes.
+
+## Ninth-round workflow
+
+`hpc_cv_v9.pbs` schedules four planned candidates. Selection validates all
+completed folds from 49 planned comparisons and the exact V8 control before
+frozen gates. The actual completed count and any explicit whole-candidate
+runtime exclusions appear in the selection and execution records.
+Primary/independent jobs fresh-fit a promoted tree or copy exact V8 bytes.
+Only the primary job evaluates DEV after the TRAIN-only choice is frozen.
+The descriptive seed job uses 902617 if promoted and otherwise records a skip.
+Verification checks byte identity, protected neural/core/fusion/recipe hashes,
+staff loading and the full smoke suite. No V9 neural fitting or selection job
+exists: four CV children plus selection, primary, independent, seed and verify
+make nine actual jobs. Requests and observed CPU/memory/walltime are recorded
+per job in `results/execution.json`. Heavy fits use scheduled compute nodes.

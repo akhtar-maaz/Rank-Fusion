@@ -5,6 +5,5 @@
   "byte_identical": true,
   "refitted": false,
   "configuration_files_byte_identical": true,
-  "command": "python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_v8/model.txt",
-  "executed_command": "cp runs/baseline_v7_1/model.txt runs/reproduced_v8/model.txt"
+  "executed_command": "cp runs/baseline_v8/model.txt runs/reproduced_v9/model.txt"
 }

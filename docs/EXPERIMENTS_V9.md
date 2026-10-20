@@ -85,3 +85,19 @@ recipe hashes, pristine staff Python 3.12 loading, full tests and prepare/rerank
 limits. Record actual resource use, failures and all complete results truthfully.
 Preserve V8/V7.1/V7/V6 ZIPs. Push and package only verified outputs; the user
 uploads the final V9 ZIP manually. No private-score or class-rank promise.
+
+## Completed outcome
+
+All reported settings contain five complete folds. Tree promotion:
+False; selected `cached_v8_control`, clean mean
+0.487559972, diagnostic mean 0.477024990,
+mixture 0.482292481. The highest eligible candidate was `v8_plus_0_1200_weight0.25`: mixture gain +0.000645585, diagnostic mean gain +0.000162203, positive paired mixture gains in 5/5 folds. Mixture/diagnostic/paired gates: True/False/True.
+
+The TRAIN-only selection was frozen before final artifact preservation and DEV evaluation.
+All 148 tests pass locally and on the college server. A promoted tree
+reproduces byte-identically; a retained tree preserves exact V8 bytes.
+V9 performs no neural training or refit: both neural artifacts, core functions,
+fusion, recipe and neural history preserve evaluated V8 bytes. Original V8
+neural records retain their original round names.
+All V9 model artifacts are byte-identical to evaluated V8. No model-score improvement is expected from a new upload; keeping the already-uploaded V8 submission is valid.
+Formal report writing remains deferred.

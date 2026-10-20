@@ -31,7 +31,7 @@
       "bytes": 278121,
       "sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
       "unchanged_from_v2": false,
-      "unchanged_from_baseline": false,
+      "unchanged_from_baseline": true,
       "matches_hpc_copy": true,
       "config": {
         "n_features": 136,

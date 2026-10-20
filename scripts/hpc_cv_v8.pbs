@@ -1,0 +1,15 @@
+#!/bin/bash -l
+#PBS -N rankfusion-cv-v8
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=12gb:centos=genoa
+#PBS -l walltime=01:00:00
+#PBS -J 0-3
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+mkdir -p runs/cv_v8
+exec > >(tee "runs/cv_v8/job_${PBS_ARRAY_INDEX}.log") 2>&1
+.venv/bin/python scripts/cv_augmented_lambdamart.py --candidate "$PBS_ARRAY_INDEX" \
+    --specs configs/v8_candidates.json --out-dir runs/cv_v8

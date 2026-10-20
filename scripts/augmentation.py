@@ -17,7 +17,8 @@ def augment_training(X, y, qids, config):
     if config not in ({"name": "half_query_dropout_noise", "seed": 20261019},
                       {"name": "half_query_mixed", "seed": 20261020},
                       {"name": "full_query_mixed", "seed": 20261021},
-                      {"name": "full_query_stress", "seed": 20261022}):
+                      {"name": "full_query_stress", "seed": 20261022},
+                      {"name": "full_query_mixed_v8", "seed": 20261023}):
         raise ValueError("unsupported augmentation configuration")
     X, y, qids = np.asarray(X), np.asarray(y), np.asarray(qids)
     if len(X) != len(y) or len(y) != len(qids):

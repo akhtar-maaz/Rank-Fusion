@@ -1,0 +1,23 @@
+#!/bin/bash -l
+#PBS -N rankfusion-seed-v8
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:30:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/seed_check_v8.log) 2>&1
+rank_promoted="$(.venv/bin/python -c 'import json;print(int(json.load(open("results/lambdamart_cv_v8.json"))["promoted"]))')"
+if [[ "$rank_promoted" == 1 ]]; then
+    .venv/bin/python scripts/check_robustness_seed.py --selection results/lambdamart_cv_v8.json \
+        --control-key v7_control --control-label v7 --selected-label v8 --seed 615019 \
+        --out results/robustness_seed_v8.json
+else
+    .venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+Path('results/robustness_seed_v8.json').write_text(json.dumps(dict(skipped=True, reason='Exact v7.1 tree artifact retained'), indent=2)+'\n')
+PY
+fi

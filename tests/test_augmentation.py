@@ -12,6 +12,7 @@ CONFIG = {"name": "half_query_dropout_noise", "seed": 20261019}
 MIXED = {"name": "half_query_mixed", "seed": 20261020}
 FULL_MIXED = {"name": "full_query_mixed", "seed": 20261021}
 FULL_STRESS = {"name": "full_query_stress", "seed": 20261022}
+FULL_MIXED_V8 = {"name": "full_query_mixed_v8", "seed": 20261023}
 
 
 def sample():
@@ -23,7 +24,7 @@ def sample():
     return X, y, q
 
 
-@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED, FULL_STRESS])
+@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED, FULL_STRESS, FULL_MIXED_V8])
 def test_augmentation_keeps_originals_and_query_labels_without_leaking_validation(config):
     X, y, q = sample()
     original = X.copy()
@@ -48,7 +49,7 @@ def test_augmentation_keeps_originals_and_query_labels_without_leaking_validatio
     assert np.array_equal(ids, changed_ids)
 
 
-@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED, FULL_STRESS])
+@pytest.mark.parametrize("config", [CONFIG, MIXED, FULL_MIXED, FULL_STRESS, FULL_MIXED_V8])
 def test_augmentation_is_query_local_and_repeatable(config):
     X, y, q = sample()
     whole, _, ids = augment_training(X, y, q, config)

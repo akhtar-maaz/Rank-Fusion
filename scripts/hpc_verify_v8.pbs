@@ -1,0 +1,51 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v8
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:12:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v8.log) 2>&1
+.venv/bin/python - <<'PY'
+import hashlib,json
+from pathlib import Path
+digest=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
+tree=json.loads(Path('results/lambdamart_cv_v8.json').read_text())
+assert Path('results/lambdamart_cv.json').read_bytes()==Path('results/lambdamart_cv_v8.json').read_bytes()
+for artifact,output in [('model.txt','results/lambdamart_reproducibility.json'),('pairwise_model.pt','results/pairwise_reproducibility_v8.json')]:
+    first=digest('submission/'+artifact)
+    second=digest('runs/reproduced_v8/'+artifact)
+    assert first==second, 'independent artifact differed: '+artifact
+    record=dict(artifact='submission/'+artifact,original_sha256=first,reproduced_sha256=second,byte_identical=True)
+    if artifact=='model.txt':
+        record.update(refitted=tree['promoted'],configuration_files_byte_identical=True,
+                      command='python scripts/train_model.py --train data/train --config results/lambdamart_cv.json --out runs/reproduced_v8/model.txt',
+                      executed_command='python scripts/train_model.py --train data/train --config results/lambdamart_cv_v8.json --out runs/reproduced_v8/model.txt' if tree['promoted'] else 'cp runs/baseline_v7_1/model.txt runs/reproduced_v8/model.txt')
+        if not tree['promoted']:assert first==digest('runs/baseline_v7_1/model.txt')
+    else:
+        selection=json.loads(Path('results/neural_selection_v8.json').read_text())
+        refit=json.loads(Path('results/pairwise_refit_v8.json').read_text())
+        independent=json.loads(Path('runs/reproduced_v8/pairwise_history.json').read_text())
+        assert refit['candidate']==independent['candidate']==selection['selected']['candidate']
+        assert refit['promoted']==independent['promoted']==selection['promoted']
+        assert refit['artifact_sha256']==independent['artifact_sha256']==first
+        record.update(refitted=selection['promoted'],specification=refit['candidate'],
+                      command='python scripts/cv_pairwise_ensemble_v8.py --mode fit --fresh --cache-dir runs/reproduced_v8/neural_cache --out runs/reproduced_v8/pairwise_model.pt --history-out runs/reproduced_v8/pairwise_history.json')
+        if refit['promoted']:
+            assert refit['exported_config']==independent['exported_config']
+            record['exported_config']=refit['exported_config']
+            record['primary_compilation']=refit['compilation']
+            record['independent_compilation']=independent['compilation']
+        else:assert first==digest('runs/baseline_v7_1/pairwise_model.pt')
+    Path(output).write_text(json.dumps(record,indent=2)+'\n')
+    print(json.dumps(record),flush=True)
+for name in ('pointwise_model.pt','fusion_config.json','recipe.py','pointwise_pairwise.py'):
+    assert digest('submission/'+name)==digest('runs/baseline_v7_1/'+name), 'protected v7.1 file changed: '+name
+PY
+.venv/bin/python scripts/record_artifacts.py --baseline-manifest results/artifacts_v7_1.json \
+    --pairwise-refit results/pairwise_refit_v8.json --out results/artifacts_hpc_v8.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

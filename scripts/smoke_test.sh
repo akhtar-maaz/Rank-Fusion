@@ -11,7 +11,7 @@ if [ "$(uname -s)" = Darwin ]; then
 fi
 rank_scratch="$(mktemp -d)"
 trap 'rm -rf "$rank_scratch"' EXIT
-cp -R submission harness scripts tests configs conftest.py "$rank_scratch/"
+cp -R submission harness scripts tests configs results conftest.py "$rank_scratch/"
 mkdir "$rank_scratch/data"
 cp -R data/toy data/toy_transfer "$rank_scratch/data/"
 cd "$rank_scratch"

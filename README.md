@@ -23,9 +23,12 @@ label or distillation target is used for MSLR training or selection.
 
 Track B rounds raw scores to 0.005 bands before class percentile ranking.
 A raw gain alone does not establish a leaderboard-score gain. User-reported
-v5 feedback is in `results/leaderboard_v5.json`: fourth of 21 teams, C2
-0.3724, pairwise held-out 0.4333, live score 0.4695/0.65, 7/7 conformance
-and 10/10 correctness. V6's C2/live score still requires staff evaluation.
+v6 feedback is in `results/leaderboard_v6.json`: eighth of 24 teams, C2
+0.3747, pairwise held-out 0.4367, live score 0.4253/0.65, 7/7 conformance
+and 10/10 correctness. Relative to v5, held-out pairwise improves from
+0.4333 and C2 from 0.3724. Class composition and competitors changed;
+the two snapshots' live scores do not isolate the model's improvement.
+C1 remains unevaluated until after the deadline.
 
 All **96 tests** pass locally and on the college server. Actual frozen
 DEV scoring uses the submission interface and meets per-call limits.

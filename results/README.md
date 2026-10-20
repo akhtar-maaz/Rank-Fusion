@@ -13,7 +13,7 @@
 - `execution.json`: complete PBS outcomes, resource use, preflight and checks.
 - `robustness_seed_v6.json`: post-selection perturbation sensitivity check,
   without changing the artifact; skipped when the v5 tree is retained.
-- `leaderboard_v1.json` through `leaderboard_v5.json`: user-reported aggregate
+- `leaderboard_v1.json` through `leaderboard_v6.json`: user-reported aggregate
   feedback, never hidden examples or relevance labels.
 - Versioned records through `_v5` preserve earlier checkpoints and sweeps.
 - `recipe_selection_v3.json`, `recipe_domains_v3/`, `recipe_budget_v3.json`

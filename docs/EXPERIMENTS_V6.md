@@ -86,4 +86,14 @@ True; selected `longer_warmup` with five-fold mean
 before full fitting and final DEV evaluation. All 96 tests pass locally
 and on the college server; promoted artifacts reproduce byte-identically.
 Pointwise, fusion and the C1 recipe preserve v5 hashes. Formal report
-writing remains deferred. V6 still needs staff C2/held-out/live evaluation.
+writing remains deferred.
+
+## User-reported staff evaluation, 2026-10-20
+
+Submission 173 passes 7/7 conformance and 10/10 correctness. Displayed
+held-out pairwise improves from v5's 0.4333 to 0.4367; C2 from 0.3724 to
+0.3747; LTR from 0.4976 to 0.4979. Its rank is eighth of 24 and live score
+0.4253/0.65. These live scores compare different class snapshots, so the
+fall from v5's fourth of 21 does not show a raw-metric regression. The full
+aggregate snapshot and final successful GitHub check are recorded in
+`results/leaderboard_v6.json`. No hidden examples or labels were accessed.

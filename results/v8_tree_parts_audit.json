@@ -1,0 +1,207 @@
+{
+  "audit": "PASS",
+  "scope": "Four completed TRAIN-only tree CV part reports; selection/promotion and native OOF checks are separate",
+  "dataset": {
+    "reported_rows": 723412,
+    "reported_queries": 6000,
+    "reported_train": "data/train/train.txt"
+  },
+  "protocol_commit": "add280f791fa7324f48af08348cf36fa95663895",
+  "workflow_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+  "complete_candidates": 4,
+  "complete_checkpoints": 12,
+  "folds_per_checkpoint": 5,
+  "split": {
+    "kind": "query grouped",
+    "folds": 5,
+    "seed": 0,
+    "evidence": "byte-identical frozen CV source; no per-fold index hashes in part-report schema"
+  },
+  "partial_means_used": false,
+  "maximum_aggregate_absolute_error": 2.220446049250313e-16,
+  "source_checks": {
+    "configs/v8_candidates.json": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "6bb8d2a91cccd4b6b6a7a21fccda3196996781c6c92ee3b01a8b9458b3d56096",
+      "matches_frozen_source": true
+    },
+    "docs/EXPERIMENTS_V8.md": {
+      "frozen_commit": "add280f791fa7324f48af08348cf36fa95663895",
+      "sha256": "67046a5c8b92ca78113c4cf418dc9f781d15bb7cb0509fe436cd5ad43c20b5b2",
+      "matches_frozen_source": true
+    },
+    "scripts/cv_augmented_lambdamart.py": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "57effc5f06449eb028308880102b98c04dbe8b05f62062381d2ef1bbdba05dfa",
+      "matches_frozen_source": true
+    },
+    "scripts/augmentation.py": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "3016b39c693ff738694e2b3d692526d307b3faef9ba3194809c71fe6e24b56ff",
+      "matches_frozen_source": true
+    },
+    "scripts/lambdamart_utils.py": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "ff201ea6c2b8dae7720a1eaa8c82f1c5601c6f4b72d4b82bba47016fe0f97785",
+      "matches_frozen_source": true
+    },
+    "scripts/robustness.py": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "8ceb4dfd4be49650507f58a5757992d1cacea32c40d7a2127461c9b5c1d7e969",
+      "matches_frozen_source": true
+    },
+    "submission/features.py": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "fb1327b0e913e7ab8ac0ef9fc98873977191ae548a3dc5971dc2ddc0823e3ad5",
+      "matches_frozen_source": true
+    },
+    "harness/cv.py": {
+      "frozen_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+      "sha256": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+      "matches_frozen_source": true
+    }
+  },
+  "candidates": [
+    {
+      "candidate": 0,
+      "name": "cross_aug_extra",
+      "report": "results/lambdamart_v8_parts/part_0.json",
+      "report_sha256": "6f0a3d6325a419df5741941e9f50eec06bf6ae9bc3c6e87ab06865feb86ab8f8",
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 200,
+          "folds": 5,
+          "clean_mean": 0.4786495145689327,
+          "diagnostic_mean": 0.46938123855470887,
+          "train_mean": 0.553951489542259,
+          "selection_score": 0.4740153765618208
+        },
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4823753871195035,
+          "diagnostic_mean": 0.47232113237796786,
+          "train_mean": 0.6076508715540384,
+          "selection_score": 0.4773482597487357
+        },
+        {
+          "trees": 600,
+          "folds": 5,
+          "clean_mean": 0.4832515624216477,
+          "diagnostic_mean": 0.472868553481743,
+          "train_mean": 0.6459492859120396,
+          "selection_score": 0.47806005795169537
+        }
+      ],
+      "seconds": 2014.7219723071903
+    },
+    {
+      "candidate": 1,
+      "name": "query_bagging_extra",
+      "report": "results/lambdamart_v8_parts/part_1.json",
+      "report_sha256": "db7ef1a5e5805e03ec07d746a5784ff4503ba6ffa3c964cce29c453813f153b7",
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 200,
+          "folds": 5,
+          "clean_mean": 0.4768479365927766,
+          "diagnostic_mean": 0.4685391487785567,
+          "train_mean": 0.5418642766559066,
+          "selection_score": 0.47269354268566666
+        },
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4816049940890984,
+          "diagnostic_mean": 0.4727744153138862,
+          "train_mean": 0.5909714386508016,
+          "selection_score": 0.4771897047014923
+        },
+        {
+          "trees": 600,
+          "folds": 5,
+          "clean_mean": 0.48289004287904513,
+          "diagnostic_mean": 0.47417364187130095,
+          "train_mean": 0.6282173448995658,
+          "selection_score": 0.47853184237517304
+        }
+      ],
+      "seconds": 1976.857088683173
+    },
+    {
+      "candidate": 2,
+      "name": "node_subsample_extra",
+      "report": "results/lambdamart_v8_parts/part_2.json",
+      "report_sha256": "78619459acb60725005a0bc1aac94dbf2af0326335a257efe6db721d638696dc",
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 200,
+          "folds": 5,
+          "clean_mean": 0.477516378306482,
+          "diagnostic_mean": 0.46859846774711117,
+          "train_mean": 0.5482490357735503,
+          "selection_score": 0.4730574230267966
+        },
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4807425618761833,
+          "diagnostic_mean": 0.4713303617144529,
+          "train_mean": 0.5988006350554369,
+          "selection_score": 0.4760364617953181
+        },
+        {
+          "trees": 600,
+          "folds": 5,
+          "clean_mean": 0.48184754234270616,
+          "diagnostic_mean": 0.4720429456395947,
+          "train_mean": 0.6371954104244104,
+          "selection_score": 0.47694524399115046
+        }
+      ],
+      "seconds": 2018.6310534663498
+    },
+    {
+      "candidate": 3,
+      "name": "regularized_extra",
+      "report": "results/lambdamart_v8_parts/part_3.json",
+      "report_sha256": "df07d95a3609d57f2ec69d055e08cee4c35758d3392f842ea2c67fbfaeda510b",
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 200,
+          "folds": 5,
+          "clean_mean": 0.475065773427063,
+          "diagnostic_mean": 0.46637040417649195,
+          "train_mean": 0.517152174396904,
+          "selection_score": 0.47071808880177746
+        },
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.48022299461010026,
+          "diagnostic_mean": 0.47054739532358364,
+          "train_mean": 0.551818998338448,
+          "selection_score": 0.47538519496684195
+        },
+        {
+          "trees": 600,
+          "folds": 5,
+          "clean_mean": 0.4816146017835695,
+          "diagnostic_mean": 0.4714893386561003,
+          "train_mean": 0.5783645869216357,
+          "selection_score": 0.4765519702198349
+        }
+      ],
+      "seconds": 1760.7316237725317
+    }
+  ],
+  "limitations": [
+    "Part reports record dataset dimensions/input path, but not TRAIN-file SHA256 or split-index/source fingerprints. Frozen source identity was checked separately.",
+    "No real-data features/labels/predictions were loaded or scores re-evaluated; numerical metrics were independently recomputed from the five stored fold metrics.",
+    "OOF archives and trained fold models were not downloaded for this audit; the selector must separately verify exact cached control and exported native predictions."
+  ]
+}

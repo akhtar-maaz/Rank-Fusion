@@ -1,0 +1,161 @@
+{
+  "status": "pass",
+  "train_only": true,
+  "selection_file": "runs/neural_selection_v8.json",
+  "selection_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+  "control_reference_sha256": "c4f85cbdeda4746db9ba5d49503bd4a17a5b9ae152d5bb1da1614806f73343c4",
+  "source_identity_matches": {
+    "submission/pointwise_pairwise.py": true,
+    "submission/data.py": true,
+    "scripts/cv_pairwise_ensemble_v8.py": true,
+    "scripts/cv_pairwise_ensemble_v7.py": true,
+    "scripts/cv_pairwise_v6.py": true,
+    "scripts/pairwise_ensemble.py": true,
+    "harness/neural.py": true,
+    "harness/preprocessing.py": true,
+    "harness/cv.py": true,
+    "harness/metrics.py": true
+  },
+  "source_identity_all_match": true,
+  "full_fold_count": 5,
+  "candidate_count": 5,
+  "distinct_fit_count": 45,
+  "control_members": [
+    {
+      "fold": 0,
+      "seed": 0,
+      "artifact_sha256": "d0abe16cc55d4e01189938a053343497c67435c06f3727f454743aa930bd20ad",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 0,
+      "seed": 41,
+      "artifact_sha256": "fa98e51bd3e6116ff5c3ba34826e7cacd18933cff285463c2b411b9c15423684",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 1,
+      "seed": 0,
+      "artifact_sha256": "a17aacf77bcb563cf2f03664ca332588a37375771961299460bd18b8d092bb1b",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 1,
+      "seed": 41,
+      "artifact_sha256": "4cc259c851c5655b44622baff64ef5d68188b54d0946f532f544fc9188635037",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 2,
+      "seed": 0,
+      "artifact_sha256": "3af785d370fc82761ee70d2b6f00a0953a1f4c8ee83e0432fe2e34dea9b0f70f",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 2,
+      "seed": 41,
+      "artifact_sha256": "6b15dbc40b482f0e62df2a68e4e6e00841388aef272dbaf0727d8d90af1b7ae9",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 3,
+      "seed": 0,
+      "artifact_sha256": "7fd2b89d7ba12c79a7710c93bfb91588c2d9c7c73a79ad851f0d071a52315bb4",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 3,
+      "seed": 41,
+      "artifact_sha256": "760f0eceb2a28fbdfbeda7d0f1ef7def888cde1a6fa013b169f2b06c7bd2b3f1",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 4,
+      "seed": 0,
+      "artifact_sha256": "460fdbb5d364cf542774ba28fd85a14e271c8a9ddfb1f93e509315d9bf0df588",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    },
+    {
+      "fold": 4,
+      "seed": 41,
+      "artifact_sha256": "736b1b168608fbc314ca7d35f71d455285261c90bf96b791d5104f8b710a79db",
+      "history_exact": true,
+      "artifact_sha256_exact": true,
+      "remote_state_and_statistics_proof": true
+    }
+  ],
+  "full_control_metrics_exact": true,
+  "selected_name": "warmup20_seeds_0_41",
+  "selected_train_mean": 0.4735372691059637,
+  "selected_validation_mean": 0.4403709633581225,
+  "selected_validation_std": 0.008061838146326064,
+  "selected_validation_train_ratio": 0.9299605164964965,
+  "control_validation_mean": 0.4379987623335125,
+  "mean_gain": 0.002372201024609999,
+  "improved_folds": 4,
+  "fold_validation_gains": [
+    0.002072470624250866,
+    0.005282378259768183,
+    -0.0011426847636208937,
+    0.0016688730695360032,
+    0.00397996793311578
+  ],
+  "frozen_selection_replay_exact": true,
+  "minimum_gain": 0.001,
+  "minimum_fold_wins": 3,
+  "compilation": {
+    "score_atol": 2e-06,
+    "score_rtol": 2e-05,
+    "remote_fits_enforced_allclose": true,
+    "maximum_absolute_score_error": 1.52587890625e-05,
+    "maximum_absolute_ndcg_difference": 3.21162014103038e-05,
+    "selected_maximum_absolute_score_error": 1.52587890625e-05,
+    "selected_maximum_absolute_ndcg_difference": 3.21162014103038e-05,
+    "selected_validation_ndcg_differences": [
+      {
+        "fold": 0,
+        "exported_minus_arithmetic": 0.0
+      },
+      {
+        "fold": 1,
+        "exported_minus_arithmetic": 0.0
+      },
+      {
+        "fold": 2,
+        "exported_minus_arithmetic": 3.21162014103038e-05
+      },
+      {
+        "fold": 3,
+        "exported_minus_arithmetic": 0.0
+      },
+      {
+        "fold": 4,
+        "exported_minus_arithmetic": 0.0
+      }
+    ],
+    "selection_uses_exported_rankings": true
+  },
+  "limitations": [
+    "Local audit checks downloaded metadata and archived control hashes; current Linux fold artifacts are not downloaded here. Recorded remote state/statistics checks were cross-checked, not independently rerun against local model bytes.",
+    "No DEV data or performance was opened or used; no fitting or source changes were performed."
+  ],
+  "issues": []
+}

@@ -1,0 +1,69 @@
+{
+  "frozen_at_utc": "2026-10-20T14:06:59.335799+00:00",
+  "protocol_commit": "add280f791fa7324f48af08348cf36fa95663895",
+  "workflow_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+  "baseline_commit": "0f51d772bb4c357fd46354e45df3901f84f9caac",
+  "selection_split": "released Fold1 TRAIN only",
+  "fresh_v8_dev_results_downloaded_or_inspected": false,
+  "fitting_and_stopping": "fixed TRAIN-only folds and epochs/checkpoints",
+  "tree": {
+    "promoted": false,
+    "selected": "cached_v7_control",
+    "selected_trees": 3800,
+    "promotion_gates": {
+      "candidate": "v7_plus_1_600_weight0.25",
+      "mixture_gain": 0.0007200086577441311,
+      "diagnostic_gain": 0.0008967135515081104,
+      "improved_folds": 4,
+      "fold_mixture_gains": [
+        {
+          "fold": 0,
+          "mixture_gain": 0.0012751069468022735
+        },
+        {
+          "fold": 1,
+          "mixture_gain": 0.0008826205515980456
+        },
+        {
+          "fold": 2,
+          "mixture_gain": 0.001105218687595666
+        },
+        {
+          "fold": 3,
+          "mixture_gain": -0.00012018149972709002
+        },
+        {
+          "fold": 4,
+          "mixture_gain": 0.0004572786024519271
+        }
+      ],
+      "mixture_passed": true,
+      "diagnostic_passed": false,
+      "paired_folds_passed": true,
+      "passed": false
+    },
+    "decision": "retain exact v7.1 tree artifact; diagnostic improvement below frozen threshold; no runner-up search"
+  },
+  "pairwise": {
+    "promoted": true,
+    "selected_index": 2,
+    "selected": "warmup20_seeds_0_41",
+    "validation_mean": 0.4403709633581225,
+    "control_validation_mean": 0.4379987623335125,
+    "mean_gain": 0.002372201024609999,
+    "improved_folds": 4,
+    "fresh_control_reproduced": true
+  },
+  "sha256": {
+    "results/lambdamart_cv_v8.json": "865fa59a0025e19c164cded88feb87e40a4dd5b0256dad08f4a62ad5d0af3638",
+    "results/neural_selection_v8.json": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+    "results/v8_tree_parts_audit.json": "710635f4c6c252f1fc277b79bb7ebdfa53363522b48186b9f074f61d8e8d7c1e",
+    "results/v8_tree_selection_audit.json": "f0672a3c3cc555086cd5059544ce11809f28e33910ddef1d8b1b2e99192abc6c",
+    "results/v8_neural_selection_audit.json": "7070ae5daa890d57ca679925062585dfbea9854eb37897ac6cbefe2f99b3d646",
+    "results/lambdamart_v8_parts/part_0.json": "6f0a3d6325a419df5741941e9f50eec06bf6ae9bc3c6e87ab06865feb86ab8f8",
+    "results/lambdamart_v8_parts/part_1.json": "db7ef1a5e5805e03ec07d746a5784ff4503ba6ffa3c964cce29c453813f153b7",
+    "results/lambdamart_v8_parts/part_2.json": "78619459acb60725005a0bc1aac94dbf2af0326335a257efe6db721d638696dc",
+    "results/lambdamart_v8_parts/part_3.json": "df07d95a3609d57f2ec69d055e08cee4c35758d3392f842ea2c67fbfaeda510b"
+  },
+  "remaining": "Full TRAIN fitting, independent reproduction, final frozen DEV evaluation and local packaging verification. Formal report deferred."
+}

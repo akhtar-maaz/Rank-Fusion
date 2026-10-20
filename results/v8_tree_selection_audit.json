@@ -1,0 +1,75 @@
+{
+  "audit": "PASS",
+  "decision": "retain exact cached_v7_control; frozen diagnostic promotion gate fails",
+  "complete_settings": 49,
+  "complete_folds_per_setting": 5,
+  "maximum_aggregate_absolute_error": 2.220446049250313e-16,
+  "exact_control_members_and_all_fold_metrics": true,
+  "all_frozen_sources_and_weights": true,
+  "highest_eligible_candidate": "v7_plus_1_600_weight0.25",
+  "eligible_settings": 22,
+  "best_clean_mean": 0.4881032753556104,
+  "proposed_clean": 0.4881032753556104,
+  "proposed_diagnostic": 0.4779217032005983,
+  "proposed_mixture": 0.48301248927810436,
+  "mixture_gain": 0.0007200086577441311,
+  "diagnostic_gain": 0.0008967135515081104,
+  "diagnostic_threshold": 0.001,
+  "diagnostic_shortfall": 0.00010328644849188964,
+  "improved_folds": 4,
+  "promotion_gates": {
+    "candidate": "v7_plus_1_600_weight0.25",
+    "mixture_gain": 0.0007200086577441311,
+    "diagnostic_gain": 0.0008967135515081104,
+    "improved_folds": 4,
+    "fold_mixture_gains": [
+      {
+        "fold": 0,
+        "mixture_gain": 0.0012751069468022735
+      },
+      {
+        "fold": 1,
+        "mixture_gain": 0.0008826205515980456
+      },
+      {
+        "fold": 2,
+        "mixture_gain": 0.001105218687595666
+      },
+      {
+        "fold": 3,
+        "mixture_gain": -0.00012018149972709002
+      },
+      {
+        "fold": 4,
+        "mixture_gain": 0.0004572786024519271
+      }
+    ],
+    "mixture_passed": true,
+    "diagnostic_passed": false,
+    "paired_folds_passed": true,
+    "passed": false
+  },
+  "selected": "cached_v7_control",
+  "selected_trees": 3800,
+  "promoted": false,
+  "runner_up_search_performed": false,
+  "reported_native_equivalence": {
+    "folds": 5,
+    "maximum_absolute_error": 2.398081733190338e-14,
+    "ndcg_identical_to_explicit_and_control": true
+  },
+  "workflow_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+  "source_sha256": {
+    "configs/v8_candidates.json": "6bb8d2a91cccd4b6b6a7a21fccda3196996781c6c92ee3b01a8b9458b3d56096",
+    "scripts/select_eighth_round.py": "0976cd75e3c89334a1f184595b83667e9a751d78407b07c9d972f0f4b22c8600",
+    "scripts/select_seventh_round.py": "056e0343b113ab1b28b95cae978ea77516bd93ae6c00b6727f9b1192c506b243",
+    "scripts/select_fifth_round.py": "51c80c89617fb6fa025493134bc2a3e099bcdc2accdc99fa70ae174b05424b43",
+    "scripts/ensemble_comparison.py": "c823bec1928847b1cc07ac787725e5f8961b2e50db0d7a401a690812fb220b17"
+  },
+  "selection_sha256": "865fa59a0025e19c164cded88feb87e40a4dd5b0256dad08f4a62ad5d0af3638",
+  "baseline_configuration_sha256": "b13c4139916acd2762edc0a409bc5ea6eaf61b0f953e57af4b29839d50ebec11",
+  "limitations": [
+    "Audit recomputes aggregates and frozen selection from saved TRAIN-fold metrics; no real features/labels/predictions, DEV files or model artifacts were inspected.",
+    "Native equivalence is verified against the five recorded loaded/explicit nDCGs and error bounds; this audit does not reload the trained fold boosters."
+  ]
+}

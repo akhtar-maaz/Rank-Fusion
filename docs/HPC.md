@@ -190,3 +190,19 @@ python scripts/fit_pairwise_v6.py --train data/train \
 This uses ten supervised MSE warm-up epochs followed by two weighted
 RankNet epochs; it does not repeat selection or load DEV. Earlier neural
 commands above describe the archived v2 checkpoint.
+
+## Seventh-round workflow
+
+`hpc_cv_v7.pbs` runs four scheduled tree candidates; `hpc_select_v7.pbs`
+checks complete folds, exact v6 control and all promotion gates.
+One `hpc_neural_v7.pbs` job fits the three seeds within each of five TRAIN
+folds and selects among the three frozen neural candidates. This is not
+a neural array or a separate neural-selection job. Primary/independent jobs
+fresh-fit promoted configurations and preserve exact v6 bytes for either
+fallback. Only the primary job evaluates DEV after both choices are frozen.
+The seed job is descriptive and the verify job checks reproduction,
+protected hashes, pristine loading and the full smoke suite.
+`results/execution.json` records ten actual jobs (four array children and
+six single jobs), saved PBS requests and actual CPU/memory/walltime per job.
+Tree fitting requests 12 GB; neural CV, selection and verification use their
+saved per-workflow requests. Heavy fits run only on scheduled compute nodes.

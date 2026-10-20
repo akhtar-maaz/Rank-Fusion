@@ -1,0 +1,125 @@
+{
+  "arguments": {
+    "train": "data/train/train.txt",
+    "selection": "results/lambdamart_cv_v7.json",
+    "out": "results/robustness_seed_v7.json",
+    "seed": 391729,
+    "control_key": "v6_control",
+    "control_label": "v6",
+    "selected_label": "v7"
+  },
+  "purpose": "Post-selection TRAIN-fold stress check; does not choose or change the artifact",
+  "rows": 723412,
+  "queries": 6000,
+  "selection_seed": 1729,
+  "diagnostic_seed": 391729,
+  "scenarios": [
+    "affine",
+    "feature_dropout",
+    "noise"
+  ],
+  "scenario_means": {
+    "v6": {
+      "affine": 0.4751031276842186,
+      "feature_dropout": 0.47695526813961975,
+      "noise": 0.473840677904145
+    },
+    "v7": {
+      "affine": 0.4767872917983122,
+      "feature_dropout": 0.4772745043492832,
+      "noise": 0.4751929907164548
+    }
+  },
+  "diagnostic_means": {
+    "v6": 0.4752996912426611,
+    "v7": 0.4764182622880167
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "scenarios": {
+        "affine": {
+          "v6": 0.4924500017835279,
+          "v7": 0.49331762102655696
+        },
+        "feature_dropout": {
+          "v6": 0.49142377140847554,
+          "v7": 0.491280136475978
+        },
+        "noise": {
+          "v6": 0.4890316987318466,
+          "v7": 0.4895896659403064
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "scenarios": {
+        "affine": {
+          "v6": 0.4668371422846063,
+          "v7": 0.46929207264941186
+        },
+        "feature_dropout": {
+          "v6": 0.46917530196872737,
+          "v7": 0.47027190458363494
+        },
+        "noise": {
+          "v6": 0.4697108651741708,
+          "v7": 0.4711215678340431
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "scenarios": {
+        "affine": {
+          "v6": 0.47251921097696276,
+          "v7": 0.4741300217004776
+        },
+        "feature_dropout": {
+          "v6": 0.4762387405210911,
+          "v7": 0.4763773234757218
+        },
+        "noise": {
+          "v6": 0.46937673449621364,
+          "v7": 0.47179996273865443
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "scenarios": {
+        "affine": {
+          "v6": 0.46947361574423224,
+          "v7": 0.47091824999717347
+        },
+        "feature_dropout": {
+          "v6": 0.47153890922454555,
+          "v7": 0.47177206377761327
+        },
+        "noise": {
+          "v6": 0.46818197122149335,
+          "v7": 0.46934126521980396
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "scenarios": {
+        "affine": {
+          "v6": 0.47423566763176345,
+          "v7": 0.4762784936179414
+        },
+        "feature_dropout": {
+          "v6": 0.47639961757525917,
+          "v7": 0.47667109343346786
+        },
+        "noise": {
+          "v6": 0.4729021198970008,
+          "v7": 0.47411249184946636
+        }
+      }
+    }
+  ],
+  "seconds": 811.7015427015722
+}

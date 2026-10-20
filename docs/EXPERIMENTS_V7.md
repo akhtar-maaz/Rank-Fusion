@@ -105,3 +105,19 @@ tree jobs request 12 GB and neural jobs 8 GB. Record actual resources,
 runtime exclusions and outcomes. Preserve v6 even if v7 is promoted.
 
 Parameter meanings follow the [official LightGBM 4.6 documentation](https://lightgbm.readthedocs.io/en/v4.6.0/Parameters.html).
+
+## Completed outcome
+
+All reported settings contain five complete folds. Tree promotion:
+True; selected `v6_plus_2_400_weight0.25`, clean mean
+0.487559972, diagnostic mean 0.477024990,
+mixture 0.482292481. The highest eligible candidate was `v6_plus_2_400_weight0.25`: mixture gain +0.000805618, diagnostic gain +0.001394126, and positive paired mixture gains in 5/5 folds. Gate outcomes (mixture/diagnostic/paired) are True/True/True.
+
+Independent pairwise promotion: True; selected `pairwise_seeds_0_41`,
+five-fold mean 0.437998762, control
+0.435046121. Shipped architecture is 136→256→128→1.
+Choices were frozen using TRAIN before final fits and the only DEV evaluation.
+All 112 tests pass locally and on the college server; promoted artifacts
+reproduce byte-identically and retained artifacts preserve v6 hashes.
+Pointwise, fusion and the C1 recipe retain v6 hashes. Formal report remains
+deferred. Staff held-out/C2 evaluation is still pending for v7.

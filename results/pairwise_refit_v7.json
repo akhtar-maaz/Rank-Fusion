@@ -1,0 +1,177 @@
+{
+  "candidate": {
+    "name": "pairwise_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 10,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 10,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  },
+  "promoted": true,
+  "arguments": {
+    "mode": "fit",
+    "train": "data/train/train.txt",
+    "specs": "configs/v7_neural_candidates.json",
+    "fold": null,
+    "cache_dir": "runs/neural_v7/final_cache",
+    "out_dir": "runs/neural_v7",
+    "control_report": "results/neural_selection_v6.json",
+    "selection": "results/neural_selection_v7.json",
+    "baseline": "runs/baseline_v6/pairwise_model.pt",
+    "out": "submission/pairwise_model.pt",
+    "history_out": "results/pairwise_refit_v7.json",
+    "fresh": true
+  },
+  "trained_on": "TRAIN only",
+  "standardizers_identical": true,
+  "members": [
+    {
+      "specification": {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 10,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      "identity": {
+        "context": {
+          "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+          "rows": 723412,
+          "queries": 6000,
+          "features": 136,
+          "split": "full TRAIN"
+        },
+        "specification": {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 10,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.3899565580798221,
+          "train_ndcg@10": 0.4549908764242085
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.36842673928697217,
+          "train_ndcg@10": 0.4605747435290237
+        }
+      ],
+      "seconds": 51.28184543736279,
+      "artifact_sha256": "a6fd32d4f918964b0d0e0ebb506b9ea55ae47e2a6969cfc474c5971865303d14",
+      "artifact": "runs/neural_v7/final_cache/full/seed_0.pt"
+    },
+    {
+      "specification": {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 10,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      },
+      "identity": {
+        "context": {
+          "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+          "rows": 723412,
+          "queries": 6000,
+          "features": 136,
+          "split": "full TRAIN"
+        },
+        "specification": {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 10,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.388424333853666,
+          "train_ndcg@10": 0.4530962085318739
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.3724340646501681,
+          "train_ndcg@10": 0.4561994499972818
+        }
+      ],
+      "seconds": 22.800780225545168,
+      "artifact_sha256": "595fb446751c63f30d5e4fa46f33e2c67551547f9be7f931967dc65827076678",
+      "artifact": "runs/neural_v7/final_cache/full/seed_41.pt"
+    }
+  ],
+  "exported_config": {
+    "n_features": 136,
+    "hidden": [
+      256,
+      128
+    ]
+  },
+  "compilation": {
+    "exported_ndcg_10": 0.46158730605746306,
+    "arithmetic_average_ndcg_10": 0.46158730605746306,
+    "maximum_absolute_score_error": 1.430511474609375e-06,
+    "mean_absolute_score_error": 7.31231457499491e-08,
+    "score_atol": 2e-06,
+    "score_rtol": 2e-05
+  },
+  "artifact_sha256": "db43ac75305185a7688e80be19d391825407bdfb67177a391c15c2a98647301d",
+  "seconds": 139.43092956766486
+}

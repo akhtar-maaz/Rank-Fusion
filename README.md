@@ -26,13 +26,13 @@ user-provided aggregate feedback only.
 | Pairwise nDCG@10 | 0.447643 | 0.449440 |
 
 Track B rounds raw scores to 0.005 bands before class percentile ranking.
-The latest user-reported evaluation is v7 submission 220: sixth of 27,
-held-out pairwise 0.4383, C2 0.3790, live score 0.4416/0.65, 7/7 conformance
-and 9/10 correctness (`results/leaderboard_v7.json`). Compared with v6,
+The latest user-reported evaluation is v7.1 submission 243: seventh of 29
+scored teams, held-out pairwise 0.4383, C2 0.3790, live score 0.4493/0.65,
+7/7 conformance and **10/10 correctness** (`results/leaderboard_v7_1.json`).
+One additional team is queued. Compared with v6,
 held-out pairwise increased by 0.0016 and C2 by 0.0043. Class membership and
 competitors also changed, so the live-score difference does not isolate the
-model's improvement. The failed seeded-training check is addressed below;
-staff must rerun it for v7.1.
+model's improvement. The v7.1 staff recheck restored the seeded-training check.
 
 The v7 training run passed **112 tests** locally and on the college server.
 The v7.1 source passes **120 tests** locally. Final artifacts
@@ -43,7 +43,8 @@ decisions are independent. See `results/execution.json` and reproducibility reco
 
 ## Seeded training correction in v7.1
 
-Submission 220 reported different weights from two same-seed training runs.
+Submission 220 reported different weights from two same-seed training runs;
+submission 243 confirms all ten correctness checks pass after the correction.
 Controlled overlapping fits reproduced a shared PyTorch RNG interference
 failure; the staff worker's exact execution pattern was not provided.
 Each fit now initializes its linear weights and biases with a private CPU

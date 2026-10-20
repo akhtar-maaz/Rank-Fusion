@@ -374,5 +374,11 @@
   "data_use": "Synthetic tests only for this correction; no real-data refitting, tuning or repeated DEV evaluation",
   "original_training_evidence": "results/execution.json",
   "official_reference": "https://docs.pytorch.org/docs/2.8/notes/randomness.html",
-  "staff_correctness_after_correction": "Pending user upload"
+  "staff_correctness_after_correction": {
+    "submission": 243,
+    "passed": 10,
+    "total": 10,
+    "feedback": "results/leaderboard_v7_1.json",
+    "model_scores_unchanged": true
+  }
 }

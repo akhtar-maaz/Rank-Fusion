@@ -4,8 +4,8 @@ V7.1 corrects seeded neural training while retaining every v7 model artifact.
 Each fit uses a private initialization generator and deterministic four-thread
 CPU execution. Four interference regressions fail the old source and pass
 the correction; eighteen synthetic comparisons preserve the original
-four-thread fit weights, histories and standardizers exactly. Submission 220's
-9/10 staff correctness result still requires a new staff run. Evidence:
+four-thread fit weights, histories and standardizers exactly. Submission 243
+restored 10/10 staff correctness, with model scores unchanged. Evidence:
 `results/reproducibility_fix_v7_1.json` and `results/leaderboard_v7.json`.
 
 ## Training-data declaration

@@ -1,0 +1,334 @@
+{
+  "trained_on": "TRAIN",
+  "selected_on": {
+    "pointwise": "TRAIN internal fold 0",
+    "pairwise": "Five-fold fixed-epoch TRAIN assessment; exported plain-MLP seed average"
+  },
+  "model_arguments": {
+    "pointwise": {
+      "kind": "both",
+      "train": "data/train",
+      "dev": null,
+      "folds": 5,
+      "threads": 4,
+      "history_out": "results/neural_history.json",
+      "out_dir": "submission",
+      "seed": 0,
+      "epochs": 30,
+      "batch_size": 1024,
+      "lr": 0.001,
+      "pairs_per_query": 300,
+      "patience": 5,
+      "hidden": [
+        128,
+        64
+      ]
+    },
+    "pairwise": {
+      "name": "pairwise_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 10,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 10,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  "models": {
+    "pointwise": {
+      "selection_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5850352918385543,
+          "dev_ndcg@10": 0.42060364218902957
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.566633735075623,
+          "dev_ndcg@10": 0.42141361653735476
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5626446417909579,
+          "dev_ndcg@10": 0.43159335052507564
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5588699429367097,
+          "dev_ndcg@10": 0.43199960420160255
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5562506278824528,
+          "dev_ndcg@10": 0.4346806988826814
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5538856893358579,
+          "dev_ndcg@10": 0.4388580507126731
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.5520203707419329,
+          "dev_ndcg@10": 0.4309611348238647
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.5509711463126697,
+          "dev_ndcg@10": 0.43766941732972453
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.5490033656927967,
+          "dev_ndcg@10": 0.4334308154769612
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.5474550297231306,
+          "dev_ndcg@10": 0.43420727456629266
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.5457756447673711,
+          "dev_ndcg@10": 0.4381768321086424
+        }
+      ],
+      "best_epoch": 6,
+      "full_train_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5880185692753797,
+          "train_ndcg@10": 0.4139551468665075
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5652347868852893,
+          "train_ndcg@10": 0.4247777944118602
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5603891914186389,
+          "train_ndcg@10": 0.4239434667854073
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5569885109877319,
+          "train_ndcg@10": 0.43160233612693727
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5544237844573018,
+          "train_ndcg@10": 0.43175440948340754
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5522902624414667,
+          "train_ndcg@10": 0.43604863750280043
+        }
+      ]
+    },
+    "pairwise": {
+      "fixed_epochs": true,
+      "candidate": {
+        "name": "pairwise_seeds_0_41",
+        "members": [
+          {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 10,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 10,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          }
+        ]
+      },
+      "selection_record": "results/neural_selection_v7.json",
+      "full_train_members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 10,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "split": "full TRAIN"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 10,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3899565580798221,
+              "train_ndcg@10": 0.4549908764242085
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.36842673928697217,
+              "train_ndcg@10": 0.4605747435290237
+            }
+          ],
+          "seconds": 51.28184543736279,
+          "artifact_sha256": "a6fd32d4f918964b0d0e0ebb506b9ea55ae47e2a6969cfc474c5971865303d14",
+          "artifact": "runs/neural_v7/final_cache/full/seed_0.pt"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 10,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "split": "full TRAIN"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 10,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.388424333853666,
+              "train_ndcg@10": 0.4530962085318739
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3724340646501681,
+              "train_ndcg@10": 0.4561994499972818
+            }
+          ],
+          "seconds": 22.800780225545168,
+          "artifact_sha256": "595fb446751c63f30d5e4fa46f33e2c67551547f9be7f931967dc65827076678",
+          "artifact": "runs/neural_v7/final_cache/full/seed_41.pt"
+        }
+      ],
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "compilation": {
+        "exported_ndcg_10": 0.46158730605746306,
+        "arithmetic_average_ndcg_10": 0.46158730605746306,
+        "maximum_absolute_score_error": 1.430511474609375e-06,
+        "mean_absolute_score_error": 7.31231457499491e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      }
+    }
+  },
+  "hidden_by_model": {
+    "pointwise": [
+      128,
+      64
+    ],
+    "pairwise": [
+      256,
+      128
+    ]
+  },
+  "seeds_by_model": {
+    "pointwise": [
+      0
+    ],
+    "pairwise": [
+      0,
+      41
+    ]
+  }
+}

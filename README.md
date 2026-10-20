@@ -1,7 +1,7 @@
 # A3 — Rank Fusion and Learning to Rank
 
 Hand-written fusion, pointwise MSE and pairwise RankNet, with an offline-trained
-LightGBM LambdaMART entry and adaptive transfer recipe. Current submission: v7.
+LightGBM LambdaMART entry and adaptive transfer recipe. Current submission: v7.1.
 Formal report writing remains deferred.
 
 ## Results and data declaration
@@ -26,16 +26,36 @@ user-provided aggregate feedback only.
 | Pairwise nDCG@10 | 0.447643 | 0.449440 |
 
 Track B rounds raw scores to 0.005 bands before class percentile ranking.
-The latest user-reported evaluation is v6 submission 173: eighth of 24,
-held-out pairwise 0.4367, C2 0.3747, live score 0.4253/0.65, 7/7 conformance
-and 10/10 correctness (`results/leaderboard_v6.json`). V7 still requires
-staff held-out/C2 evaluation; local gains do not establish a new rank.
+The latest user-reported evaluation is v7 submission 220: sixth of 27,
+held-out pairwise 0.4383, C2 0.3790, live score 0.4416/0.65, 7/7 conformance
+and 9/10 correctness (`results/leaderboard_v7.json`). Compared with v6,
+held-out pairwise increased by 0.0016 and C2 by 0.0043. Class membership and
+competitors also changed, so the live-score difference does not isolate the
+model's improvement. The failed seeded-training check is addressed below;
+staff must rerun it for v7.1.
 
-All **112 tests** pass locally and on the college server. Final artifacts
+The v7 training run passed **112 tests** locally and on the college server.
+The v7.1 source passes **120 tests** locally. Final artifacts
 match the HPC hashes and load through the pristine staff neural loader under
 Python 3.12. Promoted artifacts have byte-identical independent fresh fits;
 each retained artifact preserves the exact v6 hash. Tree and neural promotion
 decisions are independent. See `results/execution.json` and reproducibility records.
+
+## Seeded training correction in v7.1
+
+Submission 220 reported different weights from two same-seed training runs.
+Controlled overlapping fits reproduced a shared PyTorch RNG interference
+failure; the staff worker's exact execution pattern was not provided.
+Each fit now initializes its linear weights and biases with a private CPU
+generator, preserving the original `nn.Linear` initialization order, and
+requests deterministic algorithms with four CPU threads.
+
+Four interference regressions fail the old source and pass the correction.
+Eighteen synthetic old/new fits preserve weights, histories and standardizers
+exactly. All shipped model artifacts, fusion and C1 recipe remain byte-identical
+to v7 commit `50fea4f`; their recorded DEV and held-out scores remain the
+v7 measurements. See `results/reproducibility_fix_v7_1.json`. No new model
+selection or real-data fitting was performed for this correction.
 
 ## Final tree model
 
@@ -209,7 +229,7 @@ python scripts/cv_pairwise_ensemble_v7.py --mode fit --train data/train/train.tx
 # Only evaluate DEV after both configurations are frozen:
 python scripts/evaluate_models.py --features data/dev/vali.txt
 python scripts/run_recipe.py
-python scripts/package_submission.py --out dist/rank-fusion-submission-v7.zip
+python scripts/package_submission.py --out dist/rank-fusion-submission-v7.1.zip
 ```
 
 On Linux, install the CPU-only Torch wheel first if appropriate:

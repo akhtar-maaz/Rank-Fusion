@@ -1,0 +1,378 @@
+{
+  "date": "2026-10-20",
+  "version": "v7.1",
+  "scope": "Seeded-training correctness correction; v7 trained artifacts retained",
+  "reported_submission": 220,
+  "reported_check": "(f) training reproducible given the seed",
+  "reported_error": "AssertionError: weights differ between two runs with the same seed",
+  "before_commit": "50fea4fcdfeb5eb493b21d1c4d08b7459fa276e1",
+  "fixed_source_sha256": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+  "staff_execution_cause_confirmed": false,
+  "observed_failure_mechanism": "Controlled overlapping fits share the global PyTorch initialization RNG; another consumer can change weights after reseeding",
+  "fix": {
+    "initialization": "Private CPU torch.Generator per fit; original nn.Linear weight/bias initialization order",
+    "cpu_threads": 4,
+    "deterministic_algorithms": true,
+    "pair_sampling": "Existing private NumPy RandomState, unchanged"
+  },
+  "validation": {
+    "local_tests_passed": 120,
+    "local_log": "runs/local_smoke_v7_1.log",
+    "old_new_regressions": {
+      "synthetic_only": true,
+      "deliberate_interference": true,
+      "staff_cause_confirmed": false,
+      "old_source_sha256": "b870ee211d924691c40733032fb0e693e0726539506da862a0bb1a9c48599b18",
+      "new_source_sha256": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+      "cases": [
+        {
+          "source": "50fea4f",
+          "test": "overlapping_same_seed_fits",
+          "kind": "pointwise",
+          "options": {},
+          "outcome": "failed",
+          "error": "AssertionError: "
+        },
+        {
+          "source": "50fea4f",
+          "test": "overlapping_same_seed_fits",
+          "kind": "pairwise",
+          "options": {},
+          "outcome": "failed",
+          "error": "AssertionError: "
+        },
+        {
+          "source": "50fea4f",
+          "test": "overlapping_same_seed_fits",
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "outcome": "failed",
+          "error": "AssertionError: "
+        },
+        {
+          "source": "50fea4f",
+          "test": "other_rng_consumers",
+          "outcome": "failed",
+          "error": "AssertionError: "
+        },
+        {
+          "source": "actual_fixed_source",
+          "test": "overlapping_same_seed_fits",
+          "kind": "pointwise",
+          "options": {},
+          "outcome": "passed",
+          "error": null
+        },
+        {
+          "source": "actual_fixed_source",
+          "test": "overlapping_same_seed_fits",
+          "kind": "pairwise",
+          "options": {},
+          "outcome": "passed",
+          "error": null
+        },
+        {
+          "source": "actual_fixed_source",
+          "test": "overlapping_same_seed_fits",
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "outcome": "passed",
+          "error": null
+        },
+        {
+          "source": "actual_fixed_source",
+          "test": "other_rng_consumers",
+          "outcome": "passed",
+          "error": null
+        }
+      ]
+    },
+    "trajectory_preservation": {
+      "before_commit": "50fea4f",
+      "before_source_sha256": "b870ee211d924691c40733032fb0e693e0726539506da862a0bb1a9c48599b18",
+      "after_source_sha256": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+      "synthetic_only": true,
+      "input_rows": 630,
+      "fit_rows": 513,
+      "validation_rows": 117,
+      "features": 136,
+      "platform": "macOS arm64 PyTorch 2.8.0",
+      "cases": [
+        {
+          "seed": 0,
+          "kind": "pointwise",
+          "options": {},
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 0,
+          "kind": "pointwise",
+          "options": {},
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 0,
+          "kind": "pairwise",
+          "options": {},
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 0,
+          "kind": "pairwise",
+          "options": {},
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 0,
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 0,
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 17,
+          "kind": "pointwise",
+          "options": {},
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 17,
+          "kind": "pointwise",
+          "options": {},
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 17,
+          "kind": "pairwise",
+          "options": {},
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 17,
+          "kind": "pairwise",
+          "options": {},
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 17,
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 17,
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 41,
+          "kind": "pointwise",
+          "options": {},
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 41,
+          "kind": "pointwise",
+          "options": {},
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 41,
+          "kind": "pairwise",
+          "options": {},
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 41,
+          "kind": "pairwise",
+          "options": {},
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 41,
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "mode": "fixed_epoch",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        },
+        {
+          "seed": 41,
+          "kind": "pairwise",
+          "options": {
+            "warmup_epochs": 2,
+            "pair_weighting": "ndcg"
+          },
+          "mode": "internal_validation",
+          "weights_equal": true,
+          "history_equal": true,
+          "standardizer_equal": true,
+          "new_threads": 4,
+          "new_deterministic_algorithms": true,
+          "maximum_absolute_weight_error": 0.0
+        }
+      ],
+      "all_weights_histories_standardizers_identical": true
+    },
+    "additional_initialization_comparisons": 45,
+    "all_additional_initializations_identical": true
+  },
+  "artifacts": {
+    "model.txt": {
+      "sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
+      "bytes": 55122370,
+      "byte_identical_to_v7": true
+    },
+    "pointwise_model.pt": {
+      "sha256": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+      "bytes": 109173,
+      "byte_identical_to_v7": true
+    },
+    "pairwise_model.pt": {
+      "sha256": "db43ac75305185a7688e80be19d391825407bdfb67177a391c15c2a98647301d",
+      "bytes": 278121,
+      "byte_identical_to_v7": true
+    },
+    "fusion_config.json": {
+      "sha256": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
+      "bytes": 182,
+      "byte_identical_to_v7": true
+    },
+    "recipe.py": {
+      "sha256": "cd03519e9f91c2fd7b0b124753a2d4e19e14d48091cd0f98a3bea5979e99f415",
+      "bytes": 3886,
+      "byte_identical_to_v7": true
+    }
+  },
+  "data_use": "Synthetic tests only for this correction; no real-data refitting, tuning or repeated DEV evaluation",
+  "original_training_evidence": "results/execution.json",
+  "official_reference": "https://docs.pytorch.org/docs/2.8/notes/randomness.html",
+  "staff_correctness_after_correction": "Pending user upload"
+}

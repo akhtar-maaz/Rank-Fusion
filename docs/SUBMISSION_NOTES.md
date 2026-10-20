@@ -1,4 +1,12 @@
-# Submission notes — v7
+# Submission notes — v7.1
+
+V7.1 corrects seeded neural training while retaining every v7 model artifact.
+Each fit uses a private initialization generator and deterministic four-thread
+CPU execution. Four interference regressions fail the old source and pass
+the correction; eighteen synthetic comparisons preserve the original
+four-thread fit weights, histories and standardizers exactly. Submission 220's
+9/10 staff correctness result still requires a new staff run. Evidence:
+`results/reproducibility_fix_v7_1.json` and `results/leaderboard_v7.json`.
 
 ## Training-data declaration
 
@@ -93,7 +101,8 @@ prove portability; the unknown datasets remain staff-only.
 
 ## Verification and reproducibility
 
-All 112 tests pass locally and on the college server. Actual frozen DEV
+The v7 training run passed 112 tests locally and on the college server;
+the v7.1 source passes 120 local tests. Actual frozen DEV
 evaluation meets prepare/rerank limits. Artifacts match HPC hashes and load
 through the pristine staff neural loader under Python 3.12. Independent
 fresh fits reproduce promoted artifacts byte-for-byte; retained artifacts
@@ -101,6 +110,8 @@ preserve v6 bytes. Pointwise, fusion and the C1 recipe stay unchanged.
 Execution evidence covers ten actual scheduled job records with per-job
 requested/observed resources. No real data, environments, Git metadata or
 intermediate fits enter the ZIP. Original starter files remain present.
+The independent full-TRAIN artifact refits belong to v7 commit `50fea4f`.
+V7.1 preserves those artifact bytes; its new checks use synthetic data only.
 
 ## AI-use disclosure
 

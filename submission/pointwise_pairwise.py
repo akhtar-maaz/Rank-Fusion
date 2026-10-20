@@ -38,6 +38,7 @@ TWO JOBS, KEEP THEM SEPARATE.
 Artifacts to ship in submission/: pointwise_model.pt and pairwise_model.pt (see scripts/train_neural.py).
 """
 import copy
+import math
 import random
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -58,6 +59,21 @@ def set_seed(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
+
+
+def _seeded_network(n_features, hidden, seed):
+    """Use a private RNG so another fit cannot consume initialization draws."""
+    network = ScoringNetwork(n_features, hidden)
+    generator = torch.Generator(device="cpu").manual_seed(seed)
+    # Match nn.Linear.reset_parameters, including its weight/bias draw order.
+    # The constructor's shared-RNG values are replaced before any forward pass.
+    for layer in network.modules():
+        if isinstance(layer, nn.Linear):
+            nn.init.kaiming_uniform_(layer.weight, a=math.sqrt(5), generator=generator)
+            if layer.bias is not None:
+                bound = 1 / math.sqrt(layer.in_features) if layer.in_features else 0
+                nn.init.uniform_(layer.bias, -bound, bound, generator=generator)
+    return network
 
 
 def pointwise_loss(scores: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
@@ -213,10 +229,13 @@ def train_model(kind: str, train, dev, *, seed: int = 0, epochs: int = 20, batch
     if len(X) == 0 or len(Xd) == 0:
         raise ValueError("training and validation data must be nonempty")
     set_seed(seed)                                    # TODO(1) makes this meaningful
+    # Keep CPU execution consistent with the scheduled four-thread refits.
+    torch.set_num_threads(4)
+    torch.use_deterministic_algorithms(True)
     standardizer = Standardizer().fit(X)              # fit on TRAIN only
     Xt = torch.from_numpy(standardizer.transform(X))
     yt = torch.from_numpy(np.asarray(y, dtype=np.float32))
-    network = ScoringNetwork(X.shape[1], hidden)
+    network = _seeded_network(X.shape[1], hidden, seed)
     optimizer = torch.optim.Adam(network.parameters(), lr=lr)
     rng = np.random.RandomState(seed)
 

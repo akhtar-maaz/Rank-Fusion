@@ -17,6 +17,10 @@
   explicitly skipped if the exact v6 tree is retained.
 - `leaderboard_v1.json` through `leaderboard_v6.json`: user-provided
   aggregate staff feedback, without hidden examples or relevance labels.
+- `leaderboard_v7.json`: user-reported submission 220, sixth of 27 teams,
+  held-out/C2 gains and the failed seeded-training correctness check.
+- `reproducibility_fix_v7_1.json`: correction evidence, old/new regression
+  results, synthetic trajectory comparisons and preserved v7 artifact hashes.
 - Versioned records through `_v6` preserve earlier fits and checkpoints.
 - `recipe_selection_v3.json`, `recipe_domains_v3/`, `recipe_budget_v3.json`
   and `recipe_smoke_v3.json`: unchanged C1 TRAIN-derived/synthetic checks.

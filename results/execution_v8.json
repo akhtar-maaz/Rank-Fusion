@@ -1,0 +1,998 @@
+{
+  "date": "2026-10-20",
+  "protocol": "docs/EXPERIMENTS_V8.md",
+  "protocol_commit": "add280f791fa7324f48af08348cf36fa95663895",
+  "workflow_commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+  "selection_record_commit": "4662861431d0af2ba6b887f0a699aa8d1d6d6790",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "observed_cpus_per_job": 4,
+    "allocation": "per-job requests and actual resource use below"
+  },
+  "jobs": {
+    "1107980[0].pbshpc": {
+      "Job_Name": "rankfusion-cv-v8",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "02:03:24",
+      "resources_used.mem": "7652104kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "9098152kb",
+      "resources_used.walltime": "00:33:43",
+      "job_state": "F",
+      "exec_host": "cgen003/3*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "14400",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "01:00:00",
+      "stime": "Tue Oct 20 18:42:08 2026",
+      "comment": "Job run at Tue Oct 20 at 18:42 on (cgen003:ncpus=4:mem=12582912kb",
+      "obittime": "Tue Oct 20 19:15:55 2026",
+      "Exit_status": "0"
+    },
+    "1107980[1].pbshpc": {
+      "Job_Name": "rankfusion-cv-v8",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "02:00:59",
+      "resources_used.mem": "6952252kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "8439940kb",
+      "resources_used.walltime": "00:33:05",
+      "job_state": "F",
+      "exec_host": "cgen003/4*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "14400",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "01:00:00",
+      "stime": "Tue Oct 20 18:42:08 2026",
+      "comment": "Job run at Tue Oct 20 at 18:42 on (cgen003:ncpus=4:mem=12582912kb",
+      "obittime": "Tue Oct 20 19:15:17 2026",
+      "Exit_status": "0"
+    },
+    "1107980[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v8",
+      "resources_used.cpupercent": "398",
+      "resources_used.cput": "02:03:39",
+      "resources_used.mem": "6911648kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "8473832kb",
+      "resources_used.walltime": "00:33:46",
+      "job_state": "F",
+      "exec_host": "cgen003/5*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "14400",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "01:00:00",
+      "stime": "Tue Oct 20 18:42:09 2026",
+      "comment": "Job run at Tue Oct 20 at 18:42 on (cgen003:ncpus=4:mem=12582912kb",
+      "obittime": "Tue Oct 20 19:15:59 2026",
+      "Exit_status": "0"
+    },
+    "1107980[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v8",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:46:04",
+      "resources_used.mem": "6886936kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "8390024kb",
+      "resources_used.walltime": "00:29:29",
+      "job_state": "F",
+      "exec_host": "cgen003/6*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "14400",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "01:00:00",
+      "stime": "Tue Oct 20 18:42:09 2026",
+      "comment": "Job run at Tue Oct 20 at 18:42 on (cgen003:ncpus=4:mem=12582912kb",
+      "obittime": "Tue Oct 20 19:11:43 2026",
+      "Exit_status": "0"
+    },
+    "1107981.pbshpc": {
+      "Job_Name": "rankfusion-neural-v8",
+      "resources_used.cpupercent": "350",
+      "resources_used.cput": "01:17:45",
+      "resources_used.mem": "2776216kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4624692kb",
+      "resources_used.walltime": "00:25:27",
+      "job_state": "F",
+      "exec_host": "cgen003/7*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "16800",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "01:10:00",
+      "stime": "Tue Oct 20 18:42:10 2026",
+      "comment": "Job run at Tue Oct 20 at 18:42 on (cgen003:ncpus=4:mem=8388608kb)",
+      "obittime": "Tue Oct 20 19:07:41 2026",
+      "Exit_status": "0"
+    },
+    "1107982.pbshpc": {
+      "Job_Name": "rankfusion-select-v8",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "12000",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "00:50:00",
+      "resources_used.cpupercent": "372",
+      "resources_used.cput": "00:44:25",
+      "resources_used.mem": "2998008kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4615316kb",
+      "resources_used.walltime": "00:14:30",
+      "exec_host": "cgen003/3*4",
+      "stime": "Tue Oct 20 19:16:00 2026",
+      "comment": "Job run at Tue Oct 20 at 19:16 on (cgen003:ncpus=4:mem=12582912kb",
+      "obittime": "Tue Oct 20 19:30:33 2026",
+      "Exit_status": "0"
+    },
+    "1107983.pbshpc": {
+      "Job_Name": "rankfusion-final-v8",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "21600",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "01:30:00",
+      "resources_used.cpupercent": "161",
+      "resources_used.cput": "00:07:45",
+      "resources_used.mem": "1275560kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3064892kb",
+      "resources_used.walltime": "00:06:01",
+      "exec_host": "cgen003/7*4",
+      "stime": "Tue Oct 20 19:30:33 2026",
+      "comment": "Job run at Tue Oct 20 at 19:30 on (cgen003:ncpus=4:mem=12582912kb",
+      "obittime": "Tue Oct 20 19:36:36 2026",
+      "Exit_status": "0"
+    },
+    "1107984.pbshpc": {
+      "Job_Name": "rankfusion-refit-v8",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "21600",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "01:30:00",
+      "resources_used.cpupercent": "346",
+      "resources_used.cput": "00:07:04",
+      "resources_used.mem": "1278528kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3067432kb",
+      "resources_used.walltime": "00:03:43",
+      "exec_host": "cgen003/6*4",
+      "stime": "Tue Oct 20 19:30:32 2026",
+      "obittime": "Tue Oct 20 19:34:20 2026",
+      "comment": "Job run at Tue Oct 20 at 19:30 on (cgen003:ncpus=4:mem=12582912kb",
+      "Exit_status": "0"
+    },
+    "1107985.pbshpc": {
+      "Job_Name": "rankfusion-seed-v8",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "7200",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "00:30:00",
+      "resources_used.cpupercent": "18",
+      "resources_used.cput": "00:00:00",
+      "resources_used.mem": "6144kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "45540kb",
+      "resources_used.walltime": "00:00:00",
+      "exec_host": "cgen003/5*4",
+      "stime": "Tue Oct 20 19:30:32 2026",
+      "obittime": "Tue Oct 20 19:30:36 2026",
+      "comment": "Job run at Tue Oct 20 at 19:30 on (cgen003:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    },
+    "1107986.pbshpc": {
+      "Job_Name": "rankfusion-verify-v8",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "2880",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "00:12:00",
+      "resources_used.cpupercent": "88",
+      "resources_used.cput": "00:00:20",
+      "resources_used.mem": "298276kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2457432kb",
+      "resources_used.walltime": "00:00:23",
+      "exec_host": "cgen003/3*4",
+      "stime": "Tue Oct 20 19:36:36 2026",
+      "obittime": "Tue Oct 20 19:37:03 2026",
+      "comment": "Job run at Tue Oct 20 at 19:36 on (cgen003:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    }
+  },
+  "job_resources": {
+    "1107980[0].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "14400",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "01:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "02:03:24",
+        "resources_used.mem": "7652104kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "9098152kb",
+        "resources_used.walltime": "00:33:43"
+      }
+    },
+    "1107980[1].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "14400",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "01:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "02:00:59",
+        "resources_used.mem": "6952252kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "8439940kb",
+        "resources_used.walltime": "00:33:05"
+      }
+    },
+    "1107980[2].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "14400",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "01:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "398",
+        "resources_used.cput": "02:03:39",
+        "resources_used.mem": "6911648kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "8473832kb",
+        "resources_used.walltime": "00:33:46"
+      }
+    },
+    "1107980[3].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "14400",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "01:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "01:46:04",
+        "resources_used.mem": "6886936kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "8390024kb",
+        "resources_used.walltime": "00:29:29"
+      }
+    },
+    "1107981.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "16800",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "01:10:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "350",
+        "resources_used.cput": "01:17:45",
+        "resources_used.mem": "2776216kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "4624692kb",
+        "resources_used.walltime": "00:25:27"
+      }
+    },
+    "1107982.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "12000",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "00:50:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "372",
+        "resources_used.cput": "00:44:25",
+        "resources_used.mem": "2998008kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "4615316kb",
+        "resources_used.walltime": "00:14:30"
+      }
+    },
+    "1107983.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "21600",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "01:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "161",
+        "resources_used.cput": "00:07:45",
+        "resources_used.mem": "1275560kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "3064892kb",
+        "resources_used.walltime": "00:06:01"
+      }
+    },
+    "1107984.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "21600",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "01:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "346",
+        "resources_used.cput": "00:07:04",
+        "resources_used.mem": "1278528kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "3067432kb",
+        "resources_used.walltime": "00:03:43"
+      }
+    },
+    "1107985.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "7200",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "18",
+        "resources_used.cput": "00:00:00",
+        "resources_used.mem": "6144kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "45540kb",
+        "resources_used.walltime": "00:00:00"
+      }
+    },
+    "1107986.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "2880",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:12:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "88",
+        "resources_used.cput": "00:00:20",
+        "resources_used.mem": "298276kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "2457432kb",
+        "resources_used.walltime": "00:00:23"
+      }
+    }
+  },
+  "declared_requests_by_workflow": {
+    "hpc_cv_v8.pbs": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "01:00:00",
+      "source": "saved PBS workflow declaration"
+    },
+    "hpc_neural_v8.pbs": {
+      "select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "walltime": "01:10:00",
+      "source": "saved PBS workflow declaration"
+    },
+    "hpc_reproduce_v8.pbs": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "01:30:00",
+      "source": "saved PBS workflow declaration"
+    },
+    "hpc_seed_check_v8.pbs": {
+      "select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "walltime": "00:30:00",
+      "source": "saved PBS workflow declaration"
+    },
+    "hpc_select_v8.pbs": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "00:50:00",
+      "source": "saved PBS workflow declaration"
+    },
+    "hpc_train_v8.pbs": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "01:30:00",
+      "source": "saved PBS workflow declaration"
+    },
+    "hpc_verify_v8.pbs": {
+      "select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "walltime": "00:12:00",
+      "source": "saved PBS workflow declaration"
+    }
+  },
+  "actual_job_records": 10,
+  "tree_promoted": false,
+  "pairwise_promoted": true,
+  "complete_tree_configurations": 49,
+  "complete_pairwise_candidates": 5,
+  "neural_member_fits_per_fold": 9,
+  "neural_total_cv_member_fits": 45,
+  "pairwise_export_kind": "compiled arithmetic average",
+  "pairwise_exported_config": {
+    "n_features": 136,
+    "hidden": [
+      256,
+      128
+    ]
+  },
+  "runtime_excluded_candidates": [],
+  "tree_promotion_gates": {
+    "candidate": "v7_plus_1_600_weight0.25",
+    "mixture_gain": 0.0007200086577441311,
+    "diagnostic_gain": 0.0008967135515081104,
+    "improved_folds": 4,
+    "fold_mixture_gains": [
+      {
+        "fold": 0,
+        "mixture_gain": 0.0012751069468022735
+      },
+      {
+        "fold": 1,
+        "mixture_gain": 0.0008826205515980456
+      },
+      {
+        "fold": 2,
+        "mixture_gain": 0.001105218687595666
+      },
+      {
+        "fold": 3,
+        "mixture_gain": -0.00012018149972709002
+      },
+      {
+        "fold": 4,
+        "mixture_gain": 0.0004572786024519271
+      }
+    ],
+    "mixture_passed": true,
+    "diagnostic_passed": false,
+    "paired_folds_passed": true,
+    "passed": false
+  },
+  "frozen_configuration_sha256": {
+    "lambdamart_cv_v8.json": "865fa59a0025e19c164cded88feb87e40a4dd5b0256dad08f4a62ad5d0af3638",
+    "neural_selection_v8.json": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8"
+  },
+  "synthetic_tree_pipeline": {
+    "description": "Synthetic toy pipeline only; no released TRAIN measurement",
+    "rows": 3000,
+    "queries": 120,
+    "settings": 49,
+    "all_source_specifications_match_frozen_baseline": true,
+    "checked_settings": {
+      "cached_v7_control": [
+        {
+          "fold": 0,
+          "native_max_abs_error": 2.4868995751603507e-14,
+          "native_ndcg_10": 0.9291687817510165,
+          "explicit_ndcg_10": 0.9291687817510165
+        },
+        {
+          "fold": 1,
+          "native_max_abs_error": 1.865174681370263e-14,
+          "native_ndcg_10": 0.9340805975722506,
+          "explicit_ndcg_10": 0.9340805975722506
+        },
+        {
+          "fold": 2,
+          "native_max_abs_error": 2.6645352591003757e-14,
+          "native_ndcg_10": 0.9344190943592935,
+          "explicit_ndcg_10": 0.9344190943592935
+        },
+        {
+          "fold": 3,
+          "native_max_abs_error": 2.220446049250313e-14,
+          "native_ndcg_10": 0.9297732945096072,
+          "explicit_ndcg_10": 0.9297732945096072
+        },
+        {
+          "fold": 4,
+          "native_max_abs_error": 2.930988785010413e-14,
+          "native_ndcg_10": 0.9547518540478132,
+          "explicit_ndcg_10": 0.9547518540478132
+        }
+      ],
+      "v7_plus_0_600_weight0.25": [
+        {
+          "fold": 0,
+          "native_max_abs_error": 2.1316282072803006e-14,
+          "native_ndcg_10": 0.9279623627068867,
+          "explicit_ndcg_10": 0.9279623627068867
+        },
+        {
+          "fold": 1,
+          "native_max_abs_error": 2.4868995751603507e-14,
+          "native_ndcg_10": 0.9385937265879765,
+          "explicit_ndcg_10": 0.9385937265879765
+        },
+        {
+          "fold": 2,
+          "native_max_abs_error": 2.398081733190338e-14,
+          "native_ndcg_10": 0.9387791779615227,
+          "explicit_ndcg_10": 0.9387791779615227
+        },
+        {
+          "fold": 3,
+          "native_max_abs_error": 2.398081733190338e-14,
+          "native_ndcg_10": 0.9264397137730151,
+          "explicit_ndcg_10": 0.9264397137730151
+        },
+        {
+          "fold": 4,
+          "native_max_abs_error": 2.3092638912203256e-14,
+          "native_ndcg_10": 0.9517046213280002,
+          "explicit_ndcg_10": 0.9517046213280002
+        }
+      ],
+      "v7_plus_1_600_weight0.25": [
+        {
+          "fold": 0,
+          "native_max_abs_error": 1.9539925233402755e-14,
+          "native_ndcg_10": 0.9284944656988329,
+          "explicit_ndcg_10": 0.9284944656988329
+        },
+        {
+          "fold": 1,
+          "native_max_abs_error": 2.1316282072803006e-14,
+          "native_ndcg_10": 0.9311051366571589,
+          "explicit_ndcg_10": 0.9311051366571589
+        },
+        {
+          "fold": 2,
+          "native_max_abs_error": 2.220446049250313e-14,
+          "native_ndcg_10": 0.9390790709514452,
+          "explicit_ndcg_10": 0.9390790709514452
+        },
+        {
+          "fold": 3,
+          "native_max_abs_error": 2.6645352591003757e-14,
+          "native_ndcg_10": 0.9248929757326348,
+          "explicit_ndcg_10": 0.9248929757326348
+        },
+        {
+          "fold": 4,
+          "native_max_abs_error": 2.5757174171303632e-14,
+          "native_ndcg_10": 0.9534676146320984,
+          "explicit_ndcg_10": 0.9534676146320984
+        }
+      ],
+      "v7_plus_2_600_weight0.25": [
+        {
+          "fold": 0,
+          "native_max_abs_error": 2.3092638912203256e-14,
+          "native_ndcg_10": 0.9315586337332467,
+          "explicit_ndcg_10": 0.9315586337332467
+        },
+        {
+          "fold": 1,
+          "native_max_abs_error": 2.042810365310288e-14,
+          "native_ndcg_10": 0.9336902357609046,
+          "explicit_ndcg_10": 0.9336902357609046
+        },
+        {
+          "fold": 2,
+          "native_max_abs_error": 2.398081733190338e-14,
+          "native_ndcg_10": 0.9354899825148721,
+          "explicit_ndcg_10": 0.9354899825148721
+        },
+        {
+          "fold": 3,
+          "native_max_abs_error": 2.5757174171303632e-14,
+          "native_ndcg_10": 0.929912071895944,
+          "explicit_ndcg_10": 0.929912071895944
+        },
+        {
+          "fold": 4,
+          "native_max_abs_error": 2.7533531010703882e-14,
+          "native_ndcg_10": 0.9513297610846125,
+          "explicit_ndcg_10": 0.9513297610846125
+        }
+      ],
+      "v7_plus_3_600_weight0.25": [
+        {
+          "fold": 0,
+          "native_max_abs_error": 2.398081733190338e-14,
+          "native_ndcg_10": 0.9319064062280823,
+          "explicit_ndcg_10": 0.9319064062280823
+        },
+        {
+          "fold": 1,
+          "native_max_abs_error": 1.9539925233402755e-14,
+          "native_ndcg_10": 0.9378658758907815,
+          "explicit_ndcg_10": 0.9378658758907815
+        },
+        {
+          "fold": 2,
+          "native_max_abs_error": 2.042810365310288e-14,
+          "native_ndcg_10": 0.9339874520225524,
+          "explicit_ndcg_10": 0.9339874520225524
+        },
+        {
+          "fold": 3,
+          "native_max_abs_error": 2.220446049250313e-14,
+          "native_ndcg_10": 0.9263825229215543,
+          "explicit_ndcg_10": 0.9263825229215543
+        },
+        {
+          "fold": 4,
+          "native_max_abs_error": 2.5757174171303632e-14,
+          "native_ndcg_10": 0.9525615473934228,
+          "explicit_ndcg_10": 0.9525615473934228
+        }
+      ]
+    },
+    "legacy_augmentation_byte_identical": [
+      {
+        "configuration": {
+          "name": "half_query_dropout_noise",
+          "seed": 20261019
+        },
+        "identical": true
+      },
+      {
+        "configuration": {
+          "name": "half_query_mixed",
+          "seed": 20261020
+        },
+        "identical": true
+      },
+      {
+        "configuration": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "identical": true
+      },
+      {
+        "configuration": {
+          "name": "full_query_stress",
+          "seed": 20261022
+        },
+        "identical": true
+      }
+    ],
+    "maximum_absolute_score_error": 2.930988785010413e-14,
+    "selection_protocol": {
+      "split": "TRAIN only",
+      "folds": 5,
+      "seed": 0,
+      "clean_tolerance": 0.0025,
+      "per_diagnostic_tolerance": 0.0025,
+      "minimum_mixture_improvement": 0.0005,
+      "score": "0.5 clean + 0.5 mean(affine, feature_dropout, noise)",
+      "staff_c2_reconstruction": false,
+      "minimum_diagnostic_improvement": 0.001,
+      "minimum_improved_folds": 3,
+      "paired_fold_score": "0.5 clean + 0.5 mean(affine, feature_dropout, noise)",
+      "additional_gate_failure": "retain exact v7 control; do not search another setting"
+    }
+  },
+  "synthetic_neural_pipeline": {
+    "synthetic_only": true,
+    "data": "data/toy/train.txt",
+    "rows": 3000,
+    "queries": 120,
+    "features": 136,
+    "folds": 5,
+    "candidates": 5,
+    "distinct_cv_member_fits": 45,
+    "all_fresh_control_folds_checked": true,
+    "all_control_member_artifact_hashes_checked": true,
+    "all_control_member_archived_states_checked": true,
+    "all_standardizers_identical": true,
+    "maximum_absolute_score_error": 1.1920928955078125e-06,
+    "maximum_absolute_ndcg_error": 0.0,
+    "candidate_means": [
+      {
+        "name": "pairwise_seeds_0_41",
+        "train": 0.9214300543106703,
+        "validation": 0.8814370668196597
+      },
+      {
+        "name": "warmup14_seeds_0_41",
+        "train": 0.9492421935128645,
+        "validation": 0.9137182198673093
+      },
+      {
+        "name": "warmup20_seeds_0_41",
+        "train": 0.9718816681429189,
+        "validation": 0.9296881862804884
+      },
+      {
+        "name": "pairs1000_seeds_0_41",
+        "train": 0.9214300543106703,
+        "validation": 0.8814370668196597
+      },
+      {
+        "name": "direct_wide_seed0",
+        "train": 0.9524584520080219,
+        "validation": 0.9114456024583749
+      }
+    ],
+    "toy_selected": "warmup20_seeds_0_41",
+    "full_fit_independently_byte_identical": true,
+    "full_fit_sha256": "844cc3abcf6450cfb0a49733c4bf82670dd716d241edd33e13abfb5cded937eb",
+    "cached_fold_replay_passed": true,
+    "source_sha256": {
+      "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+      "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+      "scripts/cv_pairwise_ensemble_v8.py": "019a3a7894364ed19e17cd8fb277e13bc3e67f9055a5a9c9f8ad158fa979c4d1",
+      "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+      "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+      "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+      "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+      "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+      "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+      "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+    }
+  },
+  "augmentation": {
+    "full_query_mixed_v8": {
+      "seed": 20261023,
+      "original_queries": 6000,
+      "original_rows": 723412,
+      "augmented_queries": 6000,
+      "augmented_rows": 723412,
+      "total_fit_queries": 12000,
+      "total_fit_rows": 1446824,
+      "scenarios": {
+        "affine": {
+          "queries": 2053,
+          "rows": 248718
+        },
+        "feature_dropout": {
+          "queries": 1958,
+          "rows": 235540
+        },
+        "noise": {
+          "queries": 1989,
+          "rows": 239154
+        }
+      },
+      "train_file": "data/train/train.txt",
+      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+      "defined_in": [
+        {
+          "file": "configs/v8_candidates.json",
+          "index": 0,
+          "name": "cross_aug_extra"
+        }
+      ],
+      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
+    },
+    "full_query_mixed": {
+      "seed": 20261021,
+      "original_queries": 6000,
+      "original_rows": 723412,
+      "augmented_queries": 6000,
+      "augmented_rows": 723412,
+      "total_fit_queries": 12000,
+      "total_fit_rows": 1446824,
+      "scenarios": {
+        "affine": {
+          "queries": 2047,
+          "rows": 244168
+        },
+        "feature_dropout": {
+          "queries": 2001,
+          "rows": 243587
+        },
+        "noise": {
+          "queries": 1952,
+          "rows": 235657
+        }
+      },
+      "train_file": "data/train/train.txt",
+      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+      "defined_in": [
+        {
+          "file": "configs/v8_candidates.json",
+          "index": 1,
+          "name": "query_bagging_extra"
+        },
+        {
+          "file": "configs/v8_candidates.json",
+          "index": 2,
+          "name": "node_subsample_extra"
+        },
+        {
+          "file": "configs/v8_candidates.json",
+          "index": 3,
+          "name": "regularized_extra"
+        },
+        {
+          "file": "results/lambdamart_cv_v7.json",
+          "index": 4,
+          "name": null
+        },
+        {
+          "file": "results/lambdamart_cv_v7.json",
+          "index": 5,
+          "name": null
+        }
+      ],
+      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
+    },
+    "half_query_dropout_noise": {
+      "seed": 20261019,
+      "original_queries": 6000,
+      "original_rows": 723412,
+      "augmented_queries": 2990,
+      "augmented_rows": 362923,
+      "total_fit_queries": 8990,
+      "total_fit_rows": 1086335,
+      "scenarios": {
+        "affine": {
+          "queries": 0,
+          "rows": 0
+        },
+        "feature_dropout": {
+          "queries": 1446,
+          "rows": 177618
+        },
+        "noise": {
+          "queries": 1544,
+          "rows": 185305
+        }
+      },
+      "train_file": "data/train/train.txt",
+      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+      "defined_in": [
+        {
+          "file": "results/lambdamart_cv_v7.json",
+          "index": 2,
+          "name": null
+        }
+      ],
+      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
+    },
+    "half_query_mixed": {
+      "seed": 20261020,
+      "original_queries": 6000,
+      "original_rows": 723412,
+      "augmented_queries": 2984,
+      "augmented_rows": 356838,
+      "total_fit_queries": 8984,
+      "total_fit_rows": 1080250,
+      "scenarios": {
+        "affine": {
+          "queries": 977,
+          "rows": 117450
+        },
+        "feature_dropout": {
+          "queries": 991,
+          "rows": 120945
+        },
+        "noise": {
+          "queries": 1016,
+          "rows": 118443
+        }
+      },
+      "train_file": "data/train/train.txt",
+      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+      "defined_in": [
+        {
+          "file": "results/lambdamart_cv_v7.json",
+          "index": 3,
+          "name": null
+        }
+      ],
+      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
+    }
+  },
+  "post_selection_seed_check": {
+    "skipped": true,
+    "reason": "Exact v7.1 tree artifact retained"
+  },
+  "final_verification": {
+    "training_job": "1107983.pbshpc",
+    "independent_job": "1107984.pbshpc",
+    "verification_job": "1107986.pbshpc",
+    "tests_passed": 142,
+    "actual_frozen_dev_interface_passed": true,
+    "independent_byte_identical_artifacts": true,
+    "tree_independently_refitted": false,
+    "pairwise_independently_refitted": true,
+    "pointwise_fusion_recipe_preserved": true,
+    "native_oof_max_abs_error": 2.398081733190338e-14
+  },
+  "local_verification": {
+    "python": "3.12.14",
+    "tests_passed": 142,
+    "staff_neural_loaders_passed": true,
+    "hpc_hashes_match": true
+  },
+  "workflow_ci": {
+    "id": 39427988991,
+    "commit": "d0da157967f9a9adad871b98d6ed7faee2d82e3d",
+    "conclusion": "success",
+    "tests_passed": 142,
+    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39427988991"
+  },
+  "unchanged_recipe_budget": "results/recipe_budget_v3.json",
+  "unchanged_synthetic_transfer": "results/recipe_smoke_v3.json"
+}

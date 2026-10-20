@@ -1,0 +1,233 @@
+{
+  "audit": "PASS",
+  "scope": "Four completed TRAIN-only source tree reports; 49-way selection/promotion/native equivalence require separate audit",
+  "dataset": {
+    "reported_rows": 723412,
+    "reported_queries": 6000,
+    "reported_train": "data/train/train.txt",
+    "reported_feature_mode": "query_all",
+    "protocol_raw_features": 136
+  },
+  "protocol_commit": "260f431d608faffc203e8f6839dda9eedb71f412",
+  "workflow_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+  "complete_candidates": 4,
+  "complete_checkpoints": 12,
+  "folds_per_checkpoint": 5,
+  "split": {
+    "kind": "query grouped",
+    "folds": 5,
+    "seed": 0,
+    "evidence": "Frozen source identical to workflow commit; part schema does not store individual index hashes or TRAIN-file SHA"
+  },
+  "partial_means_used": false,
+  "maximum_aggregate_absolute_error": 3.3306690738754696e-16,
+  "source_checks": {
+    "configs/v9_candidates.json": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "21a3d0b41429e6dfbe0c01bef587ab4f7717a45a40aa40b66144ed0dd26f0732",
+      "matches_frozen_source": true
+    },
+    "scripts/cv_augmented_lambdamart.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "57effc5f06449eb028308880102b98c04dbe8b05f62062381d2ef1bbdba05dfa",
+      "matches_frozen_source": true
+    },
+    "scripts/augmentation.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "3016b39c693ff738694e2b3d692526d307b3faef9ba3194809c71fe6e24b56ff",
+      "matches_frozen_source": true
+    },
+    "scripts/lambdamart_utils.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "ff201ea6c2b8dae7720a1eaa8c82f1c5601c6f4b72d4b82bba47016fe0f97785",
+      "matches_frozen_source": true
+    },
+    "scripts/robustness.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "8ceb4dfd4be49650507f58a5757992d1cacea32c40d7a2127461c9b5c1d7e969",
+      "matches_frozen_source": true
+    },
+    "submission/features.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "fb1327b0e913e7ab8ac0ef9fc98873977191ae548a3dc5971dc2ddc0823e3ad5",
+      "matches_frozen_source": true
+    },
+    "submission/data.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+      "matches_frozen_source": true
+    },
+    "submission/tree_ensemble.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "4cb21ed0a87bda4d8b2c0407e026f2e9520bae11a797aa1c2cc39c974000f492",
+      "matches_frozen_source": true
+    },
+    "harness/cv.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+      "matches_frozen_source": true
+    },
+    "harness/metrics.py": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7",
+      "matches_frozen_source": true
+    },
+    "scripts/hpc_cv_v9.pbs": {
+      "frozen_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+      "sha256": "9c9ed573c6666d70cfd861d5f494a3b87138f0a546b2368b72ce476a0bdf4509",
+      "matches_frozen_source": true
+    },
+    "docs/EXPERIMENTS_V9.md": {
+      "frozen_commit": "260f431d608faffc203e8f6839dda9eedb71f412",
+      "sha256": "474248b6ca7a42c6ec9b5f058401768fcce5cc3102e5caabbdcfc620e6c71ce9",
+      "matches_frozen_source": true
+    }
+  },
+  "candidates": [
+    {
+      "candidate": 0,
+      "name": "xendcg_clean",
+      "report": "results/lambdamart_v9_parts/part_0.json",
+      "report_sha256": "7232417571b56e6b9571e87a3e5a6227efbe01327a034bf3671378cb91ff3c33",
+      "job_id": "1108242[0].pbshpc",
+      "job_finished_exit0": true,
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4793784749789044,
+          "diagnostic_mean": 0.46053059677538427,
+          "train_mean": 0.5413398755614935,
+          "selection_score": 0.4699545358771443
+        },
+        {
+          "trees": 800,
+          "folds": 5,
+          "clean_mean": 0.481244057051739,
+          "diagnostic_mean": 0.4605266190583624,
+          "train_mean": 0.5780645756261704,
+          "selection_score": 0.47088533805505073
+        },
+        {
+          "trees": 1200,
+          "folds": 5,
+          "clean_mean": 0.4820451975863893,
+          "diagnostic_mean": 0.45947706590887405,
+          "train_mean": 0.6051559973854365,
+          "selection_score": 0.4707611317476317
+        }
+      ],
+      "seconds": 960.7640063799918
+    },
+    {
+      "candidate": 1,
+      "name": "xendcg_augmented",
+      "report": "results/lambdamart_v9_parts/part_1.json",
+      "report_sha256": "2e0f694203e8cdafca90b879d89177bc12198e5da13b1fb48b9e36bb1f350f4b",
+      "job_id": "1108242[1].pbshpc",
+      "job_finished_exit0": true,
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4761524714025695,
+          "diagnostic_mean": 0.4669717215484333,
+          "train_mean": 0.5356105571476575,
+          "selection_score": 0.4715620964755014
+        },
+        {
+          "trees": 800,
+          "folds": 5,
+          "clean_mean": 0.4783423293368501,
+          "diagnostic_mean": 0.46870146054977413,
+          "train_mean": 0.5687624448930787,
+          "selection_score": 0.4735218949433121
+        },
+        {
+          "trees": 1200,
+          "folds": 5,
+          "clean_mean": 0.47842688814181156,
+          "diagnostic_mean": 0.46905023766699755,
+          "train_mean": 0.5926777056002906,
+          "selection_score": 0.4737385629044045
+        }
+      ],
+      "seconds": 2223.9228734578937
+    },
+    {
+      "candidate": 2,
+      "name": "shallow_smoothed_clean",
+      "report": "results/lambdamart_v9_parts/part_2.json",
+      "report_sha256": "5d2def00205cb894ef52c263f528d3e56835dd8883083fe6e229e08ad6196099",
+      "job_id": "1108242[2].pbshpc",
+      "job_finished_exit0": true,
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4776335392137526,
+          "diagnostic_mean": 0.46157889992729584,
+          "train_mean": 0.5270696813983787,
+          "selection_score": 0.46960621957052423
+        },
+        {
+          "trees": 800,
+          "folds": 5,
+          "clean_mean": 0.48086330581879605,
+          "diagnostic_mean": 0.4640965153514373,
+          "train_mean": 0.5667198081836503,
+          "selection_score": 0.4724799105851167
+        },
+        {
+          "trees": 1200,
+          "folds": 5,
+          "clean_mean": 0.48260682674257327,
+          "diagnostic_mean": 0.4639643071711766,
+          "train_mean": 0.5980728375144537,
+          "selection_score": 0.47328556695687496
+        }
+      ],
+      "seconds": 1049.5204745661467
+    },
+    {
+      "candidate": 3,
+      "name": "shallow_smoothed_augmented",
+      "report": "results/lambdamart_v9_parts/part_3.json",
+      "report_sha256": "15c6f0476f84a90bcb14f83cc149f8940d1ed11ecec50c847d957507d478efc7",
+      "job_id": "1108242[3].pbshpc",
+      "job_finished_exit0": true,
+      "exact_frozen_candidate": true,
+      "complete_checkpoints": [
+        {
+          "trees": 400,
+          "folds": 5,
+          "clean_mean": 0.4750766333569193,
+          "diagnostic_mean": 0.46596259213580343,
+          "train_mean": 0.5226453688227946,
+          "selection_score": 0.47051961274636134
+        },
+        {
+          "trees": 800,
+          "folds": 5,
+          "clean_mean": 0.47787981048353545,
+          "diagnostic_mean": 0.46941720293794703,
+          "train_mean": 0.5586698687345217,
+          "selection_score": 0.4736485067107412
+        },
+        {
+          "trees": 1200,
+          "folds": 5,
+          "clean_mean": 0.47938632333220604,
+          "diagnostic_mean": 0.4705540871307751,
+          "train_mean": 0.5860973319165772,
+          "selection_score": 0.4749702052314906
+        }
+      ],
+      "seconds": 1961.0307156704366
+    }
+  ],
+  "no_dev_model_or_data_reevaluation": true
+}

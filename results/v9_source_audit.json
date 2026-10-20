@@ -1,0 +1,135 @@
+{
+  "read_only_review": true,
+  "new_tests_or_fits_run": false,
+  "dev_accessed": false,
+  "ssh_accessed": false,
+  "source_sha256": {
+    "configs/v9_candidates.json": "21a3d0b41429e6dfbe0c01bef587ab4f7717a45a40aa40b66144ed0dd26f0732",
+    "scripts/select_ninth_round.py": "e4263e541a6fa3bf9786b80785416c608c5bf3e71aad3648a8a08fe40f4e98f7",
+    "submission/tree_ensemble.py": "4cb21ed0a87bda4d8b2c0407e026f2e9520bae11a797aa1c2cc39c974000f492",
+    "tests/test_ninth_round_selection.py": "a5cdb193739c297c061866f08c84961ba6b8fe6d6c2746254f7ce190c64873bc",
+    "runs/launch_v9.py": "a3e394a90af65d12a87cdbe8cf6f3fa1ed67030fed3b43ea2d544a3c9251b964",
+    "runs/collect_v9_jobs.py": "cc7485d1e4ea86f683a5f11a7b0fa0ad819bb54c474cd1defe3472482e63f2ba"
+  },
+  "plan": {
+    "candidates": 4,
+    "checkpoints": [
+      400,
+      800,
+      1200
+    ],
+    "settings": 49,
+    "query_grouped_train_folds": 5,
+    "split_seed": 0,
+    "neural_fits": 0,
+    "actual_job_count": 9
+  },
+  "protected_v8_files": {
+    "model.txt": {
+      "sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
+      "matches_evaluated_v8": true
+    },
+    "pointwise_model.pt": {
+      "sha256": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+      "matches_evaluated_v8": true
+    },
+    "pairwise_model.pt": {
+      "sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+      "matches_evaluated_v8": true
+    },
+    "fusion_config.json": {
+      "sha256": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
+      "matches_evaluated_v8": true
+    },
+    "recipe.py": {
+      "sha256": "cd03519e9f91c2fd7b0b124753a2d4e19e14d48091cd0f98a3bea5979e99f415",
+      "matches_evaluated_v8": true
+    },
+    "pointwise_pairwise.py": {
+      "sha256": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+      "matches_evaluated_v8": true
+    }
+  },
+  "pbs_requests": {
+    "cv": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "01:30:00",
+      "sha256": "9c9ed573c6666d70cfd861d5f494a3b87138f0a546b2368b72ce476a0bdf4509"
+    },
+    "select": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "00:50:00",
+      "sha256": "b7297f7131f22a00a3c6410c62a9842ddecd903e1ba6a5606ffabf6a49821834"
+    },
+    "train": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "01:30:00",
+      "sha256": "2bd2cd2d6ee230531085aaecd4f0dd8d01139cd1e8dbaef4f8f9bf1924cc15b4"
+    },
+    "reproduce": {
+      "select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "walltime": "01:30:00",
+      "sha256": "17d022425edee8e13364920100e43cf87e251eb3b4bbcd90ec7a0de499c7cc90"
+    },
+    "seed_check": {
+      "select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "walltime": "00:30:00",
+      "sha256": "71eb69866aa74f7cb22b731a2b3749aafa2186ac58095ab8b31e309d5d558ebd"
+    },
+    "verify": {
+      "select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "walltime": "00:12:00",
+      "sha256": "10e7a051493e6726c0347b1808361875c057ca5920ef84528a1580551a196dde"
+    }
+  },
+  "dependencies": {
+    "tree_selection": [
+      "cv_array"
+    ],
+    "final_train": [
+      "tree_selection"
+    ],
+    "independent_reproduction": [
+      "tree_selection"
+    ],
+    "seed_check": [
+      "tree_selection"
+    ],
+    "verification": [
+      "final_train",
+      "independent_reproduction",
+      "seed_check"
+    ]
+  },
+  "mixed_objective_export": {
+    "allowlist": [
+      "lambdarank",
+      "rank_xendcg"
+    ],
+    "ordinary_single_output_numeric_guards_retained": true,
+    "parent_synthetic_pipeline": "runs/v9_pipeline_preflight.json",
+    "maximum_absolute_score_error": 3.730349362740526e-14,
+    "all_checked_fold_ndcg_identical": true
+  },
+  "record_artifacts_options": {
+    "baseline_manifest": "results/artifacts_v8.json",
+    "pairwise_refit": "results/pairwise_refit_v8.json"
+  },
+  "assignment_equivalent_objective_clause": "Extracted assignment section2.1, lines165-169 of runs/assignment_v9_review.txt",
+  "official_parameter_reference": "https://lightgbm.readthedocs.io/en/v4.6.0/Parameters.html",
+  "findings": [
+    {
+      "path": "runs/launch_v9.py",
+      "issue": "qsub acceptance can precede saved job ID; without an in-flight marker, retry after interruption may duplicate a job",
+      "status": "fixed by parent; pending marker persists before qsub and startup refuses unresolved intent"
+    }
+  ],
+  "status": "pass",
+  "launcher_retry_guards": {
+    "nonblocking_exclusive_process_lock": true,
+    "job_ids_saved_with_atomic_replace": true,
+    "pending_intent_saved_before_qsub": true,
+    "unresolved_pending_intent_blocks_retry": true,
+    "returned_job_id_and_pending_removal_saved_together": true
+  }
+}

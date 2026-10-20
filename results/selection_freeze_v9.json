@@ -1,0 +1,56 @@
+{
+  "frozen_at_utc": "2026-10-20T16:49:46.239699+00:00",
+  "protocol_commit": "260f431d608faffc203e8f6839dda9eedb71f412",
+  "workflow_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+  "baseline_commit": "bb9ea0afb8dcd97dc69a9caceab3f7868ce0c0c4",
+  "selection_split": "released Fold1 TRAIN only",
+  "fresh_v9_dev_results_downloaded_or_inspected": false,
+  "tree_promoted": false,
+  "selected": "cached_v8_control",
+  "selected_trees": 3800,
+  "promotion_gates": {
+    "candidate": "v8_plus_0_1200_weight0.25",
+    "mixture_gain": 0.0006455848885584814,
+    "diagnostic_gain": 0.000162203306032227,
+    "improved_folds": 5,
+    "fold_mixture_gains": [
+      {
+        "fold": 0,
+        "mixture_gain": 0.00027788577189874486
+      },
+      {
+        "fold": 1,
+        "mixture_gain": 0.0017876613821691256
+      },
+      {
+        "fold": 2,
+        "mixture_gain": 0.0009757358618294187
+      },
+      {
+        "fold": 3,
+        "mixture_gain": 3.877861519879788e-05
+      },
+      {
+        "fold": 4,
+        "mixture_gain": 0.00014786281169620885
+      }
+    ],
+    "mixture_passed": true,
+    "diagnostic_passed": false,
+    "paired_folds_passed": true,
+    "passed": false
+  },
+  "neural_training_performed": false,
+  "protected_v8_files_unchanged": true,
+  "sha256": {
+    "results/lambdamart_cv_v9.json": "ddfc00e31e50a379e091ec740b1b9302062547b0d691c9f8ad164e95958cb491",
+    "results/v9_source_audit.json": "fb9dbd4888b3057f28a88da1adca10c99c05f3dd8aae0f4597a8ea835f5cbe9e",
+    "results/v9_tree_parts_audit.json": "d5d0bb7a27dfa6e67e69f0537d199b2ef6b77619fedbf017bcb53be5b734a1cf",
+    "results/v9_tree_selection_audit.json": "4814a87e427200a79765f9b31233c8e6a1368797e69b2082c4bce94b31b92bd5",
+    "results/lambdamart_v9_parts/part_0.json": "7232417571b56e6b9571e87a3e5a6227efbe01327a034bf3671378cb91ff3c33",
+    "results/lambdamart_v9_parts/part_1.json": "2e0f694203e8cdafca90b879d89177bc12198e5da13b1fb48b9e36bb1f350f4b",
+    "results/lambdamart_v9_parts/part_2.json": "5d2def00205cb894ef52c263f528d3e56835dd8883083fe6e229e08ad6196099",
+    "results/lambdamart_v9_parts/part_3.json": "15c6f0476f84a90bcb14f83cc149f8940d1ed11ecec50c847d957507d478efc7"
+  },
+  "remaining": "Finish scheduled verification, final local loading/hash/tests, truthful documentation and archive. Formal report deferred."
+}

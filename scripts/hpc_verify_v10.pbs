@@ -1,0 +1,70 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v10
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=8gb:centos=genoa
+#PBS -l walltime=00:15:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v10.log) 2>&1
+.venv/bin/python - <<'PY'
+import hashlib,json,shutil
+from pathlib import Path
+digest=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
+metadata=json.loads(Path('runs/v10_jobs.json').read_text())
+config=json.loads(Path('configs/v10_tree.json').read_text())
+primary=json.loads(Path('runs/refit_v10/primary/fit.json').read_text())
+independent=json.loads(Path('runs/refit_v10/independent/fit.json').read_text())
+for record in (primary,independent):
+    assert record['fit_splits']==['TRAIN','DEV'] and record['use_dev_for_fitting']
+    assert record['dev_tree_metric_is_in_sample'] and record['query_ids_namespaced_by_split']
+    assert (record['rows'],record['queries'],record['raw_features'])==(958671,8000,136)
+    assert record['selected']==config['selected']
+    assert record['configuration_sha256']==metadata['configuration_sha256']==digest('configs/v10_tree.json')
+    assert record['selection_provenance']==config['selection_provenance']
+    assert not record['early_stopping_used']
+    assert record['actual_trees']==3800 and record['actual_features']==408
+    assert {entry['split']:entry['sha256'] for entry in record['inputs']}==metadata['fit_input_sha256']
+    for path,expected in record['source_sha256'].items():assert digest(path)==expected
+for key in ('inputs','source_sha256','selected','configuration_sha256','versions','python'):
+    assert primary[key]==independent[key],key
+first=digest('runs/refit_v10/primary/model.txt')
+second=digest('runs/refit_v10/independent/model.txt')
+assert first==second==primary['artifact_sha256']==independent['artifact_sha256']
+for name in ('pointwise_model.pt','pairwise_model.pt','fusion_config.json','recipe.py','pointwise_pairwise.py'):
+    assert digest('submission/'+name)==metadata['baseline_hashes'][name]==digest('runs/baseline_v9/'+name)
+assert Path('results/neural_history.json').read_bytes()==Path('results/neural_history_v9.json').read_bytes()
+shutil.copyfile('runs/refit_v10/primary/model.txt','submission/model.txt')
+primary.update(shipped_artifact='submission/model.txt',shipped_sha256=first)
+Path('results/tree_fit_v10.json').write_text(json.dumps(primary,indent=2)+'\n')
+Path('results/tree_fit_reproduced_v10.json').write_text(json.dumps(independent,indent=2)+'\n')
+reproduction=dict(artifact='submission/model.txt',original_sha256=first,reproduced_sha256=second,
+                  byte_identical=True,refitted=True,fit_splits=['TRAIN','DEV'],
+                  configuration_files_byte_identical=True,configuration='configs/v10_tree.json',
+                  primary_fit_record='results/tree_fit_v10.json',independent_fit_record='results/tree_fit_reproduced_v10.json')
+Path('results/lambdamart_reproducibility.json').write_text(json.dumps(reproduction,indent=2)+'\n')
+current=json.loads(Path('results/lambdamart_cv_v9.json').read_text())
+current['final_refit']=dict(protocol='docs/EXPERIMENTS_V10.md',configuration='configs/v10_tree.json',
+                           fit_splits=['TRAIN','DEV'],cv_scope='historical TRAIN only',new_cv_performed=False,
+                           fit_record='results/tree_fit_v10.json')
+Path('results/lambdamart_cv.json').write_text(json.dumps(current,indent=2)+'\n')
+print(json.dumps(reproduction),flush=True)
+PY
+# For the tree, DEV is now part of fitting. This measurement never selects a model.
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics.json
+.venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+p=Path('results/dev_metrics.json');d=json.loads(p.read_text())
+d.update(tree_dev_metric_is_in_sample=True,used_for_model_selection=False,
+         model_fit_splits={'tree':['TRAIN','DEV'],'pointwise':['TRAIN'],'pairwise':['TRAIN']},
+         tree_fit_record='results/tree_fit_v10.json',
+         interpretation='DEV labels entered tree fitting; its accuracy is in-sample, not held-out generalization. Neural fitting remains TRAIN only.')
+p.write_text(json.dumps(d,indent=2)+'\n')
+PY
+.venv/bin/python scripts/record_artifacts.py --baseline-manifest results/artifacts_v9.json \
+    --pairwise-refit results/pairwise_refit_v8.json --out results/artifacts_hpc_v10.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

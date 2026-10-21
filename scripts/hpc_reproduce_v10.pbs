@@ -1,0 +1,15 @@
+#!/bin/bash -l
+#PBS -N rankfusion-refit-v10
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=16gb:centos=genoa
+#PBS -l walltime=01:30:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+mkdir -p runs/refit_v10/independent
+exec > >(tee runs/reproduce_v10.log) 2>&1
+.venv/bin/python scripts/train_model.py --train data/train --dev data/dev --use-dev \
+    --config configs/v10_tree.json --out runs/refit_v10/independent/model.txt \
+    --fit-record runs/refit_v10/independent/fit.json

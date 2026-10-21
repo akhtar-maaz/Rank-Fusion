@@ -4,12 +4,12 @@
   "rows": 235259,
   "fusion_ndcg@10": 0.3077851635664398,
   "fusion_map@10": 0.12891656880923077,
-  "lambdamart_ndcg@10": 0.49837378503965435,
+  "lambdamart_ndcg@10": 0.6823991127188831,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 0.5546637456864119,
-    "maximum_fusion_seconds": 0.0011156033724546432,
-    "maximum_rerank_seconds": 0.4910036027431488
+    "prepare_seconds": 4.93567037768662,
+    "maximum_fusion_seconds": 0.0010975953191518784,
+    "maximum_rerank_seconds": 0.4609244838356972
   },
   "versions": {
     "numpy": "2.0.2",
@@ -19,5 +19,21 @@
   "pointwise_ndcg@10": 0.43170774298680703,
   "pairwise_ndcg@10": 0.4499222004961721,
   "pairwise_beats_bm25": true,
-  "within_per_call_limits": true
+  "within_per_call_limits": true,
+  "tree_dev_metric_is_in_sample": true,
+  "used_for_model_selection": false,
+  "model_fit_splits": {
+    "tree": [
+      "TRAIN",
+      "DEV"
+    ],
+    "pointwise": [
+      "TRAIN"
+    ],
+    "pairwise": [
+      "TRAIN"
+    ]
+  },
+  "tree_fit_record": "results/tree_fit_v10.json",
+  "interpretation": "DEV labels entered tree fitting; its accuracy is in-sample, not held-out generalization. Neural fitting remains TRAIN only."
 }

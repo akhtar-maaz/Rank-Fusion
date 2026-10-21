@@ -13767,5 +13767,16 @@
       "explicit_ndcg_10": 0.48743848227259645
     }
   ],
-  "seconds": 992.8613631371409
+  "seconds": 992.8613631371409,
+  "final_refit": {
+    "protocol": "docs/EXPERIMENTS_V10.md",
+    "configuration": "configs/v10_tree.json",
+    "fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "cv_scope": "historical TRAIN only",
+    "new_cv_performed": false,
+    "fit_record": "results/tree_fit_v10.json"
+  }
 }

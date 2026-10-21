@@ -90,3 +90,17 @@ No final DEV measurement was inspected to make this decision. Record all
 five actual job attempts, including the failed and never-started originals;
 do not describe all original jobs as successful. Details are frozen before
 the retry in `results/v10_runtime_recovery.json`.
+
+## Completed outcome
+
+Two fresh TRAIN+DEV fits completed successfully and produced byte-identical
+3,800-tree/408-internal-feature artifacts. Source/configuration/input identities
+match. Five actual PBS attempt records preserve the primary success, the original independent timeout, the original never-started dependency job, the successful unchanged independent retry and successful verification. Only the failed fit was retried, with the scheduler allocation extended from 90 minutes to three hours; the fitting method and four-CPU/16-GB request were unchanged. All 152 local/server tests and
+pristine local staff Python 3.12 neural loading pass. The final tree SHA256 is
+`f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864`. See `results/execution.json` and the two fit records.
+
+The single final local tree DEV nDCG@10 is 0.682399113,
+**in-sample** because DEV labels entered fitting. It did not change selection,
+parameters, weights or stopping. Other models and their history remain exact
+V9/V8 copies. No new private score or class rank is claimed; the user will
+upload the verified archive. Formal report writing remains deferred.

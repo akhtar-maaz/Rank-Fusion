@@ -1,9 +1,9 @@
 {
-  "date": "2026-10-20",
-  "protocol": "docs/EXPERIMENTS_V9.md",
-  "protocol_commit": "260f431d608faffc203e8f6839dda9eedb71f412",
-  "workflow_commit": "643b9761780e3abc69946d01a38eaf43219f071a",
-  "selection_record_commit": "a0ec1045c85415962bd632677047367cf17879d6",
+  "date": "2026-10-21",
+  "protocol": "docs/EXPERIMENTS_V10.md",
+  "protocol_commit": "2b7d83bdbe9880aed48a8e6e511198b46ae928e5",
+  "workflow_commit": "d41c30391b5db73681c37cecade6bc2749c12769",
+  "protected_artifact_baseline_commit": "dc96beac2abbdd0da473be88cabfab18c171eba3",
   "training_environment": {
     "python": "3.9.21",
     "numpy": "2.0.2",
@@ -11,847 +11,313 @@
     "torch": "2.8.0+cpu",
     "scheduler": "PBS",
     "project": "col764.course",
-    "observed_cpus_per_job": 4,
-    "allocation": "per-job requests and actual resource use below"
+    "observed_cpus_per_job": 4
   },
+  "actual_job_records": 5,
   "jobs": {
-    "1108242[0].pbshpc": {
-      "Job_Name": "rankfusion-cv-v9",
-      "resources_used.cpupercent": "395",
-      "resources_used.cput": "00:57:41",
-      "resources_used.mem": "4720364kb",
-      "resources_used.ncpus": "4",
-      "resources_used.vmem": "6203240kb",
-      "resources_used.walltime": "00:16:09",
+    "1110120.pbshpc": {
+      "Job_Name": "rankfusion-final-v10",
       "job_state": "F",
-      "exec_host": "cgen003/7*4",
       "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
+      "Resource_List.mem": "16gb",
       "Resource_List.ncpus": "4",
       "Resource_List.nodect": "1",
       "Resource_List.place": "free",
       "Resource_List.run_share": "21600",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
       "Resource_List.walltime": "01:30:00",
-      "stime": "Tue Oct 20 21:21:50 2026",
-      "comment": "Job run at Tue Oct 20 at 21:21 on (cgen003:ncpus=4:mem=12582912kb",
-      "obittime": "Tue Oct 20 21:38:02 2026",
-      "Exit_status": "0"
-    },
-    "1108242[1].pbshpc": {
-      "Job_Name": "rankfusion-cv-v9",
       "resources_used.cpupercent": "397",
-      "resources_used.cput": "02:15:35",
-      "resources_used.mem": "6887844kb",
+      "resources_used.cput": "02:19:01",
+      "resources_used.mem": "8611632kb",
       "resources_used.ncpus": "4",
-      "resources_used.vmem": "8390044kb",
-      "resources_used.walltime": "00:37:12",
+      "resources_used.vmem": "10132036kb",
+      "resources_used.walltime": "00:45:31",
+      "exec_host": "cgen003/10*4",
+      "stime": "Wed Oct 21 22:43:03 2026",
+      "comment": "Job run at Wed Oct 21 at 22:43 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Wed Oct 21 23:28:38 2026",
+      "Exit_status": "0"
+    },
+    "1110121.pbshpc": {
+      "Job_Name": "rankfusion-refit-v10",
       "job_state": "F",
-      "exec_host": "cgen003/8*4",
       "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
+      "Resource_List.mem": "16gb",
       "Resource_List.ncpus": "4",
       "Resource_List.nodect": "1",
       "Resource_List.place": "free",
       "Resource_List.run_share": "21600",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
       "Resource_List.walltime": "01:30:00",
-      "stime": "Tue Oct 20 21:21:50 2026",
-      "comment": "Job run at Tue Oct 20 at 21:21 on (cgen003:ncpus=4:mem=12582912kb",
-      "obittime": "Tue Oct 20 21:59:06 2026",
-      "Exit_status": "0"
-    },
-    "1108242[2].pbshpc": {
-      "Job_Name": "rankfusion-cv-v9",
-      "resources_used.cpupercent": "397",
-      "resources_used.cput": "01:03:28",
-      "resources_used.mem": "4689948kb",
+      "resources_used.cpupercent": "280",
+      "resources_used.cput": "03:52:48",
+      "resources_used.mem": "8511656kb",
       "resources_used.ncpus": "4",
-      "resources_used.vmem": "6210884kb",
-      "resources_used.walltime": "00:17:37",
-      "job_state": "F",
-      "exec_host": "cgen004/4*4",
-      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
-      "Resource_List.ncpus": "4",
-      "Resource_List.nodect": "1",
-      "Resource_List.place": "free",
-      "Resource_List.run_share": "21600",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "Resource_List.walltime": "01:30:00",
-      "stime": "Tue Oct 20 21:21:50 2026",
-      "comment": "Job run at Tue Oct 20 at 21:21 on (cgen004:ncpus=4:mem=12582912kb",
-      "obittime": "Tue Oct 20 21:39:30 2026",
-      "Exit_status": "0"
+      "resources_used.vmem": "10101408kb",
+      "resources_used.walltime": "01:30:37",
+      "exec_host": "cgen013/3*4",
+      "stime": "Wed Oct 21 22:43:03 2026",
+      "comment": "Job run at Wed Oct 21 at 22:43 on (cgen013:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 00:13:43 2026",
+      "Exit_status": "-29"
     },
-    "1108242[3].pbshpc": {
-      "Job_Name": "rankfusion-cv-v9",
-      "resources_used.cpupercent": "397",
-      "resources_used.cput": "02:00:14",
-      "resources_used.mem": "6838528kb",
-      "resources_used.ncpus": "4",
-      "resources_used.vmem": "8704944kb",
-      "resources_used.walltime": "00:32:48",
-      "job_state": "F",
-      "exec_host": "cgen004/5*4",
-      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
-      "Resource_List.ncpus": "4",
-      "Resource_List.nodect": "1",
-      "Resource_List.place": "free",
-      "Resource_List.run_share": "21600",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "Resource_List.walltime": "01:30:00",
-      "stime": "Tue Oct 20 21:21:50 2026",
-      "comment": "Job run at Tue Oct 20 at 21:21 on (cgen004:ncpus=4:mem=12582912kb",
-      "obittime": "Tue Oct 20 21:54:42 2026",
-      "Exit_status": "0"
-    },
-    "1108243.pbshpc": {
-      "Job_Name": "rankfusion-select-v9",
-      "job_state": "F",
-      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
-      "Resource_List.ncpus": "4",
-      "Resource_List.nodect": "1",
-      "Resource_List.place": "free",
-      "Resource_List.run_share": "12000",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "Resource_List.walltime": "00:50:00",
-      "resources_used.cpupercent": "380",
-      "resources_used.cput": "00:51:52",
-      "resources_used.mem": "2998300kb",
-      "resources_used.ncpus": "4",
-      "resources_used.vmem": "4615688kb",
-      "resources_used.walltime": "00:16:35",
-      "exec_host": "cgen003/3*4",
-      "stime": "Tue Oct 20 21:59:07 2026",
-      "comment": "Job run at Tue Oct 20 at 21:59 on (cgen003:ncpus=4:mem=12582912kb",
-      "obittime": "Tue Oct 20 22:15:45 2026",
-      "Exit_status": "0"
-    },
-    "1108244.pbshpc": {
-      "Job_Name": "rankfusion-final-v9",
-      "job_state": "F",
-      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
-      "Resource_List.ncpus": "4",
-      "Resource_List.nodect": "1",
-      "Resource_List.place": "free",
-      "Resource_List.run_share": "21600",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "Resource_List.walltime": "01:30:00",
-      "resources_used.cpupercent": "97",
-      "resources_used.cput": "00:02:38",
-      "resources_used.mem": "376448kb",
-      "resources_used.ncpus": "4",
-      "resources_used.vmem": "2299148kb",
-      "resources_used.walltime": "00:03:19",
-      "exec_host": "cgen003/7*4",
-      "stime": "Tue Oct 20 22:15:44 2026",
-      "comment": "Job run at Tue Oct 20 at 22:15 on (cgen003:ncpus=4:mem=12582912kb",
-      "obittime": "Tue Oct 20 22:19:07 2026",
-      "Exit_status": "0"
-    },
-    "1108245.pbshpc": {
-      "Job_Name": "rankfusion-refit-v9",
-      "job_state": "F",
-      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-      "Resource_List.mem": "12gb",
-      "Resource_List.ncpus": "4",
-      "Resource_List.nodect": "1",
-      "Resource_List.place": "free",
-      "Resource_List.run_share": "21600",
-      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "Resource_List.walltime": "01:30:00",
-      "resources_used.cpupercent": "29",
-      "resources_used.cput": "00:00:00",
-      "resources_used.mem": "10240kb",
-      "resources_used.ncpus": "4",
-      "resources_used.vmem": "45624kb",
-      "resources_used.walltime": "00:00:01",
-      "exec_host": "cgen004/4*4",
-      "stime": "Tue Oct 20 22:15:44 2026",
-      "obittime": "Tue Oct 20 22:15:49 2026",
-      "comment": "Job run at Tue Oct 20 at 22:15 on (cgen004:ncpus=4:mem=12582912kb",
-      "Exit_status": "0"
-    },
-    "1108246.pbshpc": {
-      "Job_Name": "rankfusion-seed-v9",
+    "1110122.pbshpc": {
+      "Job_Name": "rankfusion-verify-v10",
       "job_state": "F",
       "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
       "Resource_List.mem": "8gb",
       "Resource_List.ncpus": "4",
       "Resource_List.nodect": "1",
       "Resource_List.place": "free",
-      "Resource_List.run_share": "7200",
+      "Resource_List.run_share": "3600",
       "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
-      "Resource_List.walltime": "00:30:00",
-      "resources_used.cpupercent": "26",
-      "resources_used.cput": "00:00:00",
-      "resources_used.mem": "10240kb",
+      "Resource_List.walltime": "00:15:00"
+    },
+    "1110289.pbshpc": {
+      "Job_Name": "rankfusion-refit-v10",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "02:18:19",
+      "resources_used.mem": "8502096kb",
       "resources_used.ncpus": "4",
-      "resources_used.vmem": "45624kb",
-      "resources_used.walltime": "00:00:00",
-      "exec_host": "cgen003/6*4",
-      "stime": "Tue Oct 20 22:15:44 2026",
-      "obittime": "Tue Oct 20 22:15:48 2026",
-      "comment": "Job run at Tue Oct 20 at 22:15 on (cgen003:ncpus=4:mem=8388608kb)",
+      "resources_used.vmem": "10114644kb",
+      "resources_used.walltime": "00:45:17",
+      "job_state": "F",
+      "exec_host": "cgen003/10*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 00:22:08 2026",
+      "comment": "Job run at Thu Oct 22 at 00:22 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 01:07:28 2026",
       "Exit_status": "0"
     },
-    "1108247.pbshpc": {
-      "Job_Name": "rankfusion-verify-v9",
+    "1110290.pbshpc": {
+      "Job_Name": "rankfusion-verify-v10",
       "job_state": "F",
       "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
       "Resource_List.mem": "8gb",
       "Resource_List.ncpus": "4",
       "Resource_List.nodect": "1",
       "Resource_List.place": "free",
-      "Resource_List.run_share": "2880",
+      "Resource_List.run_share": "3600",
       "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
-      "Resource_List.walltime": "00:12:00",
-      "resources_used.cpupercent": "47",
-      "resources_used.cput": "00:00:23",
-      "resources_used.mem": "340784kb",
+      "Resource_List.walltime": "00:15:00",
+      "resources_used.cpupercent": "78",
+      "resources_used.cput": "00:02:47",
+      "resources_used.mem": "605208kb",
       "resources_used.ncpus": "4",
-      "resources_used.vmem": "2479984kb",
-      "resources_used.walltime": "00:00:50",
-      "exec_host": "cgen003/3*4",
-      "stime": "Tue Oct 20 22:19:06 2026",
-      "obittime": "Tue Oct 20 22:20:00 2026",
-      "comment": "Job run at Tue Oct 20 at 22:19 on (cgen003:ncpus=4:mem=8388608kb)",
+      "resources_used.vmem": "2527284kb",
+      "resources_used.walltime": "00:03:58",
+      "exec_host": "cgen004/2*4",
+      "stime": "Thu Oct 22 01:07:27 2026",
+      "obittime": "Thu Oct 22 01:11:29 2026",
+      "comment": "Job run at Thu Oct 22 at 01:07 on (cgen004:ncpus=4:mem=8388608kb)",
       "Exit_status": "0"
-    }
-  },
-  "job_resources": {
-    "1108242[0].pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "21600",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "01:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "395",
-        "resources_used.cput": "00:57:41",
-        "resources_used.mem": "4720364kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "6203240kb",
-        "resources_used.walltime": "00:16:09"
-      }
-    },
-    "1108242[1].pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "21600",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "01:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "397",
-        "resources_used.cput": "02:15:35",
-        "resources_used.mem": "6887844kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "8390044kb",
-        "resources_used.walltime": "00:37:12"
-      }
-    },
-    "1108242[2].pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "21600",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "01:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "397",
-        "resources_used.cput": "01:03:28",
-        "resources_used.mem": "4689948kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "6210884kb",
-        "resources_used.walltime": "00:17:37"
-      }
-    },
-    "1108242[3].pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "21600",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "01:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "397",
-        "resources_used.cput": "02:00:14",
-        "resources_used.mem": "6838528kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "8704944kb",
-        "resources_used.walltime": "00:32:48"
-      }
-    },
-    "1108243.pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "12000",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "00:50:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "380",
-        "resources_used.cput": "00:51:52",
-        "resources_used.mem": "2998300kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "4615688kb",
-        "resources_used.walltime": "00:16:35"
-      }
-    },
-    "1108244.pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "21600",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "01:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "97",
-        "resources_used.cput": "00:02:38",
-        "resources_used.mem": "376448kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "2299148kb",
-        "resources_used.walltime": "00:03:19"
-      }
-    },
-    "1108245.pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "12gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "21600",
-        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
-        "Resource_List.walltime": "01:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "29",
-        "resources_used.cput": "00:00:00",
-        "resources_used.mem": "10240kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "45624kb",
-        "resources_used.walltime": "00:00:01"
-      }
-    },
-    "1108246.pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "8gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "7200",
-        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
-        "Resource_List.walltime": "00:30:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "26",
-        "resources_used.cput": "00:00:00",
-        "resources_used.mem": "10240kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "45624kb",
-        "resources_used.walltime": "00:00:00"
-      }
-    },
-    "1108247.pbshpc": {
-      "requested": {
-        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
-        "Resource_List.mem": "8gb",
-        "Resource_List.ncpus": "4",
-        "Resource_List.nodect": "1",
-        "Resource_List.place": "free",
-        "Resource_List.run_share": "2880",
-        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
-        "Resource_List.walltime": "00:12:00"
-      },
-      "observed": {
-        "resources_used.cpupercent": "47",
-        "resources_used.cput": "00:00:23",
-        "resources_used.mem": "340784kb",
-        "resources_used.ncpus": "4",
-        "resources_used.vmem": "2479984kb",
-        "resources_used.walltime": "00:00:50"
-      }
     }
   },
   "declared_requests_by_workflow": {
-    "hpc_cv_v9.pbs": {
-      "select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "walltime": "01:30:00",
-      "source": "saved PBS workflow declaration"
+    "hpc_reproduce_v10.pbs": {
+      "select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "walltime": "01:30:00"
     },
-    "hpc_reproduce_v9.pbs": {
-      "select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "walltime": "01:30:00",
-      "source": "saved PBS workflow declaration"
+    "hpc_train_v10.pbs": {
+      "select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "walltime": "01:30:00"
     },
-    "hpc_seed_check_v9.pbs": {
+    "hpc_verify_v10.pbs": {
       "select": "1:ncpus=4:mem=8gb:centos=genoa",
-      "walltime": "00:30:00",
-      "source": "saved PBS workflow declaration"
-    },
-    "hpc_select_v9.pbs": {
-      "select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "walltime": "00:50:00",
-      "source": "saved PBS workflow declaration"
-    },
-    "hpc_train_v9.pbs": {
-      "select": "1:ncpus=4:mem=12gb:centos=genoa",
-      "walltime": "01:30:00",
-      "source": "saved PBS workflow declaration"
-    },
-    "hpc_verify_v9.pbs": {
-      "select": "1:ncpus=4:mem=8gb:centos=genoa",
-      "walltime": "00:12:00",
-      "source": "saved PBS workflow declaration"
+      "walltime": "00:15:00"
     }
   },
-  "actual_job_records": 9,
-  "explicit_failed_excluded_cv_jobs": {},
-  "tree_promoted": false,
-  "selected_tree_objectives": [
-    "lambdarank"
+  "operational_recovery": {
+    "protocol_commit": "155ffd5c0b01fdd8e2a656cc3225adc2f9178de2",
+    "record": "results/v10_runtime_recovery.json",
+    "reason_record": "results/v10_runtime_recovery.json",
+    "original_failed_independent": "1110121.pbshpc",
+    "original_verification_never_started": "1110122.pbshpc",
+    "primary_reused": "1110120.pbshpc",
+    "independent_requested_walltime": "03:00:00",
+    "independent_reproduction": "1110289.pbshpc",
+    "verification": "1110290.pbshpc"
+  },
+  "preserved_failed_independent_job": "1110121.pbshpc",
+  "preserved_never_started_verification_job": "1110122.pbshpc",
+  "job_resources": {
+    "1110120.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "21600",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "01:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "02:19:01",
+        "resources_used.mem": "8611632kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "10132036kb",
+        "resources_used.walltime": "00:45:31"
+      }
+    },
+    "1110121.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "21600",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "01:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "280",
+        "resources_used.cput": "03:52:48",
+        "resources_used.mem": "8511656kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "10101408kb",
+        "resources_used.walltime": "01:30:37"
+      }
+    },
+    "1110122.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "3600",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:15:00"
+      },
+      "observed": {}
+    },
+    "1110289.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "43200",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "03:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "02:18:19",
+        "resources_used.mem": "8502096kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "10114644kb",
+        "resources_used.walltime": "00:45:17"
+      }
+    },
+    "1110290.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "3600",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:15:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "78",
+        "resources_used.cput": "00:02:47",
+        "resources_used.mem": "605208kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "2527284kb",
+        "resources_used.walltime": "00:03:58"
+      }
+    }
+  },
+  "tree_final_fit_splits": [
+    "TRAIN",
+    "DEV"
   ],
-  "complete_tree_configurations": 49,
-  "runtime_excluded_candidates": [],
-  "tree_promotion_gates": {
-    "candidate": "v8_plus_0_1200_weight0.25",
-    "mixture_gain": 0.0006455848885584814,
-    "diagnostic_gain": 0.000162203306032227,
-    "improved_folds": 5,
-    "fold_mixture_gains": [
-      {
-        "fold": 0,
-        "mixture_gain": 0.00027788577189874486
-      },
-      {
-        "fold": 1,
-        "mixture_gain": 0.0017876613821691256
-      },
-      {
-        "fold": 2,
-        "mixture_gain": 0.0009757358618294187
-      },
-      {
-        "fold": 3,
-        "mixture_gain": 3.877861519879788e-05
-      },
-      {
-        "fold": 4,
-        "mixture_gain": 0.00014786281169620885
-      }
-    ],
-    "mixture_passed": true,
-    "diagnostic_passed": false,
-    "paired_folds_passed": true,
-    "passed": false
-  },
+  "tree_independently_refitted": true,
+  "selection_split": "historical TRAIN-only five-fold CV",
+  "new_cv_performed": false,
+  "new_hyperparameter_search": false,
+  "early_stopping_used": false,
+  "post_fit_dev_selection": false,
+  "original_fit_rows": 958671,
+  "original_fit_queries": 8000,
+  "raw_features": 136,
+  "query_ids_namespaced_by_split": true,
   "frozen_configuration_sha256": {
-    "lambdamart_cv_v9.json": "ddfc00e31e50a379e091ec740b1b9302062547b0d691c9f8ad164e95958cb491"
+    "configs/v10_tree.json": "3c6c932fff92c8fa799f8d365af6ee89b80ccf57822880714526fe036baed515",
+    "results/lambdamart_cv_v9.json": "ddfc00e31e50a379e091ec740b1b9302062547b0d691c9f8ad164e95958cb491"
   },
+  "primary_fit_record": "results/tree_fit_v10.json",
+  "independent_fit_record": "results/tree_fit_reproduced_v10.json",
+  "tree_reproducibility_record": "results/lambdamart_reproducibility.json",
   "synthetic_tree_pipeline": {
-    "description": "Synthetic toy pipeline only; no released TRAIN measurement",
-    "rows": 3000,
-    "queries": 120,
-    "settings": 49,
-    "all_source_specifications_match_frozen_baseline": true,
-    "checked_settings": {
-      "cached_v8_control": [
-        {
-          "fold": 0,
-          "native_max_abs_error": 2.4868995751603507e-14,
-          "native_ndcg_10": 0.9291687817510165,
-          "explicit_ndcg_10": 0.9291687817510165
-        },
-        {
-          "fold": 1,
-          "native_max_abs_error": 1.865174681370263e-14,
-          "native_ndcg_10": 0.9340805975722506,
-          "explicit_ndcg_10": 0.9340805975722506
-        },
-        {
-          "fold": 2,
-          "native_max_abs_error": 2.6645352591003757e-14,
-          "native_ndcg_10": 0.9344190943592935,
-          "explicit_ndcg_10": 0.9344190943592935
-        },
-        {
-          "fold": 3,
-          "native_max_abs_error": 2.220446049250313e-14,
-          "native_ndcg_10": 0.9297732945096072,
-          "explicit_ndcg_10": 0.9297732945096072
-        },
-        {
-          "fold": 4,
-          "native_max_abs_error": 2.930988785010413e-14,
-          "native_ndcg_10": 0.9547518540478132,
-          "explicit_ndcg_10": 0.9547518540478132
-        }
-      ],
-      "v8_plus_0_1200_weight0.25": [
-        {
-          "fold": 0,
-          "native_max_abs_error": 3.197442310920451e-14,
-          "native_ndcg_10": 0.9319866533445639,
-          "explicit_ndcg_10": 0.9319866533445639
-        },
-        {
-          "fold": 1,
-          "native_max_abs_error": 2.398081733190338e-14,
-          "native_ndcg_10": 0.9341507520951451,
-          "explicit_ndcg_10": 0.9341507520951451
-        },
-        {
-          "fold": 2,
-          "native_max_abs_error": 3.197442310920451e-14,
-          "native_ndcg_10": 0.9329068594818614,
-          "explicit_ndcg_10": 0.9329068594818614
-        },
-        {
-          "fold": 3,
-          "native_max_abs_error": 3.019806626980426e-14,
-          "native_ndcg_10": 0.9299424491950784,
-          "explicit_ndcg_10": 0.9299424491950784
-        },
-        {
-          "fold": 4,
-          "native_max_abs_error": 3.108624468950438e-14,
-          "native_ndcg_10": 0.951809928706386,
-          "explicit_ndcg_10": 0.951809928706386
-        }
-      ],
-      "v8_plus_1_1200_weight0.25": [
-        {
-          "fold": 0,
-          "native_max_abs_error": 3.6415315207705135e-14,
-          "native_ndcg_10": 0.9321852607350123,
-          "explicit_ndcg_10": 0.9321852607350123
-        },
-        {
-          "fold": 1,
-          "native_max_abs_error": 2.930988785010413e-14,
-          "native_ndcg_10": 0.9341389399152424,
-          "explicit_ndcg_10": 0.9341389399152424
-        },
-        {
-          "fold": 2,
-          "native_max_abs_error": 2.930988785010413e-14,
-          "native_ndcg_10": 0.9326891045433822,
-          "explicit_ndcg_10": 0.9326891045433822
-        },
-        {
-          "fold": 3,
-          "native_max_abs_error": 2.7533531010703882e-14,
-          "native_ndcg_10": 0.9289515118395292,
-          "explicit_ndcg_10": 0.9289515118395292
-        },
-        {
-          "fold": 4,
-          "native_max_abs_error": 3.019806626980426e-14,
-          "native_ndcg_10": 0.953763631584814,
-          "explicit_ndcg_10": 0.953763631584814
-        }
-      ],
-      "v8_plus_2_1200_weight0.25": [
-        {
-          "fold": 0,
-          "native_max_abs_error": 2.4868995751603507e-14,
-          "native_ndcg_10": 0.9307062933518679,
-          "explicit_ndcg_10": 0.9307062933518679
-        },
-        {
-          "fold": 1,
-          "native_max_abs_error": 2.5757174171303632e-14,
-          "native_ndcg_10": 0.939801828221528,
-          "explicit_ndcg_10": 0.939801828221528
-        },
-        {
-          "fold": 2,
-          "native_max_abs_error": 2.5757174171303632e-14,
-          "native_ndcg_10": 0.935048186166044,
-          "explicit_ndcg_10": 0.935048186166044
-        },
-        {
-          "fold": 3,
-          "native_max_abs_error": 2.842170943040401e-14,
-          "native_ndcg_10": 0.9262030262197288,
-          "explicit_ndcg_10": 0.9262030262197288
-        },
-        {
-          "fold": 4,
-          "native_max_abs_error": 2.5757174171303632e-14,
-          "native_ndcg_10": 0.951581065986828,
-          "explicit_ndcg_10": 0.951581065986828
-        }
-      ],
-      "v8_plus_3_1200_weight0.25": [
-        {
-          "fold": 0,
-          "native_max_abs_error": 3.019806626980426e-14,
-          "native_ndcg_10": 0.9277485003844043,
-          "explicit_ndcg_10": 0.9277485003844043
-        },
-        {
-          "fold": 1,
-          "native_max_abs_error": 3.108624468950438e-14,
-          "native_ndcg_10": 0.9340296920867165,
-          "explicit_ndcg_10": 0.9340296920867165
-        },
-        {
-          "fold": 2,
-          "native_max_abs_error": 3.019806626980426e-14,
-          "native_ndcg_10": 0.9335154517250942,
-          "explicit_ndcg_10": 0.9335154517250942
-        },
-        {
-          "fold": 3,
-          "native_max_abs_error": 3.730349362740526e-14,
-          "native_ndcg_10": 0.9296433251915919,
-          "explicit_ndcg_10": 0.9296433251915919
-        },
-        {
-          "fold": 4,
-          "native_max_abs_error": 3.019806626980426e-14,
-          "native_ndcg_10": 0.9529670506032026,
-          "explicit_ndcg_10": 0.9529670506032026
-        }
-      ]
-    },
-    "legacy_augmentation_byte_identical": [
-      {
-        "configuration": {
-          "name": "half_query_dropout_noise",
-          "seed": 20261019
-        },
-        "identical": true
-      },
-      {
-        "configuration": {
-          "name": "half_query_mixed",
-          "seed": 20261020
-        },
-        "identical": true
-      },
-      {
-        "configuration": {
-          "name": "full_query_mixed",
-          "seed": 20261021
-        },
-        "identical": true
-      },
-      {
-        "configuration": {
-          "name": "full_query_stress",
-          "seed": 20261022
-        },
-        "identical": true
-      }
-    ],
-    "maximum_absolute_score_error": 3.730349362740526e-14,
-    "selection_protocol": {
-      "split": "TRAIN only",
-      "folds": 5,
-      "seed": 0,
-      "clean_tolerance": 0.0025,
-      "per_diagnostic_tolerance": 0.0025,
-      "minimum_mixture_improvement": 0.0005,
-      "score": "0.5 clean + 0.5 mean(affine, feature_dropout, noise)",
-      "staff_c2_reconstruction": false,
-      "minimum_diagnostic_improvement": 0.001,
-      "minimum_improved_folds": 3,
-      "paired_fold_score": "0.5 clean + 0.5 mean(affine, feature_dropout, noise)",
-      "additional_gate_failure": "retain exact v8 control; do not search another setting"
-    }
-  },
-  "augmentation": {
-    "full_query_mixed": {
-      "seed": 20261021,
-      "original_queries": 6000,
-      "original_rows": 723412,
-      "augmented_queries": 6000,
-      "augmented_rows": 723412,
-      "total_fit_queries": 12000,
-      "total_fit_rows": 1446824,
-      "scenarios": {
-        "affine": {
-          "queries": 2047,
-          "rows": 244168
-        },
-        "feature_dropout": {
-          "queries": 2001,
-          "rows": 243587
-        },
-        "noise": {
-          "queries": 1952,
-          "rows": 235657
-        }
-      },
-      "train_file": "data/train/train.txt",
-      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
-      "defined_in": [
-        {
-          "file": "configs/v9_candidates.json",
-          "index": 1,
-          "name": "xendcg_augmented"
-        },
-        {
-          "file": "configs/v9_candidates.json",
-          "index": 3,
-          "name": "shallow_smoothed_augmented"
-        },
-        {
-          "file": "results/lambdamart_cv_v8.json",
-          "index": 4,
-          "name": null
-        },
-        {
-          "file": "results/lambdamart_cv_v8.json",
-          "index": 5,
-          "name": null
-        }
-      ],
-      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
-    },
-    "half_query_dropout_noise": {
-      "seed": 20261019,
-      "original_queries": 6000,
-      "original_rows": 723412,
-      "augmented_queries": 2990,
-      "augmented_rows": 362923,
-      "total_fit_queries": 8990,
-      "total_fit_rows": 1086335,
-      "scenarios": {
-        "affine": {
-          "queries": 0,
-          "rows": 0
-        },
-        "feature_dropout": {
-          "queries": 1446,
-          "rows": 177618
-        },
-        "noise": {
-          "queries": 1544,
-          "rows": 185305
-        }
-      },
-      "train_file": "data/train/train.txt",
-      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
-      "defined_in": [
-        {
-          "file": "results/lambdamart_cv_v8.json",
-          "index": 2,
-          "name": null
-        }
-      ],
-      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
-    },
-    "half_query_mixed": {
-      "seed": 20261020,
-      "original_queries": 6000,
-      "original_rows": 723412,
-      "augmented_queries": 2984,
-      "augmented_rows": 356838,
-      "total_fit_queries": 8984,
-      "total_fit_rows": 1080250,
-      "scenarios": {
-        "affine": {
-          "queries": 977,
-          "rows": 117450
-        },
-        "feature_dropout": {
-          "queries": 991,
-          "rows": 120945
-        },
-        "noise": {
-          "queries": 1016,
-          "rows": 118443
-        }
-      },
-      "train_file": "data/train/train.txt",
-      "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
-      "defined_in": [
-        {
-          "file": "results/lambdamart_cv_v8.json",
-          "index": 3,
-          "name": null
-        }
-      ],
-      "method": "stream TRAIN query IDs; exact augmentation SHA256 choice; no features or labels parsed"
-    }
-  },
-  "post_selection_seed_check": {
-    "skipped": true,
-    "reason": "Exact v8 tree artifact retained"
+    "description": "Synthetic toy TRAIN+DEV pipeline only; no released-data fitting",
+    "rows": 4000,
+    "queries": 160,
+    "raw_features": 136,
+    "trees": 3800,
+    "internal_features": 408,
+    "independent_artifacts_byte_identical": true,
+    "artifact_sha256": "c48c9fe8f6d0b5c103c8432b83808c0aafce90b15e277dce148b5909a0a41d98",
+    "namespaces_verified": true,
+    "fixed_configuration_verified": true,
+    "source_and_data_identities_identical": true,
+    "protected_real_artifacts_preserved": true
   },
   "neural_training_performed": false,
   "neural_models_changed": false,
   "pairwise_provenance": {
     "origin_round": "v8",
-    "status": "exact evaluated V8 artifact retained",
+    "status": "exact evaluated V8/V9 artifact retained",
     "selection_record": "results/neural_selection_v8.json",
     "fit_record": "results/pairwise_refit_v8.json",
     "independent_reproduction_record": "results/pairwise_reproducibility_v8.json",
     "neural_history_record": "results/neural_history_v8.json",
-    "artifact_sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
-    "refit_performed_in_v9": false
+    "refit_performed_in_v10": false,
+    "artifact_sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1"
   },
   "final_verification": {
-    "training_job": "1108244.pbshpc",
-    "independent_job": "1108245.pbshpc",
-    "verification_job": "1108247.pbshpc",
-    "tests_passed": 148,
-    "actual_frozen_dev_interface_passed": true,
+    "training_job": "1110120.pbshpc",
+    "independent_job": "1110289.pbshpc",
+    "verification_job": "1110290.pbshpc",
+    "tests_passed": 152,
+    "actual_dev_interface_passed": true,
+    "tree_dev_metric_is_in_sample": true,
     "independent_byte_identical_tree": true,
-    "tree_independently_refitted": false,
+    "tree_independently_refitted": true,
     "pairwise_independently_refitted": false,
-    "protected_v8_neural_core_fusion_recipe_preserved": true,
-    "neural_history_preserved_byte_identically": true,
-    "native_oof_max_abs_error": 2.398081733190338e-14
+    "protected_v9_neural_core_fusion_recipe_preserved": true,
+    "neural_history_preserved_byte_identically": true
   },
   "local_verification": {
     "python": "3.12.14",
-    "tests_passed": 148,
+    "tests_passed": 152,
     "staff_neural_loaders_passed": true,
+    "staff_loader_python312_passed": true,
     "hpc_hashes_match": true
   },
   "workflow_ci": {
-    "id": 39452024851,
-    "commit": "643b9761780e3abc69946d01a38eaf43219f071a",
+    "id": 39626975054,
+    "commit": "d41c30391b5db73681c37cecade6bc2749c12769",
     "conclusion": "success",
-    "tests_passed": 148,
-    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39452024851"
+    "tests_passed": 152,
+    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39626975054"
   },
   "unchanged_recipe_budget": "results/recipe_budget_v3.json",
-  "unchanged_synthetic_transfer": "results/recipe_smoke_v3.json"
+  "unchanged_synthetic_transfer": "results/recipe_smoke_v3.json",
+  "formal_assignment_report": "deferred",
+  "interpretation": "Tree DEV accuracy is in-sample after authorized TRAIN+DEV fitting. It does not establish held-out improvement, a private C2 score, or a new class rank."
 }

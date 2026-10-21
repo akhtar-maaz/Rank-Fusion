@@ -1,9 +1,15 @@
 {
   "artifact": "submission/model.txt",
-  "original_sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
-  "reproduced_sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
+  "original_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+  "reproduced_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
   "byte_identical": true,
-  "refitted": false,
+  "refitted": true,
+  "fit_splits": [
+    "TRAIN",
+    "DEV"
+  ],
   "configuration_files_byte_identical": true,
-  "executed_command": "cp runs/baseline_v8/model.txt runs/reproduced_v9/model.txt"
+  "configuration": "configs/v10_tree.json",
+  "primary_fit_record": "results/tree_fit_v10.json",
+  "independent_fit_record": "results/tree_fit_reproduced_v10.json"
 }

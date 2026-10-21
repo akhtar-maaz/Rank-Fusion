@@ -1,0 +1,372 @@
+{
+  "artifact": "runs/refit_v10/independent/model.txt",
+  "artifact_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+  "fit_splits": [
+    "TRAIN",
+    "DEV"
+  ],
+  "inputs": [
+    {
+      "split": "TRAIN",
+      "path": "data/train/train.txt",
+      "sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+      "bytes": 838011150,
+      "rows": 723412,
+      "queries": 6000,
+      "features": 136
+    },
+    {
+      "split": "DEV",
+      "path": "data/dev/vali.txt",
+      "sha256": "e86fb3fe7e8a5f16479da7ce04f783ae85735f17f66016786c3ffc797dd9d4db",
+      "bytes": 272760099,
+      "rows": 235259,
+      "queries": 2000,
+      "features": 136
+    }
+  ],
+  "rows": 958671,
+  "queries": 8000,
+  "raw_features": 136,
+  "query_ids_namespaced_by_split": true,
+  "use_dev_for_fitting": true,
+  "dev_tree_metric_is_in_sample": true,
+  "configuration_path": "configs/v10_tree.json",
+  "configuration_sha256": "3c6c932fff92c8fa799f8d365af6ee89b80ccf57822880714526fe036baed515",
+  "selected": {
+    "name": "cached_v8_control",
+    "trees": 3800,
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "num_leaves": 127,
+      "learning_rate": 0.05,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4
+    },
+    "feature_mode": "query_all",
+    "train_mean": 0.7321142738023114,
+    "validation_mean": 0.4875599715916302,
+    "validation_std": 0.009311735872849192,
+    "validation_train_ratio": 0.6659615705338415,
+    "scenario_means": {
+      "clean": 0.4875599715916302,
+      "affine": 0.478999749917989,
+      "feature_dropout": 0.47715373694851093,
+      "noise": 0.47492148208077056
+    },
+    "diagnostic_mean": 0.4770249896490902,
+    "selection_score": 0.48229248062036023,
+    "folds": [
+      {
+        "fold": 0,
+        "train_ndcg@10": 0.7308662406192089,
+        "scenarios": {
+          "clean": 0.50317104782731,
+          "affine": 0.4940287419397928,
+          "feature_dropout": 0.4923988513948587,
+          "noise": 0.49004324217735645
+        }
+      },
+      {
+        "fold": 1,
+        "train_ndcg@10": 0.7314068974505193,
+        "scenarios": {
+          "clean": 0.47902756770052424,
+          "affine": 0.47115962738115824,
+          "feature_dropout": 0.47031689265630433,
+          "noise": 0.4681947867393193
+        }
+      },
+      {
+        "fold": 2,
+        "train_ndcg@10": 0.7316877627114512,
+        "scenarios": {
+          "clean": 0.4858292537850515,
+          "affine": 0.47722075594867286,
+          "feature_dropout": 0.47467195137799933,
+          "noise": 0.47126716170103294
+        }
+      },
+      {
+        "fold": 3,
+        "train_ndcg@10": 0.7341979576701273,
+        "scenarios": {
+          "clean": 0.4823335063726691,
+          "affine": 0.47475102909062816,
+          "feature_dropout": 0.47214996253469516,
+          "noise": 0.4715967648914395
+        }
+      },
+      {
+        "fold": 4,
+        "train_ndcg@10": 0.7324125105602504,
+        "scenarios": {
+          "clean": 0.48743848227259645,
+          "affine": 0.47783859522969285,
+          "feature_dropout": 0.47623102677869716,
+          "noise": 0.47350545489470475
+        }
+      }
+    ],
+    "members": [
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 200,
+        "feature_mode": "query_normalized",
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 13
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "augmentation": {
+          "name": "half_query_dropout_noise",
+          "seed": 20261019
+        },
+        "weight": 0.140625
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "half_query_mixed",
+          "seed": 20261020
+        },
+        "weight": 0.28125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.1875
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.25
+      }
+    ],
+    "sources": [
+      [
+        "v3",
+        0,
+        800
+      ],
+      [
+        "v3",
+        1,
+        200
+      ],
+      [
+        "v4",
+        3,
+        800
+      ],
+      [
+        "v5",
+        1,
+        800
+      ],
+      [
+        "v6",
+        3,
+        800
+      ],
+      [
+        "v7",
+        2,
+        400
+      ]
+    ]
+  },
+  "early_stopping_used": false,
+  "selection_provenance": {
+    "source": "results/lambdamart_cv_v9.json",
+    "source_sha256": "ddfc00e31e50a379e091ec740b1b9302062547b0d691c9f8ad164e95958cb491",
+    "selection_split": "TRAIN only",
+    "new_hyperparameter_search": false,
+    "stopping": "fixed counts from archived TRAIN-only CV",
+    "final_fit_splits": [
+      "TRAIN",
+      "DEV"
+    ]
+  },
+  "actual_trees": 3800,
+  "actual_features": 408,
+  "training_ndcg_10": 0.6773846765518825,
+  "fit_seconds": 2008.012883586809,
+  "source_sha256": {
+    "scripts/train_model.py": "35a77f95b9bd5f0a267bd2b62941991936c0c1b3ae76544bb52561bff67ca267",
+    "scripts/lambdamart_utils.py": "ff201ea6c2b8dae7720a1eaa8c82f1c5601c6f4b72d4b82bba47016fe0f97785",
+    "scripts/augmentation.py": "3016b39c693ff738694e2b3d692526d307b3faef9ba3194809c71fe6e24b56ff",
+    "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+    "submission/features.py": "fb1327b0e913e7ab8ac0ef9fc98873977191ae548a3dc5971dc2ddc0823e3ad5",
+    "submission/tree_ensemble.py": "4cb21ed0a87bda4d8b2c0407e026f2e9520bae11a797aa1c2cc39c974000f492"
+  },
+  "python": "3.9.21",
+  "versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0"
+  },
+  "arguments": {
+    "train": "data/train",
+    "dev": "data/dev",
+    "out": "runs/refit_v10/independent/model.txt",
+    "trees": 3800,
+    "num_leaves": 15,
+    "learning_rate": 0.05,
+    "min_data_in_leaf": 50,
+    "seed": 0,
+    "lambda_l2": 1.0,
+    "feature_fraction": 0.8,
+    "threads": 4,
+    "feature_mode": "query_all",
+    "max_depth": null,
+    "truncation": null,
+    "config": "configs/v10_tree.json",
+    "use_dev": true,
+    "fit_record": "runs/refit_v10/independent/fit.json"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "artifact": "submission/model.txt",
+  "original_sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
+  "reproduced_sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
+  "byte_identical": true,
+  "refitted": false,
+  "configuration_files_byte_identical": true,
+  "executed_command": "cp runs/baseline_v8/model.txt runs/reproduced_v9/model.txt"
+}

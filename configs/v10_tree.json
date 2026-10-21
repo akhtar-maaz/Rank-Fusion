@@ -1,0 +1,301 @@
+{
+  "selection_provenance": {
+    "source": "results/lambdamart_cv_v9.json",
+    "source_sha256": "ddfc00e31e50a379e091ec740b1b9302062547b0d691c9f8ad164e95958cb491",
+    "selection_split": "TRAIN only",
+    "new_hyperparameter_search": false,
+    "stopping": "fixed counts from archived TRAIN-only CV",
+    "final_fit_splits": [
+      "TRAIN",
+      "DEV"
+    ]
+  },
+  "selected": {
+    "name": "cached_v8_control",
+    "trees": 3800,
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "num_leaves": 127,
+      "learning_rate": 0.05,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4
+    },
+    "feature_mode": "query_all",
+    "train_mean": 0.7321142738023114,
+    "validation_mean": 0.4875599715916302,
+    "validation_std": 0.009311735872849192,
+    "validation_train_ratio": 0.6659615705338415,
+    "scenario_means": {
+      "clean": 0.4875599715916302,
+      "affine": 0.478999749917989,
+      "feature_dropout": 0.47715373694851093,
+      "noise": 0.47492148208077056
+    },
+    "diagnostic_mean": 0.4770249896490902,
+    "selection_score": 0.48229248062036023,
+    "folds": [
+      {
+        "fold": 0,
+        "train_ndcg@10": 0.7308662406192089,
+        "scenarios": {
+          "clean": 0.50317104782731,
+          "affine": 0.4940287419397928,
+          "feature_dropout": 0.4923988513948587,
+          "noise": 0.49004324217735645
+        }
+      },
+      {
+        "fold": 1,
+        "train_ndcg@10": 0.7314068974505193,
+        "scenarios": {
+          "clean": 0.47902756770052424,
+          "affine": 0.47115962738115824,
+          "feature_dropout": 0.47031689265630433,
+          "noise": 0.4681947867393193
+        }
+      },
+      {
+        "fold": 2,
+        "train_ndcg@10": 0.7316877627114512,
+        "scenarios": {
+          "clean": 0.4858292537850515,
+          "affine": 0.47722075594867286,
+          "feature_dropout": 0.47467195137799933,
+          "noise": 0.47126716170103294
+        }
+      },
+      {
+        "fold": 3,
+        "train_ndcg@10": 0.7341979576701273,
+        "scenarios": {
+          "clean": 0.4823335063726691,
+          "affine": 0.47475102909062816,
+          "feature_dropout": 0.47214996253469516,
+          "noise": 0.4715967648914395
+        }
+      },
+      {
+        "fold": 4,
+        "train_ndcg@10": 0.7324125105602504,
+        "scenarios": {
+          "clean": 0.48743848227259645,
+          "affine": 0.47783859522969285,
+          "feature_dropout": 0.47623102677869716,
+          "noise": 0.47350545489470475
+        }
+      }
+    ],
+    "members": [
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 200,
+        "feature_mode": "query_normalized",
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 13
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "augmentation": {
+          "name": "half_query_dropout_noise",
+          "seed": 20261019
+        },
+        "weight": 0.140625
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "half_query_mixed",
+          "seed": 20261020
+        },
+        "weight": 0.28125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.1875
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.25
+      }
+    ],
+    "sources": [
+      [
+        "v3",
+        0,
+        800
+      ],
+      [
+        "v3",
+        1,
+        200
+      ],
+      [
+        "v4",
+        3,
+        800
+      ],
+      [
+        "v5",
+        1,
+        800
+      ],
+      [
+        "v6",
+        3,
+        800
+      ],
+      [
+        "v7",
+        2,
+        400
+      ]
+    ]
+  }
+}

@@ -70,3 +70,23 @@ Update README and submission notes with an artifact-by-artifact data-use
 table: tree TRAIN+DEV, neural models TRAIN only, fusion TRAIN-selected,
 recipe staff-supplied benchmark inputs. Preserve the AI/provenance disclosure.
 Commit/push only verified outputs and package `dist/rank-fusion-submission-v10.zip`.
+
+## Operational recovery after a scheduler timeout
+
+The original primary fit (1110120) exited zero. Its independent repeat
+(1110121) was killed for exceeding its requested 90-minute PBS walltime,
+exit -29 after 90m37s, before saving any model or fit record. Dependent
+verification (1110122) never started. The submission still contains V9.
+Original IDs, failed metadata and logs remain preserved.
+
+Retry only the failed independent fit using the unchanged fitting source,
+PBS file and frozen configuration, overriding the scheduler walltime to
+three hours with the same four CPUs and 16 GB. Reuse the completed primary
+fit and run the unchanged verification workflow after a successful retry.
+Save both new IDs separately without replacing original IDs or submitting
+duplicates of successful/running work. This is an operational resource
+recovery, with no new candidate, tuning, early stopping or DEV-based choice.
+No final DEV measurement was inspected to make this decision. Record all
+five actual job attempts, including the failed and never-started originals;
+do not describe all original jobs as successful. Details are frozen before
+the retry in `results/v10_runtime_recovery.json`.

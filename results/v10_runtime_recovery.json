@@ -1,0 +1,50 @@
+{
+  "protocol": "docs/EXPERIMENTS_V10.md",
+  "protocol_commit": "2b7d83bdbe9880aed48a8e6e511198b46ae928e5",
+  "workflow_commit": "d41c30391b5db73681c37cecade6bc2749c12769",
+  "reason": "The original independent fit exceeded its requested 90-minute PBS walltime; no independent model or fit record was saved.",
+  "evidence": {
+    "primary_job": "1110120.pbshpc",
+    "primary_exit_status": 0,
+    "primary_walltime": "00:45:31",
+    "primary_model_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+    "failed_independent_job": "1110121.pbshpc",
+    "failed_independent_exit_status": -29,
+    "failed_independent_walltime": "01:30:37",
+    "failed_independent_requested_walltime": "01:30:00",
+    "failed_independent_observed_ncpus": 4,
+    "failed_independent_peak_mem": "8511656kb",
+    "scheduler_comment_suffix": "and exceeded resource walltime",
+    "independent_model_saved": false,
+    "independent_fit_record_saved": false,
+    "original_dependent_verification_job": "1110122.pbshpc",
+    "original_verification_started": false,
+    "shipped_tree_still_v9_sha256": "6062ecdffced2132ae67c20f1ee4a20b4e99ca827706f853bac5d4d8e307b410",
+    "source": "Saved qstat -xf metadata and direct existence/hash checks after the original jobs terminated"
+  },
+  "recovery": {
+    "type": "operational retry of a failed fit, not another candidate or configuration",
+    "preserve_all_original_job_ids_and_metadata": true,
+    "archive_failed_empty_log_before_retry": true,
+    "reuse_successful_primary_fit": true,
+    "independent_retry_command": ["qsub", "-l", "walltime=03:00:00", "scripts/hpc_reproduce_v10.pbs"],
+    "retry_ncpus": 4,
+    "retry_mem": "16gb",
+    "retry_walltime": "03:00:00",
+    "verification": "Run the unchanged verification workflow after the successful independent retry; retain the original never-started dependency record.",
+    "new_fit_or_verification_ids": "Record under recovery_1 in ignored runs/v10_jobs.json without replacing original keys."
+  },
+  "unchanged": {
+    "configuration_sha256": "3c6c932fff92c8fa799f8d365af6ee89b80ccf57822880714526fe036baed515",
+    "fit_splits": ["TRAIN", "DEV"],
+    "selection_split": "historical TRAIN-only CV",
+    "fitting_source_and_pbs_files": true,
+    "members": 6,
+    "trees": 3800,
+    "parameters_weights_seeds_features_augmentation": true,
+    "no_dev_based_tuning_or_early_stopping": true,
+    "protected_neural_fusion_recipe_core_history": true
+  },
+  "final_dev_inspected_at_recovery_decision": false,
+  "release_requires": "A fresh completed independent fit with matching data/configuration/source/runtime identities and byte-identical artifact, successful verification, local tests and staff loading. The timed-out attempt cannot satisfy reproduction."
+}

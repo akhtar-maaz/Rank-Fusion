@@ -1,0 +1,1258 @@
+{
+  "fold": 0,
+  "context": {
+    "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+    "rows": 723412,
+    "queries": 6000,
+    "features": 136,
+    "folds": 5,
+    "split_seed": 0,
+    "source_sha256": {
+      "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+      "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+      "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+      "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+      "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+      "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+      "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+      "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+      "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+      "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+    },
+    "runtime": {
+      "torch": "2.8.0+cpu",
+      "numpy": "2.0.2",
+      "cpu_threads": 4,
+      "deterministic_algorithms": true
+    },
+    "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+    "fold": 0,
+    "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+    "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+  },
+  "results": [
+    {
+      "fold": 0,
+      "train_ndcg_10": 0.47133613617486786,
+      "validation_ndcg_10": 0.45355561934085215,
+      "train_rows": 581022,
+      "validation_rows": 142390,
+      "train_queries": 4800,
+      "validation_queries": 1200,
+      "standardizers_identical": true,
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "exported_sha256": "28c4756e6bd10c82aaed1dddb5cb65d349bc0f710a2e7d587b69e3dcb0b72ef2",
+      "train_compilation": {
+        "exported_ndcg_10": 0.47133613617486786,
+        "arithmetic_average_ndcg_10": 0.4713364892430297,
+        "maximum_absolute_score_error": 1.9073486328125e-06,
+        "mean_absolute_score_error": 6.590105744544296e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "validation_compilation": {
+        "exported_ndcg_10": 0.45355561934085215,
+        "arithmetic_average_ndcg_10": 0.45355561934085215,
+        "maximum_absolute_score_error": 1.1920928955078125e-06,
+        "mean_absolute_score_error": 6.681814003848018e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 20,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 20,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "cache_key": "5878e0135fffef247781de913849e7929bacfc3ced3930fc4ce77d4d6d6614f7",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.37950814994722254,
+              "train_ndcg@10": 0.4592092611546397
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3611133590964095,
+              "train_ndcg@10": 0.4675766088886767
+            }
+          ],
+          "seconds": 49.14287191256881,
+          "artifact": "runs/neural_v12/cache/fold_0/5878e0135fffef247781de913849e7929bacfc3ced3930fc4ce77d4d6d6614f7/seed_0.pt",
+          "artifact_sha256": "d8245d21e5961d62514e8034a7e5a0254cc432b0733cd2b41272cba9128c003a",
+          "state_sha256": "45d22cda40cc2409efa9330ac8aade3817c6a3d84049d48cd2db51e68a06fd5c",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 20,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 20,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "cache_key": "a9d278617f4ecb616f714bd3254b06fe20611dbaccbad6a6efbb28f89b4f5dbb",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.38249696711964004,
+              "train_ndcg@10": 0.46234999088888834
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.361004329486529,
+              "train_ndcg@10": 0.4679004407402896
+            }
+          ],
+          "seconds": 47.82340822741389,
+          "artifact": "runs/neural_v12/cache/fold_0/a9d278617f4ecb616f714bd3254b06fe20611dbaccbad6a6efbb28f89b4f5dbb/seed_41.pt",
+          "artifact_sha256": "3922160d747d13e8e3902af28b2e6634a089e417518ef346d77200db84054274",
+          "state_sha256": "ce3c675a5dc5c4437092098e51d9957fbcee4b1b561953f8588ae5ea1f5b5817",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        }
+      ],
+      "control_reference_checked": true,
+      "control_reference": {
+        "exported_metric_tolerance": 1e-10,
+        "exported_metrics_equal": true,
+        "candidate_equal": true,
+        "member_checks": [
+          {
+            "seed": 0,
+            "history_equal": true,
+            "same_artifact_basename": true,
+            "artifact_sha256_checked": true,
+            "artifact_sha256_equal": true,
+            "archived_state_checked": true,
+            "state_and_statistics_equal": true
+          },
+          {
+            "seed": 41,
+            "history_equal": true,
+            "same_artifact_basename": true,
+            "artifact_sha256_checked": true,
+            "artifact_sha256_equal": true,
+            "archived_state_checked": true,
+            "state_and_statistics_equal": true
+          }
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "train_ndcg_10": 0.4827767611120777,
+      "validation_ndcg_10": 0.45435177231251744,
+      "train_rows": 581022,
+      "validation_rows": 142390,
+      "train_queries": 4800,
+      "validation_queries": 1200,
+      "standardizers_identical": true,
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "exported_sha256": "4cb6b5b7f9ee3f9ec241d1c954aa3c223e8447cd280b404b84085903f94845ab",
+      "train_compilation": {
+        "exported_ndcg_10": 0.4827767611120777,
+        "arithmetic_average_ndcg_10": 0.48277740373640626,
+        "maximum_absolute_score_error": 9.5367431640625e-07,
+        "mean_absolute_score_error": 6.406727098251542e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "validation_compilation": {
+        "exported_ndcg_10": 0.45435177231251744,
+        "arithmetic_average_ndcg_10": 0.45435177231251744,
+        "maximum_absolute_score_error": 9.5367431640625e-07,
+        "mean_absolute_score_error": 6.524215831926711e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 30,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "cache_key": "2f7860284db172e360a433e037be6de44467140b9ca7a5118016c4952f4c9189",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.37169562405229845,
+              "train_ndcg@10": 0.46975733560311955
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3511735813813688,
+              "train_ndcg@10": 0.47716440799918197
+            }
+          ],
+          "seconds": 53.92813901975751,
+          "artifact": "runs/neural_v12/cache/fold_0/2f7860284db172e360a433e037be6de44467140b9ca7a5118016c4952f4c9189/seed_0.pt",
+          "artifact_sha256": "822a70e43a5c32d0953daee8f68d6a4e961105c3a6b939ebcbd11e3842da4165",
+          "state_sha256": "22d64a12ee7c48fcd4a320c67509ce235b50450e6eed26a918b0890b8010ef71",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 30,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "cache_key": "da66ba41e8d8ae7859786743713dcac290b4550562d9f660b34bfdd60d49a22a",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3711307295418122,
+              "train_ndcg@10": 0.472827885907784
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3514255264209798,
+              "train_ndcg@10": 0.47762979830933555
+            }
+          ],
+          "seconds": 71.5332667697221,
+          "artifact": "runs/neural_v12/cache/fold_0/da66ba41e8d8ae7859786743713dcac290b4550562d9f660b34bfdd60d49a22a/seed_41.pt",
+          "artifact_sha256": "f1f0e7b1d93423cbae93db48ae1bd4836dca4aa273e5f859dc5bd86680dab096",
+          "state_sha256": "f6d72daaffbd2b19d22e94a8926cfa3f0448cc2efec6cea8cec4cf2cd766ed05",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        }
+      ],
+      "control_reference_checked": false
+    },
+    {
+      "fold": 0,
+      "train_ndcg_10": 0.4928265688991472,
+      "validation_ndcg_10": 0.4564086918898004,
+      "train_rows": 581022,
+      "validation_rows": 142390,
+      "train_queries": 4800,
+      "validation_queries": 1200,
+      "standardizers_identical": true,
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "exported_sha256": "224dc4e497aa33cdcfb3507d57a494482e1ec8a946ca5a462a0526b977d2059a",
+      "train_compilation": {
+        "exported_ndcg_10": 0.4928265688991472,
+        "arithmetic_average_ndcg_10": 0.4928263920001498,
+        "maximum_absolute_score_error": 1.430511474609375e-06,
+        "mean_absolute_score_error": 6.741595574529871e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "validation_compilation": {
+        "exported_ndcg_10": 0.4564086918898004,
+        "arithmetic_average_ndcg_10": 0.4564086918898004,
+        "maximum_absolute_score_error": 9.5367431640625e-07,
+        "mean_absolute_score_error": 6.820480930176468e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 40,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 40,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "cache_key": "ec309e23f2ae54b2725be51b752419d162f5d93a2a004709b400894d16323f94",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3672568968585156,
+              "train_ndcg@10": 0.4800326683873512
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3431087858580576,
+              "train_ndcg@10": 0.4864891102772006
+            }
+          ],
+          "seconds": 88.32862373068929,
+          "artifact": "runs/neural_v12/cache/fold_0/ec309e23f2ae54b2725be51b752419d162f5d93a2a004709b400894d16323f94/seed_0.pt",
+          "artifact_sha256": "3d458fea74a70448897589325efa3c8d5e41d0063659a9f5605544142d854e0d",
+          "state_sha256": "ac1b3e51ffca212d0471016c7670ac4f1a189bf37020fe9f51e53634047c7a58",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 40,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 40,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "cache_key": "9cba3632413fba111562c2ee6ef4f8453ecc4a4a45ae3489bf63c6f69c86b111",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3638841905465628,
+              "train_ndcg@10": 0.47946775204824327
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3438575771027811,
+              "train_ndcg@10": 0.4849139925388833
+            }
+          ],
+          "seconds": 84.66082848794758,
+          "artifact": "runs/neural_v12/cache/fold_0/9cba3632413fba111562c2ee6ef4f8453ecc4a4a45ae3489bf63c6f69c86b111/seed_41.pt",
+          "artifact_sha256": "fd523ffc43d79492b40958c1a3243d21f2f4b27840bd329afae5c4929208eba3",
+          "state_sha256": "a5bcf24dc195f0f98d148f1f2ad98456024085685979f4ca761a0ee21ecac53a",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        }
+      ],
+      "control_reference_checked": false
+    },
+    {
+      "fold": 0,
+      "train_ndcg_10": 0.4772793826710976,
+      "validation_ndcg_10": 0.45214002993040964,
+      "train_rows": 581022,
+      "validation_rows": 142390,
+      "train_queries": 4800,
+      "validation_queries": 1200,
+      "standardizers_identical": true,
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "exported_sha256": "982cec6e49790357cd92f0170ae437bbb2875d63a8716bedb6902750c65e722c",
+      "train_compilation": {
+        "exported_ndcg_10": 0.4772793826710976,
+        "arithmetic_average_ndcg_10": 0.4772793826710976,
+        "maximum_absolute_score_error": 3.814697265625e-06,
+        "mean_absolute_score_error": 7.292818923583e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "validation_compilation": {
+        "exported_ndcg_10": 0.45214002993040964,
+        "arithmetic_average_ndcg_10": 0.45214002993040964,
+        "maximum_absolute_score_error": 9.5367431640625e-07,
+        "mean_absolute_score_error": 7.37694862125144e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 20,
+            "epochs": 4,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 20,
+              "epochs": 4,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "cache_key": "c4172ae4ae6fb609c695ea89bd401d7407be2c41bc0291a3d95e8747b6e7c658",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.37950814994722254,
+              "train_ndcg@10": 0.4592092611546397
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3611133590964095,
+              "train_ndcg@10": 0.4675766088886767
+            },
+            {
+              "epoch": 3,
+              "train_loss": 0.35010126785579393,
+              "train_ndcg@10": 0.4690566549771771
+            },
+            {
+              "epoch": 4,
+              "train_loss": 0.34209780020272745,
+              "train_ndcg@10": 0.4710975961441442
+            }
+          ],
+          "seconds": 71.4196658488363,
+          "artifact": "runs/neural_v12/cache/fold_0/c4172ae4ae6fb609c695ea89bd401d7407be2c41bc0291a3d95e8747b6e7c658/seed_0.pt",
+          "artifact_sha256": "b14c9105179bee26bf704445269077b0dd0f97631210b9efe486f310fe1f6e08",
+          "state_sha256": "2806b87a86075731c4c5cfcae33e049c737623c71b7c0e96eb65b82f6e6430b5",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 20,
+            "epochs": 4,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 20,
+              "epochs": 4,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "cache_key": "a3f2c13033544e343391c80c87c5870d9fa6619a3fc5698fc20a9d98b115c36b",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.38249696711964004,
+              "train_ndcg@10": 0.46234999088888834
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.361004329486529,
+              "train_ndcg@10": 0.4679004407402896
+            },
+            {
+              "epoch": 3,
+              "train_loss": 0.3514245127551264,
+              "train_ndcg@10": 0.47016125618311955
+            },
+            {
+              "epoch": 4,
+              "train_loss": 0.3425994788733177,
+              "train_ndcg@10": 0.47478408578888176
+            }
+          ],
+          "seconds": 65.60995418392122,
+          "artifact": "runs/neural_v12/cache/fold_0/a3f2c13033544e343391c80c87c5870d9fa6619a3fc5698fc20a9d98b115c36b/seed_41.pt",
+          "artifact_sha256": "acfcc5664760a8959d21fb9d757741f2e99b7a80d42fcbc83c9429780d1179fe",
+          "state_sha256": "36226c98cf164e510b2273bbccb8e2a54c9dd5c593644b0a20dfe3278f039fa1",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        }
+      ],
+      "control_reference_checked": false
+    },
+    {
+      "fold": 0,
+      "train_ndcg_10": 0.4899987872884819,
+      "validation_ndcg_10": 0.45140041368055783,
+      "train_rows": 581022,
+      "validation_rows": 142390,
+      "train_queries": 4800,
+      "validation_queries": 1200,
+      "standardizers_identical": true,
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "exported_sha256": "adacd1edec20af4f98e8392c39d8f61fcd8e85c0ebf672c1cef1dfcf9a01180a",
+      "train_compilation": {
+        "exported_ndcg_10": 0.4899987872884819,
+        "arithmetic_average_ndcg_10": 0.4899996498301749,
+        "maximum_absolute_score_error": 1.9073486328125e-06,
+        "mean_absolute_score_error": 6.977621287024475e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "validation_compilation": {
+        "exported_ndcg_10": 0.45140041368055783,
+        "arithmetic_average_ndcg_10": 0.45140041368055783,
+        "maximum_absolute_score_error": 9.5367431640625e-07,
+        "mean_absolute_score_error": 7.085131162237155e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 4,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 30,
+              "epochs": 4,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "cache_key": "8b1cf440ccfdc3854c246b127f10c179ffa2d605cb241ed0bb75f5b69c1750e0",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.37169562405229845,
+              "train_ndcg@10": 0.46975733560311955
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3511735813813688,
+              "train_ndcg@10": 0.47716440799918197
+            },
+            {
+              "epoch": 3,
+              "train_loss": 0.33751344883518103,
+              "train_ndcg@10": 0.48020414864541
+            },
+            {
+              "epoch": 4,
+              "train_loss": 0.3309768249110012,
+              "train_ndcg@10": 0.48262483434348574
+            }
+          ],
+          "seconds": 71.14828011579812,
+          "artifact": "runs/neural_v12/cache/fold_0/8b1cf440ccfdc3854c246b127f10c179ffa2d605cb241ed0bb75f5b69c1750e0/seed_0.pt",
+          "artifact_sha256": "b7bd9b74e05170d800ffe07ae1a3c710a8a94e66d0a84462f3997e76a81239af",
+          "state_sha256": "b1a71cf76c349e1186b0c4a16ded303b82a6d260eef4e727b1467064e2ace4b8",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 4,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "folds": 5,
+              "split_seed": 0,
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              },
+              "control_report_sha256": "ed48cd6d4d70064196ef5959e84e0aa76b8609c17216be0dc6f361fb9d0494c8",
+              "fold": 0,
+              "train_indices_sha256": "7b953989f1503642092e4129e382541eaf6c5737d79c9e91930a3e21c6a0e3a1",
+              "validation_indices_sha256": "d11c8144cc86e3849e0fde3d2b2c6b7cf0dd51f7ea9b20a5365ad54c04c0f519"
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 30,
+              "epochs": 4,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "cache_key": "a86c54c3583c887e76d2be994ce8cb8f8aca506660d95a6963af3214117f18f5",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3711307295418122,
+              "train_ndcg@10": 0.472827885907784
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.3514255264209798,
+              "train_ndcg@10": 0.47762979830933555
+            },
+            {
+              "epoch": 3,
+              "train_loss": 0.33922174799307436,
+              "train_ndcg@10": 0.48127398335005994
+            },
+            {
+              "epoch": 4,
+              "train_loss": 0.3337383137513536,
+              "train_ndcg@10": 0.4836119762983509
+            }
+          ],
+          "seconds": 70.38017860427499,
+          "artifact": "runs/neural_v12/cache/fold_0/a86c54c3583c887e76d2be994ce8cb8f8aca506660d95a6963af3214117f18f5/seed_41.pt",
+          "artifact_sha256": "5a87fb02272f6e4996120cc50e230fbad6055677a10be08ff960cb414d087b24",
+          "state_sha256": "6507f8c22984ceb0dcb8dbc26630f0190f01e823c7ab9774b14f12e6b2b05524",
+          "standardizer_sha256": "e51f921199b67593207d7424de27189981e6fce3502664f35dd031a8bebec6b1"
+        }
+      ],
+      "control_reference_checked": false
+    }
+  ],
+  "distinct_member_fits": 10,
+  "arguments": {
+    "mode": "cv",
+    "train": "data/train/train.txt",
+    "specs": "configs/v12_neural_candidates.json",
+    "fold": null,
+    "cache_dir": "runs/neural_v12/cache",
+    "out_dir": "runs/neural_v12",
+    "control_report": "results/neural_selection_v8.json",
+    "selection": "results/neural_selection_v12.json",
+    "baseline": "runs/baseline_v11/pairwise_model.pt",
+    "out": "submission/pairwise_model.pt",
+    "history_out": "results/pairwise_refit_v12.json",
+    "fresh": false
+  },
+  "specifications": [
+    {
+      "name": "warmup20_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 20,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 20,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "name": "warmup30_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 30,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 30,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "name": "warmup40_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 40,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 40,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "name": "warmup20_epochs4_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 20,
+          "epochs": 4,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 20,
+          "epochs": 4,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "name": "warmup30_epochs4_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 30,
+          "epochs": 4,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 30,
+          "epochs": 4,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    }
+  ],
+  "seconds": 690.6264728643
+}

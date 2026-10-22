@@ -1,0 +1,21 @@
+{
+  "kind": "synthetic toy only; no new released-data fitting",
+  "local_tests": 176,
+  "ci": {
+    "id": 39775028153,
+    "conclusion": "success",
+    "tests": 176
+  },
+  "balanced_tree_folds": 5,
+  "balanced_tree_checkpoints": [
+    200,
+    400
+  ],
+  "neural_folds": 5,
+  "neural_member_fits": 50,
+  "staff_mlp_hidden": [
+    256,
+    128
+  ],
+  "all_protected_artifacts_unchanged": true
+}

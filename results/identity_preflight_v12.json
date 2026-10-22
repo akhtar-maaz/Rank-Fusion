@@ -1,0 +1,10 @@
+{
+  "all_source_hashes_match_committed_bundle": true,
+  "input_sha256": {
+    "TRAIN": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+    "DEV": "e86fb3fe7e8a5f16479da7ce04f783ae85735f17f66016786c3ffc797dd9d4db"
+  },
+  "candidate_sha256": "db632eee7b12d765c4308897f96e2adba227cd9496b060272be603aa4f382d89",
+  "neural_configuration_sha256": "f9e47df34faea43aac8c11683aa0bcafe4cbed257bdb0cf5a09ad0cbd63afc84",
+  "all_protected_artifacts_unchanged": true
+}

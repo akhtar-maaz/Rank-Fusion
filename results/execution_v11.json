@@ -1,0 +1,426 @@
+{
+  "date": "2026-10-22",
+  "protocol": "docs/EXPERIMENTS_V11.md",
+  "protocol_commit": "20ab5794ac461b24925d9acebfc175bbac0d9c98",
+  "workflow_commit": "2e2bd5755aec4660a54f043f8195f193c83cf04c",
+  "selection_commit": "08f85262dd1d0f17b5be4461dbb74b4f1484eb74",
+  "protected_artifact_baseline_commit": "c022d6cf48e539f7d4b09c40d209a7ccef1a5bde",
+  "actual_job_records": 7,
+  "jobs": {
+    "1111529[0].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "390",
+      "resources_used.cput": "00:46:14",
+      "resources_used.mem": "1870960kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3447648kb",
+      "resources_used.walltime": "00:12:58",
+      "job_state": "F",
+      "exec_host": "cgen003/2*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:39 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:42:42 2026",
+      "Exit_status": "0"
+    },
+    "1111529[1].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "398",
+      "resources_used.cput": "01:09:12",
+      "resources_used.mem": "3538168kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "5103120kb",
+      "resources_used.walltime": "00:19:31",
+      "job_state": "F",
+      "exec_host": "cgen003/11*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:40 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:49:15 2026",
+      "Exit_status": "0"
+    },
+    "1111529[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:06:01",
+      "resources_used.mem": "2987236kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4480444kb",
+      "resources_used.walltime": "00:18:01",
+      "job_state": "F",
+      "exec_host": "cgen003/12*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:40 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:47:45 2026",
+      "Exit_status": "0"
+    },
+    "1111529[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:36:47",
+      "resources_used.mem": "5240684kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "6753980kb",
+      "resources_used.walltime": "00:26:36",
+      "job_state": "F",
+      "exec_host": "cgen003/13*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:40 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:56:21 2026",
+      "Exit_status": "0"
+    },
+    "1111530.pbshpc": {
+      "Job_Name": "rankfusion-fusion-v11",
+      "resources_used.cpupercent": "99",
+      "resources_used.cput": "00:01:40",
+      "resources_used.mem": "578360kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "1850144kb",
+      "resources_used.walltime": "00:01:41",
+      "job_state": "F",
+      "exec_host": "cgen003/0*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "7200",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "00:30:00",
+      "stime": "Thu Oct 22 14:29:39 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=8388608kb)",
+      "obittime": "Thu Oct 22 14:31:24 2026",
+      "Exit_status": "0"
+    },
+    "1111531.pbshpc": {
+      "Job_Name": "rankfusion-select-v11",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "14400",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "01:00:00",
+      "resources_used.cpupercent": "377",
+      "resources_used.cput": "00:48:40",
+      "resources_used.mem": "2905764kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4521232kb",
+      "resources_used.walltime": "00:14:48",
+      "exec_host": "cgen003/0*4",
+      "stime": "Thu Oct 22 14:56:22 2026",
+      "obittime": "Thu Oct 22 15:11:13 2026",
+      "comment": "Job run at Thu Oct 22 at 14:56 on (cgen003:ncpus=4:mem=16777216kb",
+      "Exit_status": "0"
+    },
+    "1111685.pbshpc": {
+      "Job_Name": "rankfusion-verify-v11",
+      "job_state": "F",
+      "exec_host": "cgen003/2*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "12gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "4800",
+      "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+      "Resource_List.walltime": "00:20:00",
+      "stime": "Thu Oct 22 15:52:22 2026",
+      "comment": "Job run at Thu Oct 22 at 15:52 on (cgen003:ncpus=4:mem=12582912kb",
+      "resources_used.cpupercent": "95",
+      "resources_used.cput": "00:03:03",
+      "resources_used.mem": "377636kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2471168kb",
+      "resources_used.walltime": "00:04:04",
+      "obittime": "Thu Oct 22 15:56:30 2026",
+      "Exit_status": "0"
+    }
+  },
+  "job_resources": {
+    "1111529[0].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "43200",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "03:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "390",
+        "resources_used.cput": "00:46:14",
+        "resources_used.mem": "1870960kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "3447648kb",
+        "resources_used.walltime": "00:12:58"
+      }
+    },
+    "1111529[1].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "43200",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "03:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "398",
+        "resources_used.cput": "01:09:12",
+        "resources_used.mem": "3538168kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "5103120kb",
+        "resources_used.walltime": "00:19:31"
+      }
+    },
+    "1111529[2].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "43200",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "03:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "01:06:01",
+        "resources_used.mem": "2987236kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "4480444kb",
+        "resources_used.walltime": "00:18:01"
+      }
+    },
+    "1111529[3].pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "43200",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "03:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "01:36:47",
+        "resources_used.mem": "5240684kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "6753980kb",
+        "resources_used.walltime": "00:26:36"
+      }
+    },
+    "1111530.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "7200",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "99",
+        "resources_used.cput": "00:01:40",
+        "resources_used.mem": "578360kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "1850144kb",
+        "resources_used.walltime": "00:01:41"
+      }
+    },
+    "1111531.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "14400",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "01:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "377",
+        "resources_used.cput": "00:48:40",
+        "resources_used.mem": "2905764kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "4521232kb",
+        "resources_used.walltime": "00:14:48"
+      }
+    },
+    "1111685.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "12gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "4800",
+        "Resource_List.select": "1:ncpus=4:mem=12gb:centos=genoa",
+        "Resource_List.walltime": "00:20:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "95",
+        "resources_used.cput": "00:03:03",
+        "resources_used.mem": "377636kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "2471168kb",
+        "resources_used.walltime": "00:04:04"
+      }
+    }
+  },
+  "launcher_environment_recovery": {
+    "reason": "Initial non-login SSH shell had no qsub in PATH; subprocess raised FileNotFoundError before spawning scheduler, so no job was submitted.",
+    "resolved_by": "Run unchanged launcher inside bash -l after reconciling user queue.",
+    "unexecuted_intent": {
+      "key": "cv_array",
+      "command": [
+        "qsub",
+        "scripts/hpc_cv_v11.pbs"
+      ]
+    }
+  },
+  "tree_final_fit_splits": [
+    "TRAIN",
+    "DEV"
+  ],
+  "tree_independently_refitted": false,
+  "tree_status": "exact evaluated V10 artifact retained; no V11 fit",
+  "tree_original_fit_record": "results/tree_fit_v10.json",
+  "tree_original_independent_fit_record": "results/tree_fit_reproduced_v10.json",
+  "tree_original_reproducibility": "results/lambdamart_reproducibility_v10.json",
+  "original_fit_rows": 958671,
+  "original_fit_queries": 8000,
+  "raw_features": 136,
+  "selection_split": "released Fold1 TRAIN only, five query-grouped folds seed 0",
+  "new_cv_performed": true,
+  "new_hyperparameter_search": true,
+  "tree_candidates": 4,
+  "tree_settings": 33,
+  "tree_promoted": false,
+  "fusion_configurations": 1146,
+  "fusion_promoted": true,
+  "fusion_selected": {
+    "method": "weighted_combsum",
+    "weights": {
+      "bm25_whole_document": 0.3,
+      "bm25_title": 0.3,
+      "lmir_dir_whole_document": 0.4,
+      "lmir_jm_whole_document": 0.0
+    }
+  },
+  "fusion_gates": {
+    "winner": 1049,
+    "control": 1145,
+    "selected": 1049,
+    "promoted": true,
+    "proxy_gain": 0.0006460764177669831,
+    "paired_fold_gains": [
+      0.0004153444322348987,
+      0.0013697368750913985,
+      0.0009804146240004474,
+      -3.997342998574016e-05,
+      0.0005048595874938555
+    ],
+    "improved_folds": 4
+  },
+  "early_stopping_used": false,
+  "post_fit_dev_selection": false,
+  "frozen_selection_sha256": {
+    "results/lambdamart_cv_v11.json": "b43b994e285f8dc55a80515d7d87a4419e504da07ee740ec4db551ad88f1f1d5",
+    "results/fusion_selection_v11.json": "90b636521e0bda5fa042340466fe9a0459c222031e3cff809fa35dae0ca39619"
+  },
+  "verification_helpers_sha256": {
+    "runs/verify_v11_artifacts.py": "81e5ca309088b525e1969a15a567cd95a2d380d7a61853261e7a46cd75d6cefc",
+    "runs/hpc_verify_v11.pbs": "4c0ed7b6e32e29dc3979196f54eac30552ade81159686518bc8ddd288e9ead49",
+    "runs/launch_v11_verification.py": "50db2058f6caca2f80485e7cffa711f980a4e15783ffba73e2f6308c48449bca"
+  },
+  "neural_training_performed": false,
+  "neural_models_changed": false,
+  "pairwise_provenance": {
+    "origin_round": "V8",
+    "status": "exact evaluated artifact retained",
+    "selection_record": "results/neural_selection_v8.json",
+    "fit_record": "results/pairwise_refit_v8.json",
+    "independent_reproduction_record": "results/pairwise_reproducibility_v8.json",
+    "artifact_sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1"
+  },
+  "final_verification": {
+    "job": "1111685.pbshpc",
+    "tests_passed": 163,
+    "actual_dev_interface_passed": true,
+    "tree_dev_metric_is_in_sample": true,
+    "tree_refitted_in_v11": false,
+    "retained_tree_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+    "neural_history_and_core_preserved": true
+  },
+  "local_verification": {
+    "python": "3.12.14",
+    "versions": {
+      "numpy": "2.0.2",
+      "lightgbm": "4.6.0",
+      "torch": "2.8.0"
+    },
+    "tests_passed": 163,
+    "staff_loader_python312_passed": true,
+    "hpc_hashes_match": true
+  },
+  "hpc_verification_environment": {
+    "python": "3.9.21",
+    "versions": {
+      "numpy": "2.0.2",
+      "lightgbm": "4.6.0",
+      "torch": "2.8.0+cpu"
+    }
+  },
+  "source_ci": {
+    "id": 39751619056,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39751619056"
+  },
+  "formal_assignment_report": "deferred",
+  "interpretation": "V11 changes fusion only. Tree and neural artifacts are retained evaluated copies. Tree DEV accuracy is in-sample after V10 TRAIN+DEV fitting; the public TRAIN diagnostics do not reconstruct C2 or predict a private score/class rank."
+}

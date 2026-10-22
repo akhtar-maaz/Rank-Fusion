@@ -1,0 +1,167 @@
+[
+  {
+    "name": "warmup20_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 20,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 20,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  },
+  {
+    "name": "warmup30_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 30,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 30,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  },
+  {
+    "name": "warmup40_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 40,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 40,
+        "epochs": 2,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  },
+  {
+    "name": "warmup20_epochs4_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 20,
+        "epochs": 4,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 20,
+        "epochs": 4,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  },
+  {
+    "name": "warmup30_epochs4_seeds_0_41",
+    "members": [
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 30,
+        "epochs": 4,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 0,
+        "weight": 0.5
+      },
+      {
+        "hidden": [
+          128,
+          64
+        ],
+        "warmup_epochs": 30,
+        "epochs": 4,
+        "lr": 0.0001,
+        "pairs_per_query": 300,
+        "pair_weighting": "ndcg",
+        "batch_size": 1024,
+        "seed": 41,
+        "weight": 0.5
+      }
+    ]
+  }
+]

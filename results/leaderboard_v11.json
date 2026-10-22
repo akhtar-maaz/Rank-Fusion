@@ -1,0 +1,54 @@
+{
+  "source": "User-provided leaderboard snapshot, 2026-10-22; exact snapshot time not provided",
+  "transcription_scope": "User and leader summary; full 35-team snapshot is in the conversation",
+  "version": "V11",
+  "commit": "1bbeefc9f258dc2da8b945db6df43bd31c34e49b",
+  "teams": 35,
+  "position": 10,
+  "name": "MAAZ_AKHTAR",
+  "submission": 558,
+  "submission_time_display": "22 Oct, 16:13",
+  "fusion_ndcg_10": 0.309,
+  "fusion_map_10": 0.1297,
+  "ltr_ndcg_10": 0.6824,
+  "pairwise_heldout_ndcg_10": 0.44,
+  "pairwise_dev_ndcg_10": 0.45,
+  "c2_mean_ndcg_10": 0.3795,
+  "correctness_passed": 10,
+  "conformance_passed": 7,
+  "live_score": 0.4797,
+  "live_score_maximum": 0.65,
+  "raw_track_ranks": {
+    "B": 3,
+    "P": 8,
+    "C2": 11
+  },
+  "leader": {
+    "name": "ADITYA_ANAND",
+    "submission": 549,
+    "ltr_ndcg_10": 0.7079,
+    "pairwise_heldout_ndcg_10": 0.4431,
+    "c2_mean_ndcg_10": 0.3906,
+    "live_score": 0.5768
+  },
+  "highest_c2": {
+    "name": "GANDEM_NITIN",
+    "c2_mean_ndcg_10": 0.4011
+  },
+  "comparison_with_v10": {
+    "tree_pairwise_c2_unchanged": true,
+    "fusion_ndcg_change": 0.0012,
+    "fusion_map_change": 0.0008,
+    "live_score_change": -0.003,
+    "position_unchanged": true,
+    "scoring_band_note": "Both displayed fusion metrics remain in the same nearest-0.005 bands; class updates also affect live percentiles."
+  },
+  "protected_v11_sha256": {
+    "model.txt": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+    "pointwise_model.pt": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+    "pairwise_model.pt": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+    "fusion_config.json": "92054abffabe61ede48136e26a25002c9a42898c2d64be6dbc4daf96ff393a2f",
+    "recipe.py": "cd03519e9f91c2fd7b0b124753a2d4e19e14d48091cd0f98a3bea5979e99f415",
+    "pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8"
+  }
+}

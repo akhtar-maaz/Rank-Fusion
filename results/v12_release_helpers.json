@@ -1,0 +1,26 @@
+{
+  "runs/verify_v12_artifacts.py": {
+    "archived_as": "results/v12_release_helpers/verify_v12_artifacts.py",
+    "sha256": "44a6f8581a862699d8a50d3454307c359197c0fc560e6d6a1e8af9c265fb478b"
+  },
+  "runs/hpc_verify_v12.pbs": {
+    "archived_as": "results/v12_release_helpers/hpc_verify_v12.pbs",
+    "sha256": "1f35bbbd23569351344590da76f5e07df7005bd6b97419552d8e3d23c034268e"
+  },
+  "runs/launch_v12_final.py": {
+    "archived_as": "results/v12_release_helpers/launch_v12_final.py",
+    "sha256": "0940ff633d4039b8d646d67c46a30d8d33a80b225e703c72c122e0a3c3674134"
+  },
+  "runs/record_v12_runtime.py": {
+    "archived_as": "results/v12_release_helpers/record_v12_runtime.py",
+    "sha256": "5dca0ac6cd1b8920508d4825c1195ab61dd3fcd41ac626cf590a1556396f880b"
+  },
+  "runs/hpc_pairwise_primary_v12.pbs": {
+    "archived_as": "results/v12_release_helpers/hpc_pairwise_primary_v12.pbs",
+    "sha256": "85ae9718bbcb5f76edf454476a6f94aa53e10886efbc8d0c1cc2346eed50db50"
+  },
+  "runs/hpc_pairwise_independent_v12.pbs": {
+    "archived_as": "results/v12_release_helpers/hpc_pairwise_independent_v12.pbs",
+    "sha256": "db7e41fe3765ad2e6658f3c7a3d394374aedd9a0e73ffa7b9a829018243accc3"
+  }
+}

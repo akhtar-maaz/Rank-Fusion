@@ -1,0 +1,12 @@
+{
+  "byte_identity": true,
+  "input_source_configuration_runtime_identity": true,
+  "actual_member_states_and_standardizers_verified": true,
+  "member_histories_equal": true,
+  "artifact_sha256": "b2f6bec5f9f5d8a89a501d9b24d8f5537317bf2c7ce53eeda05a7e4c38f7733a",
+  "primary_fit": "results/pairwise_refit_v12.json",
+  "independent_fit": "results/pairwise_refit_reproduced_v12.json",
+  "exact_final_member_artifacts_loaded": 4,
+  "final_compiled_artifacts_hashed": 2,
+  "held_out_data_used_for_this_check": false
+}

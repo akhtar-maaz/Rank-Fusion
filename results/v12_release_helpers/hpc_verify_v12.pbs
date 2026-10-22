@@ -1,0 +1,31 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v12
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=12gb:centos=genoa
+#PBS -l walltime=00:20:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v12.log) 2>&1
+.venv/bin/python runs/verify_v12_artifacts.py
+# The only final DEV evaluation; it is never a selection or stopping signal.
+test ! -e results/dev_metrics_v12.json
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics_v12.json
+.venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+p=Path('results/dev_metrics_v12.json'); d=json.loads(p.read_text())
+d.update(tree_dev_metric_is_in_sample=True, used_for_model_selection=False,
+         model_fit_splits={'tree':['TRAIN','DEV'],'pointwise':['TRAIN'],'pairwise':['TRAIN']},
+         tree_provenance='results/verification_v12.json',
+         interpretation='Tree fitted on released TRAIN+DEV; tree DEV accuracy is in-sample. Neural fitting and all new selection used TRAIN only. No final DEV-based choice.')
+p.write_text(json.dumps(d,indent=2)+'\n')
+Path('results/dev_metrics.json').write_bytes(p.read_bytes())
+PY
+pairwise_record=$(.venv/bin/python -c "import json; print('results/pairwise_refit_v12.json' if json.load(open('results/neural_selection_v12.json'))['promoted'] else 'results/pairwise_refit_v8.json')")
+.venv/bin/python scripts/record_artifacts.py --baseline-manifest results/artifacts_v11.json \
+    --pairwise-refit "$pairwise_record" --out results/artifacts_hpc_v12.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

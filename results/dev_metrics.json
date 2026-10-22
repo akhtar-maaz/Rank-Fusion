@@ -7,9 +7,9 @@
   "lambdamart_ndcg@10": 0.6823991127188831,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 8.344296291470528,
-    "maximum_fusion_seconds": 0.0012032482773065567,
-    "maximum_rerank_seconds": 0.5062284171581268
+    "prepare_seconds": 5.679868699982762,
+    "maximum_fusion_seconds": 0.0011134296655654907,
+    "maximum_rerank_seconds": 0.488466314971447
   },
   "versions": {
     "numpy": "2.0.2",
@@ -17,7 +17,7 @@
     "torch": "2.8.0+cpu"
   },
   "pointwise_ndcg@10": 0.43170774298680703,
-  "pairwise_ndcg@10": 0.4499222004961721,
+  "pairwise_ndcg@10": 0.45202703466881083,
   "pairwise_beats_bm25": true,
   "within_per_call_limits": true,
   "tree_dev_metric_is_in_sample": true,
@@ -34,6 +34,6 @@
       "TRAIN"
     ]
   },
-  "tree_provenance": "results/verification_v11.json",
-  "interpretation": "Tree fitted on released TRAIN+DEV, so DEV tree accuracy is in-sample. Fusion selected and neural models fitted on TRAIN only. No final DEV-based choice."
+  "tree_provenance": "results/verification_v12.json",
+  "interpretation": "Tree fitted on released TRAIN+DEV; tree DEV accuracy is in-sample. Neural fitting and all new selection used TRAIN only. No final DEV-based choice."
 }

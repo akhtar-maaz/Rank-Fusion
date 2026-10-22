@@ -29,9 +29,9 @@
     },
     "pairwise_model.pt": {
       "bytes": 278121,
-      "sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+      "sha256": "b2f6bec5f9f5d8a89a501d9b24d8f5537317bf2c7ce53eeda05a7e4c38f7733a",
       "unchanged_from_v2": false,
-      "unchanged_from_baseline": true,
+      "unchanged_from_baseline": false,
       "matches_hpc_copy": true,
       "config": {
         "n_features": 136,
@@ -47,7 +47,7 @@
       "bytes": 180,
       "sha256": "92054abffabe61ede48136e26a25002c9a42898c2d64be6dbc4daf96ff393a2f",
       "unchanged_from_v2": false,
-      "unchanged_from_baseline": false,
+      "unchanged_from_baseline": true,
       "matches_hpc_copy": true
     }
   },

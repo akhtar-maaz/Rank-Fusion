@@ -1,0 +1,377 @@
+{
+  "trained_on": "TRAIN",
+  "selected_on": {
+    "pointwise": "TRAIN internal fold 0",
+    "pairwise": "V12 five-fold fixed-epoch TRAIN assessment; exported plain-MLP seed average"
+  },
+  "model_arguments": {
+    "pointwise": {
+      "kind": "both",
+      "train": "data/train",
+      "dev": null,
+      "folds": 5,
+      "threads": 4,
+      "history_out": "results/neural_history.json",
+      "out_dir": "submission",
+      "seed": 0,
+      "epochs": 30,
+      "batch_size": 1024,
+      "lr": 0.001,
+      "pairs_per_query": 300,
+      "patience": 5,
+      "hidden": [
+        128,
+        64
+      ]
+    },
+    "pairwise": {
+      "name": "warmup30_seeds_0_41",
+      "members": [
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 30,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 0,
+          "weight": 0.5
+        },
+        {
+          "hidden": [
+            128,
+            64
+          ],
+          "warmup_epochs": 30,
+          "epochs": 2,
+          "lr": 0.0001,
+          "pairs_per_query": 300,
+          "pair_weighting": "ndcg",
+          "batch_size": 1024,
+          "seed": 41,
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  "models": {
+    "pointwise": {
+      "selection_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5850352918385543,
+          "dev_ndcg@10": 0.42060364218902957
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.566633735075623,
+          "dev_ndcg@10": 0.42141361653735476
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5626446417909579,
+          "dev_ndcg@10": 0.43159335052507564
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5588699429367097,
+          "dev_ndcg@10": 0.43199960420160255
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5562506278824528,
+          "dev_ndcg@10": 0.4346806988826814
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5538856893358579,
+          "dev_ndcg@10": 0.4388580507126731
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.5520203707419329,
+          "dev_ndcg@10": 0.4309611348238647
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.5509711463126697,
+          "dev_ndcg@10": 0.43766941732972453
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.5490033656927967,
+          "dev_ndcg@10": 0.4334308154769612
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.5474550297231306,
+          "dev_ndcg@10": 0.43420727456629266
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.5457756447673711,
+          "dev_ndcg@10": 0.4381768321086424
+        }
+      ],
+      "best_epoch": 6,
+      "full_train_history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5880185692753797,
+          "train_ndcg@10": 0.4139551468665075
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5652347868852893,
+          "train_ndcg@10": 0.4247777944118602
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5603891914186389,
+          "train_ndcg@10": 0.4239434667854073
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5569885109877319,
+          "train_ndcg@10": 0.43160233612693727
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5544237844573018,
+          "train_ndcg@10": 0.43175440948340754
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5522902624414667,
+          "train_ndcg@10": 0.43604863750280043
+        }
+      ]
+    },
+    "pairwise": {
+      "candidate": {
+        "name": "warmup30_seeds_0_41",
+        "members": [
+          {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          }
+        ]
+      },
+      "full_train_members": [
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 0,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "split": "full TRAIN",
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              }
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 30,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 0
+            }
+          },
+          "cache_key": "2f7860284db172e360a433e037be6de44467140b9ca7a5118016c4952f4c9189",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3713406367973078,
+              "train_ndcg@10": 0.4740538274570184
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.35133644379696105,
+              "train_ndcg@10": 0.4793455938988297
+            }
+          ],
+          "seconds": 66.7485097143799,
+          "artifact": "runs/refit_v12/pairwise_primary/cache/full/2f7860284db172e360a433e037be6de44467140b9ca7a5118016c4952f4c9189/seed_0.pt",
+          "artifact_sha256": "52f64e14ca6f806d1bbb13d8ee5a288e2ceaf95a9b5891f91b5700b943678f78",
+          "state_sha256": "e1470be5d1e1192780d7f98329ab5de5ecfa74b798a1cbadc664eafa3be2a60b",
+          "standardizer_sha256": "17629f81adba5a428da305751af70b4628f83b5003e429b2035b220aef13e349"
+        },
+        {
+          "specification": {
+            "hidden": [
+              128,
+              64
+            ],
+            "warmup_epochs": 30,
+            "epochs": 2,
+            "lr": 0.0001,
+            "pairs_per_query": 300,
+            "pair_weighting": "ndcg",
+            "batch_size": 1024,
+            "seed": 41,
+            "weight": 0.5
+          },
+          "identity": {
+            "context": {
+              "train_sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+              "rows": 723412,
+              "queries": 6000,
+              "features": 136,
+              "split": "full TRAIN",
+              "source_sha256": {
+                "submission/pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8",
+                "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+                "scripts/cv_pairwise_ensemble_v12.py": "17f8fc514a64ef8b99003e76407952eb542b0db2c450a5422a7102d2373227d7",
+                "scripts/cv_pairwise_ensemble_v7.py": "21139a5a1c157fc273116596d88c4376dfb1079281fbfe3244fe6450387e1961",
+                "scripts/cv_pairwise_v6.py": "6f57f175a5ef09f21c89844b640892583ee8999c78e117b3fe8c80f29236c87e",
+                "scripts/pairwise_ensemble.py": "f30d3f682e8571d13013f205639786921b0732ffb82a2352c199799ce2d48d7e",
+                "harness/neural.py": "f9667a65d29fe24fdc6c8a9e551a4fa9949797d8da1c0cc8f5d36fce76fcf106",
+                "harness/preprocessing.py": "ca3eaf89541db81123e0ff7b29b4e92e23e80b6d25121fe7578dbe18873453a0",
+                "harness/cv.py": "4e00cfaa0a68acd241b6144d8667283d34620e8f4022b85e18f1f6ff051e2f73",
+                "harness/metrics.py": "be0d88781e561d32a3a0bef21c9300e122d46dc4ff2e6e524d75caf8f9461ab7"
+              },
+              "runtime": {
+                "torch": "2.8.0+cpu",
+                "numpy": "2.0.2",
+                "cpu_threads": 4,
+                "deterministic_algorithms": true
+              }
+            },
+            "specification": {
+              "hidden": [
+                128,
+                64
+              ],
+              "warmup_epochs": 30,
+              "epochs": 2,
+              "lr": 0.0001,
+              "pairs_per_query": 300,
+              "pair_weighting": "ndcg",
+              "batch_size": 1024,
+              "seed": 41
+            }
+          },
+          "cache_key": "da66ba41e8d8ae7859786743713dcac290b4550562d9f660b34bfdd60d49a22a",
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.3755719701750978,
+              "train_ndcg@10": 0.4730524695230111
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.35154770379097006,
+              "train_ndcg@10": 0.47794544865442923
+            }
+          ],
+          "seconds": 41.785815589129925,
+          "artifact": "runs/refit_v12/pairwise_primary/cache/full/da66ba41e8d8ae7859786743713dcac290b4550562d9f660b34bfdd60d49a22a/seed_41.pt",
+          "artifact_sha256": "1fc78732800f17d596aa9b46831e1453034be9310267a79fa0efca99e6666d35",
+          "state_sha256": "2c679d2bbac1a356cf2b3fdc94142bccd727e094a2deda5c60b6fb59cb388a3e",
+          "standardizer_sha256": "17629f81adba5a428da305751af70b4628f83b5003e429b2035b220aef13e349"
+        }
+      ],
+      "compilation": {
+        "exported_ndcg_10": 0.48510302363646557,
+        "arithmetic_average_ndcg_10": 0.4851033995686687,
+        "maximum_absolute_score_error": 9.5367431640625e-07,
+        "mean_absolute_score_error": 5.636188331464011e-08,
+        "score_atol": 2e-06,
+        "score_rtol": 2e-05
+      },
+      "exported_config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "fixed_epochs": true,
+      "export_kind": "compiled arithmetic average",
+      "selection_record": "results/neural_selection_v12.json"
+    }
+  },
+  "hidden_by_model": {
+    "pointwise": [
+      128,
+      64
+    ],
+    "pairwise": [
+      256,
+      128
+    ]
+  },
+  "seeds_by_model": {
+    "pointwise": [
+      0
+    ],
+    "pairwise": [
+      0,
+      41
+    ]
+  }
+}

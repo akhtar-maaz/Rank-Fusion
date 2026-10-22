@@ -1,0 +1,28 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v13
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=12gb:centos=genoa
+#PBS -l walltime=00:20:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v13.log) 2>&1
+.venv/bin/python runs/verify_v13_artifacts.py
+test ! -e results/dev_metrics_v13.json
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics_v13.json
+.venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+p=Path('results/dev_metrics_v13.json');d=json.loads(p.read_text())
+d.update(tree_dev_metric_is_in_sample=True,used_for_model_selection=False,
+    model_fit_splits={'tree':['TRAIN','DEV'],'pointwise':['TRAIN'],'pairwise':['TRAIN']},
+    tree_provenance='results/verification_v13.json',
+    interpretation='Tree DEV accuracy is in-sample after disclosed TRAIN+DEV fitting. V13 selection used released TRAIN only; no post-fit DEV choice. Neural models are retained TRAIN-only artifacts.')
+p.write_text(json.dumps(d,indent=2)+'\n');Path('results/dev_metrics.json').write_bytes(p.read_bytes())
+PY
+.venv/bin/python scripts/record_artifacts.py --baseline-manifest results/artifacts_v12.json \
+    --pairwise-refit results/pairwise_refit_v12.json --out results/artifacts_hpc_v13.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

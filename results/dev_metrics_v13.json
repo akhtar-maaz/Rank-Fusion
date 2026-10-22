@@ -1,0 +1,39 @@
+{
+  "features": "data/dev/vali.txt",
+  "queries": 2000,
+  "rows": 235259,
+  "fusion_ndcg@10": 0.3090129947781274,
+  "fusion_map@10": 0.12967126620013222,
+  "lambdamart_ndcg@10": 0.6823991127188831,
+  "bm25_ndcg@10": 0.28848678060708594,
+  "timing": {
+    "prepare_seconds": 9.57000956684351,
+    "maximum_fusion_seconds": 0.001151571050286293,
+    "maximum_rerank_seconds": 0.45653177611529827
+  },
+  "versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu"
+  },
+  "pointwise_ndcg@10": 0.43170774298680703,
+  "pairwise_ndcg@10": 0.45202703466881083,
+  "pairwise_beats_bm25": true,
+  "within_per_call_limits": true,
+  "tree_dev_metric_is_in_sample": true,
+  "used_for_model_selection": false,
+  "model_fit_splits": {
+    "tree": [
+      "TRAIN",
+      "DEV"
+    ],
+    "pointwise": [
+      "TRAIN"
+    ],
+    "pairwise": [
+      "TRAIN"
+    ]
+  },
+  "tree_provenance": "results/verification_v13.json",
+  "interpretation": "Tree DEV accuracy is in-sample after disclosed TRAIN+DEV fitting. V13 selection used released TRAIN only; no post-fit DEV choice. Neural models are retained TRAIN-only artifacts."
+}

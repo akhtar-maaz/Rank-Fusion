@@ -1,0 +1,13 @@
+{
+  "selection_commit": "85e654a3a46a0edfff5a011fc4bd4d1e38c148d7",
+  "selection_pushed": true,
+  "selection_job": "1112382.pbshpc",
+  "selection_audit_sha256": "6b4592722d65cee27cea21924c320e968e760c9b269385351c97f66964089f55",
+  "tree_refit_required": false,
+  "final_configuration_sha256": null,
+  "completion_helper_sha256": {
+    "runs/verify_v13_artifacts.py": "d721033f0b58356b94fbd9f539ccd6c7a2ff8335244cb23506e1951b89f990c4",
+    "runs/hpc_verify_v13.pbs": "6416e468d5f520f5caa4326bd2b8c1df46efae152b8d219e53028381c42a54e6",
+    "runs/launch_v13_final.py": "acd70b96b19d7246ec025a92148e21424348c17ec9f5d0e6e40ce26148df1857"
+  }
+}

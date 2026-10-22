@@ -1,0 +1,19 @@
+{
+  "tree_refitted": false,
+  "tree_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+  "selection_commit": "85e654a3a46a0edfff5a011fc4bd4d1e38c148d7",
+  "final_tree_provenance": {
+    "protocol": "docs/EXPERIMENTS_V13.md",
+    "fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "refitted_in_v13": false,
+    "retained_from": "V10",
+    "fit_record": "results/tree_fit_v10.json",
+    "configuration": "configs/v10_tree.json",
+    "cv_scope": "V13 TRAIN-only comparison retained exact evaluated V12/V10 tree"
+  },
+  "neural_artifacts_history_fusion_core_recipe_preserved": true,
+  "no_v13_neural_fitting": true
+}

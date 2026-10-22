@@ -1,0 +1,14 @@
+{
+  "runs/verify_v13_artifacts.py": {
+    "archived_as": "results/v13_release_helpers/verify_v13_artifacts.py",
+    "sha256": "d721033f0b58356b94fbd9f539ccd6c7a2ff8335244cb23506e1951b89f990c4"
+  },
+  "runs/hpc_verify_v13.pbs": {
+    "archived_as": "results/v13_release_helpers/hpc_verify_v13.pbs",
+    "sha256": "6416e468d5f520f5caa4326bd2b8c1df46efae152b8d219e53028381c42a54e6"
+  },
+  "runs/launch_v13_final.py": {
+    "archived_as": "results/v13_release_helpers/launch_v13_final.py",
+    "sha256": "acd70b96b19d7246ec025a92148e21424348c17ec9f5d0e6e40ce26148df1857"
+  }
+}

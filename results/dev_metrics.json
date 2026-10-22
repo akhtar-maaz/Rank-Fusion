@@ -7,9 +7,9 @@
   "lambdamart_ndcg@10": 0.6823991127188831,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 5.679868699982762,
-    "maximum_fusion_seconds": 0.0011134296655654907,
-    "maximum_rerank_seconds": 0.488466314971447
+    "prepare_seconds": 9.57000956684351,
+    "maximum_fusion_seconds": 0.001151571050286293,
+    "maximum_rerank_seconds": 0.45653177611529827
   },
   "versions": {
     "numpy": "2.0.2",
@@ -34,6 +34,6 @@
       "TRAIN"
     ]
   },
-  "tree_provenance": "results/verification_v12.json",
-  "interpretation": "Tree fitted on released TRAIN+DEV; tree DEV accuracy is in-sample. Neural fitting and all new selection used TRAIN only. No final DEV-based choice."
+  "tree_provenance": "results/verification_v13.json",
+  "interpretation": "Tree DEV accuracy is in-sample after disclosed TRAIN+DEV fitting. V13 selection used released TRAIN only; no post-fit DEV choice. Neural models are retained TRAIN-only artifacts."
 }

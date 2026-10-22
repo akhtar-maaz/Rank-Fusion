@@ -1,0 +1,121 @@
+{
+  "selected": {
+    "name": "v14_new_member_group",
+    "trees": 1000,
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "num_leaves": 127,
+      "learning_rate": 0.05,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4
+    },
+    "feature_mode": "query_all",
+    "members": [
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0,
+          "bagging_by_query": true
+        },
+        "trees": 600,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.5
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "learning_rate": 0.05,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "num_leaves": 127,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "balanced_query_domains",
+          "seed": 20261024,
+          "strength": 2.0
+        },
+        "weight": 0.5
+      }
+    ],
+    "sources": [
+      [
+        "v8",
+        1,
+        600
+      ],
+      [
+        "v12",
+        1,
+        400
+      ]
+    ]
+  },
+  "selection_provenance": {
+    "protocol": "docs/EXPERIMENTS_V14.md",
+    "selection_data": "released TRAIN only",
+    "selection_type": "retrospective fixed choice from completed V13 CV after explicit user C2-priority clarification",
+    "original_report": "results/lambdamart_cv_v13.json",
+    "original_candidate": "complement_30",
+    "v13_joint_gate_passed": false,
+    "clean_accuracy_tradeoff_accepted": true,
+    "new_search": false,
+    "new_independent_validation": false,
+    "final_fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "early_stopping": false,
+    "retained_base": "results/tree_fit_v10.json",
+    "base_weight": 0.5,
+    "new_group_weight": 0.5
+  }
+}

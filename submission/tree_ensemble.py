@@ -25,7 +25,7 @@ def combine(models, weights, iterations=None):
     blocks, union_info, first_header, footer, width = [], None, None, None, None
     for model, weight, count in zip(models, weights, iterations):
         mode = feature_mode_for_model(model)
-        multiplier = 1 if mode == "raw" else 3 if mode == "query_all" else 2
+        multiplier = 1 if mode in ("raw", "query_percentile") else 3 if mode == "query_all" else 2
         current_width, remainder = divmod(model.num_feature(), multiplier)
         if remainder or (width is not None and current_width != width):
             raise ValueError("constituents have different raw input widths")
@@ -44,6 +44,8 @@ def combine(models, weights, iterations=None):
             footer = source[source.index("\nparameters:\n"):]
             union_info = ["none"] * (3 * width)
         mapping = list(range(model.num_feature()))
+        if mode == "query_percentile":
+            mapping = list(range(width, 2 * width))
         if mode == "query_normalized":
             mapping[:width] = range(2 * width, 3 * width)
         for old, info in enumerate(metadata["feature_infos"].split()):

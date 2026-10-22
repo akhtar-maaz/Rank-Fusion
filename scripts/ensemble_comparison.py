@@ -53,11 +53,12 @@ def measure(train_path, directories, settings):
     measurements = {setting["name"]: [] for setting in settings}
     for fold, (tr, va) in enumerate(grouped_kfold(q, k=5, seed=0)):
         training = {}
-        for mode in ("query_rank", "query_normalized", "query_all"):
+        for mode in ("query_rank", "query_normalized", "query_all", "query_percentile"):
             keys = [key for key, report in reports.items() if report["candidate"]["feature_mode"] == mode]
             if not keys:
                 continue
-            features = (prepared[tr] if mode == "query_all" else prepared[tr, :2 * width] if mode == "query_rank" else
+            features = (prepared[tr, width:2 * width] if mode == "query_percentile" else
+                        prepared[tr] if mode == "query_all" else prepared[tr, :2 * width] if mode == "query_rank" else
                         np.concatenate([prepared[tr, 2 * width:], prepared[tr, width:2 * width]], axis=1))
             for version, candidate in keys:
                 counts = [count for source_version, source_candidate, count in sources

@@ -14,6 +14,7 @@ Staff test these functions against small hand-checkable examples
 (docs/GRADING.md).
 """
 from typing import Dict, Iterable, List, Optional
+import math
 
 
 def _channels(base_scores: Dict[str, Dict[str, float]], channels: Optional[Iterable[str]]) -> List[str]:
@@ -87,4 +88,19 @@ def weighted_combsum_scores(base_scores, weights):
         normalized = minmax_normalize({d: row[channel] for d, row in base_scores.items()})
         for doc_id, value in normalized.items():
             scores[doc_id] += weight * value
+    return scores
+
+
+def weighted_rrf_scores(base_scores, weights, c=60.0):
+    """Hand-written weighted RRF; absent weights use one, as in CombSUM."""
+    if not math.isfinite(c) or c < 0:
+        raise ValueError("RRF constant must be finite and nonnegative")
+    if any(not math.isfinite(w) or w < 0 for w in weights.values()):
+        raise ValueError("fusion weights must be finite and nonnegative")
+    scores = dict.fromkeys(base_scores, 0.0)
+    for channel in _channels(base_scores, None):
+        weight = weights.get(channel, 1.0)
+        ordered = sorted(base_scores, key=lambda d: -base_scores[d][channel])
+        for rank, doc_id in enumerate(ordered, start=1):
+            scores[doc_id] += weight / (c + rank)
     return scores

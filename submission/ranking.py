@@ -22,7 +22,7 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 
-from submission.fusion import rrf_scores, combsum_scores, combmnz_scores, weighted_combsum_scores
+from submission.fusion import rrf_scores, combsum_scores, combmnz_scores, weighted_combsum_scores, weighted_rrf_scores
 from submission.features import features_for_model
 
 _MODEL = None
@@ -61,6 +61,8 @@ def fuse_candidates(qid: str, candidate_doc_ids: List[str], base_scores: Dict[st
         fused = combmnz_scores(base)
     elif method == "weighted_combsum":
         fused = weighted_combsum_scores(base, _FUSION_CONFIG["weights"])
+    elif method == "weighted_rrf":
+        fused = weighted_rrf_scores(base, _FUSION_CONFIG["weights"], _FUSION_CONFIG["c"])
     else:
         raise ValueError(f"unknown fusion method: {method!r}")
     ranked = sorted(ids, key=lambda d: -fused[d])  # stable: ties keep candidate order

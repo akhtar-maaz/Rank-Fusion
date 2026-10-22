@@ -1,0 +1,48 @@
+{
+  "source": "User-provided 35-team leaderboard, 2026-10-22; exact snapshot time not provided",
+  "version": "v10",
+  "commit": "c022d6cf48e539f7d4b09c40d209a7ccef1a5bde",
+  "teams": 35,
+  "position": 10,
+  "name": "MAAZ_AKHTAR",
+  "submission": 482,
+  "best_submission_time_display": "22 Oct, 02:54",
+  "fusion_ndcg_10": 0.3078,
+  "fusion_map_10": 0.1289,
+  "ltr_ndcg_10": 0.6824,
+  "pairwise_heldout_ndcg_10": 0.44,
+  "pairwise_dev_ndcg_10": 0.45,
+  "c2_mean_ndcg_10": 0.3795,
+  "correctness_passed": 10,
+  "correctness_total": 10,
+  "conformance_passed": 7,
+  "conformance_total": 7,
+  "live_score": 0.4827,
+  "live_score_maximum": 0.65,
+  "leader": {
+    "name": "GANDEM_NITIN",
+    "submission": 400,
+    "position": 1,
+    "ltr_ndcg_10": 0.6614,
+    "pairwise_heldout_ndcg_10": 0.4365,
+    "c2_mean_ndcg_10": 0.4011,
+    "live_score": 0.5708
+  },
+  "comparison_with_v9": {
+    "ltr_raw_change": 0.184,
+    "c2_raw_change": 0.0005,
+    "pairwise_unchanged": true,
+    "fusion_unchanged": true,
+    "tree_dev_accuracy_is_in_sample": true,
+    "interpretation": "B increased after disclosed DEV fitting; this does not establish held-out improvement. Rank and live score also depend on changing class membership and other submissions."
+  },
+  "protected_v10_sha256": {
+    "model.txt": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+    "pointwise_model.pt": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+    "pairwise_model.pt": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+    "fusion_config.json": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
+    "recipe.py": "cd03519e9f91c2fd7b0b124753a2d4e19e14d48091cd0f98a3bea5979e99f415",
+    "pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8"
+  },
+  "transcription_scope": "User and leader summary; complete class snapshot remains in the conversation."
+}

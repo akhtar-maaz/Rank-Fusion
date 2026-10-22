@@ -1,0 +1,323 @@
+{
+  "date": "2026-10-21",
+  "protocol": "docs/EXPERIMENTS_V10.md",
+  "protocol_commit": "2b7d83bdbe9880aed48a8e6e511198b46ae928e5",
+  "workflow_commit": "d41c30391b5db73681c37cecade6bc2749c12769",
+  "protected_artifact_baseline_commit": "dc96beac2abbdd0da473be88cabfab18c171eba3",
+  "training_environment": {
+    "python": "3.9.21",
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu",
+    "scheduler": "PBS",
+    "project": "col764.course",
+    "observed_cpus_per_job": 4
+  },
+  "actual_job_records": 5,
+  "jobs": {
+    "1110120.pbshpc": {
+      "Job_Name": "rankfusion-final-v10",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "21600",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "01:30:00",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "02:19:01",
+      "resources_used.mem": "8611632kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "10132036kb",
+      "resources_used.walltime": "00:45:31",
+      "exec_host": "cgen003/10*4",
+      "stime": "Wed Oct 21 22:43:03 2026",
+      "comment": "Job run at Wed Oct 21 at 22:43 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Wed Oct 21 23:28:38 2026",
+      "Exit_status": "0"
+    },
+    "1110121.pbshpc": {
+      "Job_Name": "rankfusion-refit-v10",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "21600",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "01:30:00",
+      "resources_used.cpupercent": "280",
+      "resources_used.cput": "03:52:48",
+      "resources_used.mem": "8511656kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "10101408kb",
+      "resources_used.walltime": "01:30:37",
+      "exec_host": "cgen013/3*4",
+      "stime": "Wed Oct 21 22:43:03 2026",
+      "comment": "Job run at Wed Oct 21 at 22:43 on (cgen013:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 00:13:43 2026",
+      "Exit_status": "-29"
+    },
+    "1110122.pbshpc": {
+      "Job_Name": "rankfusion-verify-v10",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "3600",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "00:15:00"
+    },
+    "1110289.pbshpc": {
+      "Job_Name": "rankfusion-refit-v10",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "02:18:19",
+      "resources_used.mem": "8502096kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "10114644kb",
+      "resources_used.walltime": "00:45:17",
+      "job_state": "F",
+      "exec_host": "cgen003/10*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 00:22:08 2026",
+      "comment": "Job run at Thu Oct 22 at 00:22 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 01:07:28 2026",
+      "Exit_status": "0"
+    },
+    "1110290.pbshpc": {
+      "Job_Name": "rankfusion-verify-v10",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "3600",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "00:15:00",
+      "resources_used.cpupercent": "78",
+      "resources_used.cput": "00:02:47",
+      "resources_used.mem": "605208kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "2527284kb",
+      "resources_used.walltime": "00:03:58",
+      "exec_host": "cgen004/2*4",
+      "stime": "Thu Oct 22 01:07:27 2026",
+      "obittime": "Thu Oct 22 01:11:29 2026",
+      "comment": "Job run at Thu Oct 22 at 01:07 on (cgen004:ncpus=4:mem=8388608kb)",
+      "Exit_status": "0"
+    }
+  },
+  "declared_requests_by_workflow": {
+    "hpc_reproduce_v10.pbs": {
+      "select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "walltime": "01:30:00"
+    },
+    "hpc_train_v10.pbs": {
+      "select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "walltime": "01:30:00"
+    },
+    "hpc_verify_v10.pbs": {
+      "select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "walltime": "00:15:00"
+    }
+  },
+  "operational_recovery": {
+    "protocol_commit": "155ffd5c0b01fdd8e2a656cc3225adc2f9178de2",
+    "record": "results/v10_runtime_recovery.json",
+    "reason_record": "results/v10_runtime_recovery.json",
+    "original_failed_independent": "1110121.pbshpc",
+    "original_verification_never_started": "1110122.pbshpc",
+    "primary_reused": "1110120.pbshpc",
+    "independent_requested_walltime": "03:00:00",
+    "independent_reproduction": "1110289.pbshpc",
+    "verification": "1110290.pbshpc"
+  },
+  "preserved_failed_independent_job": "1110121.pbshpc",
+  "preserved_never_started_verification_job": "1110122.pbshpc",
+  "job_resources": {
+    "1110120.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "21600",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "01:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "02:19:01",
+        "resources_used.mem": "8611632kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "10132036kb",
+        "resources_used.walltime": "00:45:31"
+      }
+    },
+    "1110121.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "21600",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "01:30:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "280",
+        "resources_used.cput": "03:52:48",
+        "resources_used.mem": "8511656kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "10101408kb",
+        "resources_used.walltime": "01:30:37"
+      }
+    },
+    "1110122.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "3600",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:15:00"
+      },
+      "observed": {}
+    },
+    "1110289.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "16gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "43200",
+        "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+        "Resource_List.walltime": "03:00:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "397",
+        "resources_used.cput": "02:18:19",
+        "resources_used.mem": "8502096kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "10114644kb",
+        "resources_used.walltime": "00:45:17"
+      }
+    },
+    "1110290.pbshpc": {
+      "requested": {
+        "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+        "Resource_List.mem": "8gb",
+        "Resource_List.ncpus": "4",
+        "Resource_List.nodect": "1",
+        "Resource_List.place": "free",
+        "Resource_List.run_share": "3600",
+        "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+        "Resource_List.walltime": "00:15:00"
+      },
+      "observed": {
+        "resources_used.cpupercent": "78",
+        "resources_used.cput": "00:02:47",
+        "resources_used.mem": "605208kb",
+        "resources_used.ncpus": "4",
+        "resources_used.vmem": "2527284kb",
+        "resources_used.walltime": "00:03:58"
+      }
+    }
+  },
+  "tree_final_fit_splits": [
+    "TRAIN",
+    "DEV"
+  ],
+  "tree_independently_refitted": true,
+  "selection_split": "historical TRAIN-only five-fold CV",
+  "new_cv_performed": false,
+  "new_hyperparameter_search": false,
+  "early_stopping_used": false,
+  "post_fit_dev_selection": false,
+  "original_fit_rows": 958671,
+  "original_fit_queries": 8000,
+  "raw_features": 136,
+  "query_ids_namespaced_by_split": true,
+  "frozen_configuration_sha256": {
+    "configs/v10_tree.json": "3c6c932fff92c8fa799f8d365af6ee89b80ccf57822880714526fe036baed515",
+    "results/lambdamart_cv_v9.json": "ddfc00e31e50a379e091ec740b1b9302062547b0d691c9f8ad164e95958cb491"
+  },
+  "primary_fit_record": "results/tree_fit_v10.json",
+  "independent_fit_record": "results/tree_fit_reproduced_v10.json",
+  "tree_reproducibility_record": "results/lambdamart_reproducibility.json",
+  "synthetic_tree_pipeline": {
+    "description": "Synthetic toy TRAIN+DEV pipeline only; no released-data fitting",
+    "rows": 4000,
+    "queries": 160,
+    "raw_features": 136,
+    "trees": 3800,
+    "internal_features": 408,
+    "independent_artifacts_byte_identical": true,
+    "artifact_sha256": "c48c9fe8f6d0b5c103c8432b83808c0aafce90b15e277dce148b5909a0a41d98",
+    "namespaces_verified": true,
+    "fixed_configuration_verified": true,
+    "source_and_data_identities_identical": true,
+    "protected_real_artifacts_preserved": true
+  },
+  "neural_training_performed": false,
+  "neural_models_changed": false,
+  "pairwise_provenance": {
+    "origin_round": "v8",
+    "status": "exact evaluated V8/V9 artifact retained",
+    "selection_record": "results/neural_selection_v8.json",
+    "fit_record": "results/pairwise_refit_v8.json",
+    "independent_reproduction_record": "results/pairwise_reproducibility_v8.json",
+    "neural_history_record": "results/neural_history_v8.json",
+    "refit_performed_in_v10": false,
+    "artifact_sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1"
+  },
+  "final_verification": {
+    "training_job": "1110120.pbshpc",
+    "independent_job": "1110289.pbshpc",
+    "verification_job": "1110290.pbshpc",
+    "tests_passed": 152,
+    "actual_dev_interface_passed": true,
+    "tree_dev_metric_is_in_sample": true,
+    "independent_byte_identical_tree": true,
+    "tree_independently_refitted": true,
+    "pairwise_independently_refitted": false,
+    "protected_v9_neural_core_fusion_recipe_preserved": true,
+    "neural_history_preserved_byte_identically": true
+  },
+  "local_verification": {
+    "python": "3.12.14",
+    "tests_passed": 152,
+    "staff_neural_loaders_passed": true,
+    "staff_loader_python312_passed": true,
+    "hpc_hashes_match": true
+  },
+  "workflow_ci": {
+    "id": 39626975054,
+    "commit": "d41c30391b5db73681c37cecade6bc2749c12769",
+    "conclusion": "success",
+    "tests_passed": 152,
+    "url": "https://github.com/akhtar-maaz/Rank-Fusion/actions/runs/39626975054"
+  },
+  "unchanged_recipe_budget": "results/recipe_budget_v3.json",
+  "unchanged_synthetic_transfer": "results/recipe_smoke_v3.json",
+  "formal_assignment_report": "deferred",
+  "interpretation": "Tree DEV accuracy is in-sample after authorized TRAIN+DEV fitting. It does not establish held-out improvement, a private C2 score, or a new class rank."
+}

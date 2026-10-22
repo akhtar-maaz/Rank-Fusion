@@ -1,0 +1,54 @@
+{
+  "runs/verify_v14_cv.py": {
+    "archived_as": "results/v14_release_helpers/verify_v14_cv.py",
+    "sha256": "3fb057919b449f18f63c9c6bac044a4b2e9716bd77914402dfcf0a43874bb899"
+  },
+  "runs/launch_v14.py": {
+    "archived_as": "results/v14_release_helpers/launch_v14.py",
+    "sha256": "4c14ecc404a6a5579169939b5d07725cc5ae643779025079f4a5c781f9994548"
+  },
+  "runs/collect_v14_jobs.py": {
+    "archived_as": "results/v14_release_helpers/collect_v14_jobs.py",
+    "sha256": "0f8c7a7ad5c1e9dbf7ae54cb4f95b10e77ef3cfb9523ae7ad608a97289ab7029"
+  },
+  "runs/hpc_new_primary_v14.pbs": {
+    "archived_as": "results/v14_release_helpers/hpc_new_primary_v14.pbs",
+    "sha256": "3a3e583bbb1beea7faa7ec10d672b2bd9506a53c3ac65bc2863c0901d7515539"
+  },
+  "runs/hpc_new_independent_v14.pbs": {
+    "archived_as": "results/v14_release_helpers/hpc_new_independent_v14.pbs",
+    "sha256": "e43a7cd399ddd9026555e8fba6f75aa5bb5f97aa447db34b40a19d5245eab5c7"
+  },
+  "runs/hpc_native_cv_v14.pbs": {
+    "archived_as": "results/v14_release_helpers/hpc_native_cv_v14.pbs",
+    "sha256": "852ea5ffc538dd94af57ba382d1bc2a2affca033a15e4147b4f777cc83933860"
+  },
+  "runs/verify_v14_artifacts.py": {
+    "archived_as": "results/v14_release_helpers/verify_v14_artifacts.py",
+    "sha256": "983f470b52312bc17642191348304f72c404ec183a5701f8dab514bdab3376da"
+  },
+  "runs/hpc_verify_v14.pbs": {
+    "archived_as": "results/v14_release_helpers/hpc_verify_v14.pbs",
+    "sha256": "9d4805e6c45bee4a2e3aa50f441ea14b97abe5d15cf4bed2f35f2ebe9e88fad4"
+  },
+  "runs/launch_v14_verification.py": {
+    "archived_as": "results/v14_release_helpers/launch_v14_verification.py",
+    "sha256": "80488005dec207a1e0507b9d8ab3c6eeb1772cf99644cd9e551ed60d10e4b76e"
+  },
+  "runs/verify_v14_recovery.py": {
+    "archived_as": "results/v14_release_helpers/verify_v14_recovery.py",
+    "sha256": "e73ab403416fef7baa043b8c5aa085888af4e02b512cff64e3b2c7f30715c435"
+  },
+  "runs/hpc_verify_v14_recovery.pbs": {
+    "archived_as": "results/v14_release_helpers/hpc_verify_v14_recovery.pbs",
+    "sha256": "e6e6a2fcb38c724e629be3e67c3a70272ea54107235782fbf924a0ef09227f88"
+  },
+  "runs/collect_v14_recovery.py": {
+    "archived_as": "results/v14_release_helpers/collect_v14_recovery.py",
+    "sha256": "bd81f87edc1053d06fc6cac60e5ec38d33a890d74104596bad2803e595cfe3ea"
+  },
+  "runs/launch_v14_recovery.py": {
+    "archived_as": "results/v14_release_helpers/launch_v14_recovery.py",
+    "sha256": "7265bca426e7e71f3ff971f942724610b923070762760d361588f27a70f9cf73"
+  }
+}

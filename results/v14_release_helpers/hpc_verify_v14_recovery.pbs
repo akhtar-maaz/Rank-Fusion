@@ -1,0 +1,28 @@
+#!/bin/bash -l
+#PBS -N rankfusion-verify-v14
+#PBS -P col764.course
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=12gb:centos=genoa
+#PBS -l walltime=00:20:00
+#PBS -j oe
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+exec > >(tee runs/verify_v14_recovery.log) 2>&1
+.venv/bin/python runs/verify_v14_recovery.py
+test ! -e results/dev_metrics_v14.json
+.venv/bin/python scripts/evaluate_models.py --features data/dev/vali.txt --out results/dev_metrics_v14.json
+.venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+p=Path('results/dev_metrics_v14.json');d=json.loads(p.read_text())
+d.update(tree_dev_metric_is_in_sample=True,used_for_model_selection=False,
+    model_fit_splits={'tree':['TRAIN','DEV'],'pointwise':['TRAIN'],'pairwise':['TRAIN']},
+    tree_provenance='results/verification_v14_recovery.json',partial_tree_refit=True,all_tree_members_freshly_refitted=False,
+    interpretation='Tree DEV is in-sample: retained TRAIN+DEV base plus two newly fitted TRAIN+DEV members. The C2-first candidate was chosen retrospectively from known TRAIN CV after user preference clarification; V13 original joint gate failed. The two query-bagging fits varied; both completed groups are equally averaged without accuracy selection. Tree training is not byte-reproducible; export and inference are deterministic. No post-fit DEV choice. Neural/fusion/C1 artifacts are retained.')
+p.write_text(json.dumps(d,indent=2)+'\n');Path('results/dev_metrics.json').write_bytes(p.read_bytes())
+PY
+.venv/bin/python scripts/record_artifacts.py --baseline-manifest results/artifacts_v13.json \
+    --pairwise-refit results/pairwise_refit_v12.json --out results/artifacts_hpc_v14.json
+export RANK_FUSION_PYTHON="$PWD/.venv/bin/python"
+bash scripts/smoke_test.sh

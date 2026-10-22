@@ -1,0 +1,8 @@
+{
+  "choice_commit": "b14de0ea2f8ae91213cab77da05ea2581c8fa61f",
+  "helper_sha256": {
+    "runs/verify_v14_artifacts.py": "983f470b52312bc17642191348304f72c404ec183a5701f8dab514bdab3376da",
+    "runs/hpc_verify_v14.pbs": "9d4805e6c45bee4a2e3aa50f441ea14b97abe5d15cf4bed2f35f2ebe9e88fad4",
+    "runs/launch_v14_verification.py": "80488005dec207a1e0507b9d8ab3c6eeb1772cf99644cd9e551ed60d10e4b76e"
+  }
+}

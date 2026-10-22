@@ -1,0 +1,192 @@
+{
+  "artifact": "runs/refit_v14/primary/model.txt",
+  "artifact_sha256": "fe216a8bc758117315e7243a9683dbc7b093ef096bc52f19cfdd33ee948180ad",
+  "fit_splits": [
+    "TRAIN",
+    "DEV"
+  ],
+  "inputs": [
+    {
+      "split": "TRAIN",
+      "path": "data/train/train.txt",
+      "sha256": "6eb3fae4e1186e1242a6520f53a98abdbcde5b926dd19a28e51239284b1d55dc",
+      "bytes": 838011150,
+      "rows": 723412,
+      "queries": 6000,
+      "features": 136
+    },
+    {
+      "split": "DEV",
+      "path": "data/dev/vali.txt",
+      "sha256": "e86fb3fe7e8a5f16479da7ce04f783ae85735f17f66016786c3ffc797dd9d4db",
+      "bytes": 272760099,
+      "rows": 235259,
+      "queries": 2000,
+      "features": 136
+    }
+  ],
+  "rows": 958671,
+  "queries": 8000,
+  "raw_features": 136,
+  "query_ids_namespaced_by_split": true,
+  "use_dev_for_fitting": true,
+  "dev_tree_metric_is_in_sample": true,
+  "configuration_path": "configs/v14_new_members.json",
+  "configuration_sha256": "a58d718ffe2f6075601625d9743af50cbf483f899d10ce07cf532cf983710b57",
+  "selected": {
+    "name": "v14_new_member_group",
+    "trees": 1000,
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "num_leaves": 127,
+      "learning_rate": 0.05,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4
+    },
+    "feature_mode": "query_all",
+    "members": [
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0,
+          "bagging_by_query": true
+        },
+        "trees": 600,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.5
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "learning_rate": 0.05,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "num_leaves": 127,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "balanced_query_domains",
+          "seed": 20261024,
+          "strength": 2.0
+        },
+        "weight": 0.5
+      }
+    ],
+    "sources": [
+      [
+        "v8",
+        1,
+        600
+      ],
+      [
+        "v12",
+        1,
+        400
+      ]
+    ]
+  },
+  "early_stopping_used": false,
+  "selection_provenance": {
+    "protocol": "docs/EXPERIMENTS_V14.md",
+    "selection_data": "released TRAIN only",
+    "selection_type": "retrospective fixed choice from completed V13 CV after explicit user C2-priority clarification",
+    "original_report": "results/lambdamart_cv_v13.json",
+    "original_candidate": "complement_30",
+    "v13_joint_gate_passed": false,
+    "clean_accuracy_tradeoff_accepted": true,
+    "new_search": false,
+    "new_independent_validation": false,
+    "final_fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "early_stopping": false,
+    "retained_base": "results/tree_fit_v10.json",
+    "base_weight": 0.5,
+    "new_group_weight": 0.5
+  },
+  "actual_trees": 1000,
+  "actual_features": 408,
+  "training_ndcg_10": 0.6009911898439528,
+  "fit_seconds": 1148.5338021758944,
+  "source_sha256": {
+    "scripts/train_model.py": "0c208c150fab46659d05b0a58c743af464cf20f673939cbc3e9a19eae988cf2b",
+    "scripts/lambdamart_utils.py": "fd55568cf2a1c16741fa726413601c0dba9c24c07ad8b8dc5b81fe95d87b2653",
+    "scripts/augmentation.py": "a301aa0970f9cd610d110d831574d09b3e28d4bcc953eef37a9991fe8cbc2a7a",
+    "submission/data.py": "b126aefb6dafba31ae2f0d549f2d0ffce01357cfbe91aa76d4878e52063cbbcd",
+    "submission/features.py": "f33f1b1f797c1a9de82a0bd8635b68d80d8a41ed66cfce6f043fa05594ab3a01",
+    "submission/tree_ensemble.py": "3cdca234efdcee83235b1db456ab2a51623a480fd13d8c1da9e6fbec54a89f4b"
+  },
+  "python": "3.9.21",
+  "versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0"
+  },
+  "arguments": {
+    "train": "data/train",
+    "dev": "data/dev",
+    "out": "runs/refit_v14/primary/model.txt",
+    "trees": 1000,
+    "num_leaves": 15,
+    "learning_rate": 0.05,
+    "min_data_in_leaf": 50,
+    "seed": 0,
+    "lambda_l2": 1.0,
+    "feature_fraction": 0.8,
+    "threads": 4,
+    "feature_mode": "query_all",
+    "max_depth": null,
+    "truncation": null,
+    "config": "configs/v14_new_members.json",
+    "use_dev": true,
+    "fit_record": "runs/refit_v14/primary/fit.json"
+  }
+}

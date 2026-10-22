@@ -1,0 +1,561 @@
+{
+  "selected": {
+    "name": "v14_two_run_average",
+    "trees": 5800,
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "num_leaves": 127,
+      "learning_rate": 0.05,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4
+    },
+    "feature_mode": "query_all",
+    "members": [
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "weight": 0.03515625
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 200,
+        "feature_mode": "query_normalized",
+        "weight": 0.03515625
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 13
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "augmentation": {
+          "name": "half_query_dropout_noise",
+          "seed": 20261019
+        },
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "half_query_mixed",
+          "seed": 20261020
+        },
+        "weight": 0.140625
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.09375
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0,
+          "bagging_by_query": true
+        },
+        "trees": 600,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.125,
+        "runtime_replica": "primary"
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "learning_rate": 0.05,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "num_leaves": 127,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "balanced_query_domains",
+          "seed": 20261024,
+          "strength": 2.0
+        },
+        "weight": 0.125,
+        "runtime_replica": "primary"
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0,
+          "bagging_by_query": true
+        },
+        "trees": 600,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.125,
+        "runtime_replica": "independent"
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "learning_rate": 0.05,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "num_leaves": 127,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "balanced_query_domains",
+          "seed": 20261024,
+          "strength": 2.0
+        },
+        "weight": 0.125,
+        "runtime_replica": "independent"
+      }
+    ],
+    "parent_family_cv_record": "results/v14_choice.json"
+  },
+  "selection_protocol": {
+    "protocol": "docs/EXPERIMENTS_V14.md",
+    "selection_data": "released TRAIN only",
+    "selection_type": "retrospective fixed choice from completed V13 CV after explicit user C2-priority clarification",
+    "original_report": "results/lambdamart_cv_v13.json",
+    "original_candidate": "complement_30",
+    "v13_joint_gate_passed": false,
+    "clean_accuracy_tradeoff_accepted": true,
+    "new_search": false,
+    "new_independent_validation": false,
+    "final_fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "early_stopping": false,
+    "retained_base": "results/tree_fit_v10.json",
+    "base_weight": 0.5,
+    "new_group_weight": 0.5,
+    "recovery_protocol": "docs/EXPERIMENTS_V14_RECOVERY.md",
+    "tree_training_byte_reproducible": false,
+    "recovery_choice": "unconditional equal averaging of both completed new groups",
+    "no_fit_chosen_using_accuracy": true,
+    "new_fitting": false,
+    "final_group_weights": [
+      0.25,
+      0.25
+    ],
+    "original_identity_gate_passed": false
+  },
+  "original_v13_performance_gate_passed": false,
+  "original_v14_training_identity_gate_passed": false,
+  "parent_family_cv": "results/v14_choice.json",
+  "parent_family_native_checks": [
+    {
+      "fold": 0,
+      "scenarios": [
+        {
+          "scenario": "clean",
+          "maximum_absolute_error": 2.220446049250313e-14,
+          "native_ndcg_10": 0.5039549369406322,
+          "explicit_ndcg_10": 0.5039549369406322
+        },
+        {
+          "scenario": "affine",
+          "maximum_absolute_error": 1.687538997430238e-14,
+          "native_ndcg_10": 0.4982345776549904,
+          "explicit_ndcg_10": 0.4982345776549904
+        },
+        {
+          "scenario": "feature_dropout",
+          "maximum_absolute_error": 1.865174681370263e-14,
+          "native_ndcg_10": 0.4938814082182341,
+          "explicit_ndcg_10": 0.4938814082182341
+        },
+        {
+          "scenario": "noise",
+          "maximum_absolute_error": 1.8207657603852567e-14,
+          "native_ndcg_10": 0.48984071693534,
+          "explicit_ndcg_10": 0.48984071693534
+        }
+      ]
+    },
+    {
+      "fold": 1,
+      "scenarios": [
+        {
+          "scenario": "clean",
+          "maximum_absolute_error": 1.9984014443252818e-14,
+          "native_ndcg_10": 0.47893506025549015,
+          "explicit_ndcg_10": 0.47893506025549015
+        },
+        {
+          "scenario": "affine",
+          "maximum_absolute_error": 1.7763568394002505e-14,
+          "native_ndcg_10": 0.47368867525791253,
+          "explicit_ndcg_10": 0.47368867525791253
+        },
+        {
+          "scenario": "feature_dropout",
+          "maximum_absolute_error": 1.687538997430238e-14,
+          "native_ndcg_10": 0.4712896641227698,
+          "explicit_ndcg_10": 0.4712896641227698
+        },
+        {
+          "scenario": "noise",
+          "maximum_absolute_error": 1.9984014443252818e-14,
+          "native_ndcg_10": 0.46940162701718546,
+          "explicit_ndcg_10": 0.46940162701718546
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "scenarios": [
+        {
+          "scenario": "clean",
+          "maximum_absolute_error": 2.2648549702353193e-14,
+          "native_ndcg_10": 0.485012694490759,
+          "explicit_ndcg_10": 0.485012694490759
+        },
+        {
+          "scenario": "affine",
+          "maximum_absolute_error": 2.1316282072803006e-14,
+          "native_ndcg_10": 0.47896777698138293,
+          "explicit_ndcg_10": 0.47896777698138293
+        },
+        {
+          "scenario": "feature_dropout",
+          "maximum_absolute_error": 1.9095836023552692e-14,
+          "native_ndcg_10": 0.4763406029480633,
+          "explicit_ndcg_10": 0.4763406029480633
+        },
+        {
+          "scenario": "noise",
+          "maximum_absolute_error": 2.1760371282653068e-14,
+          "native_ndcg_10": 0.4714899624940744,
+          "explicit_ndcg_10": 0.4714899624940744
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "scenarios": [
+        {
+          "scenario": "clean",
+          "maximum_absolute_error": 2.3092638912203256e-14,
+          "native_ndcg_10": 0.48128688929798796,
+          "explicit_ndcg_10": 0.48128688929798796
+        },
+        {
+          "scenario": "affine",
+          "maximum_absolute_error": 1.687538997430238e-14,
+          "native_ndcg_10": 0.4775644160478611,
+          "explicit_ndcg_10": 0.4775644160478611
+        },
+        {
+          "scenario": "feature_dropout",
+          "maximum_absolute_error": 2.1316282072803006e-14,
+          "native_ndcg_10": 0.47164444816640544,
+          "explicit_ndcg_10": 0.47164444816640544
+        },
+        {
+          "scenario": "noise",
+          "maximum_absolute_error": 2.042810365310288e-14,
+          "native_ndcg_10": 0.47351967922750343,
+          "explicit_ndcg_10": 0.47351967922750343
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "scenarios": [
+        {
+          "scenario": "clean",
+          "maximum_absolute_error": 2.930988785010413e-14,
+          "native_ndcg_10": 0.4860717493887641,
+          "explicit_ndcg_10": 0.4860717493887641
+        },
+        {
+          "scenario": "affine",
+          "maximum_absolute_error": 2.3092638912203256e-14,
+          "native_ndcg_10": 0.4796854193578178,
+          "explicit_ndcg_10": 0.4796854193578178
+        },
+        {
+          "scenario": "feature_dropout",
+          "maximum_absolute_error": 1.9095836023552692e-14,
+          "native_ndcg_10": 0.47684021249548975,
+          "explicit_ndcg_10": 0.47684021249548975
+        },
+        {
+          "scenario": "noise",
+          "maximum_absolute_error": 2.6645352591003757e-14,
+          "native_ndcg_10": 0.4727961403615015,
+          "explicit_ndcg_10": 0.4727961403615015
+        }
+      ]
+    }
+  ],
+  "final_composition": {
+    "artifact": "submission/model.txt",
+    "artifact_sha256": "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c",
+    "trees": 5800,
+    "internal_features": 408,
+    "raw_features": 136,
+    "partial_refit": true,
+    "all_members_freshly_refitted": false,
+    "tree_training_byte_reproducible": false,
+    "retained_base": {
+      "artifact_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+      "trees": 3800,
+      "weight": 0.5,
+      "fit_record": "results/tree_fit_v10.json"
+    },
+    "fresh_groups": [
+      {
+        "branch": "primary",
+        "artifact_sha256": "fe216a8bc758117315e7243a9683dbc7b093ef096bc52f19cfdd33ee948180ad",
+        "trees": 1000,
+        "weight": 0.25,
+        "fit_record": "results/tree_new_group_fit_primary_v14.json"
+      },
+      {
+        "branch": "independent",
+        "artifact_sha256": "f497f500762706f2baac74c2c07183cff9a02aca0fb2483dec25b16585731b29",
+        "trees": 1000,
+        "weight": 0.25,
+        "fit_record": "results/tree_new_group_fit_independent_v14.json"
+      }
+    ],
+    "effective_weights": {
+      "retained_base": 0.5,
+      "query_bagging_primary": 0.125,
+      "query_bagging_independent": 0.125,
+      "balanced": 0.25
+    },
+    "balanced_400_trees_exported_twice": true,
+    "fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "original_rows": 958671,
+    "original_queries": 8000,
+    "inputs_config_source_runtime_equal": true,
+    "repeated_export_byte_identical": true,
+    "exports_share_same_three_fixed_inputs": true,
+    "independent_training_reproduction_claimed": false,
+    "repeated_export_sha256": [
+      "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c",
+      "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c"
+    ],
+    "maximum_synthetic_arithmetic_error": 4.551914400963142e-15,
+    "inference_deterministic": true,
+    "original_choice_commit": "b14de0ea2f8ae91213cab77da05ea2581c8fa61f",
+    "recovery_choice_commit": "e80391302bd1d5d9d4c24b1371e68c9c5579dc3b",
+    "configuration": "configs/v14_recovery_tree.json"
+  },
+  "new_independent_cv_performance_measured": false
+}

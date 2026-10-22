@@ -1,0 +1,58 @@
+{
+  "artifact": "submission/model.txt",
+  "artifact_sha256": "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c",
+  "trees": 5800,
+  "internal_features": 408,
+  "raw_features": 136,
+  "partial_refit": true,
+  "all_members_freshly_refitted": false,
+  "tree_training_byte_reproducible": false,
+  "retained_base": {
+    "artifact_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+    "trees": 3800,
+    "weight": 0.5,
+    "fit_record": "results/tree_fit_v10.json"
+  },
+  "fresh_groups": [
+    {
+      "branch": "primary",
+      "artifact_sha256": "fe216a8bc758117315e7243a9683dbc7b093ef096bc52f19cfdd33ee948180ad",
+      "trees": 1000,
+      "weight": 0.25,
+      "fit_record": "results/tree_new_group_fit_primary_v14.json"
+    },
+    {
+      "branch": "independent",
+      "artifact_sha256": "f497f500762706f2baac74c2c07183cff9a02aca0fb2483dec25b16585731b29",
+      "trees": 1000,
+      "weight": 0.25,
+      "fit_record": "results/tree_new_group_fit_independent_v14.json"
+    }
+  ],
+  "effective_weights": {
+    "retained_base": 0.5,
+    "query_bagging_primary": 0.125,
+    "query_bagging_independent": 0.125,
+    "balanced": 0.25
+  },
+  "balanced_400_trees_exported_twice": true,
+  "fit_splits": [
+    "TRAIN",
+    "DEV"
+  ],
+  "original_rows": 958671,
+  "original_queries": 8000,
+  "inputs_config_source_runtime_equal": true,
+  "repeated_export_byte_identical": true,
+  "exports_share_same_three_fixed_inputs": true,
+  "independent_training_reproduction_claimed": false,
+  "repeated_export_sha256": [
+    "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c",
+    "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c"
+  ],
+  "maximum_synthetic_arithmetic_error": 4.551914400963142e-15,
+  "inference_deterministic": true,
+  "original_choice_commit": "b14de0ea2f8ae91213cab77da05ea2581c8fa61f",
+  "recovery_choice_commit": "e80391302bd1d5d9d4c24b1371e68c9c5579dc3b",
+  "configuration": "configs/v14_recovery_tree.json"
+}

@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "local_tests": 185,
+  "hpc_tests": 185,
+  "local_python": "3.12.14",
+  "hpc_python": "3.9.21",
+  "staff_python312_loading": true,
+  "local_hpc_hashes_match": true,
+  "new_model_sha256": "1ead2b749463e3fad64157878c0f3c90644cdcfae2dd373d1616a3e3096a4e5c",
+  "new_model_bytes": 84547750,
+  "trees": 5800,
+  "training_byte_reproducible": false,
+  "original_identity_check_failed": true,
+  "original_failed_job": "1112542.pbshpc",
+  "recovery_verification_succeeded": true,
+  "recovery_job": "1112616.pbshpc",
+  "exports_share_same_fixed_inputs": true,
+  "export_and_inference_deterministic": true,
+  "parent_family_native_checks": 20,
+  "new_independent_cv_measurement": false,
+  "actual_job_attempts": 5,
+  "successful_attempts": 4,
+  "partial_tree_refit": true,
+  "neural_fitting": false,
+  "tree_dev_metric_is_in_sample": true,
+  "dev_metric_for_selection": false,
+  "inference_timing": {
+    "prepare_seconds": 0.3943062536418438,
+    "maximum_fusion_seconds": 0.001276593655347824,
+    "maximum_rerank_seconds": 0.8371593672782183
+  },
+  "logs": {
+    "runs/local_smoke_v14_final.log": "728364e02a62c73599c4cf773d4b15323de17ae25e571862f958db25ecc35dec",
+    "runs/verify_v14_recovery.log": "12f92c94c623b3f37ff3d11ea61498d3c30da14fb568565fc3c2d206749bbfba"
+  }
+}

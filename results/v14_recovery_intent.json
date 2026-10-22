@@ -1,0 +1,19 @@
+{
+  "choice_commit": "e80391302bd1d5d9d4c24b1371e68c9c5579dc3b",
+  "choice_pushed": true,
+  "new_fitting": false,
+  "tree_training_byte_reproducible": false,
+  "recovery_reason": "equal average of both completed groups after observed query-bagging variation; original identity failure retained",
+  "configuration_sha256": {
+    "configs/v14_recovery_tree.json": "c1e15e0d8f94b6861610b9139381caf54c87239988cd1cdfb4ca24ce73e96634",
+    "docs/EXPERIMENTS_V14_RECOVERY.md": "63cc27b502fbead75a833087912dc18ad5be0c0f7ccd68d3ddb67825a1e443b9",
+    "results/v14_variation_audit.json": "8d6ccf30d4c601eb27df65e51652ff11bb1427e1eaa0d823687dd83819f596de",
+    "results/v14_initial_scheduler.json": "0e961102d995151fe37f63d2ca765a3d01364cd71ed30a3908eb5f308b957d6e"
+  },
+  "helper_sha256": {
+    "runs/verify_v14_recovery.py": "e73ab403416fef7baa043b8c5aa085888af4e02b512cff64e3b2c7f30715c435",
+    "runs/hpc_verify_v14_recovery.pbs": "e6e6a2fcb38c724e629be3e67c3a70272ea54107235782fbf924a0ef09227f88",
+    "runs/collect_v14_recovery.py": "bd81f87edc1053d06fc6cac60e5ec38d33a890d74104596bad2803e595cfe3ea",
+    "runs/launch_v14_recovery.py": "7265bca426e7e71f3ff971f942724610b923070762760d361588f27a70f9cf73"
+  }
+}

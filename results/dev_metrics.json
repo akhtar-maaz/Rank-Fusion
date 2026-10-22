@@ -4,12 +4,12 @@
   "rows": 235259,
   "fusion_ndcg@10": 0.3090129947781274,
   "fusion_map@10": 0.12967126620013222,
-  "lambdamart_ndcg@10": 0.6823991127188831,
+  "lambdamart_ndcg@10": 0.6435071169857295,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 9.57000956684351,
-    "maximum_fusion_seconds": 0.001151571050286293,
-    "maximum_rerank_seconds": 0.45653177611529827
+    "prepare_seconds": 0.3943062536418438,
+    "maximum_fusion_seconds": 0.001276593655347824,
+    "maximum_rerank_seconds": 0.8371593672782183
   },
   "versions": {
     "numpy": "2.0.2",
@@ -34,6 +34,8 @@
       "TRAIN"
     ]
   },
-  "tree_provenance": "results/verification_v13.json",
-  "interpretation": "Tree DEV accuracy is in-sample after disclosed TRAIN+DEV fitting. V13 selection used released TRAIN only; no post-fit DEV choice. Neural models are retained TRAIN-only artifacts."
+  "tree_provenance": "results/verification_v14_recovery.json",
+  "partial_tree_refit": true,
+  "all_tree_members_freshly_refitted": false,
+  "interpretation": "Tree DEV is in-sample: retained TRAIN+DEV base plus two newly fitted TRAIN+DEV members. The C2-first candidate was chosen retrospectively from known TRAIN CV after user preference clarification; V13 original joint gate failed. The two query-bagging fits varied; both completed groups are equally averaged without accuracy selection. Tree training is not byte-reproducible; export and inference are deterministic. No post-fit DEV choice. Neural/fusion/C1 artifacts are retained."
 }

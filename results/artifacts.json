@@ -4,7 +4,7 @@
       "bytes": 55155289,
       "sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
       "unchanged_from_v2": false,
-      "unchanged_from_baseline": false,
+      "unchanged_from_baseline": true,
       "matches_hpc_copy": true,
       "features": 408,
       "input_features": 136,
@@ -44,10 +44,10 @@
       "staff_loader_python312_passed": true
     },
     "fusion_config.json": {
-      "bytes": 182,
-      "sha256": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
-      "unchanged_from_v2": true,
-      "unchanged_from_baseline": true,
+      "bytes": 180,
+      "sha256": "92054abffabe61ede48136e26a25002c9a42898c2d64be6dbc4daf96ff393a2f",
+      "unchanged_from_v2": false,
+      "unchanged_from_baseline": false,
       "matches_hpc_copy": true
     }
   },

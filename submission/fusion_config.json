@@ -1,9 +1,9 @@
 {
   "method": "weighted_combsum",
   "weights": {
-    "bm25_whole_document": 0.25,
-    "bm25_title": 0.25,
-    "lmir_dir_whole_document": 0.5,
+    "bm25_whole_document": 0.3,
+    "bm25_title": 0.3,
+    "lmir_dir_whole_document": 0.4,
     "lmir_jm_whole_document": 0.0
   }
 }

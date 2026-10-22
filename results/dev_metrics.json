@@ -2,14 +2,14 @@
   "features": "data/dev/vali.txt",
   "queries": 2000,
   "rows": 235259,
-  "fusion_ndcg@10": 0.3077851635664398,
-  "fusion_map@10": 0.12891656880923077,
+  "fusion_ndcg@10": 0.3090129947781274,
+  "fusion_map@10": 0.12967126620013222,
   "lambdamart_ndcg@10": 0.6823991127188831,
   "bm25_ndcg@10": 0.28848678060708594,
   "timing": {
-    "prepare_seconds": 4.93567037768662,
-    "maximum_fusion_seconds": 0.0010975953191518784,
-    "maximum_rerank_seconds": 0.4609244838356972
+    "prepare_seconds": 8.344296291470528,
+    "maximum_fusion_seconds": 0.0012032482773065567,
+    "maximum_rerank_seconds": 0.5062284171581268
   },
   "versions": {
     "numpy": "2.0.2",
@@ -34,6 +34,6 @@
       "TRAIN"
     ]
   },
-  "tree_fit_record": "results/tree_fit_v10.json",
-  "interpretation": "DEV labels entered tree fitting; its accuracy is in-sample, not held-out generalization. Neural fitting remains TRAIN only."
+  "tree_provenance": "results/verification_v11.json",
+  "interpretation": "Tree fitted on released TRAIN+DEV, so DEV tree accuracy is in-sample. Fusion selected and neural models fitted on TRAIN only. No final DEV-based choice."
 }

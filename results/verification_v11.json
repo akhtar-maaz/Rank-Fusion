@@ -1,0 +1,21 @@
+{
+  "tree_refitted": false,
+  "tree_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+  "fusion_promoted": true,
+  "fusion_sha256": "92054abffabe61ede48136e26a25002c9a42898c2d64be6dbc4daf96ff393a2f",
+  "selection_commit": "08f85262dd1d0f17b5be4461dbb74b4f1484eb74",
+  "neural_artifacts_and_core_recipe_history_preserved": true,
+  "final_tree_provenance": {
+    "protocol": "docs/EXPERIMENTS_V11.md",
+    "fit_splits": [
+      "TRAIN",
+      "DEV"
+    ],
+    "refitted_in_v11": false,
+    "retained_from": "V10",
+    "fit_record": "results/tree_fit_v10.json",
+    "configuration": "configs/v10_tree.json",
+    "cv_scope": "V11 TRAIN comparison retained V10",
+    "original_configuration_selection": "historical TRAIN-only CV"
+  }
+}

@@ -111,3 +111,17 @@ results/v11_selection_audit.json. These selections are committed and pushed
 before any new final DEV evaluation or application of the selected fusion.
 No selection threshold, candidate, stopping count or weight changed after
 inspecting measurements. Formal report writing remains deferred.
+
+## Completed final verification
+
+Verification job 1111685 completed successfully with all 163 server tests.
+All 163 local tests pass; pristine local Python 3.12 and HPC Python 3.9.21
+staff loaders, deterministic ranking, content hashes and interface limits
+pass. Seven actual V11 jobs are recorded; there are no final-artifact refits.
+Four CV jobs did fit TRAIN-fold candidates, which were rejected by selection.
+The final fusion DEV nDCG/MAP are 0.309012995/0.129671266; the retained
+tree DEV nDCG remains 0.682399113 (in-sample), and neural metrics are unchanged.
+These values were measured once after the TRAIN-only selection commit/push
+and did not change choices. See results/verification_v11.json,
+results/artifacts_hpc_v11.json, results/artifacts.json and results/execution.json.
+The formal report remains deferred. No new private score or rank is claimed.

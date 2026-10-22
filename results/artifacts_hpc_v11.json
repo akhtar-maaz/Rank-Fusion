@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "model.txt": {
+      "bytes": 55155289,
+      "sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+      "unchanged_from_v2": false,
+      "unchanged_from_baseline": true,
+      "features": 408,
+      "input_features": 136,
+      "feature_mode": "query_all",
+      "trees": 3800
+    },
+    "pointwise_model.pt": {
+      "bytes": 109173,
+      "sha256": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+      "unchanged_from_v2": true,
+      "unchanged_from_baseline": true,
+      "config": {
+        "n_features": 136,
+        "hidden": [
+          128,
+          64
+        ]
+      },
+      "staff_loader_passed": true,
+      "staff_loader_python312_passed": false
+    },
+    "pairwise_model.pt": {
+      "bytes": 278121,
+      "sha256": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+      "unchanged_from_v2": false,
+      "unchanged_from_baseline": true,
+      "config": {
+        "n_features": 136,
+        "hidden": [
+          256,
+          128
+        ]
+      },
+      "staff_loader_passed": true,
+      "staff_loader_python312_passed": false
+    },
+    "fusion_config.json": {
+      "bytes": 180,
+      "sha256": "92054abffabe61ede48136e26a25002c9a42898c2d64be6dbc4daf96ff393a2f",
+      "unchanged_from_v2": false,
+      "unchanged_from_baseline": false
+    }
+  },
+  "local_python": "3.9.21",
+  "local_versions": {
+    "numpy": "2.0.2",
+    "lightgbm": "4.6.0",
+    "torch": "2.8.0+cpu"
+  },
+  "ranking_deterministic": true
+}

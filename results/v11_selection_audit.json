@@ -1,0 +1,538 @@
+{
+  "protocol_commit": "20ab5794ac461b24925d9acebfc175bbac0d9c98",
+  "workflow_commit": "2e2bd5755aec4660a54f043f8195f193c83cf04c",
+  "baseline_commit": "c022d6cf48e539f7d4b09c40d209a7ccef1a5bde",
+  "selected_on": "released TRAIN only",
+  "new_dev_measurement_inspected": false,
+  "first_stage_jobs": {
+    "1111529[0].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "390",
+      "resources_used.cput": "00:46:14",
+      "resources_used.mem": "1870960kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "3447648kb",
+      "resources_used.walltime": "00:12:58",
+      "job_state": "F",
+      "exec_host": "cgen003/2*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:39 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:42:42 2026",
+      "Exit_status": "0"
+    },
+    "1111529[1].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "398",
+      "resources_used.cput": "01:09:12",
+      "resources_used.mem": "3538168kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "5103120kb",
+      "resources_used.walltime": "00:19:31",
+      "job_state": "F",
+      "exec_host": "cgen003/11*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:40 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:49:15 2026",
+      "Exit_status": "0"
+    },
+    "1111529[2].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:06:01",
+      "resources_used.mem": "2987236kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4480444kb",
+      "resources_used.walltime": "00:18:01",
+      "job_state": "F",
+      "exec_host": "cgen003/12*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:40 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:47:45 2026",
+      "Exit_status": "0"
+    },
+    "1111529[3].pbshpc": {
+      "Job_Name": "rankfusion-cv-v11",
+      "resources_used.cpupercent": "397",
+      "resources_used.cput": "01:36:47",
+      "resources_used.mem": "5240684kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "6753980kb",
+      "resources_used.walltime": "00:26:36",
+      "job_state": "F",
+      "exec_host": "cgen003/13*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "43200",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "03:00:00",
+      "stime": "Thu Oct 22 14:29:40 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=16777216kb",
+      "obittime": "Thu Oct 22 14:56:21 2026",
+      "Exit_status": "0"
+    },
+    "1111530.pbshpc": {
+      "Job_Name": "rankfusion-fusion-v11",
+      "resources_used.cpupercent": "99",
+      "resources_used.cput": "00:01:40",
+      "resources_used.mem": "578360kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "1850144kb",
+      "resources_used.walltime": "00:01:41",
+      "job_state": "F",
+      "exec_host": "cgen003/0*4",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "8gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "7200",
+      "Resource_List.select": "1:ncpus=4:mem=8gb:centos=genoa",
+      "Resource_List.walltime": "00:30:00",
+      "stime": "Thu Oct 22 14:29:39 2026",
+      "comment": "Job run at Thu Oct 22 at 14:29 on (cgen003:ncpus=4:mem=8388608kb)",
+      "obittime": "Thu Oct 22 14:31:24 2026",
+      "Exit_status": "0"
+    },
+    "1111531.pbshpc": {
+      "Job_Name": "rankfusion-select-v11",
+      "job_state": "F",
+      "Resource_List.am_job_cache": "{\"job.ncpus\": 4.0,",
+      "Resource_List.mem": "16gb",
+      "Resource_List.ncpus": "4",
+      "Resource_List.nodect": "1",
+      "Resource_List.place": "free",
+      "Resource_List.run_share": "14400",
+      "Resource_List.select": "1:ncpus=4:mem=16gb:centos=genoa",
+      "Resource_List.walltime": "01:00:00",
+      "resources_used.cpupercent": "377",
+      "resources_used.cput": "00:48:40",
+      "resources_used.mem": "2905764kb",
+      "resources_used.ncpus": "4",
+      "resources_used.vmem": "4521232kb",
+      "resources_used.walltime": "00:14:48",
+      "exec_host": "cgen003/0*4",
+      "stime": "Thu Oct 22 14:56:22 2026",
+      "obittime": "Thu Oct 22 15:11:13 2026",
+      "comment": "Job run at Thu Oct 22 at 14:56 on (cgen003:ncpus=4:mem=16777216kb",
+      "Exit_status": "0"
+    }
+  },
+  "tree_settings": 33,
+  "tree_promoted": false,
+  "tree_selected": {
+    "name": "cached_v10_control",
+    "trees": 3800,
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "num_leaves": 127,
+      "learning_rate": 0.05,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4
+    },
+    "feature_mode": "query_all",
+    "train_mean": 0.7321142738023114,
+    "validation_mean": 0.4875599715916302,
+    "validation_std": 0.009311735872849192,
+    "validation_train_ratio": 0.6659615705338415,
+    "scenario_means": {
+      "clean": 0.4875599715916302,
+      "affine": 0.478999749917989,
+      "feature_dropout": 0.47715373694851093,
+      "noise": 0.47492148208077056
+    },
+    "diagnostic_mean": 0.4770249896490902,
+    "selection_score": 0.48229248062036023,
+    "folds": [
+      {
+        "fold": 0,
+        "train_ndcg@10": 0.7308662406192089,
+        "scenarios": {
+          "clean": 0.50317104782731,
+          "affine": 0.4940287419397928,
+          "feature_dropout": 0.4923988513948587,
+          "noise": 0.49004324217735645
+        }
+      },
+      {
+        "fold": 1,
+        "train_ndcg@10": 0.7314068974505193,
+        "scenarios": {
+          "clean": 0.47902756770052424,
+          "affine": 0.47115962738115824,
+          "feature_dropout": 0.47031689265630433,
+          "noise": 0.4681947867393193
+        }
+      },
+      {
+        "fold": 2,
+        "train_ndcg@10": 0.7316877627114512,
+        "scenarios": {
+          "clean": 0.4858292537850515,
+          "affine": 0.47722075594867286,
+          "feature_dropout": 0.47467195137799933,
+          "noise": 0.47126716170103294
+        }
+      },
+      {
+        "fold": 3,
+        "train_ndcg@10": 0.7341979576701273,
+        "scenarios": {
+          "clean": 0.4823335063726691,
+          "affine": 0.47475102909062816,
+          "feature_dropout": 0.47214996253469516,
+          "noise": 0.4715967648914395
+        }
+      },
+      {
+        "fold": 4,
+        "train_ndcg@10": 0.7324125105602504,
+        "scenarios": {
+          "clean": 0.48743848227259645,
+          "affine": 0.47783859522969285,
+          "feature_dropout": 0.47623102677869716,
+          "noise": 0.47350545489470475
+        }
+      }
+    ],
+    "members": [
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4
+        },
+        "trees": 200,
+        "feature_mode": "query_normalized",
+        "weight": 0.0703125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 13
+        },
+        "trees": 800,
+        "feature_mode": "query_rank",
+        "augmentation": {
+          "name": "half_query_dropout_noise",
+          "seed": 20261019
+        },
+        "weight": 0.140625
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "half_query_mixed",
+          "seed": 20261020
+        },
+        "weight": 0.28125
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30
+        },
+        "trees": 800,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.1875
+      },
+      {
+        "params": {
+          "objective": "lambdarank",
+          "metric": "ndcg",
+          "eval_at": [
+            10
+          ],
+          "num_leaves": 127,
+          "learning_rate": 0.05,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 10,
+          "feature_fraction": 0.8,
+          "bagging_fraction": 0.8,
+          "bagging_freq": 1,
+          "seed": 0,
+          "deterministic": true,
+          "force_row_wise": true,
+          "verbose": -1,
+          "num_threads": 4,
+          "lambdarank_truncation_level": 30,
+          "extra_trees": true,
+          "extra_seed": 0
+        },
+        "trees": 400,
+        "feature_mode": "query_all",
+        "augmentation": {
+          "name": "full_query_mixed",
+          "seed": 20261021
+        },
+        "weight": 0.25
+      }
+    ],
+    "sources": [
+      [
+        "v3",
+        0,
+        800
+      ],
+      [
+        "v3",
+        1,
+        200
+      ],
+      [
+        "v4",
+        3,
+        800
+      ],
+      [
+        "v5",
+        1,
+        800
+      ],
+      [
+        "v6",
+        3,
+        800
+      ],
+      [
+        "v7",
+        2,
+        400
+      ]
+    ]
+  },
+  "tree_promotion_gates": {
+    "candidate": "cached_v10_control",
+    "mixture_gain": 0.0,
+    "diagnostic_gain": 0.0,
+    "improved_folds": 0,
+    "fold_mixture_gains": [
+      {
+        "fold": 0,
+        "mixture_gain": 0.0
+      },
+      {
+        "fold": 1,
+        "mixture_gain": 0.0
+      },
+      {
+        "fold": 2,
+        "mixture_gain": 0.0
+      },
+      {
+        "fold": 3,
+        "mixture_gain": 0.0
+      },
+      {
+        "fold": 4,
+        "mixture_gain": 0.0
+      }
+    ],
+    "mixture_passed": false,
+    "diagnostic_passed": false,
+    "paired_folds_passed": false,
+    "passed": false
+  },
+  "tree_native_equivalence": [
+    {
+      "fold": 0,
+      "native_max_abs_error": 2.042810365310288e-14,
+      "native_ndcg_10": 0.50317104782731,
+      "explicit_ndcg_10": 0.50317104782731
+    },
+    {
+      "fold": 1,
+      "native_max_abs_error": 2.1316282072803006e-14,
+      "native_ndcg_10": 0.47902756770052424,
+      "explicit_ndcg_10": 0.47902756770052424
+    },
+    {
+      "fold": 2,
+      "native_max_abs_error": 2.220446049250313e-14,
+      "native_ndcg_10": 0.4858292537850515,
+      "explicit_ndcg_10": 0.4858292537850515
+    },
+    {
+      "fold": 3,
+      "native_max_abs_error": 1.687538997430238e-14,
+      "native_ndcg_10": 0.4823335063726691,
+      "explicit_ndcg_10": 0.4823335063726691
+    },
+    {
+      "fold": 4,
+      "native_max_abs_error": 2.398081733190338e-14,
+      "native_ndcg_10": 0.48743848227259645,
+      "explicit_ndcg_10": 0.48743848227259645
+    }
+  ],
+  "fusion_settings": 1146,
+  "fusion_selected": {
+    "method": "weighted_combsum",
+    "weights": {
+      "bm25_whole_document": 0.3,
+      "bm25_title": 0.3,
+      "lmir_dir_whole_document": 0.4,
+      "lmir_jm_whole_document": 0.0
+    }
+  },
+  "fusion_promotion_gates": {
+    "winner": 1049,
+    "control": 1145,
+    "selected": 1049,
+    "promoted": true,
+    "proxy_gain": 0.0006460764177669831,
+    "paired_fold_gains": [
+      0.0004153444322348987,
+      0.0013697368750913985,
+      0.0009804146240004474,
+      -3.997342998574016e-05,
+      0.0005048595874938555
+    ],
+    "improved_folds": 4
+  },
+  "protected_sha256": {
+    "model.txt": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+    "pointwise_model.pt": "40689d4fc449e564f317bf24f3c75e73bce0b788d43a854acb22f4dd710fe611",
+    "pairwise_model.pt": "d967f9a0c17cd4b847b8ba39781d1d00784c1eb9478445e4abc44a5370fed4f1",
+    "fusion_config.json": "f12ddcb14fc2120127ed8490343231106bda9f974e623801fafd70bcfa5a4bb8",
+    "recipe.py": "cd03519e9f91c2fd7b0b124753a2d4e19e14d48091cd0f98a3bea5979e99f415",
+    "pointwise_pairwise.py": "b096e86e5b0cdf19c4bd2e04e914766cde05c5996858f00dfed98e11a01b59b8"
+  },
+  "selection_sha256": {
+    "results/lambdamart_cv_v11.json": "b43b994e285f8dc55a80515d7d87a4419e504da07ee740ec4db551ad88f1f1d5",
+    "results/fusion_selection_v11.json": "90b636521e0bda5fa042340466fe9a0459c222031e3cff809fa35dae0ca39619"
+  }
+}

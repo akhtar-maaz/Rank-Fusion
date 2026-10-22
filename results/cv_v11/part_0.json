@@ -1,0 +1,228 @@
+{
+  "arguments": {
+    "train": "data/train/train.txt",
+    "candidate": 0,
+    "out_dir": "runs/cv_v11",
+    "specs": "configs/v11_candidates.json"
+  },
+  "candidate": {
+    "name": "percentile_clean",
+    "feature_mode": "query_percentile",
+    "params": {
+      "objective": "lambdarank",
+      "metric": "ndcg",
+      "eval_at": [
+        10
+      ],
+      "learning_rate": 0.05,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "seed": 0,
+      "deterministic": true,
+      "force_row_wise": true,
+      "verbose": -1,
+      "num_threads": 4,
+      "num_leaves": 127,
+      "min_data_in_leaf": 100,
+      "lambda_l2": 10,
+      "lambdarank_truncation_level": 30
+    },
+    "augmentation": null,
+    "trees": [
+      400,
+      800
+    ]
+  },
+  "rows": 723412,
+  "queries": 6000,
+  "scenarios": [
+    "clean",
+    "affine",
+    "feature_dropout",
+    "noise"
+  ],
+  "results": [
+    {
+      "name": "percentile_clean",
+      "trees": 400,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "eval_at": [
+          10
+        ],
+        "learning_rate": 0.05,
+        "feature_fraction": 0.8,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "seed": 0,
+        "deterministic": true,
+        "force_row_wise": true,
+        "verbose": -1,
+        "num_threads": 4,
+        "num_leaves": 127,
+        "min_data_in_leaf": 100,
+        "lambda_l2": 10,
+        "lambdarank_truncation_level": 30
+      },
+      "feature_mode": "query_percentile",
+      "train_mean": 0.6730080353426453,
+      "validation_mean": 0.47024069927516765,
+      "validation_std": 0.0079000291362353,
+      "validation_train_ratio": 0.6987148363477655,
+      "scenario_means": {
+        "clean": 0.47024069927516765,
+        "affine": 0.4702327850587671,
+        "feature_dropout": 0.4559686599142173,
+        "noise": 0.43894158256501986
+      },
+      "diagnostic_mean": 0.4550476758460014,
+      "selection_score": 0.46264418756058456,
+      "folds": [
+        {
+          "fold": 0,
+          "scenarios": {
+            "clean": 0.483631709331269,
+            "affine": 0.48363187281257136,
+            "feature_dropout": 0.46845906803999954,
+            "noise": 0.4511041493887993
+          },
+          "train_ndcg@10": 0.6696771113825609
+        },
+        {
+          "fold": 1,
+          "scenarios": {
+            "clean": 0.46354547319259154,
+            "affine": 0.46350873788035596,
+            "feature_dropout": 0.4521506636254616,
+            "noise": 0.42939024199741527
+          },
+          "train_ndcg@10": 0.6729932768193332
+        },
+        {
+          "fold": 2,
+          "scenarios": {
+            "clean": 0.4703733788875785,
+            "affine": 0.4703552104873967,
+            "feature_dropout": 0.45560437986702906,
+            "noise": 0.4374832381821734
+          },
+          "train_ndcg@10": 0.6739591029532177
+        },
+        {
+          "fold": 3,
+          "scenarios": {
+            "clean": 0.4657860162718407,
+            "affine": 0.46580423837263585,
+            "feature_dropout": 0.45180998335145195,
+            "noise": 0.4369927706124534
+          },
+          "train_ndcg@10": 0.6738334340619835
+        },
+        {
+          "fold": 4,
+          "scenarios": {
+            "clean": 0.4678669186925584,
+            "affine": 0.46786386574087574,
+            "feature_dropout": 0.4518192046871443,
+            "noise": 0.4397375126442578
+          },
+          "train_ndcg@10": 0.6745772514961315
+        }
+      ],
+      "augmentation": null
+    },
+    {
+      "name": "percentile_clean",
+      "trees": 800,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "eval_at": [
+          10
+        ],
+        "learning_rate": 0.05,
+        "feature_fraction": 0.8,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "seed": 0,
+        "deterministic": true,
+        "force_row_wise": true,
+        "verbose": -1,
+        "num_threads": 4,
+        "num_leaves": 127,
+        "min_data_in_leaf": 100,
+        "lambda_l2": 10,
+        "lambdarank_truncation_level": 30
+      },
+      "feature_mode": "query_percentile",
+      "train_mean": 0.762720110714696,
+      "validation_mean": 0.4692399725190174,
+      "validation_std": 0.008331281660820608,
+      "validation_train_ratio": 0.6152190901054422,
+      "scenario_means": {
+        "clean": 0.4692399725190174,
+        "affine": 0.46920929755577206,
+        "feature_dropout": 0.4538110069178837,
+        "noise": 0.43490447698359896
+      },
+      "diagnostic_mean": 0.4526415938190849,
+      "selection_score": 0.4609407831690512,
+      "folds": [
+        {
+          "fold": 0,
+          "scenarios": {
+            "clean": 0.48270115983838174,
+            "affine": 0.48269243644204485,
+            "feature_dropout": 0.46825495714645093,
+            "noise": 0.44700517495826897
+          },
+          "train_ndcg@10": 0.7603266102064207
+        },
+        {
+          "fold": 1,
+          "scenarios": {
+            "clean": 0.4618287171154796,
+            "affine": 0.4618417779379585,
+            "feature_dropout": 0.44525497538595216,
+            "noise": 0.42416474835093365
+          },
+          "train_ndcg@10": 0.7631699433701545
+        },
+        {
+          "fold": 2,
+          "scenarios": {
+            "clean": 0.4700452061950275,
+            "affine": 0.4698475437880101,
+            "feature_dropout": 0.45484549221501774,
+            "noise": 0.43530410141782216
+          },
+          "train_ndcg@10": 0.7628678887919451
+        },
+        {
+          "fold": 3,
+          "scenarios": {
+            "clean": 0.46286572238307844,
+            "affine": 0.46286572424517697,
+            "feature_dropout": 0.4490766217358504,
+            "noise": 0.4327304621630037
+          },
+          "train_ndcg@10": 0.7637690133760994
+        },
+        {
+          "fold": 4,
+          "scenarios": {
+            "clean": 0.46875905706311966,
+            "affine": 0.46879900536566993,
+            "feature_dropout": 0.451622988106147,
+            "noise": 0.43531789802796644
+          },
+          "train_ndcg@10": 0.7634670978288606
+        }
+      ],
+      "augmentation": null
+    }
+  ],
+  "seconds": 775.5794259421527
+}

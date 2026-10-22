@@ -92,3 +92,22 @@ artifact-specific fitting/tuning/stopping declarations, preserve AI provenance,
 all earlier records and V10/V9/V8/V7.1/V7/V6 ZIPs. Commit/push verified changes
 and build `dist/rank-fusion-submission-v11.zip` from committed HEAD. The user
 uploads manually; no private score or class rank is promised.
+
+## Frozen selection outcome
+
+All four candidates and all six first-stage job records completed successfully.
+The exact archived control reproduced the historical TRAIN-fold metrics. None
+of the new tree settings beat the control under the frozen comparison, so
+V11 retains V10's exact 3,800-tree TRAIN+DEV artifact; there is no V11 tree
+refit or neural fitting. Five-fold native equivalence checks pass.
+
+The fusion winner is minmax CombSUM with weights .3 BM25 whole-document,
+.3 BM25 title, .4 LMIR.DIR and zero LMIR.JM. Its TRAIN proxy gain is
+0.0006460764 and four of five paired folds improve, passing both fixed gates.
+The complete 1,146-rule result and all tree/parts/control/gate/native evidence
+are saved in results/fusion_selection_v11.json, results/lambdamart_cv_v11.json,
+results/cv_v11/, results/selection_jobs_v11.json and
+results/v11_selection_audit.json. These selections are committed and pushed
+before any new final DEV evaluation or application of the selected fusion.
+No selection threshold, candidate, stopping count or weight changed after
+inspecting measurements. Formal report writing remains deferred.

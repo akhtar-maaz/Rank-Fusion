@@ -1,0 +1,40 @@
+{
+  "submission": 597,
+  "report_diagnostic_date": "2026-10-24",
+  "archive": "dist/rank-fusion-submission-v12.zip",
+  "archive_sha256": "e42c56344bcce528e48b803ba2fb265aa3adb93cddc53791876dbd9f373b6e28",
+  "model_sha256": "f2fa40faac67aaab067bb43eb169fd7d7db5a13c5eeb0a6d248c88f941e44864",
+  "dev_sha256": "e86fb3fe7e8a5f16479da7ce04f783ae85735f17f66016786c3ffc797dd9d4db",
+  "rows": 235259,
+  "queries": 2000,
+  "lightgbm_version": "4.6.0",
+  "description": "First unaugmented query_rank member of the shipped V12 six-member model, prefixes 200/400/800. Its positive export weight changes score scale but not ranking. DEV was part of fitting: all DEV values are in-sample. This retrospective reporting diagnostic is not a model-selection run and changes no submitted artifact.",
+  "historical_train_cv_source": "V12 ZIP: results/lambdamart_cv_v3.json, name=v2_control",
+  "full_submitted_model_dev_ndcg_10": 0.6823991127188831,
+  "points": [
+    {
+      "trees": 200,
+      "dev_ndcg_10_in_sample": 0.5863809982237854,
+      "train_cv_training_mean": 0.6183791850236806,
+      "train_cv_validation_mean": 0.4821701067433216,
+      "train_cv_validation_std": 0.009994030256159693,
+      "train_cv_diagnostic_mean": 0.46003973646693574
+    },
+    {
+      "trees": 400,
+      "dev_ndcg_10_in_sample": 0.6487992971488772,
+      "train_cv_training_mean": 0.694358826185859,
+      "train_cv_validation_mean": 0.4839677793173644,
+      "train_cv_validation_std": 0.009643141127479037,
+      "train_cv_diagnostic_mean": 0.45917422136181224
+    },
+    {
+      "trees": 800,
+      "dev_ndcg_10_in_sample": 0.7278545478999349,
+      "train_cv_training_mean": 0.7820325069147761,
+      "train_cv_validation_mean": 0.48413327260639133,
+      "train_cv_validation_std": 0.008215465881953153,
+      "train_cv_diagnostic_mean": 0.45499047147884514
+    }
+  ]
+}

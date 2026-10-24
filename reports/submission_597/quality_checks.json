@@ -3,11 +3,12 @@
   "submission": 597,
   "layout_reference": "/Users/maazakhtar/COL/2023BB10156.pdf",
   "reference_sha256": "2b74f2f0eb387672745cb41365fb054dd38d433b47456d79e32a69c562f91c6b",
-  "pdf_sha256": "d9f088373dbf49c1eba8fc770e79e91153709e02ab4d1765d1e6d72477aababe",
+  "pdf_sha256": "e8fff1b82e3af9b3a04c882b8e07e745aa4c9b7dd94d20ead54e3a5cdb4273b3",
   "all_three_pages_visually_reviewed": true,
   "page_text_bounds_checked": true,
   "required_metrics_and_declarations_checked": true,
   "later_version_metrics_excluded": true,
   "evaluated_v12_archive_hash_preserved": true,
-  "models_or_submission_source_modified": false
+  "models_or_submission_source_modified": false,
+  "ai_declaration_revision": "The assistance also covered repetitive coding tasks and documentation."
 }
